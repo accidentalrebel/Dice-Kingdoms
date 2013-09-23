@@ -14,6 +14,7 @@ import org.flixel.util.FlxPoint;
 class InputManager extends FlxBasic
 {	
 	var startTouchPos : FlxPoint = null;
+	var screenDrag : Float = 0.5;
 	
 	public function new() 
 	{
@@ -24,30 +25,28 @@ class InputManager extends FlxBasic
 	{
 		super.update();
 		
-		//for (tTouch in FlxG.touchManager.touches)
-		//{
-			//var touch : FlxTouch = tTouch;
-			//if (touch.pressed())
-			//{
-				//GameplayManager.onClick(touch.x, touch.y);
-			//}
-		//}
+		var distanceFromStartTouch : Float = 0;
+		if ( startTouchPos != null )
+			distanceFromStartTouch = FlxMath.getDistance(startTouchPos, new FlxPoint(FlxG.mouse.x, FlxG.mouse.y));
 		
 		if ( startTouchPos == null && FlxG.mouse.justPressed() )
 		{
-			startTouchPos = new FlxPoint(FlxG.camera.scroll.x + FlxG.mouse.screenX, FlxG.camera.scroll.y + FlxG.mouse.screenY);
+			startTouchPos = new FlxPoint(FlxG.mouse.x, FlxG.mouse.y);
 		}
 		else if ( startTouchPos != null && FlxG.mouse.justReleased() )
 		{
-			var releasedPos = new FlxPoint(FlxG.mouse.screenX, FlxG.mouse.screenY);
-			
+			if ( distanceFromStartTouch < 5 )
+			{
+				GameplayManager.onClick(FlxG.mouse.x, FlxG.mouse.y);
+			}
+				
 			startTouchPos = null;
 		}
 		
-		if ( startTouchPos != null && FlxMath.getDistance(startTouchPos, new FlxPoint(FlxG.mouse.screenX, FlxG.mouse.screenY)) > 5)
+		if ( startTouchPos != null && distanceFromStartTouch > 5)
 		{			
-			FlxG.camera.scroll.x = (FlxG.camera.scroll.x + startTouchPos.x - FlxG.mouse.screenX) * 0.5;
-			FlxG.camera.scroll.y = (FlxG.camera.scroll.y + startTouchPos.y - FlxG.mouse.screenY) * 0.5;
+			FlxG.camera.scroll.x = (FlxG.camera.scroll.x + startTouchPos.x - FlxG.mouse.screenX) * screenDrag;
+			FlxG.camera.scroll.y = (FlxG.camera.scroll.y + startTouchPos.y - FlxG.mouse.screenY) * screenDrag; 
 		}
 	}
 }
