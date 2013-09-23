@@ -35,24 +35,19 @@ class InputManager extends FlxBasic
 		
 		if ( startTouchPos == null && FlxG.mouse.justPressed() )
 		{
-			startTouchPos = new FlxPoint(FlxG.mouse.screenX, FlxG.mouse.screenY);
+			startTouchPos = new FlxPoint(FlxG.camera.scroll.x + FlxG.mouse.screenX, FlxG.camera.scroll.y + FlxG.mouse.screenY);
 		}
 		else if ( startTouchPos != null && FlxG.mouse.justReleased() )
 		{
 			var releasedPos = new FlxPoint(FlxG.mouse.screenX, FlxG.mouse.screenY);
 			
-			if ( FlxMath.getDistance(startTouchPos, releasedPos) > 10 )
-			{
-				trace("Distance is over 10");
-			}
-			
 			startTouchPos = null;
 		}
 		
-		if ( startTouchPos != null )
+		if ( startTouchPos != null && FlxMath.getDistance(startTouchPos, new FlxPoint(FlxG.mouse.screenX, FlxG.mouse.screenY)) > 5)
 		{			
-			FlxG.camera.scroll.x = FlxG.mouse.screenX - startTouchPos.x;
-			FlxG.camera.scroll.y = FlxG.mouse.screenY - startTouchPos.y;
+			FlxG.camera.scroll.x = (FlxG.camera.scroll.x + startTouchPos.x - FlxG.mouse.screenX) * 0.5;
+			FlxG.camera.scroll.y = (FlxG.camera.scroll.y + startTouchPos.y - FlxG.mouse.screenY) * 0.5;
 		}
 	}
 }
