@@ -1,12 +1,13 @@
 package objects;
 import flash.display.Sprite;
+import flixel.system.layer.frames.FlxFrame;
 import objects.Territory;
-import org.flixel.FlxAssets;
-import org.flixel.FlxSprite;
-import org.flixel.FlxState;
-import org.flixel.FlxText;
-import org.flixel.util.FlxPoint;
-import org.flixel.util.FlxRect;
+import flixel.system.FlxAssets;
+import flixel.FlxSprite;
+import flixel.FlxState;
+import flixel.text.FlxText;
+import flixel.util.FlxPoint;
+import flixel.util.FlxRect;
 
 /**
  * ...
@@ -96,7 +97,7 @@ class HexaTile extends FlxSprite
 			
 			boundaryGraphic = new FlxSprite(this.x, this.y);
 			boundaryGraphic.loadGraphic("assets/boundaryLines.png", true, false, 32, 28);
-			boundaryGraphic.frame = frameToUse;
+			boundaryGraphic.animation.frameIndex = frameToUse;
 			
 			this.parent.add(boundaryGraphic);
 		}

@@ -1,6 +1,6 @@
 package managers;
 import objects.Territory;
-import org.flixel.FlxBasic;
+import flixel.FlxBasic;
 
 /**
  * ...

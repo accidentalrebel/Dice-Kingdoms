@@ -1,11 +1,11 @@
 package managers;
 import flash.events.TouchEvent;
-import org.flixel.FlxBasic;
-import org.flixel.FlxG;
-import org.flixel.system.input.FlxMouse;
-import org.flixel.system.input.FlxTouch;
-import org.flixel.util.FlxMath;
-import org.flixel.util.FlxPoint;
+import flixel.FlxBasic;
+import flixel.FlxG;
+import flixel.system.input.mouse.FlxMouse;
+import flixel.system.input.touch.FlxTouch;
+import flixel.util.FlxMath;
+import flixel.util.FlxPoint;
 
 /**
  * ...
@@ -31,11 +31,11 @@ class InputManager extends FlxBasic
 		if ( startTouchPos != null )
 			distanceFromStartTouch = FlxMath.getDistance(startTouchPos, new FlxPoint(FlxG.mouse.x, FlxG.mouse.y));
 		
-		if ( startTouchPos == null && FlxG.mouse.justPressed() )
+		if ( startTouchPos == null && FlxG.mouse.justPressed )
 		{
 			startTouchPos = new FlxPoint(FlxG.mouse.x, FlxG.mouse.y);
 		}
-		else if ( startTouchPos != null && FlxG.mouse.justReleased() )
+		else if ( startTouchPos != null && FlxG.mouse.justReleased )
 		{
 			if ( !isDragging && distanceFromStartTouch < distanceToDrag )			
 				GameplayManager.onClick(FlxG.mouse.x, FlxG.mouse.y);			

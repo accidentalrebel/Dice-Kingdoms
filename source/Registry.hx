@@ -1,6 +1,6 @@
 package ;
-import org.flixel.FlxText;
-import org.flixel.util.FlxPoint;
+import flixel.text.FlxText;
+import flixel.util.FlxPoint;
 import playArea.PlayArea;
 
 /**

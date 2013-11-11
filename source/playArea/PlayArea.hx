@@ -5,9 +5,9 @@ import managers.TerritoryManager;
 import objects.HexaTile;
 import objects.Player;
 import objects.Territory;
-import org.flixel.FlxBasic;
-import org.flixel.FlxState;
-import org.flixel.util.FlxPoint;
+import flixel.FlxBasic;
+import flixel.FlxState;
+import flixel.util.FlxPoint;
 
 /**
  * ...

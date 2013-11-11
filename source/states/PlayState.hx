@@ -2,11 +2,11 @@ package states;
 import managers.GameplayManager;
 import managers.InputManager;
 import managers.PlayerManager;
-import org.flixel.FlxButton;
-import org.flixel.FlxG;
-import org.flixel.FlxState;
-import org.flixel.FlxText;
-import org.flixel.util.FlxMath;
+import flixel.ui.FlxButton;
+import flixel.FlxG;
+import flixel.FlxState;
+import flixel.text.FlxText;
+import flixel.util.FlxMath;
 import playArea.PlayArea;
 
 /**
@@ -17,7 +17,7 @@ class PlayState extends FlxState
 {
 	override public function create():Void 
 	{
-		FlxG.bgColor = 0xFF435169;
+		FlxG.cameras.bgColor = 0xFF435169;
 		
 		super.create();
 		

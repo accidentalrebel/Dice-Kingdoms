@@ -7,12 +7,12 @@ import flash.events.Event;
 import flash.events.KeyboardEvent;
 import flash.Lib;
 import flash.ui.Keyboard;
-import org.flixel.FlxGame;
+import flixel.FlxGame;
 
 /**
  * @author Joshua Granick
  */
-class Main extends Sprite 
+class Main extends Sprite
 {
 	
 	public function new () 

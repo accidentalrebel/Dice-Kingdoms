@@ -1,7 +1,7 @@
 package managers;
 import objects.HexaTile;
 import objects.Territory;
-import org.flixel.FlxG;
+import flixel.FlxG;
 import playArea.PlayArea;
 
 //TODO: Selectable territories should be highlighted

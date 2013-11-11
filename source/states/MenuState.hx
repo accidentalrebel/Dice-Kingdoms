@@ -3,13 +3,12 @@ package states;
 import openfl.Assets;
 import flash.geom.Rectangle;
 import flash.net.SharedObject;
-import org.flixel.FlxButton;
-import org.flixel.FlxG;
-import org.flixel.FlxPath;
-import org.flixel.FlxSave;
-import org.flixel.FlxSprite;
-import org.flixel.FlxState;
-import org.flixel.FlxText;
+import flixel.FlxG;
+import flixel.util.FlxPath;
+import flixel.ui.FlxButton;
+import flixel.util.FlxSave;
+import flixel.FlxSprite;
+import flixel.FlxState;
 
 class MenuState extends FlxState
 {	
@@ -19,7 +18,8 @@ class MenuState extends FlxState
 	override public function create():Void
 	{
 		// Set a background color
-		FlxG.bgColor = 0xff131c1b;
+		FlxG.cameras.bgColor = 0xff131c1b;
+		
 		// Show the mouse (in case it hasn't been disabled)
 		#if !FLX_NO_MOUSE
 		FlxG.mouse.show();
