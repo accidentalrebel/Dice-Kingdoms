@@ -34,7 +34,6 @@ class PlayArea
 			}
 		}
 	   
-		// TODO: Make sure that neighbors on the edge are properly taken
 		// We set the neighbors of each hexaTile
 		for ( col in 0...playAreaCols+1 )
 		{

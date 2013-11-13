@@ -4,9 +4,6 @@ import objects.Territory;
 import flixel.FlxG;
 import playArea.PlayArea;
 
-//TODO: Selectable territories should be highlighted
-//TODO: Have a hasAttacked variable
-//TODO: Have a restock mode, after whole turn
 //TODO: Have basic battle visuals
 
 /**

@@ -24,12 +24,12 @@ class PlayState extends FlxState
 		var inputManager : InputManager = new InputManager();
 		add(inputManager);
 		
+		//TODO: Add Done and Player indicator as UI elements
 		Registry.playerIndicator = new FlxText(5, 5, 100, "Player 1", 16);
 		add(Registry.playerIndicator);
 		var doneButton : FlxButton = new FlxButton(5, 26, "DONE",GameplayManager.nextPlayer);		
 		add(doneButton);
 		
-		//TODO: Add to a playArea FlxGroup
 		PlayArea.init(this);
 		PlayArea.setupTerritories();	
 		PlayerManager.init(8);
