@@ -50,5 +50,13 @@ class InputManager extends FlxBasic
 			FlxG.camera.scroll.x = (FlxG.camera.scroll.x + startTouchPos.x - FlxG.mouse.screenX) * screenDrag;
 			FlxG.camera.scroll.y = (FlxG.camera.scroll.y + startTouchPos.y - FlxG.mouse.screenY) * screenDrag; 
 		}
+		
+		if ( FlxG.keys.justPressed.Z )
+		{
+			if ( FlxG.camera.zoom == 1 )
+				FlxG.camera.zoom = 1.5;
+			else
+				FlxG.camera.zoom = 1;
+		}
 	}
 }
