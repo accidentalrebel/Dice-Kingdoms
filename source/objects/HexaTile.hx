@@ -76,7 +76,8 @@ class HexaTile extends FlxSprite
 	{
 		label = new FlxText(this.x, this.y, 30);
 		label.alignment = "center";
-		label.size = 20;		
+		label.size = 20;
+		label.color = 0x000000;
 		
 		this.parent.add(label);
 		updateLabel(textToDisplay);
