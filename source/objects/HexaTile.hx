@@ -15,10 +15,10 @@ import flixel.util.FlxRect;
  */
 class HexaTile extends FlxSprite
 {
-	public static var tileWidth : Int = 32;
-	public static var tileHeight : Int = 28;
-	//public static var tileWidth : Int = 24;
-	//public static var tileHeight : Int = 21;
+	//public static var tileWidth : Int = 32;
+	//public static var tileHeight : Int = 28;
+	public static var tileWidth : Int = 24;
+	public static var tileHeight : Int = 21;
 	
 	var col : Int = 0;
 	var row : Int = 0;
@@ -97,7 +97,7 @@ class HexaTile extends FlxSprite
 				return;
 				
 			boundaryGraphic = new FlxSprite(this.x, this.y);
-			boundaryGraphic.loadGraphic("assets/boundaryLines.png", true, false, 32, 28);
+			boundaryGraphic.loadGraphic("assets/boundaryLines.png", true, false, tileWidth, tileHeight);
 			boundaryGraphic.animation.frameIndex = frameToUse;
 			
 			this.parent.add(boundaryGraphic);
