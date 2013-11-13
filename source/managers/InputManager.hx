@@ -52,11 +52,6 @@ class InputManager extends FlxBasic
 		}
 		
 		if ( FlxG.keys.justPressed.Z )
-		{
-			if ( FlxG.camera.zoom == 1 )
-				FlxG.camera.zoom = 1.5;
-			else
-				FlxG.camera.zoom = 1;
-		}
+			CameraManager.toggleZoom();
 	}
 }
