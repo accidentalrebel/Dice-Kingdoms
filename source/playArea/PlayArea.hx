@@ -43,10 +43,10 @@ class PlayArea
 				var currentHexaTile : HexaTile = playAreaArray[col][row];
 				
 				// We then get the surrounding of this tile
-				// First the top neighbor
-				if ( row + 1 < playAreaRows )			
+				// First the bottom neighbor
+				if ( row + 1 <= playAreaRows )			
 					currentHexaTile.bottom = playAreaArray[col][row + 1];
-				// We get the bottom neighbor
+				// We get the top neighbor
 				if ( row - 1 >= 0 )
 					currentHexaTile.top = playAreaArray[col][row - 1];
 					

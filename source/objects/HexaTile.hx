@@ -95,7 +95,7 @@ class HexaTile extends FlxSprite
 			if ( theNeighbor != null && theNeighbor.isATerritory
 				&& this.territoryNumber == theNeighbor.territoryNumber )
 				return;
-			
+				
 			boundaryGraphic = new FlxSprite(this.x, this.y);
 			boundaryGraphic.loadGraphic("assets/boundaryLines.png", true, false, 32, 28);
 			boundaryGraphic.animation.frameIndex = frameToUse;
