@@ -1,5 +1,6 @@
 package managers;
 import flixel.FlxG;
+import flixel.util.FlxPoint;
 
 /**
  * ...
@@ -27,12 +28,15 @@ class CameraManager
 	static private function zoomIn() 
 	{
 		isZoomedIn = true;
-		FlxG.camera.zoom = normalZoomValue;
+		FlxG.camera.zoom = magnifiedZoomValue;
 	}
 	
 	static private function zoomOut() 
 	{
 		isZoomedIn = false;
-		FlxG.camera.zoom = magnifiedZoomValue;
+		FlxG.camera.zoom = normalZoomValue;
+		
+		// We then reset the camera position
+		FlxG.camera.scroll = new FlxPoint();		
 	}
 }
