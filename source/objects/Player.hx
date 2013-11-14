@@ -1,4 +1,5 @@
 package objects;
+import ai.EnemyAI;
 import managers.PlayerManager;
 import managers.TerritoryManager;
 
@@ -11,6 +12,7 @@ class Player
 	public var territories:Array<Int>;
 	public var territoryColor:Int;
 	public var isHuman:Bool = false;
+	public var ai:EnemyAI;
 	
 	var playerNum:Int;
 
@@ -18,6 +20,10 @@ class Player
 	{
 		this.playerNum = playerNum;
 		this.isHuman = isHuman;
+		
+		if ( !this.isHuman )
+			this.ai = new EnemyAI();
+		
 		this.territoryColor = Registry.colorList[playerNum-1];
 		this.territories = new Array<Int>();
 	}
