@@ -10,11 +10,14 @@ class Player
 {
 	public var territories:Array<Int>;
 	public var territoryColor:Int;
+	public var isHuman:Bool = false;
+	
 	var playerNum:Int;
 
-	public function new(playerNum : Int) 
+	public function new(playerNum : Int, isHuman : Bool ) 
 	{
 		this.playerNum = playerNum;
+		this.isHuman = isHuman;
 		this.territoryColor = Registry.colorList[playerNum-1];
 		this.territories = new Array<Int>();
 	}
