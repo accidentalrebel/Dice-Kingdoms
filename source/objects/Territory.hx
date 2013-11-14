@@ -35,10 +35,15 @@ class Territory extends FlxBasic
 		centerTile.updateLabel(Std.string(count));
 	}
 	
-	public function increaseArmyCount(amount : Int = 1) 
+	public function increaseArmyCount(amount : Int = 1) : Bool
 	{
+		if ( armyCount + amount >= Registry.maxArmyCountPerTerritory )
+			return false;
+		
 		armyCount += amount;
 		setArmyCount(armyCount);
+		
+		return true;
 	}
 	
 	public function select(isNeighborSelect : Bool = false) 

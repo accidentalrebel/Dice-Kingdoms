@@ -2,6 +2,7 @@ package objects;
 import ai.EnemyAI;
 import managers.PlayerManager;
 import managers.TerritoryManager;
+import tools.Tools;
 
 /**
  * ...
@@ -29,12 +30,17 @@ class Player
 	
 	public function randomlyAssignArmies(maxArmyCount) 
 	{
+		var territoryListCopy : Array<Int> = Tools.hardCopyArray(territories);
+		
+		// TODO: Change this so that only territories that are valid are left
 		for ( i in 0...maxArmyCount-1 )
 		{
-			var roll : Int = Std.random(territories.length);
+			var roll : Int = Std.random(territoryListCopy.length);
 			var territoryNum : Int = territories[roll];
 			var territory : Territory = TerritoryManager.getTerritory(territoryNum);
-			territory.increaseArmyCount();
+			
+			//if ( territory.increaseArmyCount() )
+				//i--;		// Increase army was not successful
 		}
 	}
 }
