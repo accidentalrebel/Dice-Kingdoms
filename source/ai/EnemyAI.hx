@@ -24,14 +24,14 @@ class EnemyAI
 		trace("Enemy AI Takes over for player " + this.playerScript.playerNum);
 		
 		// We go through each territory owned by this player and see if there are any valid moves
+		// TODO: Make sure that AI also goes though newly acquired territories
 		for ( tTerritory in playerScript.territories )
 		{
+			trace("Territory count is " + playerScript.territories.length);
 			var territory : Territory = TerritoryManager.getTerritory(tTerritory);
 			var currentTerritoryArmyCount : Int = territory.armyCount;
 			if ( currentTerritoryArmyCount <= 1 )
 				continue;
-			
-			trace("Checking territory " + territory.territoryNumber);
 			
 			// We go through each neighbors
 			for ( tNeighbor in territory.neighbors )
@@ -42,7 +42,6 @@ class EnemyAI
 				trace(currentTerritoryArmyCount + " ? " + neighborTerritory.armyCount);
 				if ( currentTerritoryArmyCount > neighborTerritory.armyCount )
 				{
-					trace("Attacking!");
 					GameplayManager.startAttack(territory.territoryNumber, neighborTerritory.territoryNumber);
 					break;
 				}
