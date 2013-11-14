@@ -1,5 +1,6 @@
 package ai;
 import managers.GameplayManager;
+import managers.PlayerManager;
 import managers.TerritoryManager;
 import objects.Player;
 import objects.Territory;
@@ -27,6 +28,9 @@ class EnemyAI
 		{
 			var territory : Territory = TerritoryManager.getTerritory(tTerritory);
 			var currentTerritoryArmyCount : Int = territory.armyCount;
+			if ( currentTerritoryArmyCount <= 1 )
+				continue;
+			
 			trace("Checking territory " + territory.territoryNumber);
 			
 			// We go through each neighbors
@@ -40,10 +44,13 @@ class EnemyAI
 				{
 					trace("Attacking!");
 					GameplayManager.startAttack(territory.territoryNumber, neighborTerritory.territoryNumber);
-					return;
+					break;
 				}
 			}
 		}
+		
+		trace("Exhausted all options");
+		PlayerManager.nextPlayer();
 	}
 	
 }
