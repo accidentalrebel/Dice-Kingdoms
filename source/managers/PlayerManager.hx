@@ -13,6 +13,7 @@ class PlayerManager
 	static public var numOfHumans:Int = 1;
 	static public var playerList:Array<Player>;
 	static public var currentPlayerNumber : Int = 1;
+	static private var currentPlayer : Player;
 	
 	static public function init(tNumOfPlayers : Int, tNumOfHumans : Int) 
 	{
@@ -23,7 +24,6 @@ class PlayerManager
 		var isHuman : Bool = true;
 		for ( i in 1...(numOfPlayers+1) )
 		{
-			tNumOfHumans--;
 			if ( tNumOfHumans <= 0 )
 				isHuman = false;
 			else
@@ -31,6 +31,8 @@ class PlayerManager
 			
 			var player : Player = new Player(i, isHuman);
 			playerList.push(player);
+			
+			tNumOfHumans--;
 		}
 		
 		setCurrentPlayer(1);
@@ -53,7 +55,6 @@ class PlayerManager
 	static public function nextPlayer() 
 	{
 		// We add armies according to the number of territories		
-		var currentPlayer : Player = getPlayer(currentPlayerNumber);
 		currentPlayer.randomlyAssignArmies(currentPlayer.territories.length);
 		
 		// We then increase our playerNumber
@@ -72,6 +73,7 @@ class PlayerManager
 	static private function setCurrentPlayer(playerNumber:Int) 
 	{
 		currentPlayerNumber = playerNumber;
+		currentPlayer = getPlayer(currentPlayerNumber);
 		Registry.playerIndicator.color = getPlayer(currentPlayerNumber).territoryColor;
 	}
 }
