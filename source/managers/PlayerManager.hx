@@ -15,7 +15,7 @@ class PlayerManager
 	static public var currentPlayerNumber : Int = 1;
 	static private var currentPlayer : Player;
 	
-	static public function init(tNumOfPlayers : Int, tNumOfHumans : Int) 
+	static public function init(tNumOfPlayers : Int = 8, tNumOfHumans : Int = 1) 
 	{
 		numOfPlayers = tNumOfPlayers;
 		numOfHumans = tNumOfHumans;
@@ -54,7 +54,8 @@ class PlayerManager
 	
 	static public function nextPlayer() 
 	{
-		// We add armies according to the number of territories		
+		// We add armies according to the number of territories
+		// TODO: Do not allow armies to go over a certain number
 		currentPlayer.randomlyAssignArmies(currentPlayer.territories.length);
 		
 		// We then increase our playerNumber

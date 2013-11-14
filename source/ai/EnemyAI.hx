@@ -51,5 +51,4 @@ class EnemyAI
 		trace("Exhausted all options");
 		PlayerManager.nextPlayer();
 	}
-	
 }

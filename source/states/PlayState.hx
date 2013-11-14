@@ -33,7 +33,7 @@ class PlayState extends FlxState
 		
 		PlayArea.init(this);
 		PlayArea.setupTerritories();	
-		PlayerManager.init(8, 2);
+		PlayerManager.init();
 		PlayArea.assignTerritories();
 		PlayerManager.initializeArmies();
 	}
