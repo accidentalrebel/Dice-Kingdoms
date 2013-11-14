@@ -13,7 +13,7 @@ class Registry
 	public static var maxTerritories : Int = Math.floor(PlayArea.playAreaRows / 5) * Math.floor(PlayArea.playAreaCols / 5);	
 	static public var territoryPerPlayer:Int;
 	
-	static public var initialArmyCount:Int = 20;	
+	static public var initialArmyCount:Int;	
 	static public var maxArmyCountPerTerritory : Int = 8;
 	
 	static public var playAreaPadding : FlxPoint = new FlxPoint(15, 15);

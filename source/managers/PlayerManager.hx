@@ -55,7 +55,6 @@ class PlayerManager
 	static public function nextPlayer() 
 	{
 		// We add armies according to the number of territories
-		// TODO: Do not allow armies to go over a certain number
 		currentPlayer.randomlyAssignArmies(currentPlayer.territories.length);
 		
 		// We then increase our playerNumber

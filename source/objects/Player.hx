@@ -32,15 +32,23 @@ class Player
 	{
 		var territoryListCopy : Array<Int> = Tools.hardCopyArray(territories);
 		
-		// TODO: Change this so that only territories that are valid are left
-		for ( i in 0...maxArmyCount-1 )
+		while ( maxArmyCount > 0 && territoryListCopy.length > 0)
 		{
 			var roll : Int = Std.random(territoryListCopy.length);
-			var territoryNum : Int = territories[roll];
+			var territoryNum : Int = territoryListCopy[roll];
 			var territory : Territory = TerritoryManager.getTerritory(territoryNum);
 			
-			//if ( territory.increaseArmyCount() )
-				//i--;		// Increase army was not successful
+			trace("Assigning a unit to territory num " + territory.territoryNumber);
+			if ( territory.increaseArmyCount() )
+			{	
+				maxArmyCount--;
+				trace("Success! Reducing army count!");
+			}
+			else
+			{
+				territoryListCopy.remove(territoryNum);
+				trace("Unsuccessful adding to " + territoryNum + ". Removing form list");
+			}
 		}
 	}
 }
