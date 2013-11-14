@@ -12,9 +12,8 @@ class Player
 	public var territories:Array<Int>;
 	public var territoryColor:Int;
 	public var isHuman:Bool = false;
-	public var ai:EnemyAI;
-	
-	var playerNum:Int;
+	public var ai:EnemyAI;	
+	public var playerNum:Int;
 
 	public function new(playerNum : Int, isHuman : Bool ) 
 	{
@@ -22,7 +21,7 @@ class Player
 		this.isHuman = isHuman;
 		
 		if ( !this.isHuman )
-			this.ai = new EnemyAI();
+			this.ai = new EnemyAI(this);
 		
 		this.territoryColor = Registry.colorList[playerNum-1];
 		this.territories = new Array<Int>();

@@ -80,7 +80,7 @@ class GameplayManager
 		PlayerManager.nextPlayer();
 	}
 	
-	static private function startAttack(attackerTerritoryNum:Int, defenderTerritoryNum:Int) 
+	static public function startAttack(attackerTerritoryNum:Int, defenderTerritoryNum:Int) 
 	{
 		function rollDice(numOfDice:Int) 
 		{
