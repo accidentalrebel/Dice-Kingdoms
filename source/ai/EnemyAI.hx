@@ -1,4 +1,5 @@
 package ai;
+import managers.BattleManager;
 import managers.GameplayManager;
 import managers.PlayerManager;
 import managers.TerritoryManager;
@@ -42,7 +43,7 @@ class EnemyAI
 				trace(currentTerritoryArmyCount + " ? " + neighborTerritory.armyCount);
 				if ( currentTerritoryArmyCount > neighborTerritory.armyCount )
 				{
-					GameplayManager.startAttack(territory.territoryNumber, neighborTerritory.territoryNumber);
+					BattleManager.startAttack(territory.territoryNumber, neighborTerritory.territoryNumber);
 					break;
 				}
 			}
