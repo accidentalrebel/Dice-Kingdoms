@@ -45,7 +45,7 @@ class BattleManager
 			attacker.armyCount = attacker.armyCount - 1;
 			defender.setArmyCount(attacker.armyCount);
 			attacker.setArmyCount(1);
-			PlayArea.assignTerritory(defender.territoryNumber, attacker.ownerNumber);
+			Registry.playArea.assignTerritory(defender.territoryNumber, attacker.ownerNumber);
 		}
 		else
 		{

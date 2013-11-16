@@ -32,10 +32,10 @@ class PlayState extends FlxState
 		
 		// We setup the playArea and player manager
 		add(Registry.playArea = new PlayArea());
-		PlayArea.init(this);
-		PlayArea.setupTerritories();	
+		Registry.playArea.init(this);
+		Registry.playArea.setupTerritories();	
 		PlayerManager.init();
-		PlayArea.assignTerritories();
+		Registry.playArea.assignTerritories();
 		PlayerManager.initializeArmies();
 		
 		// We then add the GUI to the stage

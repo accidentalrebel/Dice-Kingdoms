@@ -40,7 +40,7 @@ class GameplayManager
 			selectedTerritory = -1;
 		}
 		
-		var clickedTile : HexaTile = PlayArea.checkForClickedTiles(xPos, yPos);
+		var clickedTile : HexaTile = Registry.playArea.checkForClickedTiles(xPos, yPos);
 		if ( clickedTile != null )
 		{
 			var clickedTerritory : Territory = TerritoryManager.getTerritory(clickedTile.territoryNumber);

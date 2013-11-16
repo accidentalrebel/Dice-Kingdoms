@@ -18,14 +18,14 @@ class PlayArea extends FlxGroup
 {
 	public static var playAreaCols : Int = 42;
 	public static var playAreaRows : Int = 26;
-	public static var playAreaArray : Array<Array<HexaTile>>;
+	public var playAreaArray : Array<Array<HexaTile>>;
 
 	public function new()
 	{
 		super();
 	}
 	
-	public static function init(parent : FlxState) 
+	public function init(parent : FlxState) 
 	{		
 		playAreaArray = new Array<Array<HexaTile>>();
 		for ( col in 0...playAreaCols+1 )
@@ -35,7 +35,7 @@ class PlayArea extends FlxGroup
 			
 			for ( row in 0...playAreaRows+1 )
 			{
-				var hexaTile : HexaTile = new HexaTile(Registry.playArea, col, row);
+				var hexaTile : HexaTile = new HexaTile(this, col, row);
 				playAreaArray[col].push(hexaTile);
 			}
 		}
@@ -87,7 +87,7 @@ class PlayArea extends FlxGroup
 		}
 	}
 	
-	public static function setupTerritories()
+	public function setupTerritories()
 	{		
 	    var centerBaseList : Array<HexaTile> = new Array<HexaTile>();
 		var currentTerritoryNumber : Int = 0;
@@ -299,7 +299,7 @@ class PlayArea extends FlxGroup
 		}
 	} 
 	
-	static public function assignTerritories() 
+	public function assignTerritories() 
 	{
 		var pickedTerritories : Array<Int> = new Array<Int>();
 		
@@ -322,12 +322,12 @@ class PlayArea extends FlxGroup
 	    {
 			for (j in 0...Registry.territoryPerPlayer)
 			{
-				PlayArea.assignTerritory(getRandomTerritoryNum(), playerNum);        
+				Registry.playArea.assignTerritory(getRandomTerritoryNum(), playerNum);        
 			}
 	    }
 	}
 	
-	static public function assignTerritory(territoryNum : Int, playerNum : Int)
+	public function assignTerritory(territoryNum : Int, playerNum : Int)
 	{
 		var territory : Territory = TerritoryManager.getTerritory(territoryNum);
 		
@@ -353,7 +353,7 @@ class PlayArea extends FlxGroup
 		}
 	}
 	
-	static public function checkForClickedTiles(xPos:Float, yPos:Float) 
+	public function checkForClickedTiles(xPos:Float, yPos:Float) 
 	{
 		for ( col in 0...playAreaCols+1 )
 		{
