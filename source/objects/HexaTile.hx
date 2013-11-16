@@ -1,5 +1,6 @@
 package objects;
 import flash.display.Sprite;
+import flixel.group.FlxGroup;
 import flixel.system.layer.frames.FlxFrame;
 import objects.Territory;
 import flixel.system.FlxAssets;
@@ -22,7 +23,7 @@ class HexaTile extends FlxSprite
 	
 	var col : Int = 0;
 	var row : Int = 0;
-	var parent : FlxState = null;
+	var parent : FlxGroup = null;
 	var label : FlxText;
 	var boundaryGraphic:FlxSprite;
 	
@@ -40,7 +41,7 @@ class HexaTile extends FlxSprite
 	public var bottomLeft : HexaTile = null;
 	public var topLeft : HexaTile = null;
 	
-	public function new(parent : FlxState, col : Int , row : Int) 
+	public function new(parent : FlxGroup, col : Int , row : Int) 
 	{
 		this.col = col;
 		this.row = row;

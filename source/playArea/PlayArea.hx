@@ -35,7 +35,7 @@ class PlayArea extends FlxGroup
 			
 			for ( row in 0...playAreaRows+1 )
 			{
-				var hexaTile : HexaTile = new HexaTile(parent, col, row);
+				var hexaTile : HexaTile = new HexaTile(Registry.playArea, col, row);
 				playAreaArray[col].push(hexaTile);
 			}
 		}
