@@ -24,7 +24,7 @@ class GameGUI extends FlxGroup
 		var doneButton : FlxButton = new FlxButton(5, 26, "DONE", GameplayManager.nextPlayer);		
 		add(doneButton);
 		
-		this.setAll("cameras", [FlxG.camera]);
+		// Everything in this group does not move from the camera
 		this.setAll("scrollFactor", new FlxPoint(0, 0));
 	}
 }
