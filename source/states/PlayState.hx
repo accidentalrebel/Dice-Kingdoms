@@ -23,17 +23,19 @@ class PlayState extends FlxState
 		
 		super.create();
 		
-		// We setup the Main GUI
-		add(Registry.gameGUI = new GameGUI());
-		
 		// We setup the input Manager
 		var inputManager : InputManager = new InputManager();
 		add(inputManager);
 		
+		// We setup the Main GUI
+		add(Registry.gameGUI = new GameGUI());
+		
+		// We setup the playArea and player manager
 		PlayArea.init(this);
 		PlayArea.setupTerritories();	
 		PlayerManager.init();
 		PlayArea.assignTerritories();
 		PlayerManager.initializeArmies();
+		
 	}
 }
