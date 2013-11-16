@@ -1,4 +1,4 @@
-package gui;
+package layers;
 import flixel.FlxG;
 import flixel.group.FlxGroup;
 import flixel.text.FlxText;
@@ -11,7 +11,7 @@ import managers.GameplayManager;
  * ...
  * @author Karlo
  */
-class GameGUI extends FlxGroup
+class GameGUILayer extends FlxGroup
 {
 	public var playerIndicator : FlxText;
 	

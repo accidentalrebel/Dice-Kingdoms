@@ -1,5 +1,5 @@
 package states;
-import gui.GameGUI;
+import layers.GameGUILayer;
 import managers.GameplayManager;
 import managers.InputManager;
 import managers.PlayerManager;
@@ -8,7 +8,7 @@ import flixel.FlxG;
 import flixel.FlxState;
 import flixel.text.FlxText;
 import flixel.util.FlxMath;
-import playArea.PlayArea;
+import layers.PlayAreaLayer;
 
 /**
  * ...
@@ -28,10 +28,10 @@ class PlayState extends FlxState
 		add(inputManager);
 		
 		// We setup the Main GUI
-		Registry.gameGUI = new GameGUI();
+		Registry.gameGUI = new GameGUILayer();
 		
 		// We setup the playArea and player manager
-		add(Registry.playArea = new PlayArea());
+		add(Registry.playArea = new PlayAreaLayer());
 		Registry.playArea.init(this);
 		Registry.playArea.setupTerritories();	
 		PlayerManager.init();

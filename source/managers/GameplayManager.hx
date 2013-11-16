@@ -2,7 +2,7 @@ package managers;
 import objects.HexaTile;
 import objects.Territory;
 import flixel.FlxG;
-import playArea.PlayArea;
+import layers.PlayAreaLayer;
 
 //TODO: Have basic battle visuals
 

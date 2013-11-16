@@ -1,10 +1,10 @@
-package gui;
+package layers;
 
 /**
  * ...
  * @author Karlo
  */
-class BattleGUI
+class BattleLayer
 {
 
 	public function new() 

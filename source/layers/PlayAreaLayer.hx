@@ -1,4 +1,4 @@
-package playArea;
+package layers;
 import flash.Memory;
 import flixel.group.FlxGroup;
 import managers.PlayerManager;
@@ -14,7 +14,7 @@ import flixel.util.FlxPoint;
  * ...
  * @author Karlo
  */
-class PlayArea extends FlxGroup
+class PlayAreaLayer extends FlxGroup
 {
 	public static var playAreaCols : Int = 42;
 	public static var playAreaRows : Int = 26;

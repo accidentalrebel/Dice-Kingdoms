@@ -1,6 +1,6 @@
 package managers;
 import objects.Territory;
-import playArea.PlayArea;
+import layers.PlayAreaLayer;
 
 /**
  * ...
