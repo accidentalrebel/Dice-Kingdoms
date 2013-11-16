@@ -74,6 +74,6 @@ class PlayerManager
 	{
 		currentPlayerNumber = playerNumber;
 		currentPlayer = getPlayer(currentPlayerNumber);
-		Registry.playerIndicator.color = getPlayer(currentPlayerNumber).territoryColor;
+		Registry.gameGUI.playerIndicator.color = getPlayer(currentPlayerNumber).territoryColor;
 	}
 }

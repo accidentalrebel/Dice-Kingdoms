@@ -1,6 +1,7 @@
 package ;
 import flixel.text.FlxText;
 import flixel.util.FlxPoint;
+import gui.GameGUI;
 import playArea.PlayArea;
 
 /**
@@ -17,6 +18,7 @@ class Registry
 	static public var maxArmyCountPerTerritory : Int = 8;
 	
 	static public var playAreaPadding : FlxPoint = new FlxPoint(15, 15);
-	static public var playerIndicator : FlxText;
+	
+	static public var gameGUI:GameGUI;
 	
 }

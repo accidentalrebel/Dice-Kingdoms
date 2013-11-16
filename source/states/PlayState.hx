@@ -1,4 +1,5 @@
 package states;
+import gui.GameGUI;
 import managers.GameplayManager;
 import managers.InputManager;
 import managers.PlayerManager;
@@ -22,14 +23,12 @@ class PlayState extends FlxState
 		
 		super.create();
 		
+		// We setup the Main GUI
+		add(Registry.gameGUI = new GameGUI());
+		
+		// We setup the input Manager
 		var inputManager : InputManager = new InputManager();
 		add(inputManager);
-		
-		//TODO: Add Done and Player indicator as UI elements
-		Registry.playerIndicator = new FlxText(5, 5, 100, "Player 1", 16);
-		add(Registry.playerIndicator);
-		var doneButton : FlxButton = new FlxButton(5, 26, "DONE",GameplayManager.nextPlayer);		
-		add(doneButton);
 		
 		PlayArea.init(this);
 		PlayArea.setupTerritories();	
