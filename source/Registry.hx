@@ -1,6 +1,7 @@
 package ;
 import flixel.text.FlxText;
 import flixel.util.FlxPoint;
+import layers.BattleLayer;
 import layers.GameGUILayer;
 import layers.PlayAreaLayer;
 
@@ -21,5 +22,6 @@ class Registry
 	
 	static public var gameGUI:GameGUILayer;
 	static public var playArea:PlayAreaLayer;
+	static public var battleLayer: BattleLayer;
 	
 }

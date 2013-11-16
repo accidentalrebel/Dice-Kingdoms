@@ -1,4 +1,5 @@
 package states;
+import layers.BattleLayer;
 import layers.GameGUILayer;
 import managers.GameplayManager;
 import managers.InputManager;
@@ -29,6 +30,7 @@ class PlayState extends FlxState
 		
 		// We setup the Main GUI
 		Registry.gameGUI = new GameGUILayer();
+		Registry.battleLayer = new BattleLayer();
 		
 		// We setup the playArea and player manager
 		add(Registry.playArea = new PlayAreaLayer());
@@ -39,6 +41,7 @@ class PlayState extends FlxState
 		PlayerManager.initializeArmies();
 		
 		// We then add the GUI to the stage
-		add(Registry.gameGUI);		
+		add(Registry.gameGUI);
+		add(Registry.battleLayer);
 	}
 }
