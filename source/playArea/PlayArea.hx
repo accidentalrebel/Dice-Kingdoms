@@ -1,5 +1,6 @@
 package playArea;
 import flash.Memory;
+import flixel.group.FlxGroup;
 import managers.PlayerManager;
 import managers.TerritoryManager;
 import objects.HexaTile;
@@ -13,12 +14,17 @@ import flixel.util.FlxPoint;
  * ...
  * @author Karlo
  */
-class PlayArea
+class PlayArea extends FlxGroup
 {
 	public static var playAreaCols : Int = 42;
 	public static var playAreaRows : Int = 26;
 	public static var playAreaArray : Array<Array<HexaTile>>;
 
+	public function new()
+	{
+		super();
+	}
+	
 	public static function init(parent : FlxState) 
 	{		
 		playAreaArray = new Array<Array<HexaTile>>();

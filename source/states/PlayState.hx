@@ -31,6 +31,7 @@ class PlayState extends FlxState
 		Registry.gameGUI = new GameGUI();
 		
 		// We setup the playArea and player manager
+		add(Registry.playArea = new PlayArea());
 		PlayArea.init(this);
 		PlayArea.setupTerritories();	
 		PlayerManager.init();

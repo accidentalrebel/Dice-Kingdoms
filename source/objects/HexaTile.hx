@@ -61,7 +61,7 @@ class HexaTile extends FlxSprite
 		//scale = new FlxPoint(0.75, 0.75);
 		
 		this.parent = parent;
-		this.parent.add(this);
+		Registry.playArea.add(this);
 	}	
 	
 	public function checkIfClicked(xPos:Float, yPos:Float)

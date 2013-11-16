@@ -20,5 +20,6 @@ class Registry
 	static public var playAreaPadding : FlxPoint = new FlxPoint(15, 15);
 	
 	static public var gameGUI:GameGUI;
+	static public var playArea:PlayArea;
 	
 }
