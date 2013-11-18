@@ -36,13 +36,12 @@ class BattleManager
 		// We start rolling
 		var attackerRoll : Int = rollDice(attacker.armyCount);
 		var defenderRoll : Int = rollDice(defender.armyCount);
-		
-		Registry.battleLayer.show("ATTACKER: " + attackerRoll + " DEFENDER: " + defenderRoll);
+		var winText : String = "";
 		
 		// We resolve the battle
 		if ( attackerRoll > defenderRoll )
 		{
-			trace("ATTACKER WINS!");
+			winText = "ATTACKER";
 			attacker.armyCount = attacker.armyCount - 1;
 			defender.setArmyCount(attacker.armyCount);
 			attacker.setArmyCount(1);
@@ -50,9 +49,12 @@ class BattleManager
 		}
 		else
 		{
-			trace("DEFENDER WINS!");
+			winText = "DEFENDER";
 			attacker.setArmyCount(1);
 		}
+		
+		Registry.battleLayer.updateTexts("ATTACKER: " + attackerRoll + " DEFENDER: " + defenderRoll
+			+ "\n" + winText + " WINS!!");
 		
 		return true;
 	} 
