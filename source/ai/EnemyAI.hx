@@ -47,7 +47,13 @@ class EnemyAI
 					&& territory.ownerNumber == playerScript.playerNum 
 					&& territory.neighbors.length >= 1
 					&& territory.markAsChecked == false )
-					return territory;
+					{
+						if ( aiType == AIType.DEFENSIVE 		// If the AI is defensive
+							&& territory.armyCount < 7 )		// And the territory does not meet the army requirement
+							continue;
+							
+						return territory;
+					}
 			}
 			
 			// We did not get any territories
