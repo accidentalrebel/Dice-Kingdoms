@@ -6,6 +6,7 @@ import managers.PlayerManager;
 import managers.TerritoryManager;
 import objects.Player;
 import objects.Territory;
+import tools.Tools;
 
 /**
  * ...
@@ -21,7 +22,7 @@ class EnemyAI
 		this.playerScript = playerScript;
 	}
 	
-	public function startMakingMoves()
+	public function startPlanning()
 	{
 		function getAvailableTerritories() : Null<Territory>
 		{
@@ -67,6 +68,7 @@ class EnemyAI
 			}
 				
 			// We go through each neighbors
+			// TODO: Pick a random neighbor instead of picking the first one on the list
 			for ( tNeighbor in territory.neighbors )
 			{
 				var neighborTerritory : Territory = TerritoryManager.getTerritory(tNeighbor);

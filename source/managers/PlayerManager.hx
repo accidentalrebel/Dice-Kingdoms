@@ -67,7 +67,7 @@ class PlayerManager
 		
 		// We then determine if AI would take over
 		if ( !currentPlayer.isHuman )
-			currentPlayer.ai.startMakingMoves();
+			currentPlayer.ai.startPlanning();
 	}
 	
 	static private function setCurrentPlayer(playerNumber:Int) 
