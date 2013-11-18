@@ -25,6 +25,7 @@ class EnemyAI
 	{
 		trace("Enemy AI Takes over for player " + this.playerScript.playerNum);
 		
+		//TODO: Change the system so that the AI goes through an updated version of the map
 		var taskManager : AntTaskManager = new AntTaskManager(false, PlayerManager.nextPlayer);
 		
 		// We go through each territory owned by this player and see if there are any valid moves
@@ -34,7 +35,8 @@ class EnemyAI
 			trace("Territory count is " + playerScript.territories.length);
 			var territory : Territory = TerritoryManager.getTerritory(tTerritory);
 			var currentTerritoryArmyCount : Int = territory.armyCount;
-			if ( currentTerritoryArmyCount <= 1 )
+			if ( currentTerritoryArmyCount <= 1
+				|| territory.ownerNumber != playerScript.playerNum )
 				continue;
 			
 			// We go through each neighbors
@@ -53,12 +55,12 @@ class EnemyAI
 					taskManager.addPause(0.25);
 					
 					// We highlight the attacker and the one being attacked
-					taskManager.addTask(this, Registry.playArea.selectTerritory, [territory], true);
+					taskManager.addInstantTask(this, Registry.playArea.selectTerritory, [territory], true);
 					taskManager.addInstantTask(this, Registry.playArea.selectTerritory, [neighborTerritory, true], true);
 					taskManager.addPause(0.25);
 					
 					// We then start the battle and unhighlight territories
-					taskManager.addTask(this, BattleManager.startAttack, [territory.territoryNumber, neighborTerritory.territoryNumber], true);
+					taskManager.addInstantTask(this, BattleManager.startAttack, [territory.territoryNumber, neighborTerritory.territoryNumber], true);
 					taskManager.addInstantTask(this, Registry.playArea.deselectTerritory, [territory.territoryNumber], true);
 					taskManager.addInstantTask(this, Registry.playArea.deselectTerritory, [neighborTerritory.territoryNumber], true);
 					break;

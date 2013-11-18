@@ -21,4 +21,8 @@ class Tools
 		return newArray;
 	}
 	
+	public static function randomMinMax(minValue : Float, maxValue : Float)
+	{
+		return minValue + Std.random(maxValue - minValue);
+	}
 }
