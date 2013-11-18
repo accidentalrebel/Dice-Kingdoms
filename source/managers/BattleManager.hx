@@ -14,7 +14,6 @@ class BattleManager
 		
 	}
 	
-	
 	static public function startAttack(attackerTerritoryNum:Int, defenderTerritoryNum:Int) : Bool
 	{
 		function rollDice(numOfDice:Int) 

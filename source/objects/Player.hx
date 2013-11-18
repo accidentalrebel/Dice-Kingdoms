@@ -38,16 +38,16 @@ class Player
 			var territoryNum : Int = territoryListCopy[roll];
 			var territory : Territory = TerritoryManager.getTerritory(territoryNum);
 			
-			trace("Assigning a unit to territory num " + territory.territoryNumber);
+			//trace("Assigning a unit to territory num " + territory.territoryNumber);
 			if ( territory.increaseArmyCount() )
 			{	
 				maxArmyCount--;
-				trace("Success! Reducing army count!");
+				//trace("Success! Reducing army count!");
 			}
 			else
 			{
 				territoryListCopy.remove(territoryNum);
-				trace("Unsuccessful adding to " + territoryNum + ". Removing form list");
+				//trace("Unsuccessful adding to " + territoryNum + ". Removing form list");
 			}
 		}
 	}
