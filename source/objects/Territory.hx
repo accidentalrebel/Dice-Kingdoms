@@ -38,7 +38,7 @@ class Territory extends FlxBasic
 	
 	public function increaseArmyCount(amount : Int = 1) : Bool
 	{
-		if ( armyCount + amount >= Registry.maxArmyCountPerTerritory )
+		if ( armyCount + amount > Registry.maxArmyCountPerTerritory )
 			return false;
 		
 		armyCount += amount;
