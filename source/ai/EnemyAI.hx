@@ -13,7 +13,7 @@ import tools.Tools;
  * @author Karlo
  */
 enum AIType {
-	NORMAL;			// Attacks only at equal armies
+	NORMAL;			// Attacks only at equal armies or more
 	AGGRESSIVE;		// Attacks even though enemy is one army bigger
 	DEFENSIVE;		// Only attacks if army is 7 or 8 in count
 	CAUTIOUS;		// Only attacks if they have more than one army
@@ -96,7 +96,12 @@ class EnemyAI
 				if ( neighborTerritory.ownerNumber == territory.ownerNumber )
 					continue;
 				
-				if ( territory.armyCount > neighborTerritory.armyCount )
+				if ( ( (aiType == AIType.NORMAL || aiType == AIType.DEFENSIVE )
+						&& territory.armyCount >= neighborTerritory.armyCount )			// If we have equal or more than enemy
+					|| (aiType == AIType.CAUTIOUS 
+						&& territory.armyCount > neighborTerritory.armyCount)			// If we have more army count than enemy
+					|| (aiType == AIType.AGGRESSIVE
+						&& territory.armyCount >= neighborTerritory.armyCount - 1 ))	// If even the enemy has one army more than mine
 				{
 					taskManager.addPause(0.25);
 					
