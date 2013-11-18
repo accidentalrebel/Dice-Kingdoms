@@ -42,6 +42,10 @@ class EnemyAI
 			{
 				var neighborTerritory : Territory = TerritoryManager.getTerritory(tNeighbor);
 				
+				// If I own this territory
+				if ( neighborTerritory.ownerNumber == territory.ownerNumber )
+					continue;
+				
 				trace("Checking if can attack territory " + neighborTerritory.territoryNumber);
 				trace(currentTerritoryArmyCount + " ? " + neighborTerritory.armyCount);
 				if ( currentTerritoryArmyCount > neighborTerritory.armyCount )
@@ -49,15 +53,18 @@ class EnemyAI
 					//BattleManager.startAttack(territory.territoryNumber, neighborTerritory.territoryNumber);
 					taskManager.addPause(0.25);
 					taskManager.addTask(this, Registry.playArea.selectTerritory, [territory], true);
+					taskManager.addInstantTask(this, Registry.playArea.selectTerritory, [neighborTerritory, true], true);
 					taskManager.addPause(0.25);
 					taskManager.addTask(this, BattleManager.startAttack, [territory.territoryNumber, neighborTerritory.territoryNumber], true);
 					taskManager.addInstantTask(this, Registry.playArea.deselectTerritory, [territory.territoryNumber], true);
+					taskManager.addInstantTask(this, Registry.playArea.deselectTerritory, [neighborTerritory.territoryNumber], true);
 					break;
 				}
 			}
 		}
 		
-		trace("Exhausted all options");
-		//PlayerManager.nextPlayer();
+		// If there are no tasks
+		if ( taskManager.length <= 0 )
+			PlayerManager.nextPlayer();
 	}
 }

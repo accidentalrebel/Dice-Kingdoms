@@ -55,7 +55,10 @@ class Territory extends FlxBasic
 			if ( isNeighborSelect )
 				hexaTile.scale.x = 0.5;
 			else
+			{
 				hexaTile.angle = 90;
+				hexaTile.scale.x = 0.5;
+			}
 		}
 	}
 	
@@ -68,7 +71,10 @@ class Territory extends FlxBasic
 			if ( isNeighborDeselect )
 				hexaTile.scale.x = 1;
 			else
+			{
 				hexaTile.angle = 0;
+				hexaTile.scale.x = 1;
+			}
 		}
 	}
 	
