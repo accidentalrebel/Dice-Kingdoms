@@ -22,10 +22,10 @@ class BattleLayer extends FlxGroup
 		var battleBackground : FlxSprite = new FlxSprite(0, FlxG.camera.height / 2 - bgHeight / 2);
 		battleBackground = battleBackground.makeGraphic(bgWidth, bgHeight, 0xff000000 );
 		battleBackground.alpha = 0.5;
-		add(battleBackground);
+		//add(battleBackground);
 		
 		var battleResult : FlxText = new FlxText(200, 200, 30, "Test");
-		add(battleResult);
+		//add(battleResult);
 		
 		this.setAll("scrollFactor", new FlxPoint(0, 0));
 	}

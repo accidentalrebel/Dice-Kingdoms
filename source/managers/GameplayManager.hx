@@ -45,13 +45,13 @@ class GameplayManager
 					selectedTerritory = Registry.playArea.deselectTerritory(selectedTerritory);
 					
 					// We select the clicked territory
-					selectedTerritory = Registry.playArea.selectTerritory(clickedTile, clickedTerritory);
+					selectedTerritory = Registry.playArea.selectTerritory(clickedTerritory);
 				}
 			}
 			else	// If there is no selected territory
 			{
 				// We select the clicked territory
-				selectedTerritory = Registry.playArea.selectTerritory(clickedTile, clickedTerritory);
+				selectedTerritory = Registry.playArea.selectTerritory(clickedTerritory);
 			}
 		}
 	}	

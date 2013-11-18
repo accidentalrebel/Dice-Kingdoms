@@ -368,7 +368,7 @@ class PlayAreaLayer extends FlxGroup
 		return null;
 	}
 	
-	public function selectTerritory(tClickedTile : HexaTile, clickedTerritory : Territory) : Int
+	public function selectTerritory(clickedTerritory : Territory) : Int
 	{
 		if (clickedTerritory.ownerNumber != PlayerManager.currentPlayerNumber 
 			|| clickedTerritory.armyCount <= 1)
@@ -377,7 +377,7 @@ class PlayAreaLayer extends FlxGroup
 		clickedTerritory.select();
 		clickedTerritory.highlightNeighbors();
 		
-		return tClickedTile.territoryNumber;
+		return clickedTerritory.territoryNumber;
 	}
     
 	public function deselectTerritory(thisTerritory : Int) : Int

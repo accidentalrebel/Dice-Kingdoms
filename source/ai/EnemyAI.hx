@@ -47,8 +47,11 @@ class EnemyAI
 				if ( currentTerritoryArmyCount > neighborTerritory.armyCount )
 				{
 					//BattleManager.startAttack(territory.territoryNumber, neighborTerritory.territoryNumber);
-					taskManager.addPause(2);
-					taskManager.addInstantTask(this, BattleManager.startAttack, [territory.territoryNumber, neighborTerritory.territoryNumber], true);
+					taskManager.addPause(0.25);
+					taskManager.addTask(this, Registry.playArea.selectTerritory, [territory], true);
+					taskManager.addPause(0.25);
+					taskManager.addTask(this, BattleManager.startAttack, [territory.territoryNumber, neighborTerritory.territoryNumber], true);
+					taskManager.addInstantTask(this, Registry.playArea.deselectTerritory, [territory.territoryNumber], true);
 					break;
 				}
 			}
