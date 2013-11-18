@@ -21,25 +21,6 @@ class GameplayManager
 	
 	public static function onClick(xPos:Float, yPos:Float)
 	{
-		function selectClickedTerritory(tClickedTile : HexaTile, clickedTerritory : Territory)
-		{
-			if (clickedTerritory.ownerNumber != PlayerManager.currentPlayerNumber 
-				|| clickedTerritory.armyCount <= 1)
-				return;
-			
-			selectedTerritory = tClickedTile.territoryNumber;
-			clickedTerritory.select();
-			clickedTerritory.highlightNeighbors();
-		}
-
-		function deselectSelectedTerritory()
-		{
-			var toDeselect : Territory = TerritoryManager.getTerritory(selectedTerritory);
-			toDeselect.deselect();
-			toDeselect.unhighlightNeighbors();
-			selectedTerritory = -1;
-		}
-		
 		var clickedTile : HexaTile = Registry.playArea.checkForClickedTiles(xPos, yPos);
 		if ( clickedTile != null )
 		{
@@ -51,26 +32,26 @@ class GameplayManager
 				if ( TerritoryManager.getTerritory(selectedTerritory).checkIfEnemyNeighbor(clickedTile.territoryNumber) )
 				{
 					BattleManager.startAttack(selectedTerritory, clickedTile.territoryNumber);
-					deselectSelectedTerritory();
+					selectedTerritory = Registry.playArea.deselectTerritory(selectedTerritory);					
 				}
 				// We check if we clicked the same territory
 				else if ( selectedTerritory == clickedTile.territoryNumber )
 				{
-					deselectSelectedTerritory();
+					selectedTerritory = Registry.playArea.deselectTerritory(selectedTerritory);					
 				}
 				else
 				{
 					// We deselect a selected territory
-					deselectSelectedTerritory();
+					selectedTerritory = Registry.playArea.deselectTerritory(selectedTerritory);
 					
 					// We select the clicked territory
-					selectClickedTerritory(clickedTile, clickedTerritory);
+					selectedTerritory = Registry.playArea.selectTerritory(clickedTile, clickedTerritory);
 				}
 			}
 			else	// If there is no selected territory
 			{
 				// We select the clicked territory
-				selectClickedTerritory(clickedTile, clickedTerritory);
+				selectedTerritory = Registry.playArea.selectTerritory(clickedTile, clickedTerritory);
 			}
 		}
 	}	

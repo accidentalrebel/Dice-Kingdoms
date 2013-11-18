@@ -367,4 +367,25 @@ class PlayAreaLayer extends FlxGroup
 		
 		return null;
 	}
+	
+	public function selectTerritory(tClickedTile : HexaTile, clickedTerritory : Territory) : Int
+	{
+		if (clickedTerritory.ownerNumber != PlayerManager.currentPlayerNumber 
+			|| clickedTerritory.armyCount <= 1)
+			return -1;
+		
+		clickedTerritory.select();
+		clickedTerritory.highlightNeighbors();
+		
+		return tClickedTile.territoryNumber;
+	}
+    
+	public function deselectTerritory(thisTerritory : Int) : Int
+	{
+		var toDeselect : Territory = TerritoryManager.getTerritory(thisTerritory);
+		toDeselect.deselect();
+		toDeselect.unhighlightNeighbors();
+		
+		return -1;
+	}
 }
