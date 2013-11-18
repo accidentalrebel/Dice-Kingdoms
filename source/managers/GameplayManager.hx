@@ -21,6 +21,17 @@ class GameplayManager
 	
 	public static function onClick(xPos:Float, yPos:Float)
 	{
+		function selectTerritoryAndHighlightNeighbors(clickedTerritory : Territory) : Int
+		{
+			if (clickedTerritory.ownerNumber != PlayerManager.currentPlayerNumber 
+				|| clickedTerritory.armyCount <= 1)
+					return -1;
+		
+			Registry.playArea.selectTerritory(clickedTerritory);
+			clickedTerritory.highlightNeighbors();
+			return clickedTerritory.territoryNumber;
+		}
+		
 		var clickedTile : HexaTile = Registry.playArea.checkForClickedTiles(xPos, yPos);
 		if ( clickedTile != null )
 		{
@@ -45,13 +56,13 @@ class GameplayManager
 					selectedTerritory = Registry.playArea.deselectTerritory(selectedTerritory);
 					
 					// We select the clicked territory
-					selectedTerritory = Registry.playArea.selectTerritoryAndHighlightNeighbors(clickedTerritory);
+					selectedTerritory = selectTerritoryAndHighlightNeighbors(clickedTerritory);
 				}
 			}
 			else	// If there is no selected territory
 			{
 				// We select the clicked territory
-				selectedTerritory = Registry.playArea.selectTerritoryAndHighlightNeighbors(clickedTerritory);
+				selectedTerritory = selectTerritoryAndHighlightNeighbors(clickedTerritory);
 			}
 		}
 	}	

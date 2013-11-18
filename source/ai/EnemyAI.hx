@@ -50,11 +50,14 @@ class EnemyAI
 				trace(currentTerritoryArmyCount + " ? " + neighborTerritory.armyCount);
 				if ( currentTerritoryArmyCount > neighborTerritory.armyCount )
 				{
-					//BattleManager.startAttack(territory.territoryNumber, neighborTerritory.territoryNumber);
 					taskManager.addPause(0.25);
+					
+					// We highlight the attacker and the one being attacked
 					taskManager.addTask(this, Registry.playArea.selectTerritory, [territory], true);
 					taskManager.addInstantTask(this, Registry.playArea.selectTerritory, [neighborTerritory, true], true);
 					taskManager.addPause(0.25);
+					
+					// We then start the battle and unhighlight territories
 					taskManager.addTask(this, BattleManager.startAttack, [territory.territoryNumber, neighborTerritory.territoryNumber], true);
 					taskManager.addInstantTask(this, Registry.playArea.deselectTerritory, [territory.territoryNumber], true);
 					taskManager.addInstantTask(this, Registry.playArea.deselectTerritory, [neighborTerritory.territoryNumber], true);

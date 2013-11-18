@@ -373,17 +373,6 @@ class PlayAreaLayer extends FlxGroup
 		clickedTerritory.select(neighborSelect);
 		return clickedTerritory.territoryNumber;
 	}
-	
-	public function selectTerritoryAndHighlightNeighbors(clickedTerritory : Territory, neighborSelect : Bool = false ) : Int
-	{
-		if (clickedTerritory.ownerNumber != PlayerManager.currentPlayerNumber 
-			|| clickedTerritory.armyCount <= 1)
-			return -1;
-		
-		selectTerritory(clickedTerritory, neighborSelect);
-		clickedTerritory.highlightNeighbors();
-		return clickedTerritory.territoryNumber;
-	}
     
 	public function deselectTerritory(thisTerritory : Int) : Int
 	{
