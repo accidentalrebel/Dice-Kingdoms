@@ -36,7 +36,8 @@ class BattleManager
 		// We start rolling
 		var attackerRoll : Int = rollDice(attacker.armyCount);
 		var defenderRoll : Int = rollDice(defender.armyCount);
-		trace("ATTACKER: " + attackerRoll + " DEFENDER: " + defenderRoll);
+		
+		Registry.battleLayer.show("ATTACKER: " + attackerRoll + " DEFENDER: " + defenderRoll);
 		
 		// We resolve the battle
 		if ( attackerRoll > defenderRoll )
