@@ -23,22 +23,49 @@ class EnemyAI
 	
 	public function startMakingMoves()
 	{
-		trace("Enemy AI Takes over for player " + this.playerScript.playerNum);
-		
-		//TODO: Change the system so that the AI goes through an updated version of the map
-		var taskManager : AntTaskManager = new AntTaskManager(false, PlayerManager.nextPlayer);
-		
-		// We go through each territory owned by this player and see if there are any valid moves
-		// TODO: Make sure that AI also goes though newly acquired territories
-		for ( tTerritory in playerScript.territories )
+		function getAvailableTerritories() : Null<Territory>
 		{
-			trace("Territory count is " + playerScript.territories.length);
-			var territory : Territory = TerritoryManager.getTerritory(tTerritory);
-			var currentTerritoryArmyCount : Int = territory.armyCount;
-			if ( currentTerritoryArmyCount <= 1
-				|| territory.ownerNumber != playerScript.playerNum )
-				continue;
+			// We loop through each territory
+			for ( tTerritory in playerScript.territories )
+			{ 
+				var territory : Territory = TerritoryManager.getTerritory(tTerritory);
+				if ( territory.armyCount > 1
+					&& territory.ownerNumber == playerScript.playerNum 
+					&& territory.neighbors.length >= 1
+					&& territory.markAsChecked == false )
+					return territory;
+			}
 			
+			// We did not get any territories
+			return null;
+		}
+		
+		function endMove()
+		{
+			// We loop through each territory and mark each territory as unchecked
+			for ( tTerritory in playerScript.territories )
+			{ 
+				var territory : Territory = TerritoryManager.getTerritory(tTerritory);
+				territory.markAsChecked = false;
+			}
+			
+			// We then go to the next player
+			PlayerManager.nextPlayer();
+		}
+		
+		function getNextMove()
+		{
+			var taskManager : AntTaskManager = new AntTaskManager(false, getNextMove);
+			var territory : Null<Territory> = getAvailableTerritories();
+			
+			// If no territory is availble, we now end our turn
+			if ( territory == null )
+			{
+				trace("Did not get any territories, going to the next player");
+				endMove();
+				return;
+			}
+				
 			// We go through each neighbors
 			for ( tNeighbor in territory.neighbors )
 			{
@@ -48,9 +75,7 @@ class EnemyAI
 				if ( neighborTerritory.ownerNumber == territory.ownerNumber )
 					continue;
 				
-				trace("Checking if can attack territory " + neighborTerritory.territoryNumber);
-				trace(currentTerritoryArmyCount + " ? " + neighborTerritory.armyCount);
-				if ( currentTerritoryArmyCount > neighborTerritory.armyCount )
+				if ( territory.armyCount > neighborTerritory.armyCount )
 				{
 					taskManager.addPause(0.25);
 					
@@ -66,10 +91,15 @@ class EnemyAI
 					break;
 				}
 			}
+			
+			// If there are no neighbors to attack
+			if ( taskManager.length <= 0 )
+			{
+				territory.markAsChecked = true;
+				getNextMove();
+			}
 		}
 		
-		// If there are no tasks
-		if ( taskManager.length <= 0 )
-			PlayerManager.nextPlayer();
+		getNextMove();
 	}
 }
