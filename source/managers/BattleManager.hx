@@ -15,7 +15,7 @@ class BattleManager
 	}
 	
 	
-	static public function startAttack(attackerTerritoryNum:Int, defenderTerritoryNum:Int) 
+	static public function startAttack(attackerTerritoryNum:Int, defenderTerritoryNum:Int) : Bool
 	{
 		function rollDice(numOfDice:Int) 
 		{
@@ -52,5 +52,7 @@ class BattleManager
 			trace("DEFENDER WINS!");
 			attacker.setArmyCount(1);
 		}
+		
+		return true;
 	} 
 }

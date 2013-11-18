@@ -1,4 +1,5 @@
 package ai;
+import flixel.addons.plugin.taskManager.AntTaskManager;
 import managers.BattleManager;
 import managers.GameplayManager;
 import managers.PlayerManager;
@@ -24,6 +25,8 @@ class EnemyAI
 	{
 		trace("Enemy AI Takes over for player " + this.playerScript.playerNum);
 		
+		var taskManager : AntTaskManager = new AntTaskManager(false, PlayerManager.nextPlayer);
+		
 		// We go through each territory owned by this player and see if there are any valid moves
 		// TODO: Make sure that AI also goes though newly acquired territories
 		for ( tTerritory in playerScript.territories )
@@ -43,13 +46,15 @@ class EnemyAI
 				trace(currentTerritoryArmyCount + " ? " + neighborTerritory.armyCount);
 				if ( currentTerritoryArmyCount > neighborTerritory.armyCount )
 				{
-					BattleManager.startAttack(territory.territoryNumber, neighborTerritory.territoryNumber);
+					//BattleManager.startAttack(territory.territoryNumber, neighborTerritory.territoryNumber);
+					taskManager.addPause(2);
+					taskManager.addInstantTask(this, BattleManager.startAttack, [territory.territoryNumber, neighborTerritory.territoryNumber], true);
 					break;
 				}
 			}
 		}
 		
 		trace("Exhausted all options");
-		PlayerManager.nextPlayer();
+		//PlayerManager.nextPlayer();
 	}
 }
