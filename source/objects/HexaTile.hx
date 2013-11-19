@@ -26,6 +26,7 @@ class HexaTile extends FlxSprite
 	var parent : FlxGroup = null;
 	var label : FlxText;
 	var boundaryGraphic:FlxSprite;
+	var coverGraphic:FlxSprite;
 	
 	public var isCenter : Bool = false;
 	public var isATerritory : Bool = false;
@@ -58,11 +59,15 @@ class HexaTile extends FlxSprite
 		
 		super(xPos + Registry.playAreaPadding.x, yPos + Registry.playAreaPadding.y);
 		
-		loadGraphic("assets/hexaTile.png");
+		loadGraphic("assets/hexaLand.png");
 		//scale = new FlxPoint(0.75, 0.75);
 		
 		this.parent = parent;
 		Registry.playArea.add(this);
+		
+		coverGraphic = new FlxSprite(this.x, this.y, "assets/hexaTile.png");
+		coverGraphic.alpha = 0.5;
+		Registry.playArea.add(coverGraphic);
 	}	
 	
 	public function checkIfClicked(xPos:Float, yPos:Float)
