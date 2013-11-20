@@ -61,7 +61,7 @@ class HexaTile extends FlxSprite
 		super(xPos + Registry.playAreaPadding.x, yPos + Registry.playAreaPadding.y);
 		
 		this.loadGraphic("assets/hexaTerrain.png", false, false, tileWidth, tileHeight);
-		this.animation.frameIndex = Tools.randomMinMax(1, 3);
+		this.animation.frameIndex = Tools.randomMinMax(1, 6);
 		
 		this.parent = parent;
 		Registry.playArea.add(this);
