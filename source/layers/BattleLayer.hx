@@ -15,9 +15,13 @@ class BattleLayer extends FlxGroup
 {
 	var battleBackground:FlxSprite;
 	var battleResult:FlxText;
+	var dieResultList:Array<FlxText>;
+	var finalResult:FlxText;
 	
 	public function new() 
 	{
+		var bottomPadding : Float = 5;
+		
 		super();
 
 		var bgWidth : Int = Std.int(FlxG.camera.width);
@@ -34,6 +38,25 @@ class BattleLayer extends FlxGroup
 		battleResult.alignment = "center";
 		battleResult.scale = new FlxPoint(2, 2);
 		add(battleResult);
+		
+		// We setup the final result
+		var finalResultHeight : Int = 50;
+		finalResult = new FlxText(10
+			, battleBackground.y + battleBackground.height / 2 - finalResultHeight / 2 - bottomPadding
+			, 90, "88", finalResultHeight);
+		add(finalResult);
+		
+		// We setup the dieResults
+		var dieResultHeight : Int = 20;
+		dieResultList = new Array<FlxText>();
+		for ( i in 0...10 )
+		{
+			var dieResult : FlxText = new FlxText(finalResult.x + finalResult.width + (i * 25)
+				, battleBackground.y + battleBackground.height / 2 - dieResultHeight / 2 - bottomPadding + 5
+				, 100, "8", dieResultHeight);
+			add(dieResult);
+			dieResultList.push(dieResult);
+		}
 		
 		//hide();
 		this.setAll("scrollFactor", new FlxPoint(0, 0));

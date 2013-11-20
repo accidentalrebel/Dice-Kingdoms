@@ -15,7 +15,7 @@ class InputManager extends FlxBasic
 {	
 	var startTouchPos : FlxPoint = null;
 	var screenDrag : Float = 0.5;
-	var distanceToDrag : Float = 5;
+	var distanceToDrag : Float = 10;
 	var isDragging:Bool = false;
 	
 	public function new() 
