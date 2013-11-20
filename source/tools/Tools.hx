@@ -15,9 +15,9 @@ class Tools
 		return newArray;
 	}
 	
-	public static function randomMinMax(minValue : Float, maxValue : Float)
+	public static function randomMinMax(minValue : Int, maxValue : Int) : Int
 	{
-		return minValue + (Math.random() * (maxValue - minValue));
+		return Std.int(minValue + Math.round((Math.random() * (maxValue - minValue))));
 	}
 	
 	public static function shuffleArray<T>(arrayToShuffle : Array<T>) : Array<T>
