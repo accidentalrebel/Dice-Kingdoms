@@ -1,6 +1,7 @@
 package managers;
 import objects.Territory;
 import layers.PlayAreaLayer;
+import tools.Tools;
 
 /**
  * ...
@@ -16,14 +17,24 @@ class BattleManager
 	
 	static public function startAttack(attackerTerritoryNum:Int, defenderTerritoryNum:Int) : Bool
 	{
-		function rollDice(numOfDice:Int) 
+		function rollAllDice(numOfDice:Int) : Array<Int>
 		{
-			var totalCount : Int = 0;
+			var dieResults : Array<Int> = new Array<Int>();
 			for ( die in 0...numOfDice )
 			{
-				var dieRoll : Int = Std.random(5) + 1;
-				trace("Die no. " + die + " rolled a " + dieRoll);
-				totalCount += dieRoll;
+				var dieRoll : Int = Tools.randomMinMax(1, 6);
+				dieResults.push(dieRoll);
+			}
+			
+			return dieResults;
+		}
+		
+		function getTotalCount(dieResults : Array<Int>) : Int
+		{
+			var totalCount : Int = 0;
+			for ( result in dieResults )
+			{
+				totalCount += result;
 			}
 			
 			return totalCount;
@@ -33,8 +44,8 @@ class BattleManager
 		var defender : Territory = TerritoryManager.getTerritory(defenderTerritoryNum);
 		
 		// We start rolling
-		var attackerRoll : Int = rollDice(attacker.armyCount);
-		var defenderRoll : Int = rollDice(defender.armyCount);
+		var attackerRoll : Int = getTotalCount(rollAllDice(attacker.armyCount));
+		var defenderRoll : Int = getTotalCount(rollAllDice(defender.armyCount));
 		var winText : String = "";
 		
 		// We resolve the battle

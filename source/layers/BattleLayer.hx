@@ -59,7 +59,7 @@ class BattleLayer extends FlxGroup
 		{
 			var dieResult : FlxText = new FlxText(finalResultLeft.x + finalResultLeft.width + (i * 25)
 				, battleBackground.y + battleBackground.height / 2 - dieResultHeight / 2 - bottomPadding + 5
-				, 100, "8", dieResultHeight);
+				, 100, "6", dieResultHeight);
 			add(dieResult);
 			dieResultListLeft.push(dieResult);
 		}
@@ -67,9 +67,9 @@ class BattleLayer extends FlxGroup
 		dieResultListRight = new Array<FlxText>();
 		for ( i in 0...10 )
 		{
-			var dieResult : FlxText = new FlxText(finalResultRight.x - finalResultRight.width / 2 - (i * 25)
+			var dieResult : FlxText = new FlxText(finalResultRight.x - finalResultRight.width / 2 + 10 - (i * 25)
 				, battleBackground.y + battleBackground.height / 2 - dieResultHeight / 2 - bottomPadding + 5
-				, 100, "8", dieResultHeight);
+				, 100, "6", dieResultHeight);
 			add(dieResult);
 			dieResultListRight.push(dieResult);
 		}
@@ -81,6 +81,11 @@ class BattleLayer extends FlxGroup
 	public function updateTexts(battleResultText : String)
 	{
 		battleResult.text = battleResultText;
+	}
+	
+	public function updateElements()
+	{
+		
 	}
 	
 	//public function show(battleResultText : String)
