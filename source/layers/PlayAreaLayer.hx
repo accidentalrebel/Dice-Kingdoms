@@ -279,10 +279,7 @@ class PlayAreaLayer extends FlxGroup
 						//hexaTile.kill();
 						hexaTile.turnToSeaTile();
 					else
-					{
-						// We draw the boundaries
-						//hexaTile.drawBoundaries();
-						
+					{						
 						var currentTerritory : Territory = TerritoryManager.getTerritory(hexaTile.territoryNumber);
 						currentTerritory.members.push(hexaTile);
 						

@@ -97,7 +97,7 @@ class HexaTile extends FlxSprite
 		label.text = text;
 	}
 	
-	public function drawBoundaries() 
+	public function drawBoundaries(colorToUse : Int) 
 	{
 		function drawBoundary(theNeighbor : HexaTile, frameToUse:Int) 
 		{
@@ -110,7 +110,7 @@ class HexaTile extends FlxSprite
 			boundaryGraphic.animation.frameIndex = frameToUse;
 			
 			this.parent.add(boundaryGraphic);
-			this.boundaryGraphic.color = PlayerManager.getPlayer(TerritoryManager.getTerritory(this.territoryNumber).ownerNumber).territoryColor;
+			this.boundaryGraphic.color = colorToUse;
 		}
 		
 		drawBoundary(this.top, 0);
