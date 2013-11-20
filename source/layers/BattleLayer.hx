@@ -1,11 +1,9 @@
 package layers;
-import flixel.addons.plugin.taskManager.AntTaskManager;
 import flixel.FlxG;
 import flixel.FlxSprite;
 import flixel.group.FlxGroup;
 import flixel.text.FlxText;
 import flixel.util.FlxPoint;
-import managers.CameraManager;
 
 /**
  * ...
@@ -15,12 +13,18 @@ class BattleLayer extends FlxGroup
 {
 	var battleBackground:FlxSprite;
 	var battleResult:FlxText;
-	var dieResultList:Array<FlxText>;
-	var finalResult:FlxText;
+	var finalResultLeft:FlxText;
+	var finalResultRight:FlxText;
+	var dieResultListLeft:Array<FlxText>;
+	var dieResultListRight:Array<FlxText>;
 	
 	public function new() 
 	{
 		var bottomPadding : Float = 5;
+		var dieResultHeight : Int = 20;
+		var padding : Float = 100;
+		var finalResultHeight : Int = 50;
+		var finalResultWidth : Int = 90;
 		
 		super();
 
@@ -32,30 +36,42 @@ class BattleLayer extends FlxGroup
 		battleBackground.alpha = 0.5;
 		add(battleBackground);
 		
-		var padding : Float = 100;
 		battleResult = new FlxText(padding, battleBackground.y + battleBackground.height / 2 - 10
 			, Std.int(battleBackground.width - padding * 2), "");
 		battleResult.alignment = "center";
 		battleResult.scale = new FlxPoint(2, 2);
 		add(battleResult);
 		
-		// We setup the final result
-		var finalResultHeight : Int = 50;
-		finalResult = new FlxText(10
+		// We setup the final result FlxTexts
+		finalResultLeft = new FlxText(10
 			, battleBackground.y + battleBackground.height / 2 - finalResultHeight / 2 - bottomPadding
-			, 90, "88", finalResultHeight);
-		add(finalResult);
+			, finalResultWidth, "88", finalResultHeight);
+		add(finalResultLeft);
+		
+		finalResultRight = new FlxText(FlxG.width - finalResultWidth
+			, battleBackground.y + battleBackground.height / 2 - finalResultHeight / 2 - bottomPadding
+			, finalResultWidth, "88", finalResultHeight);
+		add(finalResultRight);
 		
 		// We setup the dieResults
-		var dieResultHeight : Int = 20;
-		dieResultList = new Array<FlxText>();
+		dieResultListLeft = new Array<FlxText>();
 		for ( i in 0...10 )
 		{
-			var dieResult : FlxText = new FlxText(finalResult.x + finalResult.width + (i * 25)
+			var dieResult : FlxText = new FlxText(finalResultLeft.x + finalResultLeft.width + (i * 25)
 				, battleBackground.y + battleBackground.height / 2 - dieResultHeight / 2 - bottomPadding + 5
 				, 100, "8", dieResultHeight);
 			add(dieResult);
-			dieResultList.push(dieResult);
+			dieResultListLeft.push(dieResult);
+		}
+		
+		dieResultListRight = new Array<FlxText>();
+		for ( i in 0...10 )
+		{
+			var dieResult : FlxText = new FlxText(finalResultRight.x - finalResultRight.width / 2 - (i * 25)
+				, battleBackground.y + battleBackground.height / 2 - dieResultHeight / 2 - bottomPadding + 5
+				, 100, "8", dieResultHeight);
+			add(dieResult);
+			dieResultListRight.push(dieResult);
 		}
 		
 		//hide();
