@@ -27,7 +27,7 @@ class HexaTile extends FlxSprite
 	var parent : FlxGroup = null;
 	var label : FlxText;
 	var boundaryGraphic:FlxSprite;
-	var coverGraphic:FlxSprite;
+	public var coverGraphic:FlxSprite;
 	
 	public var isCenter : Bool = false;
 	public var isATerritory : Bool = false;
@@ -61,13 +61,13 @@ class HexaTile extends FlxSprite
 		super(xPos + Registry.playAreaPadding.x, yPos + Registry.playAreaPadding.y);
 		
 		this.loadGraphic("assets/hexaTerrain.png", false, false, tileWidth, tileHeight);
-		this.animation.frameIndex = Tools.randomMinMax(1, 2);
+		this.animation.frameIndex = Tools.randomMinMax(1, 3);
 		
 		this.parent = parent;
 		Registry.playArea.add(this);
 		
 		coverGraphic = new FlxSprite(this.x, this.y, "assets/hexaTile.png");
-		coverGraphic.alpha = 0.25;
+		coverGraphic.alpha = 0.5;
 		Registry.playArea.add(coverGraphic);
 	}	
 	

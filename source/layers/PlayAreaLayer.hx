@@ -349,7 +349,7 @@ class PlayAreaLayer extends FlxGroup
 			//if ( member.isCenter )
 				//member.color = 0xFF0000;
 			//else
-			member.color = PlayerManager.getPlayer(playerNum).territoryColor;
+			member.coverGraphic.color = PlayerManager.getPlayer(playerNum).territoryColor;
 		}
 	}
 	
