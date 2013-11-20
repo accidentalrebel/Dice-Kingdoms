@@ -44,8 +44,10 @@ class BattleManager
 		var defender : Territory = TerritoryManager.getTerritory(defenderTerritoryNum);
 		
 		// We start rolling
-		var attackerRoll : Int = getTotalCount(rollAllDice(attacker.armyCount));
-		var defenderRoll : Int = getTotalCount(rollAllDice(defender.armyCount));
+		var attackerDiceResults : Array<Int> = rollAllDice(attacker.armyCount);
+		var attackerRoll : Int = getTotalCount(attackerDiceResults);
+		var defenderDiceResults : Array<Int> = rollAllDice(defender.armyCount);
+		var defenderRoll : Int = getTotalCount(defenderDiceResults);
 		var winText : String = "";
 		
 		// We resolve the battle
@@ -65,6 +67,7 @@ class BattleManager
 		
 		Registry.battleLayer.updateTexts("ATTACKER: " + attackerRoll + " DEFENDER: " + defenderRoll
 			+ "\n" + winText + " WINS!!");
+		Registry.battleLayer.updateElements(attackerRoll, attackerDiceResults, defenderRoll, defenderDiceResults);
 		
 		return true;
 	} 

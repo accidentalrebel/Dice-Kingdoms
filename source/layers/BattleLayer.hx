@@ -59,7 +59,8 @@ class BattleLayer extends FlxGroup
 		{
 			var dieResult : FlxText = new FlxText(finalResultLeft.x + finalResultLeft.width + (i * 25)
 				, battleBackground.y + battleBackground.height / 2 - dieResultHeight / 2 - bottomPadding + 5
-				, 100, "6", dieResultHeight);
+				, 100, "0", dieResultHeight);
+			dieResult.visible = false;
 			add(dieResult);
 			dieResultListLeft.push(dieResult);
 		}
@@ -69,7 +70,8 @@ class BattleLayer extends FlxGroup
 		{
 			var dieResult : FlxText = new FlxText(finalResultRight.x - finalResultRight.width / 2 + 10 - (i * 25)
 				, battleBackground.y + battleBackground.height / 2 - dieResultHeight / 2 - bottomPadding + 5
-				, 100, "6", dieResultHeight);
+				, 100, "0", dieResultHeight);
+			dieResult.visible = false;
 			add(dieResult);
 			dieResultListRight.push(dieResult);
 		}
@@ -83,9 +85,34 @@ class BattleLayer extends FlxGroup
 		battleResult.text = battleResultText;
 	}
 	
-	public function updateElements()
+	public function updateElements(attackerRoll:Int, attackerDiceResults:Array<Int>, defenderRoll:Int, defenderDiceResults:Array<Int>)
 	{
+		finalResultLeft.text = Std.string(attackerRoll);
+		finalResultRight.text = Std.string(defenderRoll);
 		
+		for ( i in 0...attackerDiceResults.length )
+		{
+			var dieResultText : FlxText = dieResultListLeft[i];
+			if ( attackerDiceResults[i] != 0 )
+			{
+				dieResultText.text = Std.string(attackerDiceResults[i]);
+				dieResultText.visible = true;
+			}
+			else
+				dieResultText.visible = false;
+		}
+		
+		for ( i in 0...defenderDiceResults.length )
+		{
+			var dieResultText : FlxText = dieResultListRight[i];
+			if ( defenderDiceResults[i] != 0 )
+			{
+				dieResultText.text = Std.string(defenderDiceResults[i]);
+				dieResultText.visible = true;
+			}
+			else
+				dieResultText.visible = false;
+		}
 	}
 	
 	//public function show(battleResultText : String)
