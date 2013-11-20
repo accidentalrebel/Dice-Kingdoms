@@ -20,7 +20,7 @@ class PlayState extends FlxState
 {
 	override public function create():Void 
 	{
-		FlxG.cameras.bgColor = 0xFF435169;
+		FlxG.cameras.bgColor = 0xFF000000;
 		//FlxG.camera.zoom = 2;
 		
 		super.create();

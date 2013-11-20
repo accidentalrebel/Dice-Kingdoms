@@ -274,9 +274,10 @@ class PlayAreaLayer extends FlxGroup
 				var hexaTile : HexaTile = playAreaArray[col][row];
 				if (hexaTile != null)
 				{
-					// We remove non territories
+					// We turn non territories to sea tiles
 					if ( !hexaTile.isATerritory )
-						hexaTile.kill();
+						//hexaTile.kill();
+						hexaTile.turnToSeaTile();
 					else
 					{
 						// We draw the boundaries
@@ -346,10 +347,7 @@ class PlayAreaLayer extends FlxGroup
 	    for ( tMember in territory.members )
 		{
 			var member : HexaTile = tMember;
-			//if ( member.isCenter )
-				//member.color = 0xFF0000;
-			//else
-			member.coverGraphic.color = PlayerManager.getPlayer(playerNum).territoryColor;
+			member.setCoverColorTo(PlayerManager.getPlayer(playerNum).territoryColor);
 		}
 	}
 	
