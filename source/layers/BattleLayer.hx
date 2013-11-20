@@ -85,8 +85,25 @@ class BattleLayer extends FlxGroup
 		battleResult.text = battleResultText;
 	}
 	
+	function resetDieResultTexts()
+	{
+		function reset(dieResultList : Array<FlxText>)
+		{
+			for ( tDieResult in dieResultList )
+			{
+				var dieResult : FlxText = tDieResult;
+				dieResult.visible = false;
+			}
+		}
+		
+		reset(dieResultListLeft);
+		reset(dieResultListRight);
+	}
+	
 	public function updateElements(attackerRoll:Int, attackerDiceResults:Array<Int>, defenderRoll:Int, defenderDiceResults:Array<Int>)
 	{
+		resetDieResultTexts();
+		
 		finalResultLeft.text = Std.string(attackerRoll);
 		finalResultRight.text = Std.string(defenderRoll);
 		
@@ -98,8 +115,6 @@ class BattleLayer extends FlxGroup
 				dieResultText.text = Std.string(attackerDiceResults[i]);
 				dieResultText.visible = true;
 			}
-			else
-				dieResultText.visible = false;
 		}
 		
 		for ( i in 0...defenderDiceResults.length )
@@ -110,8 +125,6 @@ class BattleLayer extends FlxGroup
 				dieResultText.text = Std.string(defenderDiceResults[i]);
 				dieResultText.visible = true;
 			}
-			else
-				dieResultText.visible = false;
 		}
 	}
 	
