@@ -66,7 +66,7 @@ class HexaTile extends FlxSprite
 		Registry.playArea.add(this);
 		
 		coverGraphic = new FlxSprite(this.x, this.y, "assets/hexaTile.png");
-		coverGraphic.alpha = 0.5;
+		coverGraphic.alpha = 0.25;
 		Registry.playArea.add(coverGraphic);
 	}	
 	
