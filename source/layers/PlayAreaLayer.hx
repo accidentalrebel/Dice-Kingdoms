@@ -281,7 +281,7 @@ class PlayAreaLayer extends FlxGroup
 					else
 					{
 						// We draw the boundaries
-						hexaTile.drawBoundaries();
+						//hexaTile.drawBoundaries();
 						
 						var currentTerritory : Territory = TerritoryManager.getTerritory(hexaTile.territoryNumber);
 						currentTerritory.members.push(hexaTile);
@@ -348,6 +348,7 @@ class PlayAreaLayer extends FlxGroup
 		{
 			var member : HexaTile = tMember;
 			member.setCoverColorTo(PlayerManager.getPlayer(playerNum).territoryColor);
+			member.drawBoundaries();
 		}
 	}
 	

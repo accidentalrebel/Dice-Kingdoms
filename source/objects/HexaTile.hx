@@ -2,6 +2,8 @@ package objects;
 import flash.display.Sprite;
 import flixel.group.FlxGroup;
 import flixel.system.layer.frames.FlxFrame;
+import managers.PlayerManager;
+import managers.TerritoryManager;
 import objects.Territory;
 import flixel.system.FlxAssets;
 import flixel.FlxSprite;
@@ -67,7 +69,7 @@ class HexaTile extends FlxSprite
 		Registry.playArea.add(this);
 		
 		coverGraphic = new FlxSprite(this.x, this.y, "assets/hexaTile.png");
-		coverGraphic.alpha = 0.25;
+		coverGraphic.alpha = 0.2;
 		Registry.playArea.add(coverGraphic);
 	}	
 	
@@ -108,6 +110,7 @@ class HexaTile extends FlxSprite
 			boundaryGraphic.animation.frameIndex = frameToUse;
 			
 			this.parent.add(boundaryGraphic);
+			this.boundaryGraphic.color = PlayerManager.getPlayer(TerritoryManager.getTerritory(this.territoryNumber).ownerNumber).territoryColor;
 		}
 		
 		drawBoundary(this.top, 0);
