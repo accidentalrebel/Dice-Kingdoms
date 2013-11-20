@@ -345,7 +345,7 @@ class PlayAreaLayer extends FlxGroup
 		{
 			var member : HexaTile = tMember;
 			member.setCoverColorTo(PlayerManager.getPlayer(playerNum).territoryColor);
-			member.drawBoundaries();
+			member.drawBoundaries(PlayerManager.getPlayer(playerNum).territoryColor);
 		}
 	}
 	
