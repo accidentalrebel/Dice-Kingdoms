@@ -4,6 +4,7 @@ import flixel.FlxSprite;
 import flixel.group.FlxGroup;
 import flixel.text.FlxText;
 import flixel.util.FlxPoint;
+import managers.CameraManager;
 
 /**
  * ...
@@ -21,22 +22,22 @@ class BattleLayer extends FlxGroup
 	public function new() 
 	{
 		var bottomPadding : Float = 5;
-		var dieResultHeight : Int = 20;
+		var dieResultHeight : Int = 15;
 		var padding : Float = 100;
-		var finalResultHeight : Int = 50;
-		var finalResultWidth : Int = 90;
+		var finalResultHeight : Int = 30;
+		var finalResultWidth : Int = 50;
 		
 		super();
 
-		var bgWidth : Int = Std.int(FlxG.camera.width);
+		var bgWidth : Int = Std.int(FlxG.camera.width / CameraManager.magnifiedZoomValue);
 		var bgHeight : Int = 60;
 		
-		battleBackground = new FlxSprite(0, FlxG.camera.height - bgHeight);
+		battleBackground = new FlxSprite(0, FlxG.camera.height / CameraManager.magnifiedZoomValue - bgHeight);
 		battleBackground = battleBackground.makeGraphic(bgWidth, bgHeight, 0xff000000 );
 		battleBackground.alpha = 0.5;
 		add(battleBackground);
 		
-		battleResult = new FlxText(padding, battleBackground.y + battleBackground.height / 2 - 10
+		battleResult = new FlxText(padding, battleBackground.y
 			, Std.int(battleBackground.width - padding * 2), "");
 		battleResult.alignment = "center";
 		battleResult.scale = new FlxPoint(2, 2);
@@ -48,7 +49,7 @@ class BattleLayer extends FlxGroup
 			, finalResultWidth, "88", finalResultHeight);
 		add(finalResultLeft);
 		
-		finalResultRight = new FlxText(FlxG.width - finalResultWidth
+		finalResultRight = new FlxText(bgWidth - finalResultWidth
 			, battleBackground.y + battleBackground.height / 2 - finalResultHeight / 2 - bottomPadding
 			, finalResultWidth, "88", finalResultHeight);
 		add(finalResultRight);
@@ -68,7 +69,7 @@ class BattleLayer extends FlxGroup
 		dieResultListRight = new Array<FlxText>();
 		for ( i in 0...10 )
 		{
-			var dieResult : FlxText = new FlxText(finalResultRight.x - finalResultRight.width / 2 + 10 - (i * 25)
+			var dieResult : FlxText = new FlxText(finalResultRight.x - finalResultRight.width / 2 - (i * 25)
 				, battleBackground.y + battleBackground.height / 2 - dieResultHeight / 2 - bottomPadding + 5
 				, 100, "0", dieResultHeight);
 			dieResult.visible = false;

@@ -1,6 +1,7 @@
 package states;
 import layers.BattleLayer;
 import layers.GameGUILayer;
+import managers.CameraManager;
 import managers.GameplayManager;
 import managers.InputManager;
 import managers.PlayerManager;
@@ -22,6 +23,7 @@ class PlayState extends FlxState
 	override public function create():Void 
 	{
 		FlxG.cameras.bgColor = 0xFF000000;
+		CameraManager.init();
 		
 		super.create();
 		

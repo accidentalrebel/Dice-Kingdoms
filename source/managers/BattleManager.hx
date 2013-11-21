@@ -65,8 +65,7 @@ class BattleManager
 			attacker.setArmyCount(1);
 		}
 		
-		Registry.battleLayer.updateTexts("ATTACKER: " + attackerRoll + " DEFENDER: " + defenderRoll
-			+ "\n" + winText + " WINS!!");
+		Registry.battleLayer.updateTexts(winText + " WINS!!");
 		Registry.battleLayer.updateElements(attackerRoll, attackerDiceResults, defenderRoll, defenderDiceResults);
 		
 		return true;
