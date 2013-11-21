@@ -13,7 +13,7 @@ class PlayerManager
 	static public var numOfHumans:Int = 1;
 	static public var playerList:Array<Player>;
 	static public var currentPlayerNumber : Int = 1;
-	static private var currentPlayer : Player;
+	static public var currentPlayer : Player;
 	
 	static public function init(tNumOfPlayers : Int = 8, tNumOfHumans : Int = 1) 
 	{

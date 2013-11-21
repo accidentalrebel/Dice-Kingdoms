@@ -71,7 +71,7 @@ class EnemyAI
 			}
 			
 			// We then go to the next player
-			PlayerManager.nextPlayer();
+			GameplayManager.nextPlayer();
 		}
 		
 		function getNextMove()
@@ -105,7 +105,6 @@ class EnemyAI
 						&& territory.armyCount >= neighborTerritory.armyCount - 1 ))	// If even the enemy has one army more than mine
 				{
 					taskManager.addPause(0.25);
-					CameraManager.focusOnTerritory(territory.territoryNumber);
 					
 					// We highlight the attacker and the one being attacked
 					taskManager.addInstantTask(this, Registry.playArea.selectTerritory, [territory], true);

@@ -34,14 +34,20 @@ class CameraManager
 			, territory.centerTile.y - FlxG.height / 2 / CameraManager.magnifiedZoomValue);
 	}
 	
-	static private function zoomIn() 
+	static public function zoomIn() 
 	{
+		if ( isZoomedIn )
+			return;
+		
 		isZoomedIn = true;
 		FlxG.camera.zoom = magnifiedZoomValue;
 	}
 	
-	static private function zoomOut() 
+	static public function zoomOut() 
 	{
+		if ( !isZoomedIn )
+			return;
+		
 		isZoomedIn = false;
 		FlxG.camera.zoom = normalZoomValue;
 		

@@ -71,6 +71,13 @@ class GameplayManager
 	static public function nextPlayer() 
 	{
 		PlayerManager.nextPlayer();
+		
+		// We t
+		trace("Current player is human: " + PlayerManager.currentPlayer.isHuman);
+		if ( PlayerManager.currentPlayer.isHuman )
+			CameraManager.zoomIn();
+		else
+			CameraManager.zoomOut();
 	}
 	
 	static public function resetGame() 
