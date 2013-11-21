@@ -23,7 +23,6 @@ class PlayState extends FlxState
 	override public function create():Void 
 	{
 		FlxG.cameras.bgColor = 0xFF000000;
-		CameraManager.init();
 		
 		super.create();
 		
@@ -34,6 +33,7 @@ class PlayState extends FlxState
 		// We setup the Main GUI
 		Registry.gameGUI = new GameGUILayer();
 		Registry.battleLayer = new BattleLayer();
+		CameraManager.init();
 		
 		// We setup the territory manager
 		Registry.territoryManager = new TerritoryManager();

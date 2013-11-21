@@ -1,4 +1,5 @@
 package managers;
+import flixel.util.FlxPoint;
 import objects.HexaTile;
 import objects.Territory;
 import flixel.FlxG;
@@ -72,12 +73,11 @@ class GameplayManager
 	{
 		PlayerManager.nextPlayer();
 		
-		// We t
 		trace("Current player is human: " + PlayerManager.currentPlayer.isHuman);
 		if ( PlayerManager.currentPlayer.isHuman )
 			CameraManager.zoomIn();
 		else
-			CameraManager.zoomOut();
+			CameraManager.zoomOut();			
 	}
 	
 	static public function resetGame() 

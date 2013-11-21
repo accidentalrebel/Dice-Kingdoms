@@ -39,6 +39,8 @@ class CameraManager
 		if ( isZoomedIn )
 			return;
 		
+		Registry.battleLayer.setAll("scale", new FlxPoint(CameraManager.normalZoomValue, CameraManager.normalZoomValue));	
+			
 		isZoomedIn = true;
 		FlxG.camera.zoom = magnifiedZoomValue;
 	}
@@ -48,6 +50,8 @@ class CameraManager
 		if ( !isZoomedIn )
 			return;
 		
+		Registry.battleLayer.setAll("scale", new FlxPoint(CameraManager.magnifiedZoomValue, CameraManager.magnifiedZoomValue));
+			
 		isZoomedIn = false;
 		FlxG.camera.zoom = normalZoomValue;
 		
