@@ -21,15 +21,17 @@ class GameGUILayer extends FlxGroup
 	{
 		super();
 		
+		var buttonHeight : Int = 30;
+		
 		playerIndicator = new FlxText(5, 5, 100, "Player 1", 16);
 		add(playerIndicator);
-		var doneButton : FlxButtonPlus = new FlxButtonPlus(5, 30, GameplayManager.nextPlayer, null, "DONE", 100, 40);		
+		var doneButton : FlxButtonPlus = new FlxButtonPlus(5, (buttonHeight + 10), GameplayManager.nextPlayer, null, "DONE", 80, buttonHeight);		
 		add(doneButton);
 		
-		var zoomButton : FlxButtonPlus = new FlxButtonPlus(5, 80, CameraManager.toggleZoom, null, "TOGGLE ZOOM", 100, 40);		
+		var zoomButton : FlxButtonPlus = new FlxButtonPlus(5, (buttonHeight + 10) * 2, CameraManager.toggleZoom, null, "TOGGLE ZOOM", 80, buttonHeight);		
 		add(zoomButton);
 		
-		var resetButton : FlxButtonPlus = new FlxButtonPlus(5, 130, GameplayManager.resetGame, null, "NEW GAME", 100, 40);		
+		var resetButton : FlxButtonPlus = new FlxButtonPlus(5, (buttonHeight + 10) * 3, GameplayManager.resetGame, null, "NEW GAME", 80, buttonHeight);		
 		add(resetButton);
 		
 		// Everything in this group does not move from the camera
