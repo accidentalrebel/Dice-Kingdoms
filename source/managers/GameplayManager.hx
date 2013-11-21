@@ -3,6 +3,7 @@ import objects.HexaTile;
 import objects.Territory;
 import flixel.FlxG;
 import layers.PlayAreaLayer;
+import states.PlayState;
 
 //TODO: Have basic battle visuals
 
@@ -70,5 +71,10 @@ class GameplayManager
 	static public function nextPlayer() 
 	{
 		PlayerManager.nextPlayer();
+	}
+	
+	static public function resetGame() 
+	{
+		FlxG.resetGame();
 	}
 }
