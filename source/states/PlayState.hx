@@ -46,6 +46,8 @@ class PlayState extends FlxState
 		Registry.playArea.assignTerritories();
 		PlayerManager.initializeArmies();
 		
+		CameraManager.focusOnRandomTerritory(PlayerManager.currentPlayerNumber);
+		
 		// We then add the GUI to the stage
 		add(Registry.gameGUI);
 		add(Registry.battleLayer);

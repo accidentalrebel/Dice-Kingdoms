@@ -60,4 +60,10 @@ class CameraManager
 		// We then reset the camera position
 		FlxG.camera.scroll = new FlxPoint();		
 	}
+	
+	static public function focusOnRandomTerritory(playerNumber : Int) 
+	{
+		var territory : Territory = Registry.territoryManager.getRandomTerritory(playerNumber);
+		CameraManager.focusOnTerritory(territory.territoryNumber);
+	}
 }

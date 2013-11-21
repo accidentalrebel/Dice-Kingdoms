@@ -77,9 +77,7 @@ class GameplayManager
 		if ( PlayerManager.currentPlayer.isHuman )
 		{
 			CameraManager.zoomIn();
-			var territory : Territory = Registry.territoryManager.getRandomTerritory
-				(PlayerManager.currentPlayerNumber);
-			CameraManager.focusOnTerritory(territory.territoryNumber);
+			CameraManager.focusOnRandomTerritory(PlayerManager.currentPlayerNumber);
 		}
 		else
 			CameraManager.zoomOut();			
