@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <project>
-	<app title="Project Name" file="Project Name" main="Main" version="0.0.1" company="Zaphod" />
+	<app title="Dice Kingdoms" file="DiceKingdoms" main="Main" version="0.0.1" company="AccidentalRebel" />
 	
 	<window width="800" height="600" fps="30" orientation="portrait" resizable="true" if="web" />
 	<window width="800" height="600" fps="30" orientation="landscape" fullscreen="false" hardware="true" vsync="true" unless="web" />
