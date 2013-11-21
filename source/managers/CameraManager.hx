@@ -2,6 +2,7 @@ package managers;
 import flixel.FlxCamera;
 import flixel.FlxG;
 import flixel.util.FlxPoint;
+import objects.Territory;
 
 /**
  * ...
@@ -24,6 +25,13 @@ class CameraManager
 			zoomOut();
 		else
 			zoomIn();
+	}
+	
+	static public function focusOnTerritory(territoryNum:Int) 
+	{
+		var territory : Territory = Registry.territoryManager.getTerritory(territoryNum);
+		FlxG.camera.scroll = new FlxPoint(territory.centerTile.x - FlxG.width / 2 / CameraManager.magnifiedZoomValue
+			, territory.centerTile.y - FlxG.height / 2 / CameraManager.magnifiedZoomValue);
 	}
 	
 	static private function zoomIn() 

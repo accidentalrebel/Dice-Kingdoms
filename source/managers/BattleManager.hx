@@ -16,7 +16,7 @@ class BattleManager
 	}
 	
 	static public function startAttack(attackerTerritoryNum:Int, defenderTerritoryNum:Int) : Bool
-	{
+	{	
 		function rollAllDice(numOfDice:Int) : Array<Int>
 		{
 			var dieResults : Array<Int> = new Array<Int>();

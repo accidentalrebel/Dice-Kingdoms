@@ -1,6 +1,7 @@
 package ai;
 import flixel.addons.plugin.taskManager.AntTaskManager;
 import managers.BattleManager;
+import managers.CameraManager;
 import managers.GameplayManager;
 import managers.PlayerManager;
 import managers.TerritoryManager;
@@ -104,6 +105,7 @@ class EnemyAI
 						&& territory.armyCount >= neighborTerritory.armyCount - 1 ))	// If even the enemy has one army more than mine
 				{
 					taskManager.addPause(0.25);
+					CameraManager.focusOnTerritory(territory.territoryNumber);
 					
 					// We highlight the attacker and the one being attacked
 					taskManager.addInstantTask(this, Registry.playArea.selectTerritory, [territory], true);
