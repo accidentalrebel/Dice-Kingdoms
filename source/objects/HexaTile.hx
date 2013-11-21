@@ -63,7 +63,7 @@ class HexaTile extends FlxSprite
 		super(xPos + Registry.playAreaPadding.x, yPos + Registry.playAreaPadding.y);
 		
 		this.loadGraphic("assets/hexaTerrain.png", false, false, tileWidth, tileHeight);
-		this.animation.frameIndex = Tools.randomMinMax(1, 6);
+		this.animation.frameIndex = Tools.randomMinMax(3, 8);
 		
 		this.parent = parent;
 		Registry.playArea.add(this);
@@ -130,6 +130,6 @@ class HexaTile extends FlxSprite
 	{
 		this.isATerritory = false;
 		this.coverGraphic.visible = false;
-		this.animation.frameIndex = 0;		// Set to the sea graphic
+		this.animation.frameIndex = Tools.randomMinMax(0, 2);		// Set to the sea graphic
 	}
 }
