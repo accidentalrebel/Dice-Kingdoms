@@ -19,4 +19,10 @@ class TerritoryManager
 	{
 		return territoryList[territoryNumber];
 	}	
+	
+	public function getRandomTerritory(playerNum:Int) : Territory
+	{
+		var playersTerritories : Array<Int> = PlayerManager.getPlayer(playerNum).territories;
+		return getTerritory(playersTerritories[Std.random(playersTerritories.length)]);
+	}
 }

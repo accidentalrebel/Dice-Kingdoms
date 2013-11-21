@@ -75,7 +75,12 @@ class GameplayManager
 		
 		trace("Current player is human: " + PlayerManager.currentPlayer.isHuman);
 		if ( PlayerManager.currentPlayer.isHuman )
+		{
 			CameraManager.zoomIn();
+			var territory : Territory = Registry.territoryManager.getRandomTerritory
+				(PlayerManager.currentPlayerNumber);
+			CameraManager.focusOnTerritory(territory.territoryNumber);
+		}
 		else
 			CameraManager.zoomOut();			
 	}
