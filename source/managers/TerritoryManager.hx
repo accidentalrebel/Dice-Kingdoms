@@ -8,9 +8,14 @@ import flixel.FlxBasic;
  */
 class TerritoryManager
 {
-	public static var territoryList : Array<Territory> = new Array<Territory>();
+	public var territoryList : Array<Territory>;
 
-	public static function getTerritory(territoryNumber : Int) : Territory
+	public function new()
+	{	
+		territoryList = new Array<Territory>();
+	}
+	
+	public function getTerritory(territoryNumber : Int) : Territory
 	{
 		return territoryList[territoryNumber];
 	}	

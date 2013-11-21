@@ -36,7 +36,7 @@ class Player
 		{
 			var roll : Int = Std.random(territoryListCopy.length);
 			var territoryNum : Int = territoryListCopy[roll];
-			var territory : Territory = TerritoryManager.getTerritory(territoryNum);
+			var territory : Territory = Registry.territoryManager.getTerritory(territoryNum);
 			
 			//trace("Assigning a unit to territory num " + territory.territoryNumber);
 			if ( territory.increaseArmyCount() )

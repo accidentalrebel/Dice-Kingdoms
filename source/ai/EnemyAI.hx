@@ -42,7 +42,7 @@ class EnemyAI
 			// We loop through each territory
 			for ( tTerritory in playerScript.territories )
 			{ 
-				var territory : Territory = TerritoryManager.getTerritory(tTerritory);
+				var territory : Territory = Registry.territoryManager.getTerritory(tTerritory);
 				if ( territory.armyCount > 1
 					&& territory.ownerNumber == playerScript.playerNum 
 					&& territory.neighbors.length >= 1
@@ -65,7 +65,7 @@ class EnemyAI
 			// We loop through each territory and mark each territory as unchecked
 			for ( tTerritory in playerScript.territories )
 			{ 
-				var territory : Territory = TerritoryManager.getTerritory(tTerritory);
+				var territory : Territory = Registry.territoryManager.getTerritory(tTerritory);
 				territory.markAsChecked = false;
 			}
 			
@@ -90,7 +90,7 @@ class EnemyAI
 			// TODO: Pick a random neighbor instead of picking the first one on the list
 			for ( tNeighbor in territory.neighbors )
 			{
-				var neighborTerritory : Territory = TerritoryManager.getTerritory(tNeighbor);
+				var neighborTerritory : Territory = Registry.territoryManager.getTerritory(tNeighbor);
 				
 				// If I own this territory
 				if ( neighborTerritory.ownerNumber == territory.ownerNumber )

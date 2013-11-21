@@ -29,8 +29,8 @@ class GameGUILayer extends FlxGroup
 		var zoomButton : FlxButtonPlus = new FlxButtonPlus(5, 80, CameraManager.toggleZoom, null, "TOGGLE ZOOM", 100, 40);		
 		add(zoomButton);
 		
-		//var resetButton : FlxButtonPlus = new FlxButtonPlus(5, 130, GameplayManager.resetGame, null, "NEW GAME", 100, 40);		
-		//add(resetButton);
+		var resetButton : FlxButtonPlus = new FlxButtonPlus(5, 130, GameplayManager.resetGame, null, "NEW GAME", 100, 40);		
+		add(resetButton);
 		
 		// Everything in this group does not move from the camera
 		this.setAll("scrollFactor", new FlxPoint(0, 0));

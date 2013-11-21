@@ -28,6 +28,7 @@ class PlayAreaLayer extends FlxGroup
 	public function init(parent : FlxState) 
 	{		
 		playAreaArray = new Array<Array<HexaTile>>();
+		
 		for ( col in 0...playAreaCols+1 )
 		{
 			var rowArray : Array<HexaTile> = new Array<HexaTile>();
@@ -226,7 +227,7 @@ class PlayAreaLayer extends FlxGroup
 				
 				if ( neighborToCheck.territoryNumber != hexaTile.territoryNumber )
 				{
-					var neighborList : Array<Int> = TerritoryManager.getTerritory(hexaTile.territoryNumber).neighbors;
+					var neighborList : Array<Int> = Registry.territoryManager.getTerritory(hexaTile.territoryNumber).neighbors;
 					if ( !Lambda.has(neighborList, neighborToCheck.territoryNumber))
 						neighborList.push(neighborToCheck.territoryNumber);
 				}
@@ -264,7 +265,7 @@ class PlayAreaLayer extends FlxGroup
 		for ( i in 0...Registry.maxTerritories )
 		{
 			var territory : Territory = new Territory(i);
-			TerritoryManager.territoryList.push(territory);
+			Registry.territoryManager.territoryList.push(territory);
 		}
 		
 		for ( row in 0...playAreaRows+1)
@@ -280,7 +281,7 @@ class PlayAreaLayer extends FlxGroup
 						hexaTile.turnToSeaTile();
 					else
 					{						
-						var currentTerritory : Territory = TerritoryManager.getTerritory(hexaTile.territoryNumber);
+						var currentTerritory : Territory = Registry.territoryManager.getTerritory(hexaTile.territoryNumber);
 						currentTerritory.members.push(hexaTile);
 						
 						// We set the neighboring territories
@@ -293,7 +294,7 @@ class PlayAreaLayer extends FlxGroup
 		for ( tCenter in centerBaseList )
 		{
 			var center : HexaTile = tCenter;
-			TerritoryManager.getTerritory(center.territoryNumber).centerTile = center;
+			Registry.territoryManager.getTerritory(center.territoryNumber).centerTile = center;
 		}
 	} 
 	
@@ -306,7 +307,7 @@ class PlayAreaLayer extends FlxGroup
 			var roll : Int = 0;
 			while (true)
 			{
-				roll = Std.random(TerritoryManager.territoryList.length);
+				roll = Std.random(Registry.territoryManager.territoryList.length);
 				if ( !Lambda.has(pickedTerritories, roll) )
 					break;
 			}
@@ -327,7 +328,7 @@ class PlayAreaLayer extends FlxGroup
 	
 	public function assignTerritory(territoryNum : Int, playerNum : Int)
 	{
-		var territory : Territory = TerritoryManager.getTerritory(territoryNum);
+		var territory : Territory = Registry.territoryManager.getTerritory(territoryNum);
 		
 		// If someone already owns this territory
 		if ( territory.ownerNumber > 0 )
@@ -344,8 +345,11 @@ class PlayAreaLayer extends FlxGroup
 	    for ( tMember in territory.members )
 		{
 			var member : HexaTile = tMember;
-			member.setCoverColorTo(PlayerManager.getPlayer(playerNum).territoryColor);
-			member.drawBoundaries(PlayerManager.getPlayer(playerNum).territoryColor);
+			if ( member != null )
+			{
+				member.setCoverColorTo(PlayerManager.getPlayer(playerNum).territoryColor);
+				member.drawBoundaries(PlayerManager.getPlayer(playerNum).territoryColor);
+			}
 		}
 	}
 	
@@ -372,7 +376,7 @@ class PlayAreaLayer extends FlxGroup
     
 	public function deselectTerritory(thisTerritory : Int) : Int
 	{
-		var toDeselect : Territory = TerritoryManager.getTerritory(thisTerritory);
+		var toDeselect : Territory = Registry.territoryManager.getTerritory(thisTerritory);
 		toDeselect.deselect();
 		toDeselect.unhighlightNeighbors();
 		

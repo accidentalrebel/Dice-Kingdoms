@@ -4,6 +4,7 @@ import flixel.util.FlxPoint;
 import layers.BattleLayer;
 import layers.GameGUILayer;
 import layers.PlayAreaLayer;
+import managers.TerritoryManager;
 
 /**
  * ...
@@ -23,5 +24,6 @@ class Registry
 	static public var gameGUI:GameGUILayer;
 	static public var playArea:PlayAreaLayer;
 	static public var battleLayer: BattleLayer;
+	static public var territoryManager:TerritoryManager;
 	
 }

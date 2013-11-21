@@ -84,10 +84,10 @@ class Territory extends FlxBasic
 		for ( tNeighborNum in neighbors )
 		{
 			var neighborNum : Int = tNeighborNum;
-			if ( TerritoryManager.getTerritory(neighborNum).ownerNumber == ownerNumber )
+			if ( Registry.territoryManager.getTerritory(neighborNum).ownerNumber == ownerNumber )
 				continue;
 			
-			TerritoryManager.getTerritory(neighborNum).select(true);
+			Registry.territoryManager.getTerritory(neighborNum).select(true);
 		}
 	}
 	
@@ -96,13 +96,13 @@ class Territory extends FlxBasic
 		for ( tNeighborNum in neighbors )
 		{
 			var neighborNum : Int = tNeighborNum;
-			TerritoryManager.getTerritory(neighborNum).deselect(true);
+			Registry.territoryManager.getTerritory(neighborNum).deselect(true);
 		}
 	}
 	
 	public function checkIfEnemyNeighbor(territoryNumber:Int) 
 	{
-		if ( TerritoryManager.getTerritory(territoryNumber).ownerNumber == ownerNumber )
+		if ( Registry.territoryManager.getTerritory(territoryNumber).ownerNumber == ownerNumber )
 			return false;
 			
 		return Lambda.has(neighbors, territoryNumber);

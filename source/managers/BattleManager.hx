@@ -40,8 +40,8 @@ class BattleManager
 			return totalCount;
 		}
 		
-		var attacker : Territory = TerritoryManager.getTerritory(attackerTerritoryNum);
-		var defender : Territory = TerritoryManager.getTerritory(defenderTerritoryNum);
+		var attacker : Territory = Registry.territoryManager.getTerritory(attackerTerritoryNum);
+		var defender : Territory = Registry.territoryManager.getTerritory(defenderTerritoryNum);
 		
 		// We start rolling
 		var attackerDiceResults : Array<Int> = rollAllDice(attacker.armyCount);

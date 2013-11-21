@@ -109,7 +109,7 @@ class HexaTile extends FlxSprite
 			boundaryGraphic.loadGraphic("assets/boundaryLines.png", false, false, tileWidth, tileHeight);
 			boundaryGraphic.animation.frameIndex = frameToUse;
 			
-			this.parent.add(boundaryGraphic);
+			Registry.playArea.add(boundaryGraphic);			
 			this.boundaryGraphic.color = colorToUse;
 		}
 		

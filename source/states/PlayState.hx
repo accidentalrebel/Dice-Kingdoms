@@ -10,6 +10,7 @@ import flixel.FlxState;
 import flixel.text.FlxText;
 import flixel.util.FlxMath;
 import layers.PlayAreaLayer;
+import managers.TerritoryManager;
 import tools.Tools;
 
 /**
@@ -31,6 +32,9 @@ class PlayState extends FlxState
 		// We setup the Main GUI
 		Registry.gameGUI = new GameGUILayer();
 		Registry.battleLayer = new BattleLayer();
+		
+		// We setup the territory manager
+		Registry.territoryManager = new TerritoryManager();
 		
 		// We setup the playArea and player manager
 		add(Registry.playArea = new PlayAreaLayer());
