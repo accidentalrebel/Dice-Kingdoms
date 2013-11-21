@@ -16,9 +16,16 @@ class CameraManager
 	
 	static public function init() 
 	{
-		zoomIn();
+		normalZoomValue = FlxG.camera.zoom;						// We set the normalZoom value according to the ratio when the game is initialized
+		magnifiedZoomValue = normalZoomValue * 1.5;				// Whatever the normal zoom is, the magnified zoom is 150 percent of that value
+		
+		// The default camera is zoomed in
+		zoomIn();				
 	}
 	
+	/**
+	 * Toggles between zoomed in and zoomed out mode.
+	 */
 	static public function toggleZoom() 
 	{
 		if ( isZoomedIn )
@@ -27,13 +34,9 @@ class CameraManager
 			zoomIn();
 	}
 	
-	static public function focusOnTerritory(territoryNum:Int) 
-	{
-		var territory : Territory = Registry.territoryManager.getTerritory(territoryNum);
-		FlxG.camera.scroll = new FlxPoint(territory.centerTile.x - FlxG.width / 2 / CameraManager.magnifiedZoomValue
-			, territory.centerTile.y - FlxG.height / 2 / CameraManager.magnifiedZoomValue);
-	}
-	
+	/**
+	 * Zooms-in the camera
+	 */
 	static public function zoomIn() 
 	{
 		if ( isZoomedIn )
@@ -46,6 +49,9 @@ class CameraManager
 		FlxG.camera.zoom = magnifiedZoomValue;
 	}
 	
+	/**
+	 * Zooms-out the camera
+	 */
 	static public function zoomOut() 
 	{
 		if ( !isZoomedIn )
@@ -61,6 +67,21 @@ class CameraManager
 		FlxG.camera.scroll = new FlxPoint();		
 	}
 	
+	/**
+	 * Focuses the camera on a particular territory
+	 * @param	territoryNum		the territory number to focus on
+	 */
+	static public function focusOnTerritory(territoryNum:Int) 
+	{
+		var territory : Territory = Registry.territoryManager.getTerritory(territoryNum);
+		FlxG.camera.scroll = new FlxPoint(territory.centerTile.x - FlxG.width / 2 / CameraManager.magnifiedZoomValue
+			, territory.centerTile.y - FlxG.height / 2 / CameraManager.magnifiedZoomValue);
+	}
+	
+	/**
+	 * Focuses the camera on a random territory owned by a particular player
+	 * @param	playerNumber	the player in which we would get the random territory from
+	 */
 	static public function focusOnRandomTerritory(playerNumber : Int) 
 	{
 		var territory : Territory = Registry.territoryManager.getRandomTerritory(playerNumber);
