@@ -12,7 +12,8 @@ class CameraManager
 {
 	public static var magnifiedZoomValue : Float 	= 1.5;
 	public static var normalZoomValue : Float 		= 1;
-	private static var isZoomedIn : Bool = false;
+	static public var currentZoomValue : Float		= 1;
+	public static var isZoomedIn : Bool = false;
 	
 	static public function init() 
 	{
@@ -20,7 +21,7 @@ class CameraManager
 		magnifiedZoomValue = normalZoomValue * 1.5;				// Whatever the normal zoom is, the magnified zoom is 150 percent of that value
 		
 		// The default camera is zoomed in
-		zoomIn();				
+		//zoomIn();				
 	}
 	
 	/**
@@ -41,12 +42,12 @@ class CameraManager
 	{
 		if ( isZoomedIn )
 			return;
-		
-		Registry.battleLayer.setAll("scale", new FlxPoint
-			(CameraManager.normalZoomValue, CameraManager.normalZoomValue));	
 			
 		isZoomedIn = true;
 		FlxG.camera.zoom = magnifiedZoomValue;
+		currentZoomValue = FlxG.camera.zoom;
+		
+		Registry.battleLayer.updatePositions();
 	}
 	
 	/**
@@ -56,15 +57,15 @@ class CameraManager
 	{
 		if ( !isZoomedIn )
 			return;
-		
-		Registry.battleLayer.setAll("scale", new FlxPoint
-			(CameraManager.magnifiedZoomValue, CameraManager.magnifiedZoomValue));
 			
 		isZoomedIn = false;
 		FlxG.camera.zoom = normalZoomValue;
+		currentZoomValue = FlxG.camera.zoom;
 		
 		// We then reset the camera position
-		FlxG.camera.scroll = new FlxPoint();		
+		FlxG.camera.scroll = new FlxPoint();
+		
+		Registry.battleLayer.updatePositions();
 	}
 	
 	/**

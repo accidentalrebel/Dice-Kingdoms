@@ -18,34 +18,34 @@ class BattleLayer extends FlxGroup
 	var finalResultRight:FlxText;
 	var dieResultListLeft:Array<FlxText>;
 	var dieResultListRight:Array<FlxText>;
+	var bgWidth:Int;
+	var bgHeight:Int;
+	
+	var padding:Float = 100;	
+	var bottomPadding : Float = 5;
+	var dieResultHeight : Int = 15;
+	var finalResultHeight : Int = 30;
+	var finalResultWidth : Int = 50;
 	
 	public function new() 
 	{
-		var bottomPadding : Float = 5;
-		var dieResultHeight : Int = 15;
-		var padding : Float = 100;
-		var finalResultHeight : Int = 30;
-		var finalResultWidth : Int = 50;
-		
 		super();
 
-		var bgWidth : Int = Std.int(FlxG.camera.width / CameraManager.magnifiedZoomValue);
-		var bgHeight : Int = 60;
+		bgWidth = Std.int(FlxG.camera.width / CameraManager.currentZoomValue);
+		bgHeight = 60;
 		
-		battleBackground = new FlxSprite(0, FlxG.camera.height / CameraManager.magnifiedZoomValue - bgHeight);
+		battleBackground = new FlxSprite(0, 0);
 		battleBackground = battleBackground.makeGraphic(bgWidth, bgHeight, 0xff000000 );
 		battleBackground.alpha = 0.5;
 		add(battleBackground);
 		
-		battleResult = new FlxText(padding, battleBackground.y
-			, Std.int(battleBackground.width - padding * 2), "");
+		battleResult = new FlxText(0, 0, Std.int(battleBackground.width - padding * 2), "");
 		battleResult.alignment = "center";
 		battleResult.scale = new FlxPoint(2, 2);
 		add(battleResult);
 		
 		// We setup the final result FlxTexts
-		finalResultLeft = new FlxText(10
-			, battleBackground.y + battleBackground.height / 2 - finalResultHeight / 2 - bottomPadding
+		finalResultLeft = new FlxText(0, 0
 			, finalResultWidth, "88", finalResultHeight);
 		add(finalResultLeft);
 		
@@ -129,20 +129,31 @@ class BattleLayer extends FlxGroup
 		}
 	}
 	
-	//public function show(battleResultText : String)
-	//{
-		//var taskManager : AntTaskManager = new AntTaskManager(false, hide);
-		//
-		//battleBackground.visible = true;
-		//battleResult.visible = true;
-		//battleResult.text = battleResultText;
-		//
-		//taskManager.addPause(1);
-	//}
-	//
-	//public function hide()
-	//{
-		//battleBackground.visible = false;
-		//battleResult.visible = false;
-	//}
+	public function updatePositions()
+	{
+		if ( CameraManager.isZoomedIn )
+		{
+			this.setAll("scale", new FlxPoint
+				(1 / CameraManager.currentZoomValue, 1 / CameraManager.currentZoomValue));				
+			finalResultLeft.x -= finalResultLeft.width / 4 / CameraManager.currentZoomValue;
+		}
+		else
+		{
+			this.setAll("scale", new FlxPoint
+				(CameraManager.normalZoomValue, CameraManager.normalZoomValue));
+			finalResultLeft.x = 0;
+		}
+		
+		finalResultLeft.antialiasing = false;
+		finalResultLeft.scale = new FlxPoint(1 / CameraManager.currentZoomValue, 1 / CameraManager.currentZoomValue);
+		
+		
+		//battleBackground.x = (FlxG.camera.width / CameraManager.currentZoomValue / 2) - (battleBackground.width / 2);
+		//battleBackground.y = (FlxG.camera.height / CameraManager.currentZoomValue) - bgHeight;
+		//battleResult.x = padding;
+		//battleResult.y = battleBackground.y;
+		//finalResultLeft.centerOffsets();
+		//finalResultLeft.x = 0;
+		//finalResultLeft.y = battleBackground.y + ( battleBackground.height / CameraManager.currentZoomValue / 2 - finalResultHeight / 2 - bottomPadding) / CameraManager.currentZoomValue;
+	}
 }

@@ -5,7 +5,7 @@ package tools;
  * @author Karlo
  */
 class Tools
-{	
+{		
 	public static function hardCopyArray<A>(arrayToCopy : Array<A>)
 	{
 		var newArray : Array<A> = new Array<A>();
