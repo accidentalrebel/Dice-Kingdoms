@@ -24,8 +24,8 @@ class CameraManager
 		// The default camera is zoomed in
 		//zoomIn();				
 		
-		FlxG.camera.height -= 100;
-		guiCamera = new FlxCamera(0, FlxG.camera.height, FlxG.camera.width, 100, 1);
+		FlxG.camera.height -= 60;
+		guiCamera = new FlxCamera(0, FlxG.camera.height, FlxG.camera.width, 60, 1);
 		FlxG.cameras.add(guiCamera);
 	}
 	

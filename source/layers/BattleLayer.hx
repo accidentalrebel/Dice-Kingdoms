@@ -79,7 +79,6 @@ class BattleLayer extends FlxGroup
 		
 		//hide();
 		this.setAll("scrollFactor", new FlxPoint(0, 0));
-		this.setAll("cameras", [ CameraManager.guiCamera ]);
 	}
 	
 	public function updateTexts(battleResultText : String)

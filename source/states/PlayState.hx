@@ -52,5 +52,9 @@ class PlayState extends FlxState
 		// We then add the GUI to the stage
 		add(Registry.gameGUI);
 		add(Registry.battleLayer);
+		
+		// We assign layers to their respective cameras
+		Registry.playArea.setAll("cameras", [ FlxG.camera ]);
+		Registry.battleLayer.setAll("cameras", [ CameraManager.guiCamera ]);
 	}
 }
