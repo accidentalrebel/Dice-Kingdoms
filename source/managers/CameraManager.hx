@@ -14,6 +14,7 @@ class CameraManager
 	public static var normalZoomValue : Float 		= 1;
 	static public var currentZoomValue : Float		= 1;
 	public static var isZoomedIn : Bool = false;
+	public static var guiCamera : FlxCamera;
 	
 	static public function init() 
 	{
@@ -22,6 +23,10 @@ class CameraManager
 		
 		// The default camera is zoomed in
 		//zoomIn();				
+		
+		FlxG.camera.height -= 100;
+		guiCamera = new FlxCamera(0, FlxG.camera.height, FlxG.camera.width, 100, 1);
+		FlxG.cameras.add(guiCamera);
 	}
 	
 	/**

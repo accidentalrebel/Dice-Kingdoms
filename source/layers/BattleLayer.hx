@@ -79,6 +79,7 @@ class BattleLayer extends FlxGroup
 		
 		//hide();
 		this.setAll("scrollFactor", new FlxPoint(0, 0));
+		this.setAll("cameras", [ CameraManager.guiCamera ]);
 	}
 	
 	public function updateTexts(battleResultText : String)
@@ -131,22 +132,21 @@ class BattleLayer extends FlxGroup
 	
 	public function updatePositions()
 	{
-		if ( CameraManager.isZoomedIn )
-		{
-			this.setAll("scale", new FlxPoint
-				(1 / CameraManager.currentZoomValue, 1 / CameraManager.currentZoomValue));				
-			finalResultLeft.x -= finalResultLeft.width / 4 / CameraManager.currentZoomValue;
-		}
-		else
-		{
-			this.setAll("scale", new FlxPoint
-				(CameraManager.normalZoomValue, CameraManager.normalZoomValue));
-			finalResultLeft.x = 0;
-		}
-		
-		finalResultLeft.antialiasing = false;
-		finalResultLeft.scale = new FlxPoint(1 / CameraManager.currentZoomValue, 1 / CameraManager.currentZoomValue);
-		
+		//if ( CameraManager.isZoomedIn )
+		//{
+			//this.setAll("scale", new FlxPoint
+				//(1 / CameraManager.currentZoomValue, 1 / CameraManager.currentZoomValue));				
+			//finalResultLeft.x -= finalResultLeft.width / 4 / CameraManager.currentZoomValue;
+		//}
+		//else
+		//{
+			//this.setAll("scale", new FlxPoint
+				//(CameraManager.normalZoomValue, CameraManager.normalZoomValue));
+			//finalResultLeft.x = 0;
+		//}
+		//
+		//finalResultLeft.antialiasing = false;
+		//finalResultLeft.scale = new FlxPoint(1 / CameraManager.currentZoomValue, 1 / CameraManager.currentZoomValue);
 		
 		//battleBackground.x = (FlxG.camera.width / CameraManager.currentZoomValue / 2) - (battleBackground.width / 2);
 		//battleBackground.y = (FlxG.camera.height / CameraManager.currentZoomValue) - bgHeight;

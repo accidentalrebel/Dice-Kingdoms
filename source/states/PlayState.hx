@@ -26,6 +26,8 @@ class PlayState extends FlxState
 		
 		super.create();
 		
+		CameraManager.init();
+		
 		// We setup the input Manager
 		var inputManager : InputManager = new InputManager();
 		add(inputManager);
@@ -33,7 +35,6 @@ class PlayState extends FlxState
 		// We setup the Main GUI
 		Registry.gameGUI = new GameGUILayer();
 		Registry.battleLayer = new BattleLayer();
-		CameraManager.init();
 		
 		// We setup the territory manager
 		Registry.territoryManager = new TerritoryManager();
