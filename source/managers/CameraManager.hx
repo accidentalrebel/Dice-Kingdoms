@@ -27,11 +27,8 @@ class CameraManager
 		//zoomIn();				
 		mainCamera = FlxG.camera;
 		
-		trace("FlxG.height " + FlxG.height);
-		trace("Lib.height " + Lib.current.stage.stageHeight);
-		trace("mainCamera height " + mainCamera.height);
-		mainCamera.height = Std.int(Lib.current.stage.stageHeight - (60 / FlxG.camera.zoom));
-		bottomBarCamera = new FlxCamera(0, mainCamera.height, mainCamera.width, 60, 1);
+		mainCamera.height = Std.int(Lib.current.stage.stageHeight - 60);
+		bottomBarCamera = new FlxCamera(0, mainCamera.height, Lib.current.stage.stageWidth, 60, 1);
 		FlxG.cameras.add(bottomBarCamera);
 	}
 	
@@ -57,8 +54,6 @@ class CameraManager
 		isZoomedIn = true;
 		FlxG.camera.zoom = magnifiedZoomValue;
 		currentZoomValue = FlxG.camera.zoom;
-		
-		Registry.battleLayer.updatePositions();
 	}
 	
 	/**
@@ -75,8 +70,6 @@ class CameraManager
 		
 		// We then reset the camera position
 		FlxG.camera.scroll = new FlxPoint();
-		
-		Registry.battleLayer.updatePositions();
 	}
 	
 	/**

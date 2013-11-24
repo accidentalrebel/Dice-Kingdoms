@@ -1,4 +1,5 @@
 package layers;
+import flash.Lib;
 import flixel.FlxG;
 import flixel.FlxSprite;
 import flixel.group.FlxGroup;
@@ -31,7 +32,7 @@ class BattleLayer extends FlxGroup
 	{
 		super();
 
-		bgWidth = Std.int(FlxG.camera.width / CameraManager.currentZoomValue);
+		bgWidth = Lib.current.stage.stageWidth;
 		bgHeight = 60;
 		
 		battleBackground = new FlxSprite(0, 0);
@@ -45,7 +46,7 @@ class BattleLayer extends FlxGroup
 		add(battleResult);
 		
 		// We setup the final result FlxTexts
-		finalResultLeft = new FlxText(0, 0
+		finalResultLeft = new FlxText(0, battleBackground.y + battleBackground.height / 2 - finalResultHeight / 2 - bottomPadding
 			, finalResultWidth, "88", finalResultHeight);
 		add(finalResultLeft);
 		
@@ -127,32 +128,5 @@ class BattleLayer extends FlxGroup
 				dieResultText.visible = true;
 			}
 		}
-	}
-	
-	public function updatePositions()
-	{
-		//if ( CameraManager.isZoomedIn )
-		//{
-			//this.setAll("scale", new FlxPoint
-				//(1 / CameraManager.currentZoomValue, 1 / CameraManager.currentZoomValue));				
-			//finalResultLeft.x -= finalResultLeft.width / 4 / CameraManager.currentZoomValue;
-		//}
-		//else
-		//{
-			//this.setAll("scale", new FlxPoint
-				//(CameraManager.normalZoomValue, CameraManager.normalZoomValue));
-			//finalResultLeft.x = 0;
-		//}
-		//
-		//finalResultLeft.antialiasing = false;
-		//finalResultLeft.scale = new FlxPoint(1 / CameraManager.currentZoomValue, 1 / CameraManager.currentZoomValue);
-		
-		//battleBackground.x = (FlxG.camera.width / CameraManager.currentZoomValue / 2) - (battleBackground.width / 2);
-		//battleBackground.y = (FlxG.camera.height / CameraManager.currentZoomValue) - bgHeight;
-		//battleResult.x = padding;
-		//battleResult.y = battleBackground.y;
-		//finalResultLeft.centerOffsets();
-		//finalResultLeft.x = 0;
-		//finalResultLeft.y = battleBackground.y + ( battleBackground.height / CameraManager.currentZoomValue / 2 - finalResultHeight / 2 - bottomPadding) / CameraManager.currentZoomValue;
 	}
 }
