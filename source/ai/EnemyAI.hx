@@ -26,7 +26,7 @@ class EnemyAI
 	var playerScript:Player;
 	var aiType:AIType;
 	
-	// TODO: Have different kinds of AI
+	//TODO: Have different kinds of AI
 	
 	public function new(playerScript : Player) 
 	{
@@ -89,7 +89,7 @@ class EnemyAI
 			}
 				
 			// We go through each neighbors
-			// TODO: Pick a random neighbor instead of picking the first one on the list
+			//TODO: Pick a random neighbor instead of picking the first one on the list
 			for ( tNeighbor in territory.neighbors )
 			{
 				var neighborTerritory : Territory = Registry.territoryManager.getTerritory(tNeighbor);

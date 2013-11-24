@@ -21,7 +21,8 @@ class ProjectClass extends FlxGame
 			stageHeight = temp;
 		}
 		
-		// TODO: If the ratio is over the design ratio, then use the smaller ratio
+		//TODO: If the ratio is over the design ratio, then use the smaller ratio
+		//TODO: Think about it some more
 		var ratioX:Float = stageWidth / 800;
 		var ratioY:Float = stageHeight / 600;
 		var ratio:Float = Math.max(ratioX, ratioY);

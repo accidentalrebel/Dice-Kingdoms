@@ -57,5 +57,7 @@ class PlayState extends FlxState
 		Registry.playArea.setAll("cameras", [ CameraManager.mainCamera ]);
 		Registry.battleLayer.setAll("cameras", [ CameraManager.bottomBarCamera ]);
 		Registry.gameGUI.setAll("cameras", [ CameraManager.mainCamera ]);
+		
+		//TODO: Remove the boundary lines from the bottomBarCamera 
 	}
 }
