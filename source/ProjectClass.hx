@@ -1,6 +1,7 @@
 package;
 
 import flash.Lib;
+import flixel.FlxG;
 import flixel.FlxGame;
 import states.MenuState;
 	
@@ -13,6 +14,11 @@ class ProjectClass extends FlxGame
 		var ratioX:Float = stageWidth / 800;
 		var ratioY:Float = stageHeight / 600;
 		var ratio:Float = Math.min(ratioX, ratioY);
-		super(Math.ceil(stageWidth / ratio), Math.ceil(stageHeight / ratio), MenuState, ratio, 30, 30);
+		
+		super(Math.ceil(stageWidth / ratio), Math.ceil(stageHeight / ratio), MenuState, 1, 60, 60);
+		
+		trace("stageWidth " + stageWidth + " stageHeight " + stageHeight);
+		trace("ratioX " + ratioX + " ratioY " + ratioY + " ratio " + ratio);
+		trace("FlxG.width " + FlxG.width + " FlxG.height " + FlxG.height);
 	}
 }

@@ -1,4 +1,5 @@
 package managers;
+import flash.Lib;
 import flixel.FlxCamera;
 import flixel.FlxG;
 import flixel.util.FlxPoint;
@@ -26,7 +27,10 @@ class CameraManager
 		//zoomIn();				
 		mainCamera = FlxG.camera;
 		
-		mainCamera.height -= 60;
+		trace("FlxG.height " + FlxG.height);
+		trace("Lib.height " + Lib.current.stage.stageHeight);
+		trace("mainCamera height " + mainCamera.height);
+		mainCamera.height = Std.int(Lib.current.stage.stageHeight - (60 / FlxG.camera.zoom));
 		bottomBarCamera = new FlxCamera(0, mainCamera.height, mainCamera.width, 60, 1);
 		FlxG.cameras.add(bottomBarCamera);
 	}

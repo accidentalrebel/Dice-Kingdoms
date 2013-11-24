@@ -34,7 +34,7 @@ class EnemyAI
 		
 		// We roll for the AI type
 		aiType = Type.createEnumIndex(AIType, Std.int(Math.floor(Math.random() * Type.allEnums(AIType).length)));
-		trace(Std.string(aiType));
+		//trace(Std.string(aiType));
 	}
 	
 	public function startPlanning()
