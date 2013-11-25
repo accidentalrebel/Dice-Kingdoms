@@ -112,14 +112,14 @@ class EnemyAI
 					taskManager.addPause(0.75);
 					
 					// We highlight the attacker and the one being attacked
-					taskManager.addInstantTask(this, Registry.playArea.selectTerritory, [territory], true);
-					taskManager.addInstantTask(this, Registry.playArea.selectTerritory, [neighborTerritory, true], true);
+					taskManager.addTask(this, Registry.playArea.selectTerritory, [territory], true);
+					taskManager.addTask(this, Registry.playArea.selectTerritory, [neighborTerritory, true], true);
 					taskManager.addPause(1);
 					
 					// We then start the battle and unhighlight territories
-					taskManager.addInstantTask(this, BattleManager.startAttack, [territory.territoryNumber, neighborTerritory.territoryNumber], true);
-					taskManager.addInstantTask(this, Registry.playArea.deselectTerritory, [territory.territoryNumber], true);
-					taskManager.addInstantTask(this, Registry.playArea.deselectTerritory, [neighborTerritory.territoryNumber], true);
+					taskManager.addTask(this, BattleManager.startAttack, [territory.territoryNumber, neighborTerritory.territoryNumber], true);
+					taskManager.addTask(this, Registry.playArea.deselectTerritory, [territory.territoryNumber], true);
+					taskManager.addTask(this, Registry.playArea.deselectTerritory, [neighborTerritory.territoryNumber], true);
 					break;
 				}
 			}

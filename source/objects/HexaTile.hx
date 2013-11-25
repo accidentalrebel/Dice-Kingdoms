@@ -70,7 +70,7 @@ class HexaTile extends FlxSprite
 		
 		coverGraphic = new FlxSprite(this.x, this.y, "assets/hexaTile.png");
 		coverGraphic.alpha = 0.25;
-		Registry.playArea.add(coverGraphic);
+		//Registry.playArea.add(coverGraphic);
 	}	
 	
 	public function checkIfClicked(xPos:Float, yPos:Float)
@@ -109,7 +109,7 @@ class HexaTile extends FlxSprite
 			boundaryGraphic.loadGraphic("assets/boundaryLines.png", false, false, tileWidth, tileHeight);
 			boundaryGraphic.animation.frameIndex = frameToUse;
 			
-			Registry.playArea.add(boundaryGraphic);			
+			//Registry.playArea.add(boundaryGraphic);			
 			this.boundaryGraphic.color = colorToUse;
 		}
 		
@@ -123,7 +123,7 @@ class HexaTile extends FlxSprite
 	
 	public function setCoverColorTo(tColor : Int)
 	{
-		this.coverGraphic.color = tColor;
+		this.color = tColor;
 	}
 	
 	public function turnToSeaTile()
