@@ -2,6 +2,7 @@ package layers;
 import flash.Lib;
 import flash.Memory;
 import flixel.addons.display.FlxSpriteAniRot;
+import flixel.FlxG;
 import flixel.FlxSprite;
 import flixel.group.FlxGroup;
 import managers.CameraManager;
@@ -33,7 +34,7 @@ class PlayAreaLayer extends FlxGroup
 	public function init(parent : FlxState) 
 	{		
 		playAreaCanvas = new FlxSprite(0, 0);
-		playAreaCanvas.makeGraphic(Std.int(Lib.current.stage.width), Std.int(Lib.current.stage.height), 0);
+		playAreaCanvas.makeGraphic(Std.int(Lib.current.stage.width * FlxG.camera.zoom), Std.int(Lib.current.stage.height * FlxG.camera.zoom), 0);
 		playAreaCanvas.cameras = [ CameraManager.mainCamera ];
 		
 		playAreaArray = new Array<Array<HexaTile>>();

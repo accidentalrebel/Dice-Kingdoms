@@ -42,7 +42,7 @@ class PlayState extends FlxState
 		Registry.territoryManager = new TerritoryManager();
 		
 		// We setup the playArea and player manager
-		add(Registry.playArea = new PlayAreaLayer());
+		Registry.playArea = new PlayAreaLayer();
 		Registry.playArea.init(this);
 		Registry.playArea.setupTerritories();	
 		PlayerManager.init();
@@ -51,7 +51,9 @@ class PlayState extends FlxState
 		
 		CameraManager.focusOnRandomTerritory(PlayerManager.currentPlayerNumber);
 		
-		// We then add the GUI to the stage
+		// We arrange the different layers
+		add(Registry.playArea);
+		add(Registry.playArea.playAreaCanvas);
 		add(Registry.gameGUI);
 		add(Registry.battleLayer);
 		
@@ -59,8 +61,5 @@ class PlayState extends FlxState
 		Registry.playArea.setAll("cameras", [ CameraManager.mainCamera ]);
 		Registry.battleLayer.setAll("cameras", [ CameraManager.bottomBarCamera ]);
 		Registry.gameGUI.setAll("cameras", [ CameraManager.mainCamera ]);
-		
-		//TODO: Remove the boundary lines from the bottomBarCamera 		
-		add(Registry.playArea.playAreaCanvas);
 	}
 }

@@ -109,12 +109,12 @@ class EnemyAI
 					|| (aiType == AIType.AGGRESSIVE
 						&& territory.armyCount >= neighborTerritory.armyCount - 1 ))	// If even the enemy has one army more than mine
 				{
-					taskManager.addPause(0.75);
+					taskManager.addPause(0.25);
 					
 					// We highlight the attacker and the one being attacked
 					taskManager.addTask(this, Registry.playArea.selectTerritory, [territory], true);
 					taskManager.addTask(this, Registry.playArea.selectTerritory, [neighborTerritory, true], true);
-					taskManager.addPause(1);
+					taskManager.addPause(0.25);
 					
 					// We then start the battle and unhighlight territories
 					taskManager.addTask(this, BattleManager.startAttack, [territory.territoryNumber, neighborTerritory.territoryNumber], true);
