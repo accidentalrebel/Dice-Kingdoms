@@ -25,6 +25,7 @@ class EnemyAI
 {
 	var playerScript:Player;
 	var aiType:AIType;
+	var taskManager:AntTaskManager;
 	
 	//TODO: Have different kinds of AI
 	
@@ -77,7 +78,10 @@ class EnemyAI
 		
 		function getNextMove()
 		{
-			var taskManager : AntTaskManager = new AntTaskManager(false, getNextMove);
+			if ( taskManager != null )
+				taskManager.clear();
+			
+			taskManager = new AntTaskManager(false, getNextMove);
 			var territory : Null<Territory> = getAvailableTerritories();
 			
 			// If no territory is availble, we now end our turn
