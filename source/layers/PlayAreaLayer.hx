@@ -34,8 +34,8 @@ class PlayAreaLayer extends FlxGroup
 	public function init(parent : FlxState) 
 	{		
 		playAreaCanvas = new FlxSprite(0, 0);
-		playAreaCanvas.makeGraphic(Std.int(Lib.current.stage.width * FlxG.camera.zoom), Std.int(Lib.current.stage.height * FlxG.camera.zoom), 0);
 		playAreaCanvas.cameras = [ CameraManager.mainCamera ];
+		playAreaCanvas.makeGraphic(Std.int(Lib.current.stage.width), Std.int(Lib.current.stage.height), 0);
 		
 		playAreaArray = new Array<Array<HexaTile>>();
 		
