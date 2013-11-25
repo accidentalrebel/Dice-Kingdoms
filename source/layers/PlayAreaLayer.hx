@@ -35,8 +35,10 @@ class PlayAreaLayer extends FlxGroup
 	{		
 		playAreaCanvas = new FlxSprite(0, 0);
 		playAreaCanvas.cameras = [ CameraManager.mainCamera ];
+		
+		//TODO: Get the actual height of the playArea by calculating using the tileHeight and playAreaRows
 		playAreaCanvas.makeGraphic(Std.int(FlxG.width)
-			, Std.int(FlxG.height / FlxG.camera.zoom) + 60, 0);
+			, Std.int((FlxG.height + 100) / FlxG.camera.zoom), 0);
 		
 		playAreaArray = new Array<Array<HexaTile>>();
 		
