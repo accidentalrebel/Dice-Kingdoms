@@ -16,7 +16,7 @@ class CameraManager
 	static public var currentZoomValue : Float		= 1;
 	public static var isZoomedIn : Bool = false;
 	public static var mainCamera : FlxCamera;
-	public static var bottomBarCamera : FlxCamera;
+	public static var topBarCamera : FlxCamera;
 	
 	static public function init() 
 	{
@@ -27,9 +27,11 @@ class CameraManager
 		//zoomIn();				
 		mainCamera = FlxG.camera;
 		
+		//TODO: Create a gameStage.width and height variables instead of relying on Lib.current.stage.stageWidth. This is because there is a possibility that the width and height values are interchanged/
+		topBarCamera = new FlxCamera(0, 0, Lib.current.stage.stageWidth, 60, 1);
 		mainCamera.height = Std.int(Lib.current.stage.stageHeight - 60);
-		bottomBarCamera = new FlxCamera(0, mainCamera.height, Lib.current.stage.stageWidth, 60, 1);
-		FlxG.cameras.add(bottomBarCamera);
+		mainCamera.y = topBarCamera.height;
+		FlxG.cameras.add(topBarCamera);
 	}
 	
 	/**

@@ -59,7 +59,7 @@ class PlayState extends FlxState
 		
 		// We assign layers to their respective cameras
 		Registry.playArea.setAll("cameras", [ CameraManager.mainCamera ]);
-		Registry.battleLayer.setAll("cameras", [ CameraManager.bottomBarCamera ]);
+		Registry.battleLayer.setAll("cameras", [ CameraManager.topBarCamera ]);
 		Registry.gameGUI.setAll("cameras", [ CameraManager.mainCamera ]);
 	}
 }
