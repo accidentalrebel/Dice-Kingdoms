@@ -12,7 +12,9 @@ import managers.TerritoryManager;
  */
 class Registry
 {
-	public static var colorList : Array<Int> = [ 0xFF0000, 0x00FF00, 0x0000FF, 0xFFFF00, 0x00FFFF, 0xFF00FF, 0x000033, 0xFFFFFF ];		
+												//TODO: Make an enum for the colors
+												// RED		GREEN	   BLUE		 YELLOW   L.BLUE	PINK	   ORANGE	WHITE   
+	public static var colorList : Array<Int> = [ 0xFF3333, 0x33FF33, 0x3333FF, 0xFFFF33, 0x33FFFF, 0xFF33FF, 0xFF6600, 0xFFFFFF ];		
 	public static var maxTerritories : Int = Math.floor(PlayAreaLayer.playAreaRows / 5) * Math.floor(PlayAreaLayer.playAreaCols / 5);	
 	static public var territoryPerPlayer:Int;
 	

@@ -120,11 +120,7 @@ class HexaTile extends FlxSprite
 	
 	public function setCoverColorTo(tColor : Int)
 	{		
-		//var coverGraphic : FlxSprite = new FlxSprite(this.x, this.y, "assets/hexaTile.png");
-		//coverGraphic.alpha = 0.25;
-		//coverGraphic.color = tColor;
-		//
-		//Registry.playArea.playAreaCanvas.stamp(coverGraphic, Std.int(this.x), Std.int(this.y));	
+		this.color = tColor;
 	}
 	
 	public function turnToSeaTile()
