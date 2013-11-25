@@ -62,7 +62,7 @@ class HexaTile extends FlxSprite
 		
 		super(xPos + Registry.playAreaPadding.x, yPos + Registry.playAreaPadding.y);
 		
-		this.loadGraphic("assets/hexaTerrain.png", false, false, tileWidth, tileHeight);
+		this.loadGraphic("assets/hexaTerrain.png", false, false, tileWidth, tileHeight, true);
 		this.animation.frameIndex = Tools.randomMinMax(3, 8);
 		
 		this.parent = parent;
@@ -105,12 +105,11 @@ class HexaTile extends FlxSprite
 				&& this.territoryNumber == theNeighbor.territoryNumber )
 				return;
 				
-			boundaryGraphic = new FlxSprite(this.x, this.y);
+			boundaryGraphic = new FlxSprite(0, 0);
 			boundaryGraphic.loadGraphic("assets/boundaryLines.png", false, false, tileWidth, tileHeight);
 			boundaryGraphic.animation.frameIndex = frameToUse;
-			
-			//Registry.playArea.add(boundaryGraphic);			
-			this.boundaryGraphic.color = colorToUse;
+		
+			stamp(boundaryGraphic, this.animation.frameIndex * tileWidth);
 		}
 		
 		drawBoundary(this.top, 0);
