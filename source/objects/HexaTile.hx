@@ -28,7 +28,6 @@ class HexaTile extends FlxSprite
 	var row : Int = 0;
 	var parent : FlxGroup = null;
 	var label : FlxText;
-	var boundaryGraphic:FlxSprite;
 	
 	public var isCenter : Bool = false;
 	public var isATerritory : Bool = false;
@@ -61,7 +60,7 @@ class HexaTile extends FlxSprite
 		
 		super(xPos + Registry.playAreaPadding.x, yPos + Registry.playAreaPadding.y);
 		
-		this.loadGraphic("assets/hexaTerrain.png", false, false, tileWidth, tileHeight, true);
+		this.loadGraphic("assets/hexaTerrain.png", false, false, tileWidth, tileHeight);
 		this.animation.frameIndex = Tools.randomMinMax(3, 8);
 		
 		this.parent = parent;
@@ -95,19 +94,20 @@ class HexaTile extends FlxSprite
 	}
 	
 	public function drawBoundaries(colorToUse : Int) 
-	{
+	{		
 		function drawBoundary(theNeighbor : HexaTile, frameToUse:Int) 
 		{
 			if ( theNeighbor != null && theNeighbor.isATerritory
 				&& this.territoryNumber == theNeighbor.territoryNumber )
 				return;
 				
-			boundaryGraphic = new FlxSprite(0, 0);
+			var boundaryGraphic : FlxSprite = new FlxSprite(0, 0);
 			boundaryGraphic.loadGraphic("assets/boundaryLines.png", false, false, tileWidth, tileHeight);
 			boundaryGraphic.color = colorToUse;
 			boundaryGraphic.animation.frameIndex = frameToUse;
 		
-			stamp(boundaryGraphic, this.animation.frameIndex * tileWidth);
+			//stamp(boundaryGraphic, this.animation.frameIndex * tileWidth);
+			Registry.playArea.playAreaCanvas.stamp(boundaryGraphic, Std.int(this.x), Std.int(this.y));
 		}
 		
 		drawBoundary(this.top, 0);
@@ -119,12 +119,12 @@ class HexaTile extends FlxSprite
 	}
 	
 	public function setCoverColorTo(tColor : Int)
-	{	
-		var coverGraphic : FlxSprite = new FlxSprite(this.x, this.y, "assets/hexaTile.png");
-		coverGraphic.alpha = 0.25;
-		coverGraphic.color = tColor;
-		
-		this.stamp(coverGraphic, tileWidth * this.animation.frameIndex, 0);	
+	{		
+		//var coverGraphic : FlxSprite = new FlxSprite(this.x, this.y, "assets/hexaTile.png");
+		//coverGraphic.alpha = 0.25;
+		//coverGraphic.color = tColor;
+		//
+		//Registry.playArea.playAreaCanvas.stamp(coverGraphic, Std.int(this.x), Std.int(this.y));	
 	}
 	
 	public function turnToSeaTile()

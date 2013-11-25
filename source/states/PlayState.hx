@@ -61,10 +61,6 @@ class PlayState extends FlxState
 		Registry.gameGUI.setAll("cameras", [ CameraManager.mainCamera ]);
 		
 		//TODO: Remove the boundary lines from the bottomBarCamera 		
-		var spriteToStampOn : FlxSprite = Registry.playArea.playAreaArray[0][0];
-		var test : FlxSprite = new FlxSprite(spriteToStampOn.x, spriteToStampOn.y, "assets/boundaryLine.png");
-		spriteToStampOn.color = 0xFFFFFF;
-		//spriteToStampOn.scale = new FlxPoint(1, 0.5);
-		spriteToStampOn.stamp(test);
+		add(Registry.playArea.playAreaCanvas);
 	}
 }

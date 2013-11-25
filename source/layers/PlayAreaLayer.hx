@@ -1,6 +1,10 @@
 package layers;
+import flash.Lib;
 import flash.Memory;
+import flixel.addons.display.FlxSpriteAniRot;
+import flixel.FlxSprite;
 import flixel.group.FlxGroup;
+import managers.CameraManager;
 import managers.PlayerManager;
 import managers.TerritoryManager;
 import objects.HexaTile;
@@ -19,6 +23,7 @@ class PlayAreaLayer extends FlxGroup
 	public static var playAreaCols : Int = 42;
 	public static var playAreaRows : Int = 26;
 	public var playAreaArray : Array<Array<HexaTile>>;
+	public var playAreaCanvas:FlxSprite;
 
 	public function new()
 	{
@@ -27,6 +32,10 @@ class PlayAreaLayer extends FlxGroup
 	
 	public function init(parent : FlxState) 
 	{		
+		playAreaCanvas = new FlxSprite(0, 0);
+		playAreaCanvas.makeGraphic(Std.int(Lib.current.stage.width), Std.int(Lib.current.stage.height), 0);
+		playAreaCanvas.cameras = [ CameraManager.mainCamera ];
+		
 		playAreaArray = new Array<Array<HexaTile>>();
 		
 		for ( col in 0...playAreaCols+1 )
