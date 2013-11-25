@@ -29,7 +29,6 @@ class HexaTile extends FlxSprite
 	var parent : FlxGroup = null;
 	var label : FlxText;
 	var boundaryGraphic:FlxSprite;
-	public var coverGraphic:FlxSprite;
 	
 	public var isCenter : Bool = false;
 	public var isATerritory : Bool = false;
@@ -68,8 +67,6 @@ class HexaTile extends FlxSprite
 		this.parent = parent;
 		Registry.playArea.add(this);
 		
-		coverGraphic = new FlxSprite(this.x, this.y, "assets/hexaTile.png");
-		coverGraphic.alpha = 0.25;
 		//Registry.playArea.add(coverGraphic);
 	}	
 	
@@ -107,6 +104,7 @@ class HexaTile extends FlxSprite
 				
 			boundaryGraphic = new FlxSprite(0, 0);
 			boundaryGraphic.loadGraphic("assets/boundaryLines.png", false, false, tileWidth, tileHeight);
+			boundaryGraphic.color = colorToUse;
 			boundaryGraphic.animation.frameIndex = frameToUse;
 		
 			stamp(boundaryGraphic, this.animation.frameIndex * tileWidth);
@@ -121,14 +119,17 @@ class HexaTile extends FlxSprite
 	}
 	
 	public function setCoverColorTo(tColor : Int)
-	{
-		this.color = tColor;
+	{	
+		var coverGraphic : FlxSprite = new FlxSprite(this.x, this.y, "assets/hexaTile.png");
+		coverGraphic.alpha = 0.25;
+		coverGraphic.color = tColor;
+		
+		this.stamp(coverGraphic, tileWidth * this.animation.frameIndex, 0);	
 	}
 	
 	public function turnToSeaTile()
 	{
 		this.isATerritory = false;
-		this.coverGraphic.visible = false;
 		this.animation.frameIndex = Tools.randomMinMax(0, 2);		// Set to the sea graphic
 	}
 }
