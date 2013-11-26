@@ -37,17 +37,31 @@ class CameraManager
 		mainCamera.y = topBarCamera.height;
 		
 		// We then get the playAreaWidth and height
-		var playAreaWidth : Float = PlayAreaLayer.playAreaCols * HexaTile.tileWidth;
+		var playAreaWidth : Float = ((PlayAreaLayer.playAreaCols - 2) / 2) * HexaTile.tileWidth
+			+ ((PlayAreaLayer.playAreaCols + 2) / 2) * (HexaTile.tileWidth / 4);
 		var playAreaHeight : Float = PlayAreaLayer.playAreaRows * HexaTile.tileWidth;
 		var newScale : Float = mainCamera.zoom;
 		var newScaleX : Float = 1;
 		var newScaleY : Float = 1;
 		
-		// We then adjust the mainCamera zoom factor for the mainCamera so that the playArea would fit on the screen
-		newScaleX = Lib.current.stage.stageWidth / playAreaWidth;	
-		newScaleY = (Lib.current.stage.stageHeight - topBarHeight) / playAreaHeight;
-		newScale = Math.min(newScaleX, newScaleY);
-			
+		// We then adjust the mainCamera zoom factor for the mainCamera so that the 
+		// playArea would fit on the screen
+		if ( playAreaWidth > Lib.current.stage.stageWidth )
+		{
+			newScale = (Lib.current.stage.stageWidth) / playAreaWidth;
+		}
+		else if ( playAreaHeight > (Lib.current.stage.stageHeight - topBarHeight) )
+		{
+			newScale = (Lib.current.stage.stageHeight - topBarHeight) / playAreaHeight;
+		}
+		else if ( playAreaWidth <= Lib.current.stage.stageWidth 
+			&& playAreaHeight <= (Lib.current.stage.stageHeight - topBarHeight))
+		{
+			newScaleX = Lib.current.stage.stageWidth / playAreaWidth;	
+			newScaleY = (Lib.current.stage.stageHeight - topBarHeight) / playAreaHeight;
+			newScale = Math.min(newScaleX, newScaleY);
+		}
+		
 		// We then apply and save the new scale
 		mainCamera.zoom = newScale;
 		normalZoomValue = FlxG.camera.zoom;						// We set the normalZoom value according to the ratio when the game is initialized
