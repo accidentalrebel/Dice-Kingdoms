@@ -22,6 +22,7 @@ class CameraManager
 	
 	static public function init() 
 	{
+		//TODO: Add a zoom in feature
 		//TODO: Create a gameStage.width and height variables instead of relying on Lib.current.stage.stageWidth. This is because there is a possibility that the width and height values are interchanged/
 		var topBarHeight : Int = 60;
 		
@@ -68,8 +69,8 @@ class CameraManager
 		magnifiedZoomValue = normalZoomValue * 1.5;				// Whatever the normal zoom is, the magnified zoom is 150 percent of that value	
 
 		// We then adjust the mainCamera viewing area
-		mainCamera.width = Std.int(Lib.current.stage.stageWidth / newScale);
-		mainCamera.height = Std.int((Lib.current.stage.stageHeight - topBarHeight) / newScale);
+		mainCamera.width = Std.int(Math.round(Lib.current.stage.stageWidth / newScale));
+		mainCamera.height = Std.int(Math.round((Lib.current.stage.stageHeight - topBarHeight) / newScale));
 	}
 	
 	/**
