@@ -1,6 +1,7 @@
 package ai;
 import flixel.addons.plugin.taskManager.AntTaskManager;
 import flixel.FlxG;
+import flixel.util.FlxArrayUtil;
 import managers.BattleManager;
 import managers.CameraManager;
 import managers.GameplayManager;
@@ -26,8 +27,6 @@ class EnemyAI
 	var playerScript:Player;
 	var aiType:AIType;
 	var taskManager:AntTaskManager;
-	
-	//TODO: Have different kinds of AI
 	
 	public function new(playerScript : Player) 
 	{
@@ -91,9 +90,11 @@ class EnemyAI
 				endMove();
 				return;
 			}
-				
+			
+			// We shuffle the neighbors of this territory for randomness
+			FlxArrayUtil.shuffle(territory.neighbors, Std.int(territory.neighbors.length * 2));
+			
 			// We go through each neighbors
-			//TODO: Pick a random neighbor instead of picking the first one on the list
 			for ( tNeighbor in territory.neighbors )
 			{
 				var neighborTerritory : Territory = Registry.territoryManager.getTerritory(tNeighbor);
