@@ -3,6 +3,8 @@ import flash.Lib;
 import flixel.FlxCamera;
 import flixel.FlxG;
 import flixel.util.FlxPoint;
+import layers.PlayAreaLayer;
+import objects.HexaTile;
 import objects.Territory;
 
 /**
@@ -20,18 +22,43 @@ class CameraManager
 	
 	static public function init() 
 	{
-		normalZoomValue = FlxG.camera.zoom;						// We set the normalZoom value according to the ratio when the game is initialized
-		magnifiedZoomValue = normalZoomValue * 1.5;				// Whatever the normal zoom is, the magnified zoom is 150 percent of that value
+		//TODO: Create a gameStage.width and height variables instead of relying on Lib.current.stage.stageWidth. This is because there is a possibility that the width and height values are interchanged/
 		
-		// The default camera is zoomed in
-		//zoomIn();				
+		var topBarHeight : Int = 60;
+		
+		// First we get the mainCamera
 		mainCamera = FlxG.camera;
 		
-		//TODO: Create a gameStage.width and height variables instead of relying on Lib.current.stage.stageWidth. This is because there is a possibility that the width and height values are interchanged/
-		topBarCamera = new FlxCamera(0, 0, Lib.current.stage.stageWidth, 60, 1);
-		mainCamera.height = Std.int(Lib.current.stage.stageHeight - 60);
-		mainCamera.y = topBarCamera.height;
+		// We then create the topBarCamera
+		topBarCamera = new FlxCamera(0, 0, Lib.current.stage.stageWidth, topBarHeight, 1);
 		FlxG.cameras.add(topBarCamera);
+		
+		// Then we set up the mainCamera height and position
+		mainCamera.height = Std.int(Lib.current.stage.stageHeight - topBarHeight) * 2;
+		mainCamera.y = topBarCamera.height;
+		
+		// We then get the playAreaWidth and height
+		var playAreaWidth : Float = PlayAreaLayer.playAreaCols * HexaTile.tileWidth;
+		var playAreaHeight : Float = PlayAreaLayer.playAreaRows * HexaTile.tileWidth;
+		var newScale : Float = mainCamera.zoom;
+		
+		// We then adjust the mainCamera zoom factor for the mainCamera so that the playArea would fit on the screen
+		if ( playAreaHeight - topBarHeight > Lib.current.stage.stageHeight )
+			newScale = (Lib.current.stage.stageHeight - topBarHeight) / playAreaHeight;
+		else if( playAreaWidth > Lib.current.stage.stageWidth )
+			newScale = Lib.current.stage.stageWidth / playAreaWidth;
+		
+		// We then apply and save the new scale
+		mainCamera.zoom = newScale;
+		normalZoomValue = FlxG.camera.zoom;						// We set the normalZoom value according to the ratio when the game is initialized
+		magnifiedZoomValue = normalZoomValue * 1.5;				// Whatever the normal zoom is, the magnified zoom is 150 percent of that value	
+
+		// We then adjust the viewing area of the mainCamera
+		if ( newScale < 1 )
+		{
+			mainCamera.width = Std.int(mainCamera.width / newScale);
+			mainCamera.height = Std.int(mainCamera.height / newScale);
+		}
 	}
 	
 	/**
