@@ -25,7 +25,7 @@ class AddArmyEffect extends FlxText
 		
 		this.x = xPos;
 		this.y = yPos;
-		this.text = str;
+		this.text = "+" + str;
 		
 		if ( taskManager != null )
 			taskManager.clear();
