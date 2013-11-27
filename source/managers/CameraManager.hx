@@ -37,29 +37,26 @@ class CameraManager
 		mainCamera.height = Std.int(Lib.current.stage.stageHeight - topBarHeight) * 2;
 		mainCamera.y = topBarCamera.height;
 		
-		// We then get the playAreaWidth and height
-		var playAreaWidth : Float = ((PlayAreaLayer.PLAY_AREA_COLUMNS - 2) / 2) * HexaTile.TILE_WIDTH
-			+ ((PlayAreaLayer.PLAY_AREA_COLUMNS + 2) / 2) * (HexaTile.TILE_WIDTH / 4);
-		var playAreaHeight : Float = PlayAreaLayer.PLAY_AREA_ROWS * HexaTile.TILE_WIDTH;
+		// We then get the PlayAreaLayer.areaWidth and height
 		var newScale : Float = mainCamera.zoom;
 		var newScaleX : Float = 1;
 		var newScaleY : Float = 1;
 		
 		// We then adjust the mainCamera zoom factor for the mainCamera so that the 
 		// playArea would fit on the screen
-		if ( playAreaWidth > Lib.current.stage.stageWidth )
+		if ( PlayAreaLayer.areaWidth > Lib.current.stage.stageWidth )
 		{
-			newScale = (Lib.current.stage.stageWidth) / playAreaWidth;
+			newScale = (Lib.current.stage.stageWidth) / PlayAreaLayer.areaWidth;
 		}
-		else if ( playAreaHeight > (Lib.current.stage.stageHeight - topBarHeight) )
+		else if ( PlayAreaLayer.areaHeight > (Lib.current.stage.stageHeight - topBarHeight) )
 		{
-			newScale = (Lib.current.stage.stageHeight - topBarHeight) / playAreaHeight;
+			newScale = (Lib.current.stage.stageHeight - topBarHeight) / PlayAreaLayer.areaHeight;
 		}
-		else if ( playAreaWidth <= Lib.current.stage.stageWidth 
-			&& playAreaHeight <= (Lib.current.stage.stageHeight - topBarHeight))
+		else if ( PlayAreaLayer.areaWidth <= Lib.current.stage.stageWidth 
+			&& PlayAreaLayer.areaHeight <= (Lib.current.stage.stageHeight - topBarHeight))
 		{
-			newScaleX = Lib.current.stage.stageWidth / playAreaWidth;	
-			newScaleY = (Lib.current.stage.stageHeight - topBarHeight) / playAreaHeight;
+			newScaleX = Lib.current.stage.stageWidth / PlayAreaLayer.areaWidth;	
+			newScaleY = (Lib.current.stage.stageHeight - topBarHeight) / PlayAreaLayer.areaHeight;
 			newScale = Math.min(newScaleX, newScaleY);
 		}
 		
@@ -110,7 +107,8 @@ class CameraManager
 		currentZoomValue = FlxG.camera.zoom;
 		
 		// We then reset the camera position
-		FlxG.camera.scroll = new FlxPoint();
+		//FlxG.camera.scroll = new FlxPoint();
+		centerCamera();
 	}
 	
 	/**
@@ -132,5 +130,14 @@ class CameraManager
 	{
 		var territory : Territory = Registry.territoryManager.getRandomTerritory(playerNumber);
 		CameraManager.focusOnTerritory(territory.territoryNumber);
+	}
+	
+	/**
+	 * Centers the camera
+	 */
+	static public function centerCamera()
+	{
+		FlxG.camera.scroll = new FlxPoint(Lib.current.width / 2
+			, Lib.current.height / 2);
 	}
 }
