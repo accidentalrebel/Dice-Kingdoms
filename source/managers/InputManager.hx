@@ -38,7 +38,7 @@ class InputManager extends FlxBasic
 		else if ( startTouchPos != null && FlxG.mouse.justReleased )
 		{
 			if ( !isDragging && distanceFromStartTouch < distanceToDrag )			
-				GameplayManager.onClick(FlxG.mouse.x, FlxG.mouse.y);			
+				Registry.gameplayManager.onClick(FlxG.mouse.x, FlxG.mouse.y);			
 				
 			startTouchPos = null;
 			isDragging = false;

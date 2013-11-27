@@ -29,6 +29,7 @@ class PlayState extends FlxState
 		super.create();
 		
 		CameraManager.init();
+		Registry.gameplayManager = new GameplayManager();
 		
 		// We setup the input Manager
 		var inputManager : InputManager = new InputManager();

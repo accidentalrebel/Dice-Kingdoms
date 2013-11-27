@@ -1,4 +1,5 @@
 package managers;
+import flixel.addons.plugin.taskManager.AntTaskManager;
 import flixel.util.FlxPoint;
 import objects.HexaTile;
 import objects.Territory;
@@ -12,14 +13,15 @@ import states.PlayState;
  */
 class GameplayManager
 {
-	static private var selectedTerritory : Int = -1;
+	private var selectedTerritory : Int = -1;
+	private var taskManager:AntTaskManager;
 	
-	public static function init()
+	public function new()
 	{
 		
 	}
 	
-	public static function onClick(xPos:Float, yPos:Float)
+	public function onClick(xPos:Float, yPos:Float)
 	{
 		function selectTerritoryAndHighlightNeighbors(clickedTerritory : Territory) : Int
 		{
@@ -65,23 +67,29 @@ class GameplayManager
 				selectedTerritory = selectTerritoryAndHighlightNeighbors(clickedTerritory);
 			}
 		}
-	}	
-	
-	static public function nextPlayer() 
-	{
-		PlayerManager.nextPlayer();
-		
-		trace("Current player is human: " + PlayerManager.currentPlayer.isHuman);
-		if ( PlayerManager.currentPlayer.isHuman )
-		{
-			CameraManager.zoomIn();
-			CameraManager.focusOnRandomTerritory(PlayerManager.currentPlayerNumber);
-		}
-		else
-			CameraManager.zoomOut();			
 	}
 	
-	static public function resetGame() 
+	public function endCurrentPlayerMove() 
+	{
+		// We add a short delay
+		if ( taskManager != null )
+			taskManager.clear();
+		
+		taskManager = new AntTaskManager(false, nextPlayer);
+		taskManager.addPause(2);
+		
+		// We start the filling animation //TODO: Think up of a better name for this section
+		taskManager.addInstantTask(this, PlayerManager.currentPlayer.randomlyAssignArmies, [PlayerManager.currentPlayer.territories.length], true);
+		
+		taskManager.addPause(2);
+	}
+	
+	public function nextPlayer() 
+	{
+		PlayerManager.nextPlayer();
+	}
+	
+	public function resetGame() 
 	{
 		FlxG.resetGame();
 	}

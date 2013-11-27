@@ -50,7 +50,7 @@ class BattleLayer extends FlxGroup
 		add(battleResult);
 		
 		// We setup the final result FlxTexts
-		finalResultLeft = new FlxText(0, battleBackground.y + battleBackground.height / 2 - finalResultHeight / 2 - bottomPadding
+		finalResultLeft = new FlxText(5, battleBackground.y + battleBackground.height / 2 - finalResultHeight / 2 - bottomPadding
 			, finalResultWidth, "88", finalResultHeight);
 		add(finalResultLeft);
 		

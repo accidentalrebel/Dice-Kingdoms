@@ -72,7 +72,7 @@ class EnemyAI
 			}
 			
 			// We then go to the next player
-			GameplayManager.nextPlayer();
+			Registry.gameplayManager.endCurrentPlayerMove();
 		}
 		
 		function getNextMove()
