@@ -1,4 +1,5 @@
 package layers;
+import effects.AddArmyEffect;
 import flixel.addons.ui.FlxButtonPlus;
 import flixel.FlxG;
 import flixel.group.FlxGroup;
@@ -36,5 +37,11 @@ class GameGUILayer extends FlxGroup
 		
 		// Everything in this group does not move from the camera
 		this.setAll("scrollFactor", new FlxPoint(0, 0));
+	}
+	
+	public function spawnAddArmyEffect(xPos, yPos)
+	{
+		var addArmyEffect : AddArmyEffect = cast(this.recycle(AddArmyEffect, [xPos, yPos]), AddArmyEffect);
+		//add(addArmyEffect);
 	}
 }

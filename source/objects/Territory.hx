@@ -44,6 +44,8 @@ class Territory extends FlxBasic
 		armyCount += amount;
 		setArmyCount(armyCount);
 		
+		Registry.gameGUI.spawnAddArmyEffect(centerTile.x, centerTile.y);
+		
 		return true;
 	}
 	
