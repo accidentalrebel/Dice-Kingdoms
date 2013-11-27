@@ -47,7 +47,6 @@ class Player
 			}
 			// If we can't, let's remove it from our list
 			else
-				//TODO: Check if the orinal territories array is being edited as well
 				territoryListCopy.remove(territoryNum);
 		}
 		
