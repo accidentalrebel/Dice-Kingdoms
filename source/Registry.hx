@@ -4,7 +4,9 @@ import flixel.util.FlxPoint;
 import layers.BattleLayer;
 import layers.GameGUILayer;
 import layers.PlayAreaLayer;
+import managers.CameraManager;
 import managers.GameplayManager;
+import managers.PlayerManager;
 import managers.TerritoryManager;
 
 /**
@@ -28,5 +30,7 @@ class Registry
 	static public var battleLayer: BattleLayer;
 	static public var territoryManager:TerritoryManager;
 	static public var gameplayManager:GameplayManager;
+	static public var cameraManager : CameraManager;
+	static public var playerManager:PlayerManager;
 	
 }

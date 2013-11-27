@@ -9,13 +9,13 @@ import objects.Player;
  */
 class PlayerManager
 {
-	static public var numOfPlayers:Int = 8;
-	static public var numOfHumans:Int = 1;
-	static public var playerList:Array<Player>;
-	static public var currentPlayerNumber : Int = 1;
-	static public var currentPlayer : Player;
+	public var numOfPlayers:Int = 8;
+	public var numOfHumans:Int = 1;
+	public var playerList:Array<Player>;
+	public var currentPlayerNumber : Int = 1;
+	public var currentPlayer : Player;
 	
-	static public function init(tNumOfPlayers : Int = 8, tNumOfHumans : Int = 1) 
+	public function new(tNumOfPlayers : Int = 8, tNumOfHumans : Int = 1) 
 	{
 		numOfPlayers = tNumOfPlayers;
 		numOfHumans = tNumOfHumans;
@@ -38,12 +38,12 @@ class PlayerManager
 		setCurrentPlayer(1);
 	}
 	
-	static public function getPlayer(playerNum : Int) 
+	public function getPlayer(playerNum : Int) 
 	{
 		return playerList[playerNum-1];
 	}
 	
-	static public function initializeArmies() 
+	public function initializeArmies() 
 	{
 		for ( tPlayer in playerList )
 		{
@@ -52,7 +52,7 @@ class PlayerManager
 		}
 	}
 	
-	static public function nextPlayer() 
+	public function nextPlayer() 
 	{
 		// We then increase our playerNumber
 		currentPlayerNumber += 1;
@@ -67,7 +67,7 @@ class PlayerManager
 			currentPlayer.ai.startPlanning();
 	}
 	
-	static private function setCurrentPlayer(playerNumber:Int) 
+	private function setCurrentPlayer(playerNumber:Int) 
 	{
 		currentPlayerNumber = playerNumber;
 		currentPlayer = getPlayer(currentPlayerNumber);

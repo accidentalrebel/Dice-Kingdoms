@@ -28,29 +28,31 @@ class PlayState extends FlxState
 		
 		super.create();
 		
-		CameraManager.init();
-		Registry.gameplayManager = new GameplayManager();
+		Registry.cameraManager 		= new CameraManager();
+		Registry.gameplayManager	= new GameplayManager();
 		
 		// We setup the input Manager
 		var inputManager : InputManager = new InputManager();
 		add(inputManager);
 		
 		// We setup the Main GUI
-		Registry.gameGUI = new GameGUILayer();
-		Registry.battleLayer = new BattleLayer();
+		Registry.gameGUI 			= new GameGUILayer();
+		Registry.battleLayer 		= new BattleLayer();
 		
 		// We setup the territory manager
-		Registry.territoryManager = new TerritoryManager();
+		Registry.territoryManager 	= new TerritoryManager();
 		
 		// We setup the playArea and player manager
-		Registry.playArea = new PlayAreaLayer();
+		Registry.playArea 			= new PlayAreaLayer();
 		Registry.playArea.init(this);
 		Registry.playArea.setupTerritories();	
-		PlayerManager.init();
-		Registry.playArea.assignTerritories();
-		PlayerManager.initializeArmies();
 		
-		//CameraManager.focusOnRandomTerritory(PlayerManager.currentPlayerNumber);
+		//TODO: Player arrangement should be randomized
+		Registry.playerManager = new PlayerManager();
+		Registry.playArea.assignTerritories();
+		Registry.playerManager.initializeArmies();
+		
+		//Registry.cameraManager.focusOnRandomTerritory(Registry.playerManager.currentPlayerNumber);
 		
 		// We arrange the different layers
 		add(Registry.playArea);
@@ -59,8 +61,8 @@ class PlayState extends FlxState
 		add(Registry.battleLayer);
 		
 		// We assign layers to their respective cameras
-		Registry.playArea.setAll("cameras", [ CameraManager.mainCamera ]);
-		Registry.battleLayer.setAll("cameras", [ CameraManager.topBarCamera ]);
-		Registry.gameGUI.setAll("cameras", [ CameraManager.mainCamera ]);
+		Registry.playArea.setAll("cameras", [ Registry.cameraManager.mainCamera ]);
+		Registry.battleLayer.setAll("cameras", [ Registry.cameraManager.topBarCamera ]);
+		Registry.gameGUI.setAll("cameras", [ Registry.cameraManager.mainCamera ]);
 	}
 }

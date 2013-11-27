@@ -25,7 +25,7 @@ class GameplayManager
 	{
 		function selectTerritoryAndHighlightNeighbors(clickedTerritory : Territory) : Int
 		{
-			if (clickedTerritory.ownerNumber != PlayerManager.currentPlayerNumber 
+			if (clickedTerritory.ownerNumber != Registry.playerManager.currentPlayerNumber 
 				|| clickedTerritory.armyCount <= 1)
 					return -1;
 		
@@ -79,14 +79,14 @@ class GameplayManager
 		taskManager.addPause(2);
 		
 		// We start the filling animation //TODO: Think up of a better name for this section
-		taskManager.addInstantTask(this, PlayerManager.currentPlayer.randomlyAssignArmies, [PlayerManager.currentPlayer.territories.length], true);
+		taskManager.addInstantTask(this, Registry.playerManager.currentPlayer.randomlyAssignArmies, [Registry.playerManager.currentPlayer.territories.length], true);
 		
 		taskManager.addPause(2);
 	}
 	
 	public function nextPlayer() 
 	{
-		PlayerManager.nextPlayer();
+		Registry.playerManager.nextPlayer();
 	}
 	
 	public function resetGame() 

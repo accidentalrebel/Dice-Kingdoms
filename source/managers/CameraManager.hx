@@ -13,14 +13,14 @@ import objects.Territory;
  */
 class CameraManager
 {
-	public static var magnifiedZoomValue : Float 	= 1.5;
-	public static var normalZoomValue : Float 		= 1;
-	static public var currentZoomValue : Float		= 1;
-	public static var isZoomedIn : Bool = false;
-	public static var mainCamera : FlxCamera;
-	public static var topBarCamera : FlxCamera;
+	public var magnifiedZoomValue : Float 	= 1.5;
+	public var normalZoomValue : Float 		= 1;
+	public var currentZoomValue : Float		= 1;
+	public var isZoomedIn : Bool = false;
+	public var mainCamera : FlxCamera;
+	public var topBarCamera : FlxCamera;
 	
-	static public function init() 
+	public function new() 
 	{
 		//TODO: Add a pinch zoom feature
 		var topBarHeight : Int = 60;
@@ -74,7 +74,7 @@ class CameraManager
 	/**
 	 * Toggles between zoomed in and zoomed out mode.
 	 */
-	static public function toggleZoom() 
+	public function toggleZoom() 
 	{
 		if ( isZoomedIn )
 			zoomOut();
@@ -85,7 +85,7 @@ class CameraManager
 	/**
 	 * Zooms-in the camera
 	 */
-	static public function zoomIn() 
+	public function zoomIn() 
 	{
 		if ( isZoomedIn )
 			return;
@@ -98,7 +98,7 @@ class CameraManager
 	/**
 	 * Zooms-out the camera
 	 */
-	static public function zoomOut() 
+	public function zoomOut() 
 	{
 		if ( !isZoomedIn )
 			return;
@@ -116,27 +116,27 @@ class CameraManager
 	 * Focuses the camera on a particular territory
 	 * @param	territoryNum		the territory number to focus on
 	 */
-	static public function focusOnTerritory(territoryNum:Int) 
+	public function focusOnTerritory(territoryNum:Int) 
 	{
 		var territory : Territory = Registry.territoryManager.getTerritory(territoryNum);
-		FlxG.camera.scroll = new FlxPoint(territory.centerTile.x - FlxG.width / 2 / CameraManager.magnifiedZoomValue
-			, territory.centerTile.y - FlxG.height / 2 / CameraManager.magnifiedZoomValue);
+		FlxG.camera.scroll = new FlxPoint(territory.centerTile.x - FlxG.width / 2 / Registry.cameraManager.magnifiedZoomValue
+			, territory.centerTile.y - FlxG.height / 2 / Registry.cameraManager.magnifiedZoomValue);
 	}
 	
 	/**
 	 * Focuses the camera on a random territory owned by a particular player
 	 * @param	playerNumber	the player in which we would get the random territory from
 	 */
-	static public function focusOnRandomTerritory(playerNumber : Int) 
+	public function focusOnRandomTerritory(playerNumber : Int) 
 	{
 		var territory : Territory = Registry.territoryManager.getRandomTerritory(playerNumber);
-		CameraManager.focusOnTerritory(territory.territoryNumber);
+		Registry.cameraManager.focusOnTerritory(territory.territoryNumber);
 	}
 	
 	/**
 	 * Centers the camera
 	 */
-	static public function centerCamera()
+	public function centerCamera()
 	{
 		FlxG.camera.scroll = new FlxPoint(-((FlxG.width - PlayAreaLayer.areaWidth)/ 2)
 			, -((FlxG.height - PlayAreaLayer.areaHeight + topBarCamera.height) / 2));

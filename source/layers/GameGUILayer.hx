@@ -28,7 +28,7 @@ class GameGUILayer extends FlxGroup
 		var doneButton : FlxButtonPlus = new FlxButtonPlus(5, Std.int(playerIndicator.height + 10), Registry.gameplayManager.endCurrentPlayerMove, null, "DONE", 80, buttonHeight);		
 		add(doneButton);
 		
-		var zoomButton : FlxButtonPlus = new FlxButtonPlus(5, Std.int(playerIndicator.height + buttonHeight + 40), CameraManager.toggleZoom, null, "TOGGLE ZOOM", 80, buttonHeight);		
+		var zoomButton : FlxButtonPlus = new FlxButtonPlus(5, Std.int(playerIndicator.height + buttonHeight + 40), Registry.cameraManager.toggleZoom, null, "TOGGLE ZOOM", 80, buttonHeight);		
 		add(zoomButton);
 		
 		//var resetButton : FlxButtonPlus = new FlxButtonPlus(5, (buttonHeight + 10) * 3, Registry.gameplayManager.resetGame, null, "NEW GAME", 80, buttonHeight);		

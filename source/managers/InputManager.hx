@@ -52,6 +52,6 @@ class InputManager extends FlxBasic
 		}
 		
 		if ( FlxG.keys.justPressed.Z )
-			CameraManager.toggleZoom();
+			Registry.cameraManager.toggleZoom();
 	}
 }

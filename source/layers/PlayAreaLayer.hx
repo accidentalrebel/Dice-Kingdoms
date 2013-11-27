@@ -41,7 +41,7 @@ class PlayAreaLayer extends FlxGroup
 	public function init(parent : FlxState) 
 	{		
 		playAreaCanvas = new FlxSprite(0, 0);
-		playAreaCanvas.cameras = [ CameraManager.mainCamera ];
+		playAreaCanvas.cameras = [ Registry.cameraManager.mainCamera ];
 		
 		playAreaCanvas.makeGraphic(Std.int(FlxG.width)
 			, Std.int((FlxG.height + 100) / FlxG.camera.zoom), 0);
@@ -335,8 +335,8 @@ class PlayAreaLayer extends FlxGroup
 			return roll;
 		}
       
-		Registry.territoryPerPlayer = Math.floor(Registry.maxTerritories / PlayerManager.playerList.length);
-		for (playerNum in 1...PlayerManager.playerList.length+1 )
+		Registry.territoryPerPlayer = Math.floor(Registry.maxTerritories / Registry.playerManager.playerList.length);
+		for (playerNum in 1...Registry.playerManager.playerList.length+1 )
 	    {
 			for (j in 0...Registry.territoryPerPlayer)
 			{
@@ -352,13 +352,13 @@ class PlayAreaLayer extends FlxGroup
 		// If someone already owns this territory
 		if ( territory.ownerNumber > 0 )
 		{
-			var oldOwner : Player = PlayerManager.getPlayer(territory.ownerNumber);
+			var oldOwner : Player = Registry.playerManager.getPlayer(territory.ownerNumber);
 			oldOwner.territories.remove(territoryNum);
 		}
 			
 		// We now assign to the new owner
 		territory.ownerNumber = playerNum;
-		var newOwner: Player = PlayerManager.getPlayer(playerNum);
+		var newOwner: Player = Registry.playerManager.getPlayer(playerNum);
 		newOwner.territories.push(territoryNum);
 		
 	    for ( tMember in territory.members )
@@ -366,8 +366,8 @@ class PlayAreaLayer extends FlxGroup
 			var member : HexaTile = tMember;
 			if ( member != null )
 			{
-				member.setCoverColorTo(PlayerManager.getPlayer(playerNum).territoryColor);
-				member.drawBoundaries(PlayerManager.getPlayer(playerNum).territoryColor);
+				member.setCoverColorTo(Registry.playerManager.getPlayer(playerNum).territoryColor);
+				member.drawBoundaries(Registry.playerManager.getPlayer(playerNum).territoryColor);
 			}
 		}
 	}

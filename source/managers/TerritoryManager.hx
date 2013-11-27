@@ -22,7 +22,7 @@ class TerritoryManager
 	
 	public function getRandomTerritory(playerNum:Int) : Territory
 	{
-		var playersTerritories : Array<Int> = PlayerManager.getPlayer(playerNum).territories;
+		var playersTerritories : Array<Int> = Registry.playerManager.getPlayer(playerNum).territories;
 		return getTerritory(playersTerritories[Std.random(playersTerritories.length)]);
 	}
 }
