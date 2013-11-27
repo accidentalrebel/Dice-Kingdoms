@@ -31,6 +31,7 @@ class Player
 	public function randomlyAssignArmies(maxArmyCount) 
 	{
 		var territoryListCopy : Array<Int> = Tools.hardCopyArray(territories);
+		var increaseList : Array<Int> = new Array<Int>();
 		
 		while ( maxArmyCount > 0 && territoryListCopy.length > 0)
 		{
@@ -38,17 +39,27 @@ class Player
 			var territoryNum : Int = territoryListCopy[roll];
 			var territory : Territory = Registry.territoryManager.getTerritory(territoryNum);
 			
-			//trace("Assigning a unit to territory num " + territory.territoryNumber);
-			if ( territory.increaseArmyCount() )
-			{	
-				maxArmyCount--;
-				//trace("Success! Reducing army count!");
-			}
-			else
+			// We check if we can allocate an army to this territory
+			if ( territory.canIncreaseArmyCount() )
 			{
-				territoryListCopy.remove(territoryNum);
-				//trace("Unsuccessful adding to " + territoryNum + ". Removing form list");
+				increaseList[territoryNum]++;		// We increase the count for this territory
+				maxArmyCount--;						// We reduce the max army count because we already allocated it
 			}
+			// If we can't, let's remove it from our list
+			else
+				//TODO: Check if the orinal territories array is being edited as well
+				territoryListCopy.remove(territoryNum);
+		}
+		
+		// We then do the actual army increasing
+		for ( territoryNum in 0...increaseList.length )
+		{
+			var increaseCount : Int = increaseList[territoryNum];
+			if ( increaseCount <= 0 )
+				continue;
+				
+			var territory : Territory = Registry.territoryManager.getTerritory(territoryNum);
+			territory.increaseArmyCount(increaseCount);
 		}
 	}
 }
