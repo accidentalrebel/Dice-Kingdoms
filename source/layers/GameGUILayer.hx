@@ -1,6 +1,7 @@
 package layers;
 import effects.AddArmyEffect;
 import flixel.addons.ui.FlxButtonPlus;
+import flixel.FlxBasic;
 import flixel.FlxG;
 import flixel.group.FlxGroup;
 import flixel.text.FlxText;
@@ -41,6 +42,7 @@ class GameGUILayer extends FlxGroup
 	
 	public function spawnAddArmyEffect(xPos : Float = 0, yPos : Float = 0, amount : Int = 0 )
 	{
-		this.recycle(AddArmyEffect, [xPos, yPos, Std.string(amount)]);
+		var addEffect : AddArmyEffect = cast(this.recycle(AddArmyEffect), AddArmyEffect);
+		addEffect.init(xPos, yPos, Std.string(amount));
 	}
 }

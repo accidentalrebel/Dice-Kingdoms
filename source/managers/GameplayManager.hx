@@ -1,4 +1,5 @@
 package managers;
+import effects.AddArmyEffect;
 import flixel.addons.plugin.taskManager.AntTaskManager;
 import flixel.util.FlxPoint;
 import objects.HexaTile;
@@ -75,13 +76,14 @@ class GameplayManager
 		if ( taskManager != null )
 			taskManager.clear();
 		
+		//TODO: Move the final task at the end for easy readability
 		taskManager = new AntTaskManager(false, nextPlayer);
-		taskManager.addPause(2);
+		taskManager.addPause(0.5);
 		
 		// We start the filling animation //TODO: Think up of a better name for this section
 		taskManager.addInstantTask(this, Registry.playerManager.currentPlayer.randomlyAssignArmies, [Registry.playerManager.currentPlayer.territories.length], true);
 		
-		taskManager.addPause(2);
+		taskManager.addPause(AddArmyEffect.EFFECT_DURATION);
 	}
 	
 	public function nextPlayer() 
