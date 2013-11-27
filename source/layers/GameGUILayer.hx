@@ -39,9 +39,8 @@ class GameGUILayer extends FlxGroup
 		this.setAll("scrollFactor", new FlxPoint(0, 0));
 	}
 	
-	public function spawnAddArmyEffect(xPos, yPos)
+	public function spawnAddArmyEffect(xPos : Float = 0, yPos : Float = 0, amount : Int = 0 )
 	{
-		var addArmyEffect : AddArmyEffect = cast(this.recycle(AddArmyEffect, [xPos, yPos]), AddArmyEffect);
-		//add(addArmyEffect);
+		this.recycle(AddArmyEffect, [xPos, yPos, Std.string(amount)]);
 	}
 }
