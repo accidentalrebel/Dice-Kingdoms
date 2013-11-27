@@ -54,6 +54,9 @@ class PlayerManager
 	
 	public function nextPlayer() 
 	{
+		//TODO: Skip current player if he has no more army
+		//TODO: End game if only one player remains
+		
 		// We then increase our playerNumber
 		currentPlayerNumber += 1;
 		if ( currentPlayerNumber >= numOfPlayers )
