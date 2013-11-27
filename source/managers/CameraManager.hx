@@ -22,8 +22,7 @@ class CameraManager
 	
 	static public function init() 
 	{
-		//TODO: Add a zoom in feature
-		//TODO: Create a gameStage.width and height variables instead of relying on Lib.current.stage.stageWidth. This is because there is a possibility that the width and height values are interchanged/
+		//TODO: Add a pinch zoom feature
 		var topBarHeight : Int = 60;
 		
 		// First we get the mainCamera

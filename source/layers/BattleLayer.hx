@@ -13,6 +13,10 @@ import managers.CameraManager;
  */
 class BattleLayer extends FlxGroup
 {
+	//TODO: Use dice instead of just numbers
+	//TODO: Add a main base graphic on the main base
+	//TODO: Add an army refill section with animations
+	
 	var battleBackground:FlxSprite;
 	var battleResult:FlxText;
 	var finalResultLeft:FlxText;

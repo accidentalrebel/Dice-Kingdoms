@@ -27,8 +27,10 @@ class PlayAreaLayer extends FlxGroup
 	public var playAreaArray : Array<Array<HexaTile>>;
 	public var playAreaCanvas:FlxSprite;
 	
-	public static var areaWidth : Float =  ((PlayAreaLayer.PLAY_AREA_COLUMNS - 2) / 2) * HexaTile.TILE_WIDTH
-			+ ((PlayAreaLayer.PLAY_AREA_COLUMNS + 2) / 2) * (HexaTile.TILE_WIDTH / 4);
+	//TODO: Correct the formula
+	public static var areaWidth : Float =  
+			((PlayAreaLayer.PLAY_AREA_COLUMNS - 2) / 2) * HexaTile.TILE_WIDTH
+			+ ((PlayAreaLayer.PLAY_AREA_COLUMNS + 1) / 2) * (HexaTile.TILE_WIDTH / 4);
 	public static var areaHeight : Float = PlayAreaLayer.PLAY_AREA_ROWS * HexaTile.TILE_WIDTH;
 	
 	public function new()
@@ -41,7 +43,6 @@ class PlayAreaLayer extends FlxGroup
 		playAreaCanvas = new FlxSprite(0, 0);
 		playAreaCanvas.cameras = [ CameraManager.mainCamera ];
 		
-		//TODO: Get the actual height of the playArea by calculating using the tileHeight and playAreaRows
 		playAreaCanvas.makeGraphic(Std.int(FlxG.width)
 			, Std.int((FlxG.height + 100) / FlxG.camera.zoom), 0);
 		

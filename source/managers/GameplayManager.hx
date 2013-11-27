@@ -6,8 +6,6 @@ import flixel.FlxG;
 import layers.PlayAreaLayer;
 import states.PlayState;
 
-//TODO: Have basic battle visuals
-
 /**
  * ...
  * @author Karlo
