@@ -68,6 +68,8 @@ class CameraManager
 		// We then adjust the mainCamera viewing area
 		mainCamera.width = Std.int(Math.round(Lib.current.stage.stageWidth / newScale));
 		mainCamera.height = Std.int(Math.round((Lib.current.stage.stageHeight - topBarHeight) / newScale));
+		
+		centerCamera();
 	}
 	
 	/**
@@ -137,7 +139,8 @@ class CameraManager
 	 */
 	static public function centerCamera()
 	{
-		FlxG.camera.scroll = new FlxPoint(Lib.current.width / 2
-			, Lib.current.height / 2);
+		FlxG.camera.scroll = new FlxPoint(-((FlxG.width - PlayAreaLayer.areaWidth)/ 2)
+			, -((FlxG.height - PlayAreaLayer.areaHeight + topBarCamera.height) / 2));
+		trace(FlxG.camera.scroll);
 	}
 }
