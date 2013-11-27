@@ -38,9 +38,9 @@ class CameraManager
 		mainCamera.y = topBarCamera.height;
 		
 		// We then get the playAreaWidth and height
-		var playAreaWidth : Float = ((PlayAreaLayer.playAreaCols - 2) / 2) * HexaTile.tileWidth
-			+ ((PlayAreaLayer.playAreaCols + 2) / 2) * (HexaTile.tileWidth / 4);
-		var playAreaHeight : Float = PlayAreaLayer.playAreaRows * HexaTile.tileWidth;
+		var playAreaWidth : Float = ((PlayAreaLayer.PLAY_AREA_COLUMNS - 2) / 2) * HexaTile.TILE_WIDTH
+			+ ((PlayAreaLayer.PLAY_AREA_COLUMNS + 2) / 2) * (HexaTile.TILE_WIDTH / 4);
+		var playAreaHeight : Float = PlayAreaLayer.PLAY_AREA_ROWS * HexaTile.TILE_WIDTH;
 		var newScale : Float = mainCamera.zoom;
 		var newScaleX : Float = 1;
 		var newScaleY : Float = 1;

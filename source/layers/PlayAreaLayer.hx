@@ -21,8 +21,9 @@ import flixel.util.FlxPoint;
  */
 class PlayAreaLayer extends FlxGroup
 {
-	public static var playAreaCols : Int = 42;
-	public static var playAreaRows : Int = 26;
+	inline public static var PLAY_AREA_COLUMNS : Int = 42;
+	inline public static var PLAY_AREA_ROWS : Int = 26;
+	
 	public var playAreaArray : Array<Array<HexaTile>>;
 	public var playAreaCanvas:FlxSprite;
 
@@ -42,12 +43,12 @@ class PlayAreaLayer extends FlxGroup
 		
 		playAreaArray = new Array<Array<HexaTile>>();
 		
-		for ( col in 0...playAreaCols+1 )
+		for ( col in 0...PLAY_AREA_COLUMNS+1 )
 		{
 			var rowArray : Array<HexaTile> = new Array<HexaTile>();
 			playAreaArray.push(rowArray);
 			
-			for ( row in 0...playAreaRows+1 )
+			for ( row in 0...PLAY_AREA_ROWS+1 )
 			{
 				var hexaTile : HexaTile = new HexaTile(this, col, row);
 				playAreaArray[col].push(hexaTile);
@@ -55,15 +56,15 @@ class PlayAreaLayer extends FlxGroup
 		}
 	   
 		// We set the neighbors of each hexaTile
-		for ( col in 0...playAreaCols+1 )
+		for ( col in 0...PLAY_AREA_COLUMNS+1 )
 		{
-			for ( row in 0...playAreaRows+1 )
+			for ( row in 0...PLAY_AREA_ROWS+1 )
 			{
 				var currentHexaTile : HexaTile = playAreaArray[col][row];
 				
 				// We then get the surrounding of this tile
 				// First the bottom neighbor
-				if ( row + 1 <= playAreaRows )			
+				if ( row + 1 <= PLAY_AREA_ROWS )			
 					currentHexaTile.bottom = playAreaArray[col][row + 1];
 				// We get the top neighbor
 				if ( row - 1 >= 0 )
@@ -77,7 +78,7 @@ class PlayAreaLayer extends FlxGroup
 						currentHexaTile.bottomLeft = playAreaArray[col - 1][row + 1];
 					}
 					
-					if ( col + 1 < playAreaCols )
+					if ( col + 1 < PLAY_AREA_COLUMNS )
 					{
 						currentHexaTile.topRight = playAreaArray[col + 1][row];					
 						currentHexaTile.bottomRight = playAreaArray[col + 1][row + 1];
@@ -91,7 +92,7 @@ class PlayAreaLayer extends FlxGroup
 						currentHexaTile.bottomLeft = playAreaArray[col - 1][row];
 					}
 					
-					if ( col + 1 < playAreaCols)
+					if ( col + 1 < PLAY_AREA_COLUMNS)
 					{
 						currentHexaTile.topRight = playAreaArray[col + 1][row - 1];
 						currentHexaTile.bottomRight = playAreaArray[col + 1][row];
@@ -255,9 +256,9 @@ class PlayAreaLayer extends FlxGroup
 		}
 		
 		// We initialize the territories
-		for (row in 1...(Math.floor(playAreaRows/5) + 1))
+		for (row in 1...(Math.floor(PLAY_AREA_ROWS/5) + 1))
 		{
-			for (col in 1...(Math.floor(playAreaCols/5) + 1))
+			for (col in 1...(Math.floor(PLAY_AREA_COLUMNS/5) + 1))
 			{  
 				setupTerritory((col * 5)-1, (row * 5)-1, centerBaseList);
 				currentTerritoryNumber += 1;
@@ -281,9 +282,9 @@ class PlayAreaLayer extends FlxGroup
 			Registry.territoryManager.territoryList.push(territory);
 		}
 		
-		for ( row in 0...playAreaRows+1)
+		for ( row in 0...PLAY_AREA_ROWS+1)
 		{
-			for ( col in 0...playAreaCols+1)
+			for ( col in 0...PLAY_AREA_COLUMNS+1)
 			{
 				var hexaTile : HexaTile = playAreaArray[col][row];
 				if (hexaTile != null)
@@ -368,9 +369,9 @@ class PlayAreaLayer extends FlxGroup
 	
 	public function checkForClickedTiles(xPos:Float, yPos:Float) 
 	{
-		for ( col in 0...playAreaCols+1 )
+		for ( col in 0...PLAY_AREA_COLUMNS+1 )
 		{
-			for ( row in 0...playAreaRows+1 )
+			for ( row in 0...PLAY_AREA_ROWS+1 )
 			{
 				var hexaTile : HexaTile = playAreaArray[col][row];
 				if ( hexaTile.checkIfClicked(xPos, yPos) )

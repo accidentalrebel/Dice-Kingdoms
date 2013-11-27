@@ -19,10 +19,8 @@ import tools.Tools;
  */
 class HexaTile extends FlxSprite
 {
-	//public static var tileWidth : Int = 32;
-	//public static var tileHeight : Int = 28;
-	public static var tileWidth : Int = 22;
-	public static var tileHeight : Int = 20;
+	inline public static var TILE_WIDTH : Int = 22;
+	inline public static var TILE_HEIGHT : Int = 20;
 	
 	var col : Int = 0;
 	var row : Int = 0;
@@ -50,17 +48,17 @@ class HexaTile extends FlxSprite
       
 		var xPos = 0.0;
 		var yPos = 0.0;
-		var hexaSpacingX : Float = (tileWidth / 4);
+		var hexaSpacingX : Float = (TILE_WIDTH / 4);
       
-		xPos = col * ( tileWidth - hexaSpacingX + 1.5);
+		xPos = col * ( TILE_WIDTH - hexaSpacingX + 1.5);
 		if ( col % 2 == 0 )
-			yPos = row * tileHeight + (tileHeight / 2) - 1;			
+			yPos = row * TILE_HEIGHT + (TILE_HEIGHT / 2) - 1;			
 		else
-			yPos = row * tileHeight - 1;
+			yPos = row * TILE_HEIGHT - 1;
 		
 		super(xPos + Registry.playAreaPadding.x, yPos + Registry.playAreaPadding.y);
 		
-		this.loadGraphic("assets/hexaTerrain.png", false, false, tileWidth, tileHeight);
+		this.loadGraphic("assets/hexaTerrain.png", false, false, TILE_WIDTH, TILE_HEIGHT);
 		this.animation.frameIndex = Tools.randomMinMax(3, 8);
 		
 		this.parent = parent;
@@ -102,7 +100,7 @@ class HexaTile extends FlxSprite
 				return;
 				
 			var boundaryGraphic : FlxSprite = new FlxSprite(0, 0);
-			boundaryGraphic.loadGraphic("assets/boundaryLines.png", false, false, tileWidth, tileHeight);
+			boundaryGraphic.loadGraphic("assets/boundaryLines.png", false, false, TILE_WIDTH, TILE_HEIGHT);
 			boundaryGraphic.color = colorToUse;
 			boundaryGraphic.animation.frameIndex = frameToUse;
 		
