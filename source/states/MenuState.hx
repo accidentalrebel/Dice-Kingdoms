@@ -1,5 +1,7 @@
 package states;
 
+import layers.MenuLayer;
+import managers.MainMenuManager;
 import openfl.Assets;
 import flash.geom.Rectangle;
 import flash.net.SharedObject;
@@ -12,6 +14,9 @@ import flixel.FlxState;
 
 class MenuState extends FlxState
 {	
+	public static var mainMenuManager:MainMenuManager;
+	public static var menuLayer : MenuLayer;
+	
 	/**
 	 * Function that is called up when to state is created to set it up. 
 	 */
@@ -27,7 +32,10 @@ class MenuState extends FlxState
 		
 		super.create();
 		
-		FlxG.switchState(new PlayState());
+		mainMenuManager = new MainMenuManager();
+		menuLayer = new MenuLayer();
+		
+		this.add(menuLayer);
 	}
 	
 	/**
