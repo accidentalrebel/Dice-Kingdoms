@@ -223,7 +223,8 @@ class PlayAreaLayer extends FlxGroup
 			setAsMainBase(centerTile.bottomLeft);
 			setAsMainBase(centerTile.topLeft);
 			
-			centerTile.setupLabel("1");
+			centerTile.setupCastle();
+			//centerTile.setupLabel("1");
 		}
 		
 		function setupTerritory(rollX : Int, rollY : Int, centerBaseList : Array<HexaTile>)

@@ -27,6 +27,7 @@ class HexaTile extends FlxSprite
 	var row : Int = 0;
 	var parent : FlxGroup = null;
 	var label : FlxText;
+	var castleGraphic:FlxSprite;
 	
 	public var isCenter : Bool = false;
 	public var isATerritory : Bool = false;
@@ -76,14 +77,23 @@ class HexaTile extends FlxSprite
 		return false;
 	}
 	
+	public function setupCastle() 
+	{
+		castleGraphic = new FlxSprite(this.x, this.y, "assets/castle.png");
+		PlayState.gameObjectsLayer.add(castleGraphic);
+		
+		this.setupLabel("1");
+	}
+	
 	public function setupLabel(textToDisplay : String)
 	{
 		label = new FlxText(this.x, this.y, 30);
 		label.alignment = "center";
 		label.size = 20;
-		label.color = 0x000000;
+		//label.color = 0x000000;
+		label.color = 0xFFFFFF;
 		
-		this.parent.add(label);
+		PlayState.gameObjectsLayer.add(label);
 		updateLabel(textToDisplay);
 	}
 	

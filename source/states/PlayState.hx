@@ -1,8 +1,10 @@
 package states;
 import flixel.FlxSprite;
+import flixel.group.FlxGroup;
 import flixel.util.FlxPoint;
 import layers.BattleLayer;
 import layers.GameGUILayer;
+import layers.GameObjectsLayer;
 import managers.CameraManager;
 import managers.GameplayManager;
 import managers.InputManager;
@@ -14,6 +16,7 @@ import flixel.text.FlxText;
 import flixel.util.FlxMath;
 import layers.PlayAreaLayer;
 import managers.TerritoryManager;
+import objects.HexaTile;
 import tools.Tools;
 
 /**
@@ -40,6 +43,7 @@ class PlayState extends FlxState
 	static public var cameraManager : CameraManager;
 	static public var playerManager:PlayerManager;
 	static public var inputManager:InputManager;
+	static public var gameObjectsLayer: FlxGroup;
 	
 	override public function create():Void 
 	{
@@ -56,9 +60,10 @@ class PlayState extends FlxState
 		PlayState.inputManager 		= new InputManager();
 		add(PlayState.inputManager);
 		
-		// We setup the Main GUI
+		// We setup the layers
 		PlayState.gameGUI 			= new GameGUILayer();
 		PlayState.battleLayer 		= new BattleLayer();
+		PlayState.gameObjectsLayer		= new GameObjectsLayer();
 		
 		// We setup the territory manager
 		PlayState.territoryManager 	= new TerritoryManager();
@@ -79,6 +84,7 @@ class PlayState extends FlxState
 		// We arrange the different layers
 		add(PlayState.playArea);
 		add(PlayState.playArea.playAreaCanvas);
+		add(PlayState.gameObjectsLayer);
 		add(PlayState.gameGUI);
 		add(PlayState.battleLayer);
 		

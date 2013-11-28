@@ -36,6 +36,7 @@ class MenuState extends FlxState
 		menuLayer = new MenuLayer();
 		
 		this.add(menuLayer);
+		MenuState.mainMenuManager.startGame();
 	}
 	
 	/**
