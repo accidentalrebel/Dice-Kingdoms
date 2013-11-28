@@ -2,6 +2,7 @@ package objects;
 import managers.GameplayManager;
 import managers.TerritoryManager;
 import flixel.FlxBasic;
+import states.PlayState;
 
 /**
  * ...
@@ -39,7 +40,7 @@ class Territory extends FlxBasic
 	
 	public function canIncreaseArmyCount(amount : Int = 1) : Bool 
 	{
-		if ( armyCount + amount > Registry.maxArmyCountPerTerritory )
+		if ( armyCount + amount > PlayState.maxArmyCountPerTerritory )
 			return false;
 			
 		return true;
@@ -47,14 +48,14 @@ class Territory extends FlxBasic
 	
 	public function increaseArmyCount(amount : Int = 1) : Bool
 	{
-		if ( armyCount + amount > Registry.maxArmyCountPerTerritory )
+		if ( armyCount + amount > PlayState.maxArmyCountPerTerritory )
 			return false;
 		
 		armyCount += amount;
 		setArmyCount(armyCount);
 		
-		if ( Registry.playArea.setupFinished )
-			Registry.gameGUI.spawnAddArmyEffect(centerTile.x, centerTile.y, amount);
+		if ( PlayState.playArea.setupFinished )
+			PlayState.gameGUI.spawnAddArmyEffect(centerTile.x, centerTile.y, amount);
 		
 		return true;
 	}
@@ -96,10 +97,10 @@ class Territory extends FlxBasic
 		for ( tNeighborNum in neighbors )
 		{
 			var neighborNum : Int = tNeighborNum;
-			if ( Registry.territoryManager.getTerritory(neighborNum).ownerNumber == ownerNumber )
+			if ( PlayState.territoryManager.getTerritory(neighborNum).ownerNumber == ownerNumber )
 				continue;
 			
-			Registry.territoryManager.getTerritory(neighborNum).select(true);
+			PlayState.territoryManager.getTerritory(neighborNum).select(true);
 		}
 	}
 	
@@ -108,13 +109,13 @@ class Territory extends FlxBasic
 		for ( tNeighborNum in neighbors )
 		{
 			var neighborNum : Int = tNeighborNum;
-			Registry.territoryManager.getTerritory(neighborNum).deselect(true);
+			PlayState.territoryManager.getTerritory(neighborNum).deselect(true);
 		}
 	}
 	
 	public function checkIfEnemyNeighbor(territoryNumber:Int) 
 	{
-		if ( Registry.territoryManager.getTerritory(territoryNumber).ownerNumber == ownerNumber )
+		if ( PlayState.territoryManager.getTerritory(territoryNumber).ownerNumber == ownerNumber )
 			return false;
 			
 		return Lambda.has(neighbors, territoryNumber);

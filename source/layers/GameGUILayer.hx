@@ -30,10 +30,10 @@ class GameGUILayer extends FlxGroup
 		add(playerIndicator);
 		
 		//TODO: Do not allow to be clicked multiple times
-		var doneButton : FlxButtonPlus = new FlxButtonPlus(5, Std.int(playerIndicator.height + 10), Registry.gameplayManager.endCurrentPlayerMove, null, "DONE", 80, buttonHeight);		
+		var doneButton : FlxButtonPlus = new FlxButtonPlus(5, Std.int(playerIndicator.height + 10), PlayState.gameplayManager.endCurrentPlayerMove, null, "DONE", 80, buttonHeight);		
 		add(doneButton);
 		
-		var zoomButton : FlxButtonPlus = new FlxButtonPlus(5, Std.int(playerIndicator.height + buttonHeight + 40), Registry.cameraManager.toggleZoom, null, "TOGGLE ZOOM", 80, buttonHeight);		
+		var zoomButton : FlxButtonPlus = new FlxButtonPlus(5, Std.int(playerIndicator.height + buttonHeight + 40), PlayState.cameraManager.toggleZoom, null, "TOGGLE ZOOM", 80, buttonHeight);		
 		add(zoomButton);
 		
 		// Everything in this group does not move from the camera

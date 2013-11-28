@@ -9,6 +9,7 @@ import managers.PlayerManager;
 import managers.TerritoryManager;
 import objects.Player;
 import objects.Territory;
+import states.PlayState;
 import tools.Tools;
 
 /**
@@ -44,7 +45,7 @@ class EnemyAI
 			// We loop through each territory
 			for ( tTerritory in playerScript.territories )
 			{ 
-				var territory : Territory = Registry.territoryManager.getTerritory(tTerritory);
+				var territory : Territory = PlayState.territoryManager.getTerritory(tTerritory);
 				if ( territory.armyCount > 1
 					&& territory.ownerNumber == playerScript.playerNum 
 					&& territory.neighbors.length >= 1
@@ -67,12 +68,12 @@ class EnemyAI
 			// We loop through each territory and mark each territory as unchecked
 			for ( tTerritory in playerScript.territories )
 			{ 
-				var territory : Territory = Registry.territoryManager.getTerritory(tTerritory);
+				var territory : Territory = PlayState.territoryManager.getTerritory(tTerritory);
 				territory.markAsChecked = false;
 			}
 			
 			// We then go to the next player
-			Registry.gameplayManager.endCurrentPlayerMove();
+			PlayState.gameplayManager.endCurrentPlayerMove();
 		}
 		
 		function getNextMove()
@@ -97,7 +98,7 @@ class EnemyAI
 			// We go through each neighbors
 			for ( tNeighbor in territory.neighbors )
 			{
-				var neighborTerritory : Territory = Registry.territoryManager.getTerritory(tNeighbor);
+				var neighborTerritory : Territory = PlayState.territoryManager.getTerritory(tNeighbor);
 				
 				// If I own this territory
 				if ( neighborTerritory.ownerNumber == territory.ownerNumber )
@@ -113,14 +114,14 @@ class EnemyAI
 					taskManager.addPause(0.25);
 					
 					// We highlight the attacker and the one being attacked
-					taskManager.addInstantTask(this, Registry.playArea.selectTerritory, [territory], true);
-					taskManager.addInstantTask(this, Registry.playArea.selectTerritory, [neighborTerritory, true], true);
+					taskManager.addInstantTask(this, PlayState.playArea.selectTerritory, [territory], true);
+					taskManager.addInstantTask(this, PlayState.playArea.selectTerritory, [neighborTerritory, true], true);
 					taskManager.addPause(0.25);
 					
 					// We then start the battle and unhighlight territories
 					taskManager.addInstantTask(this, BattleManager.startAttack, [territory.territoryNumber, neighborTerritory.territoryNumber], true);
-					taskManager.addInstantTask(this, Registry.playArea.deselectTerritory, [territory.territoryNumber], true);
-					taskManager.addInstantTask(this, Registry.playArea.deselectTerritory, [neighborTerritory.territoryNumber], true);
+					taskManager.addInstantTask(this, PlayState.playArea.deselectTerritory, [territory.territoryNumber], true);
+					taskManager.addInstantTask(this, PlayState.playArea.deselectTerritory, [neighborTerritory.territoryNumber], true);
 					taskManager.addInstantTask(this, getNextMove, null, true);
 					break;
 				}

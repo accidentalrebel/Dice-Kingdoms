@@ -14,6 +14,7 @@ import objects.Territory;
 import flixel.FlxBasic;
 import flixel.FlxState;
 import flixel.util.FlxPoint;
+import states.PlayState;
 
 /**
  * ...
@@ -42,7 +43,7 @@ class PlayAreaLayer extends FlxGroup
 	public function init(parent : FlxState) 
 	{		
 		playAreaCanvas = new FlxSprite(0, 0);
-		playAreaCanvas.cameras = [ Registry.cameraManager.mainCamera ];
+		playAreaCanvas.cameras = [ PlayState.cameraManager.mainCamera ];
 		
 		playAreaCanvas.makeGraphic(Std.int(FlxG.width)
 			, Std.int((FlxG.height + 100) / FlxG.camera.zoom), 0);
@@ -247,7 +248,7 @@ class PlayAreaLayer extends FlxGroup
 				
 				if ( neighborToCheck.territoryNumber != hexaTile.territoryNumber )
 				{
-					var neighborList : Array<Int> = Registry.territoryManager.getTerritory(hexaTile.territoryNumber).neighbors;
+					var neighborList : Array<Int> = PlayState.territoryManager.getTerritory(hexaTile.territoryNumber).neighbors;
 					if ( !Lambda.has(neighborList, neighborToCheck.territoryNumber))
 						neighborList.push(neighborToCheck.territoryNumber);
 				}
@@ -282,10 +283,10 @@ class PlayAreaLayer extends FlxGroup
 		
 		// We group the territories		
 		// We create the territory list
-		for ( i in 0...Registry.maxTerritories )
+		for ( i in 0...PlayState.maxTerritories )
 		{
 			var territory : Territory = new Territory(i);
-			Registry.territoryManager.territoryList.push(territory);
+			PlayState.territoryManager.territoryList.push(territory);
 		}
 		
 		for ( row in 0...PLAY_AREA_ROWS+1)
@@ -301,7 +302,7 @@ class PlayAreaLayer extends FlxGroup
 						hexaTile.turnToSeaTile();
 					else
 					{						
-						var currentTerritory : Territory = Registry.territoryManager.getTerritory(hexaTile.territoryNumber);
+						var currentTerritory : Territory = PlayState.territoryManager.getTerritory(hexaTile.territoryNumber);
 						currentTerritory.members.push(hexaTile);
 						
 						// We set the neighboring territories
@@ -314,7 +315,7 @@ class PlayAreaLayer extends FlxGroup
 		for ( tCenter in centerBaseList )
 		{
 			var center : HexaTile = tCenter;
-			Registry.territoryManager.getTerritory(center.territoryNumber).centerTile = center;
+			PlayState.territoryManager.getTerritory(center.territoryNumber).centerTile = center;
 		}
 	} 
 	
@@ -327,7 +328,7 @@ class PlayAreaLayer extends FlxGroup
 			var roll : Int = 0;
 			while (true)
 			{
-				roll = Std.random(Registry.territoryManager.territoryList.length);
+				roll = Std.random(PlayState.territoryManager.territoryList.length);
 				if ( !Lambda.has(pickedTerritories, roll) )
 					break;
 			}
@@ -336,30 +337,30 @@ class PlayAreaLayer extends FlxGroup
 			return roll;
 		}
       
-		Registry.territoryPerPlayer = Math.floor(Registry.maxTerritories / Registry.playerManager.playerList.length);
-		for (playerNum in 1...Registry.playerManager.playerList.length+1 )
+		PlayState.territoryPerPlayer = Math.floor(PlayState.maxTerritories / PlayState.playerManager.playerList.length);
+		for (playerNum in 1...PlayState.playerManager.playerList.length+1 )
 	    {
-			for (j in 0...Registry.territoryPerPlayer)
+			for (j in 0...PlayState.territoryPerPlayer)
 			{
-				Registry.playArea.assignTerritory(getRandomTerritoryNum(), playerNum);        
+				PlayState.playArea.assignTerritory(getRandomTerritoryNum(), playerNum);        
 			}
 	    }
 	}
 	
 	public function assignTerritory(territoryNum : Int, playerNum : Int)
 	{
-		var territory : Territory = Registry.territoryManager.getTerritory(territoryNum);
+		var territory : Territory = PlayState.territoryManager.getTerritory(territoryNum);
 		
 		// If someone already owns this territory
 		if ( territory.ownerNumber > 0 )
 		{
-			var oldOwner : Player = Registry.playerManager.getPlayer(territory.ownerNumber);
+			var oldOwner : Player = PlayState.playerManager.getPlayer(territory.ownerNumber);
 			oldOwner.territories.remove(territoryNum);
 		}
 			
 		// We now assign to the new owner
 		territory.ownerNumber = playerNum;
-		var newOwner: Player = Registry.playerManager.getPlayer(playerNum);
+		var newOwner: Player = PlayState.playerManager.getPlayer(playerNum);
 		newOwner.territories.push(territoryNum);
 		
 	    for ( tMember in territory.members )
@@ -367,8 +368,8 @@ class PlayAreaLayer extends FlxGroup
 			var member : HexaTile = tMember;
 			if ( member != null )
 			{
-				member.setCoverColorTo(Registry.playerManager.getPlayer(playerNum).territoryColor);
-				member.drawBoundaries(Registry.playerManager.getPlayer(playerNum).territoryColor);
+				member.setCoverColorTo(PlayState.playerManager.getPlayer(playerNum).territoryColor);
+				member.drawBoundaries(PlayState.playerManager.getPlayer(playerNum).territoryColor);
 			}
 		}
 	}
@@ -396,7 +397,7 @@ class PlayAreaLayer extends FlxGroup
     
 	public function deselectTerritory(thisTerritory : Int) : Int
 	{
-		var toDeselect : Territory = Registry.territoryManager.getTerritory(thisTerritory);
+		var toDeselect : Territory = PlayState.territoryManager.getTerritory(thisTerritory);
 		toDeselect.deselect();
 		toDeselect.unhighlightNeighbors();
 		

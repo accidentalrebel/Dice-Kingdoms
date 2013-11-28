@@ -1,6 +1,7 @@
 package managers;
 import objects.Territory;
 import layers.PlayAreaLayer;
+import states.PlayState;
 import tools.Tools;
 
 /**
@@ -41,8 +42,8 @@ class BattleManager
 			return totalCount;
 		}
 		
-		var attacker : Territory = Registry.territoryManager.getTerritory(attackerTerritoryNum);
-		var defender : Territory = Registry.territoryManager.getTerritory(defenderTerritoryNum);
+		var attacker : Territory = PlayState.territoryManager.getTerritory(attackerTerritoryNum);
+		var defender : Territory = PlayState.territoryManager.getTerritory(defenderTerritoryNum);
 		
 		// We start rolling
 		var attackerDiceResults : Array<Int> = rollAllDice(attacker.armyCount);
@@ -58,7 +59,7 @@ class BattleManager
 			attacker.armyCount = attacker.armyCount - 1;
 			defender.setArmyCount(attacker.armyCount);
 			attacker.setArmyCount(1);
-			Registry.playArea.assignTerritory(defender.territoryNumber, attacker.ownerNumber);
+			PlayState.playArea.assignTerritory(defender.territoryNumber, attacker.ownerNumber);
 		}
 		else
 		{
@@ -66,8 +67,8 @@ class BattleManager
 			attacker.setArmyCount(1);
 		}
 		
-		Registry.battleLayer.updateTexts(winText + " WINS!!");
-		Registry.battleLayer.updateElements(attackerRoll, attackerDiceResults, defenderRoll, defenderDiceResults);
+		PlayState.battleLayer.updateTexts(winText + " WINS!!");
+		PlayState.battleLayer.updateElements(attackerRoll, attackerDiceResults, defenderRoll, defenderDiceResults);
 		
 		return true;
 	} 

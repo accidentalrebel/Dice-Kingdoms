@@ -11,6 +11,7 @@ import flixel.FlxState;
 import flixel.text.FlxText;
 import flixel.util.FlxPoint;
 import flixel.util.FlxRect;
+import states.PlayState;
 import tools.Tools;
 
 /**
@@ -56,15 +57,15 @@ class HexaTile extends FlxSprite
 		else
 			yPos = row * TILE_HEIGHT - 1;
 		
-		super(xPos + Registry.playAreaPadding.x, yPos + Registry.playAreaPadding.y);
+		super(xPos + PlayState.playAreaPadding.x, yPos + PlayState.playAreaPadding.y);
 		
 		this.loadGraphic("assets/hexaTerrain.png", false, false, TILE_WIDTH, TILE_HEIGHT);
 		this.animation.frameIndex = Tools.randomMinMax(3, 8);
 		
 		this.parent = parent;
-		Registry.playArea.add(this);
+		PlayState.playArea.add(this);
 		
-		//Registry.playArea.add(coverGraphic);
+		//PlayState.playArea.add(coverGraphic);
 	}	
 	
 	public function checkIfClicked(xPos:Float, yPos:Float)
@@ -105,7 +106,7 @@ class HexaTile extends FlxSprite
 			boundaryGraphic.animation.frameIndex = frameToUse;
 		
 			//stamp(boundaryGraphic, this.animation.frameIndex * tileWidth);
-			Registry.playArea.playAreaCanvas.stamp(boundaryGraphic, Std.int(this.x), Std.int(this.y));
+			PlayState.playArea.playAreaCanvas.stamp(boundaryGraphic, Std.int(this.x), Std.int(this.y));
 		}
 		
 		drawBoundary(this.top, 0);

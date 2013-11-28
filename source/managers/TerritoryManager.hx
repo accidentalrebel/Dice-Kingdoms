@@ -1,6 +1,7 @@
 package managers;
 import objects.Territory;
 import flixel.FlxBasic;
+import states.PlayState;
 
 /**
  * ...
@@ -22,7 +23,7 @@ class TerritoryManager
 	
 	public function getRandomTerritory(playerNum:Int) : Territory
 	{
-		var playersTerritories : Array<Int> = Registry.playerManager.getPlayer(playerNum).territories;
+		var playersTerritories : Array<Int> = PlayState.playerManager.getPlayer(playerNum).territories;
 		return getTerritory(playersTerritories[Std.random(playersTerritories.length)]);
 	}
 }

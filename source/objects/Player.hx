@@ -2,6 +2,7 @@ package objects;
 import ai.EnemyAI;
 import managers.PlayerManager;
 import managers.TerritoryManager;
+import states.PlayState;
 import tools.Tools;
 
 /**
@@ -24,7 +25,7 @@ class Player
 		if ( !this.isHuman )
 			this.ai = new EnemyAI(this);
 		
-		this.territoryColor = Registry.colorList[playerNum-1];
+		this.territoryColor = PlayState.colorList[playerNum-1];
 		this.territories = new Array<Int>();
 	}
 	
@@ -37,7 +38,7 @@ class Player
 		{
 			var roll : Int = Std.random(territoryListCopy.length);
 			var territoryNum : Int = territoryListCopy[roll];
-			var territory : Territory = Registry.territoryManager.getTerritory(territoryNum);
+			var territory : Territory = PlayState.territoryManager.getTerritory(territoryNum);
 			
 			// We check if we can allocate an army to this territory
 			if ( territory.canIncreaseArmyCount() )
@@ -57,7 +58,7 @@ class Player
 			if ( increaseCount <= 0 )
 				continue;
 				
-			var territory : Territory = Registry.territoryManager.getTerritory(territoryNum);
+			var territory : Territory = PlayState.territoryManager.getTerritory(territoryNum);
 			territory.increaseArmyCount(increaseCount);
 		}
 	}

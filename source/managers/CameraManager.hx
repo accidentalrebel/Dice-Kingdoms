@@ -6,6 +6,7 @@ import flixel.util.FlxPoint;
 import layers.PlayAreaLayer;
 import objects.HexaTile;
 import objects.Territory;
+import states.PlayState;
 
 /**
  * ...
@@ -118,9 +119,9 @@ class CameraManager
 	 */
 	public function focusOnTerritory(territoryNum:Int) 
 	{
-		var territory : Territory = Registry.territoryManager.getTerritory(territoryNum);
-		FlxG.camera.scroll = new FlxPoint(territory.centerTile.x - FlxG.width / 2 / Registry.cameraManager.magnifiedZoomValue
-			, territory.centerTile.y - FlxG.height / 2 / Registry.cameraManager.magnifiedZoomValue);
+		var territory : Territory = PlayState.territoryManager.getTerritory(territoryNum);
+		FlxG.camera.scroll = new FlxPoint(territory.centerTile.x - FlxG.width / 2 / PlayState.cameraManager.magnifiedZoomValue
+			, territory.centerTile.y - FlxG.height / 2 / PlayState.cameraManager.magnifiedZoomValue);
 	}
 	
 	/**
@@ -129,8 +130,8 @@ class CameraManager
 	 */
 	public function focusOnRandomTerritory(playerNumber : Int) 
 	{
-		var territory : Territory = Registry.territoryManager.getRandomTerritory(playerNumber);
-		Registry.cameraManager.focusOnTerritory(territory.territoryNumber);
+		var territory : Territory = PlayState.territoryManager.getRandomTerritory(playerNumber);
+		PlayState.cameraManager.focusOnTerritory(territory.territoryNumber);
 	}
 	
 	/**

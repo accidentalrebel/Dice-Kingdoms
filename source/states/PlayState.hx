@@ -22,48 +22,69 @@ import tools.Tools;
  */
 class PlayState extends FlxState
 {
+	//TODO: Make an enum for the colors
+												// RED		GREEN	   BLUE		 YELLOW   L.BLUE	PINK	   ORANGE	WHITE   
+	public static var colorList : Array<Int> = [ 0xFF3333, 0x33FF33, 0x3333FF, 0xFFFF33, 0x33FFFF, 0xFF33FF, 0xFF6600, 0xFFFFFF ];		
+	public static var maxTerritories : Int = Math.floor(PlayAreaLayer.PLAY_AREA_ROWS / 5) * Math.floor(PlayAreaLayer.PLAY_AREA_COLUMNS / 5);	
+	public static var playAreaPadding : FlxPoint = new FlxPoint(15, 15);
+	
+	static public var territoryPerPlayer:Int;	
+	static public var initialArmyCount:Int = 20;	
+	static public var maxArmyCountPerTerritory : Int = 8;	
+	
+	static public var gameGUI:GameGUILayer;
+	static public var playArea:PlayAreaLayer;
+	static public var battleLayer: BattleLayer;
+	static public var territoryManager:TerritoryManager;
+	static public var gameplayManager:GameplayManager;
+	static public var cameraManager : CameraManager;
+	static public var playerManager:PlayerManager;
+	static public var inputManager:InputManager;
+	
 	override public function create():Void 
 	{
+		//TODO: Work on the menu
+		
 		FlxG.cameras.bgColor = 0xFF000000;
 		
 		super.create();
 		
-		Registry.cameraManager 		= new CameraManager();
-		Registry.gameplayManager	= new GameplayManager();
+		PlayState.cameraManager 		= new CameraManager();
+		PlayState.gameplayManager	= new GameplayManager();
 		
 		// We setup the input Manager
-		var inputManager : InputManager = new InputManager();
-		add(inputManager);
+		PlayState.inputManager 		= new InputManager();
+		add(PlayState.inputManager);
 		
 		// We setup the Main GUI
-		Registry.gameGUI 			= new GameGUILayer();
-		Registry.battleLayer 		= new BattleLayer();
+		PlayState.gameGUI 			= new GameGUILayer();
+		PlayState.battleLayer 		= new BattleLayer();
 		
 		// We setup the territory manager
-		Registry.territoryManager 	= new TerritoryManager();
+		PlayState.territoryManager 	= new TerritoryManager();
 		
 		// We setup the playArea and player manager
-		Registry.playArea 			= new PlayAreaLayer();
-		Registry.playArea.init(this);
-		Registry.playArea.setupTerritories();	
+		PlayState.playArea 			= new PlayAreaLayer();
+		PlayState.playArea.init(this);
+		PlayState.playArea.setupTerritories();	
 		
 		//TODO: Player arrangement should be randomized
-		Registry.playerManager = new PlayerManager();
-		Registry.playArea.assignTerritories();
-		Registry.playerManager.initializeArmies();
-		Registry.playArea.setupFinished = true;
+		PlayState.playerManager = new PlayerManager();
+		PlayState.playArea.assignTerritories();
+		PlayState.playerManager.initializeArmies();
+		PlayState.playArea.setupFinished = true;
 		
-		//Registry.cameraManager.focusOnRandomTerritory(Registry.playerManager.currentPlayerNumber);
+		//PlayState.cameraManager.focusOnRandomTerritory(PlayState.playerManager.currentPlayerNumber);
 		
 		// We arrange the different layers
-		add(Registry.playArea);
-		add(Registry.playArea.playAreaCanvas);
-		add(Registry.gameGUI);
-		add(Registry.battleLayer);
+		add(PlayState.playArea);
+		add(PlayState.playArea.playAreaCanvas);
+		add(PlayState.gameGUI);
+		add(PlayState.battleLayer);
 		
 		// We assign layers to their respective cameras
-		Registry.playArea.setAll("cameras", [ Registry.cameraManager.mainCamera ]);
-		Registry.battleLayer.setAll("cameras", [ Registry.cameraManager.topBarCamera ]);
-		Registry.gameGUI.setAll("cameras", [ Registry.cameraManager.mainCamera ]);
+		PlayState.playArea.setAll("cameras", [ PlayState.cameraManager.mainCamera ]);
+		PlayState.battleLayer.setAll("cameras", [ PlayState.cameraManager.topBarCamera ]);
+		PlayState.gameGUI.setAll("cameras", [ PlayState.cameraManager.mainCamera ]);
 	}
 }

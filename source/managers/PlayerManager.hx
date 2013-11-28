@@ -2,6 +2,7 @@ package managers;
 import flash.Lib;
 import haxe.Log;
 import objects.Player;
+import states.PlayState;
 
 /**
  * ...
@@ -48,7 +49,7 @@ class PlayerManager
 		for ( tPlayer in playerList )
 		{
 			var player : Player = tPlayer;
-			player.randomlyAssignArmies(Registry.initialArmyCount - Registry.territoryPerPlayer);			
+			player.randomlyAssignArmies(PlayState.initialArmyCount - PlayState.territoryPerPlayer);			
 		}
 	}
 	
@@ -74,6 +75,6 @@ class PlayerManager
 	{
 		currentPlayerNumber = playerNumber;
 		currentPlayer = getPlayer(currentPlayerNumber);
-		Registry.gameGUI.playerIndicator.color = getPlayer(currentPlayerNumber).territoryColor;
+		PlayState.gameGUI.playerIndicator.color = getPlayer(currentPlayerNumber).territoryColor;
 	}
 }
