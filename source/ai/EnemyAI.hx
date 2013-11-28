@@ -111,7 +111,7 @@ class EnemyAI
 					|| (aiType == AIType.AGGRESSIVE
 						&& territory.armyCount >= neighborTerritory.armyCount - 1 ))	// If even the enemy has one army more than mine
 				{
-					taskManager.addPause(0.25);
+					taskManager.addPause(0.15);
 					
 					// We highlight the attacker and the one being attacked
 					taskManager.addInstantTask(this, PlayState.playArea.selectTerritory, [territory], true);

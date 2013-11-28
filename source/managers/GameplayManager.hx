@@ -77,7 +77,7 @@ class GameplayManager
 			taskManager.clear();
 		
 		taskManager = new AntTaskManager(false);
-		taskManager.addPause(0.5);
+		taskManager.addPause(0.25);
 		taskManager.addInstantTask(this, PlayState.playerManager.currentPlayer.randomlyAssignArmies, [PlayState.playerManager.currentPlayer.territories.length], true);
 		taskManager.addPause(AddArmyEffect.EFFECT_DURATION);
 		taskManager.addInstantTask(this, nextPlayer, null, true);
