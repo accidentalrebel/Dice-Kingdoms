@@ -15,7 +15,6 @@ class ARFade extends FlxBasic
 	var fadeDuration:Float = 0;
 	var fadeTo:Float = 1;
 	var isFadingIn : Bool = true;
-	var fadeAmountPerUpdate : Float = 0;
 	
 	public function new()
 	{
@@ -41,7 +40,6 @@ class ARFade extends FlxBasic
 		else
 			isFadingIn = true;
 		
-		fadeAmountPerUpdate = Math.abs(spriteToFade.alpha - fadeTo) / fadeDuration;
 		fadeStart = true;
 	}
 	
@@ -52,7 +50,7 @@ class ARFade extends FlxBasic
 		if ( !fadeStart )
 			return;	
 		
-		fadeDuration -= fadeAmountPerUpdate * FlxG.elapsed;	
+		fadeDuration -= FlxG.elapsed;	
 		if ( fadeDuration <= 0 )
 		{
 			endFade();
@@ -61,25 +59,19 @@ class ARFade extends FlxBasic
 		
 		if ( isFadingIn )
 		{
-			if ( spriteToFade.alpha > fadeTo )
+			if ( spriteToFade.alpha < fadeTo )
 			{
-				endFade();
+				spriteToFade.alpha += FlxG.elapsed / fadeDuration;
 				return;
 			}
-			
-			spriteToFade.alpha += fadeAmountPerUpdate * FlxG.elapsed;
 		}
 		else
 		{
-			fadeDuration -= FlxG.elapsed;
-			
-			if ( spriteToFade.alpha < fadeTo )
+			if ( spriteToFade.alpha > fadeTo )
 			{
-				endFade();
+				spriteToFade.alpha -= FlxG.elapsed / fadeDuration;
 				return;
 			}
-			
-			spriteToFade.alpha -= fadeAmountPerUpdate * FlxG.elapsed;
 		}
 	}
 	

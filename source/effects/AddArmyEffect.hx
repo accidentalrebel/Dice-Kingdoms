@@ -24,6 +24,7 @@ class AddArmyEffect extends FlxText
 	{
 		this.revive();
 		
+		this.alpha = 1;
 		this.x = xPos;
 		this.y = yPos;
 		this.text = "+" + str;
@@ -31,18 +32,17 @@ class AddArmyEffect extends FlxText
 		if ( taskManager != null )
 			taskManager.clear();
 			
-		taskManager = new AntTaskManager(false);
+		taskManager = new AntTaskManager();
+		taskManager.addInstantTask(this, FlxTween.linearMotion, [this, xPos, yPos, xPos, yPos - 20, EFFECT_DURATION, true]);
+		taskManager.addPause(EFFECT_DURATION / 4);
 		taskManager.addInstantTask(this, fadeOut);
-		taskManager.addInstantTask(this, FlxTween.linearMotion, [this, xPos, yPos, xPos, yPos - 20, EFFECT_DURATION, true], true);
-		
-		taskManager.addPause(EFFECT_DURATION);
+		taskManager.addPause(EFFECT_DURATION / 1.3);
 		taskManager.addInstantTask(this, this.kill);
 	}
 	
 	function fadeOut()
 	{
-		this.alpha = 1;
 		var fadeScript : ARFade = cast(Registry.gameGUI.recycle(ARFade), ARFade);
-		fadeScript.init(this, 0, EFFECT_DURATION);			
+		fadeScript.init(this, 0, EFFECT_DURATION / 1.3);			
 	}
 }
