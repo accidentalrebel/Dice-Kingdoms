@@ -52,7 +52,7 @@ class ARFade extends FlxBasic
 		if ( !fadeStart )
 			return;	
 		
-		fadeDuration -= FlxG.elapsed;	
+		fadeDuration -= fadeAmountPerUpdate * FlxG.elapsed;	
 		if ( fadeDuration <= 0 )
 		{
 			endFade();
@@ -85,7 +85,6 @@ class ARFade extends FlxBasic
 	
 	function endFade() 
 	{
-		trace("KILLED");
 		fadeStart = false;
 		this.kill();
 	}
