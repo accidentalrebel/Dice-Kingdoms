@@ -41,7 +41,7 @@ class GameGUILayer extends FlxGroup
 	}
 	
 	public function spawnAddArmyEffect(xPos : Float = 0, yPos : Float = 0, amount : Int = 0 )
-	{
+	{	
 		var addEffect : AddArmyEffect = cast(this.recycle(AddArmyEffect), AddArmyEffect);
 		addEffect.init(xPos, yPos, Std.string(amount));
 	}

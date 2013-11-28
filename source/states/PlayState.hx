@@ -51,6 +51,7 @@ class PlayState extends FlxState
 		Registry.playerManager = new PlayerManager();
 		Registry.playArea.assignTerritories();
 		Registry.playerManager.initializeArmies();
+		Registry.playArea.setupFinished = true;
 		
 		//Registry.cameraManager.focusOnRandomTerritory(Registry.playerManager.currentPlayerNumber);
 		

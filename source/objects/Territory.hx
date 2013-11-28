@@ -1,4 +1,5 @@
 package objects;
+import managers.GameplayManager;
 import managers.TerritoryManager;
 import flixel.FlxBasic;
 
@@ -52,7 +53,8 @@ class Territory extends FlxBasic
 		armyCount += amount;
 		setArmyCount(armyCount);
 		
-		Registry.gameGUI.spawnAddArmyEffect(centerTile.x, centerTile.y, amount);
+		if ( Registry.playArea.setupFinished )
+			Registry.gameGUI.spawnAddArmyEffect(centerTile.x, centerTile.y, amount);
 		
 		return true;
 	}

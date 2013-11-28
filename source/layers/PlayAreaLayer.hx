@@ -26,6 +26,7 @@ class PlayAreaLayer extends FlxGroup
 	
 	public var playAreaArray : Array<Array<HexaTile>>;
 	public var playAreaCanvas:FlxSprite;
+	public var setupFinished : Bool = false;
 	
 	//TODO: Correct the formula
 	public static var areaWidth : Float =  
