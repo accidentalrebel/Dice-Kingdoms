@@ -15,7 +15,8 @@ class ARFade extends FlxBasic
 	var fadeDuration:Float = 0;
 	var fadeTo:Float = 1;
 	var isFadingIn : Bool = true;
-
+	var fadeAmountPerUpdate : Float = 0;
+	
 	public function new()
 	{
 		super();
@@ -23,6 +24,9 @@ class ARFade extends FlxBasic
 	
 	public function init(SpriteToFade : FlxSprite, FadeTo : Float, FadeDuration : Float) 
 	{	
+		this.revive();
+		
+		fadeStart = false;
 		spriteToFade = SpriteToFade;
 		fadeDuration = FadeDuration;
 		fadeTo = FadeTo;
@@ -34,7 +38,10 @@ class ARFade extends FlxBasic
 		}
 		else if ( spriteToFade.alpha > fadeTo )
 			isFadingIn = false;
+		else
+			isFadingIn = true;
 		
+		fadeAmountPerUpdate = Math.abs(spriteToFade.alpha - fadeTo) / fadeDuration;
 		fadeStart = true;
 	}
 	
@@ -45,46 +52,40 @@ class ARFade extends FlxBasic
 		if ( !fadeStart )
 			return;	
 		
-		trace(fadeDuration);
 		fadeDuration -= FlxG.elapsed;	
-		trace("@" + fadeDuration);
 		if ( fadeDuration <= 0 )
 		{
-			trace("Fade duration done");
 			endFade();
 			return;
 		}
 		
 		if ( isFadingIn )
 		{
-			if ( spriteToFade.alpha >= fadeTo )
+			if ( spriteToFade.alpha > fadeTo )
 			{
-				trace("END");
 				endFade();
 				return;
 			}
 			
-			trace("alphaong");
-			spriteToFade.alpha += FlxG.elapsed;
+			spriteToFade.alpha += fadeAmountPerUpdate * FlxG.elapsed;
 		}
 		else
 		{
 			fadeDuration -= FlxG.elapsed;
 			
-			if ( spriteToFade.alpha <= fadeTo )
+			if ( spriteToFade.alpha < fadeTo )
 			{
-				trace("END2");
 				endFade();
 				return;
 			}
 			
-			trace("alphaing");
-			spriteToFade.alpha -= FlxG.elapsed;
+			spriteToFade.alpha -= fadeAmountPerUpdate * FlxG.elapsed;
 		}
 	}
 	
 	function endFade() 
 	{
+		trace("KILLED");
 		fadeStart = false;
 		this.kill();
 	}
