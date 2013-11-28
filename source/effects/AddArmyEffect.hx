@@ -29,9 +29,13 @@ class AddArmyEffect extends FlxText
 		
 		if ( taskManager != null )
 			taskManager.clear();
+		
+		//this.alpha = 1;
+		//FlxTween.multiVar(this, { alpha : 0.5 }, 2, null);	
 			
 		taskManager = new AntTaskManager(false);
-		taskManager.addInstantTask(this, FlxTween.linearMotion, [this, xPos, yPos, xPos, yPos - 20, 1, true], true);
+		taskManager.addInstantTask(this, FlxTween.linearMotion, [this, xPos, yPos, xPos, yPos - 20, EFFECT_DURATION, true], true);
+		
 		taskManager.addPause(EFFECT_DURATION);
 		taskManager.addInstantTask(this, this.kill);
 	}

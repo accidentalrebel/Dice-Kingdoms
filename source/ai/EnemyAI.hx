@@ -80,7 +80,7 @@ class EnemyAI
 			if ( taskManager != null )
 				taskManager.clear();
 			
-			taskManager = new AntTaskManager(false, getNextMove);
+			taskManager = new AntTaskManager(false);
 			var territory : Null<Territory> = getAvailableTerritories();
 			
 			// If no territory is availble, we now end our turn
@@ -121,6 +121,7 @@ class EnemyAI
 					taskManager.addInstantTask(this, BattleManager.startAttack, [territory.territoryNumber, neighborTerritory.territoryNumber], true);
 					taskManager.addInstantTask(this, Registry.playArea.deselectTerritory, [territory.territoryNumber], true);
 					taskManager.addInstantTask(this, Registry.playArea.deselectTerritory, [neighborTerritory.territoryNumber], true);
+					taskManager.addInstantTask(this, getNextMove, null, true);
 					break;
 				}
 			}

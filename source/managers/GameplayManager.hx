@@ -76,14 +76,11 @@ class GameplayManager
 		if ( taskManager != null )
 			taskManager.clear();
 		
-		//TODO: Move the final task at the end for easy readability
-		taskManager = new AntTaskManager(false, nextPlayer);
+		taskManager = new AntTaskManager(false);
 		taskManager.addPause(0.5);
-		
-		// We start the filling animation //TODO: Think up of a better name for this section
 		taskManager.addInstantTask(this, Registry.playerManager.currentPlayer.randomlyAssignArmies, [Registry.playerManager.currentPlayer.territories.length], true);
-		
 		taskManager.addPause(AddArmyEffect.EFFECT_DURATION);
+		taskManager.addInstantTask(this, nextPlayer, null, true);
 	}
 	
 	public function nextPlayer() 
