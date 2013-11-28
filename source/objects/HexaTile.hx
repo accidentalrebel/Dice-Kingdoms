@@ -22,6 +22,8 @@ class HexaTile extends FlxSprite
 {
 	inline public static var TILE_WIDTH : Int = 22;
 	inline public static var TILE_HEIGHT : Int = 20;
+	inline public static var LABEL_WIDTH : Int = 30;
+	inline public static var LABEL_HEIGHT : Int = 20;
 	
 	var col : Int = 0;
 	var row : Int = 0;
@@ -79,7 +81,9 @@ class HexaTile extends FlxSprite
 	
 	public function setupCastle() 
 	{
-		castleGraphic = new FlxSprite(this.x, this.y, "assets/castle.png");
+		castleGraphic = new FlxSprite(this.x + this.width / 2, this.y + this.height / 2 , "assets/castle.png");
+		castleGraphic.x -= castleGraphic.width / 2;
+		castleGraphic.y -= castleGraphic.height / 2;
 		PlayState.gameObjectsLayer.add(castleGraphic);
 		
 		this.setupLabel("1");
@@ -87,10 +91,11 @@ class HexaTile extends FlxSprite
 	
 	public function setupLabel(textToDisplay : String)
 	{
-		label = new FlxText(this.x, this.y, 30);
+		label = new FlxText(this.x + this.width / 2, this.y + this.height / 2, LABEL_WIDTH);
+		label.x -= label.width / 2;
+		label.y -= label.height * 3;
 		label.alignment = "center";
-		label.size = 20;
-		//label.color = 0x000000;
+		label.size = LABEL_HEIGHT;
 		label.color = 0xFFFFFF;
 		
 		PlayState.gameObjectsLayer.add(label);
