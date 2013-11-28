@@ -10,6 +10,7 @@ import flixel.util.FlxPoint;
 import managers.CameraManager;
 import managers.GameplayManager;
 import states.PlayState;
+import tools.ARFade;
 
 /**
  * ...
