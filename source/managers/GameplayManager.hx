@@ -3,6 +3,7 @@ import effects.AddArmyEffect;
 import flixel.addons.plugin.taskManager.AntTaskManager;
 import flixel.util.FlxPoint;
 import objects.HexaTile;
+import objects.Player;
 import objects.Territory;
 import flixel.FlxG;
 import layers.PlayAreaLayer;
@@ -84,12 +85,42 @@ class GameplayManager
 	}
 	
 	public function nextPlayer() 
-	{
+	{		
+		if ( checkIfGameHasEnded() )
+		{
+			endGame();
+			return;
+		}
+		
 		PlayState.playerManager.nextPlayer();
+	}
+	
+	public function checkIfGameHasEnded() 
+	{
+		var lostCount : Int = 0;
+		var playerList : Array<Player> = PlayState.playerManager.playerList;
+		for ( tPlayer in playerList )
+		{
+			var player : Player = tPlayer;
+			if ( player.hasLost )
+			{
+				lostCount++;
+			}
+		}
+		
+		if ( lostCount >= playerList.length - 2 )
+			return true;
+		
+		return false;
 	}
 	
 	public function resetGame() 
 	{
 		FlxG.resetGame();
+	}
+	
+	function endGame() 
+	{
+		trace("Game has ended!");
 	}
 }
