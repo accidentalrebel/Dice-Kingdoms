@@ -7,6 +7,7 @@ import objects.Player;
 import objects.Territory;
 import flixel.FlxG;
 import layers.PlayAreaLayer;
+import states.MenuState;
 import states.PlayState;
 
 /**
@@ -121,6 +122,7 @@ class GameplayManager
 	
 	function endGame() 
 	{
+		FlxG.switchState(new MenuState());
 		trace("Game has ended!");
 	}
 }
