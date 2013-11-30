@@ -44,6 +44,15 @@ class BattleLayer extends FlxGroup
 		battleBackground.alpha = 0.5;
 		add(battleBackground);
 		
+		var die : FlxSprite = new FlxSprite(100, 10);
+		die.loadGraphic("assets/dice/die1.png", false, false, 40, 40, true);
+		add(die);
+		var array = die.replaceColor(0xFFFF00FF, 0xFFFF0000, true);
+		for (laman in array )
+		{
+			trace(laman);
+		}
+		
 		battleResult = new FlxText(0, 0, Std.int(battleBackground.width), "");
 		battleResult.alignment = "center";
 		battleResult.scale = new FlxPoint(2, 2);
