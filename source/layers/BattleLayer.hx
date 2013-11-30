@@ -6,6 +6,7 @@ import flixel.group.FlxGroup;
 import flixel.text.FlxText;
 import flixel.util.FlxPoint;
 import managers.CameraManager;
+import objects.Die;
 
 /**
  * ...
@@ -22,8 +23,8 @@ class BattleLayer extends FlxGroup
 	var battleResult:FlxText;
 	var finalResultLeft:FlxText;
 	var finalResultRight:FlxText;
-	var dieResultListLeft:Array<FlxSprite>;
-	var dieResultListRight:Array<FlxSprite>;
+	var dieResultListLeft:Array<Die>;
+	var dieResultListRight:Array<Die>;
 	var bgWidth:Int;
 	var bgHeight:Int;
 	
@@ -61,25 +62,17 @@ class BattleLayer extends FlxGroup
 		add(finalResultRight);
 		
 		// We setup the dieResults
-		dieResultListLeft = new Array<FlxSprite>();
-		for ( i in 0...10 )
+		dieResultListLeft = new Array<Die>();
+		for ( i in 0...8 )
 		{
-			var die : FlxSprite = new FlxSprite(finalResultLeft.x + finalResultLeft.width + (i * DIE_PADDING), 10);
-			die.loadGraphic("assets/dice.png", false, false, 40, 40, true);
-			die.visible = false;
-			add(die);
-		
+			var die : Die = new Die(this, finalResultLeft.x + finalResultLeft.width + (i * DIE_PADDING), 10);
 			dieResultListLeft.push(die);
 		}
 		
-		dieResultListRight = new Array<FlxSprite>();
-		for ( i in 0...10 )
+		dieResultListRight = new Array<Die>();
+		for ( i in 0...8 )
 		{
-			var die : FlxSprite = new FlxSprite(finalResultRight.x - finalResultRight.width - (i * DIE_PADDING), 10);
-			die.loadGraphic("assets/dice.png", false, false, 40, 40, true);
-			die.visible = false;
-			add(die);
-			
+			var die : Die = new Die(this, finalResultRight.x - finalResultRight.width - (i * DIE_PADDING), 10);
 			dieResultListRight.push(die);
 		}
 		
@@ -94,12 +87,12 @@ class BattleLayer extends FlxGroup
 	
 	function resetDieResultTexts()
 	{
-		function reset(dieResultList : Array<FlxSprite>)
+		function reset(dieResultList : Array<Die>)
 		{
 			for ( tDie in dieResultList )
 			{
-				var die : FlxSprite = tDie;
-				die.visible = false;
+				var die :Die = tDie;
+				die.hide();
 			}
 		}
 		
@@ -117,25 +110,23 @@ class BattleLayer extends FlxGroup
 		
 		for ( i in 0...attackerDiceResults.length )
 		{
-			var dieResult : FlxSprite = dieResultListLeft[i];
+			var die : Die = dieResultListLeft[i];
 			if ( attackerDiceResults[i] != 0 )
-			{
-				dieResult.animation.frameIndex = attackerDiceResults[i] - 1;
-				//dieResult.replaceColor(0xFFFF00FF, attackerColor + 0xFF000000);
-				//dieResult.color = attackerColor;
-				dieResult.visible = true;
+			{	
+				die.updateFace(attackerDiceResults[i] - 1);
+				die.updateColor(attackerColor);
+				die.show();
 			}
 		}
 		
 		for ( i in 0...defenderDiceResults.length )
 		{
-			var dieResult : FlxSprite = dieResultListRight[i];
+			var die : Die = dieResultListRight[i];
 			if ( defenderDiceResults[i] != 0 )
 			{
-				dieResult.animation.frameIndex = defenderDiceResults[i] - 1;
-				//dieResult.replaceColor(0xFFFF00FF, defenderColor + 0xFF000000);
-				//dieResult.color = defenderColor;
-				dieResult.visible = true;
+				die.updateFace(defenderDiceResults[i] - 1);
+				die.updateColor(defenderColor);
+				die.show();
 			}
 		}
 	}
