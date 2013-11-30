@@ -48,8 +48,11 @@ class BattleManager
 		// We start rolling
 		var attackerDiceResults : Array<Int> = rollAllDice(attacker.armyCount);
 		var attackerRoll : Int = getTotalCount(attackerDiceResults);
+		var attackerColor : Int = PlayState.playerManager.getPlayer(attacker.ownerNumber).territoryColor;
+		var defenderColor : Int = PlayState.playerManager.getPlayer(defender.ownerNumber).territoryColor;
 		var defenderDiceResults : Array<Int> = rollAllDice(defender.armyCount);
 		var defenderRoll : Int = getTotalCount(defenderDiceResults);
+		
 		var winText : String = "";
 		
 		// We resolve the battle
@@ -68,7 +71,8 @@ class BattleManager
 		}
 		
 		PlayState.battleLayer.updateTexts(winText + " WINS!!");
-		PlayState.battleLayer.updateElements(attackerRoll, attackerDiceResults, defenderRoll, defenderDiceResults);
+		PlayState.battleLayer.updateElements(attackerRoll, attackerDiceResults, defenderRoll, defenderDiceResults
+			, attackerColor, defenderColor );
 		
 		return true;
 	} 
