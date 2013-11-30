@@ -16,13 +16,14 @@ class BattleLayer extends FlxGroup
 	//TODO: Use dice instead of just numbers
 	//TODO: Add a main base graphic on the main base
 	//TODO: Add an army refill section with animations
-	
+	inline static var DIE_PADDING : Int = 50;
+ 	
 	var battleBackground:FlxSprite;
 	var battleResult:FlxText;
 	var finalResultLeft:FlxText;
 	var finalResultRight:FlxText;
-	var dieResultListLeft:Array<FlxText>;
-	var dieResultListRight:Array<FlxText>;
+	var dieResultListLeft:Array<FlxSprite>;
+	var dieResultListRight:Array<FlxSprite>;
 	var bgWidth:Int;
 	var bgHeight:Int;
 	
@@ -44,15 +45,6 @@ class BattleLayer extends FlxGroup
 		battleBackground.alpha = 0.5;
 		add(battleBackground);
 		
-		var die : FlxSprite = new FlxSprite(100, 10);
-		die.loadGraphic("assets/dice/die1.png", false, false, 40, 40, true);
-		add(die);
-		var array = die.replaceColor(0xFFFF00FF, 0xFFFF0000, true);
-		for (laman in array )
-		{
-			trace(laman);
-		}
-		
 		battleResult = new FlxText(0, 0, Std.int(battleBackground.width), "");
 		battleResult.alignment = "center";
 		battleResult.scale = new FlxPoint(2, 2);
@@ -69,26 +61,26 @@ class BattleLayer extends FlxGroup
 		add(finalResultRight);
 		
 		// We setup the dieResults
-		dieResultListLeft = new Array<FlxText>();
+		dieResultListLeft = new Array<FlxSprite>();
 		for ( i in 0...10 )
 		{
-			var dieResult : FlxText = new FlxText(finalResultLeft.x + finalResultLeft.width + (i * 25)
-				, battleBackground.y + battleBackground.height / 2 - dieResultHeight / 2 - bottomPadding + 5
-				, 100, "0", dieResultHeight);
-			dieResult.visible = false;
-			add(dieResult);
-			dieResultListLeft.push(dieResult);
+			var die : FlxSprite = new FlxSprite(finalResultLeft.x + finalResultLeft.width + (i * DIE_PADDING), 10);
+			die.loadGraphic("assets/dice/die1.png", false, false, 40, 40, true);
+			die.visible = false;
+			add(die);
+		
+			dieResultListLeft.push(die);
 		}
 		
-		dieResultListRight = new Array<FlxText>();
+		dieResultListRight = new Array<FlxSprite>();
 		for ( i in 0...10 )
 		{
-			var dieResult : FlxText = new FlxText(finalResultRight.x - finalResultRight.width / 2 - (i * 25)
-				, battleBackground.y + battleBackground.height / 2 - dieResultHeight / 2 - bottomPadding + 5
-				, 100, "0", dieResultHeight);
-			dieResult.visible = false;
-			add(dieResult);
-			dieResultListRight.push(dieResult);
+			var die : FlxSprite = new FlxSprite(finalResultRight.x - finalResultRight.width - (i * DIE_PADDING), 10);
+			die.loadGraphic("assets/dice/die1.png", false, false, 40, 40, true);
+			die.visible = false;
+			add(die);
+			
+			dieResultListRight.push(die);
 		}
 		
 		//hide();
@@ -102,12 +94,12 @@ class BattleLayer extends FlxGroup
 	
 	function resetDieResultTexts()
 	{
-		function reset(dieResultList : Array<FlxText>)
+		function reset(dieResultList : Array<FlxSprite>)
 		{
-			for ( tDieResult in dieResultList )
+			for ( tDie in dieResultList )
 			{
-				var dieResult : FlxText = tDieResult;
-				dieResult.visible = false;
+				var die : FlxSprite = tDie;
+				die.visible = false;
 			}
 		}
 		
@@ -124,21 +116,21 @@ class BattleLayer extends FlxGroup
 		
 		for ( i in 0...attackerDiceResults.length )
 		{
-			var dieResultText : FlxText = dieResultListLeft[i];
+			var dieResult : FlxSprite = dieResultListLeft[i];
 			if ( attackerDiceResults[i] != 0 )
 			{
-				dieResultText.text = Std.string(attackerDiceResults[i]);
-				dieResultText.visible = true;
+				//dieResult.text = Std.string(attackerDiceResults[i]);
+				dieResult.visible = true;
 			}
 		}
 		
 		for ( i in 0...defenderDiceResults.length )
 		{
-			var dieResultText : FlxText = dieResultListRight[i];
+			var dieResult : FlxSprite = dieResultListRight[i];
 			if ( defenderDiceResults[i] != 0 )
 			{
-				dieResultText.text = Std.string(defenderDiceResults[i]);
-				dieResultText.visible = true;
+				//dieResultText.text = Std.string(defenderDiceResults[i]);
+				dieResult.visible = true;
 			}
 		}
 	}
