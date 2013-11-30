@@ -16,6 +16,7 @@ class BattleManager
 		
 	}
 	
+	//TODO: Fix the times when players roll zero
 	//TODO: Investigate attacking slowdown
 	static public function startAttack(attackerTerritoryNum:Int, defenderTerritoryNum:Int) : Bool
 	{	
