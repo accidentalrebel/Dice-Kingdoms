@@ -121,7 +121,7 @@ class BattleLayer extends FlxGroup
 			if ( attackerDiceResults[i] != 0 )
 			{
 				dieResult.animation.frameIndex = attackerDiceResults[i] - 1;
-				dieResult.replaceColor(0xFFFF00FF, attackerColor + 0xFF000000);
+				//dieResult.replaceColor(0xFFFF00FF, attackerColor + 0xFF000000);
 				//dieResult.color = attackerColor;
 				dieResult.visible = true;
 			}
@@ -133,7 +133,7 @@ class BattleLayer extends FlxGroup
 			if ( defenderDiceResults[i] != 0 )
 			{
 				dieResult.animation.frameIndex = defenderDiceResults[i] - 1;
-				dieResult.replaceColor(0xFFFF00FF, defenderColor + 0xFF000000);
+				//dieResult.replaceColor(0xFFFF00FF, defenderColor + 0xFF000000);
 				//dieResult.color = defenderColor;
 				dieResult.visible = true;
 			}
