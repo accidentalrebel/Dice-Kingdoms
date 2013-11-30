@@ -113,8 +113,7 @@ class BattleLayer extends FlxGroup
 			var die : Die = dieResultListLeft[i];
 			if ( attackerDiceResults[i] != 0 )
 			{	
-				die.updateFace(attackerDiceResults[i] - 1);
-				die.updateColor(attackerColor);
+				die.updateDie(attackerColor, attackerDiceResults[i] - 1);
 				die.show();
 			}
 		}
@@ -124,8 +123,7 @@ class BattleLayer extends FlxGroup
 			var die : Die = dieResultListRight[i];
 			if ( defenderDiceResults[i] != 0 )
 			{
-				die.updateFace(defenderDiceResults[i] - 1);
-				die.updateColor(defenderColor);
+				die.updateDie(defenderColor, defenderDiceResults[i] - 1);
 				die.show();
 			}
 		}

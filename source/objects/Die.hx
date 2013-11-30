@@ -49,12 +49,12 @@ class Die extends FlxSprite
 		dieFace.visible = false;
 	}
 	
-	public function updateFace(frameIndex : Int = 0) 
+	function updateFace(frameIndex : Int = 0) 
 	{
 		dieFace.animation.frameIndex = frameIndex;
 	}
 	
-	public function updateColor(colorToUse:Int) 
+	function updateColor(colorToUse:Int) 
 	{
 		if ( colorToUse == 0x33FFFF 		// If light blue
 			|| colorToUse == 0xFFFF33 		// If yellow
@@ -71,5 +71,11 @@ class Die extends FlxSprite
 		
 		parent.add(dieFace);
 		this.color = colorToUse;
+	}
+	
+	public function updateDie(attackerColor:Int, frameIndex:Int) 
+	{
+		updateColor(attackerColor);
+		updateFace(frameIndex);
 	}
 }

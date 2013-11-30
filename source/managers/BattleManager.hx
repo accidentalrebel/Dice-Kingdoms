@@ -50,9 +50,10 @@ class BattleManager
 		var attackerDiceResults : Array<Int> = rollAllDice(attacker.armyCount);
 		var attackerRoll : Int = getTotalCount(attackerDiceResults);
 		var attackerColor : Int = PlayState.playerManager.getPlayer(attacker.ownerNumber).territoryColor;
-		var defenderColor : Int = PlayState.playerManager.getPlayer(defender.ownerNumber).territoryColor;
+		
 		var defenderDiceResults : Array<Int> = rollAllDice(defender.armyCount);
 		var defenderRoll : Int = getTotalCount(defenderDiceResults);
+		var defenderColor : Int = PlayState.playerManager.getPlayer(defender.ownerNumber).territoryColor;
 		
 		var winText : String = "";
 		
