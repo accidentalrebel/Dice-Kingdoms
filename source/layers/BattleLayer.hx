@@ -17,7 +17,7 @@ class BattleLayer extends FlxGroup
 	//TODO: Use dice instead of just numbers
 	//TODO: Add a main base graphic on the main base
 	//TODO: Add an army refill section with animations
-	inline static var DIE_PADDING : Int = 50;
+	inline static var DIE_PADDING : Int = Die.DIE_DIMENSION + 5;
  	
 	var battleBackground:FlxSprite;
 	var battleResult:FlxText;
@@ -65,14 +65,14 @@ class BattleLayer extends FlxGroup
 		dieResultListLeft = new Array<Die>();
 		for ( i in 0...8 )
 		{
-			var die : Die = new Die(this, finalResultLeft.x + finalResultLeft.width + (i * DIE_PADDING), 10);
+			var die : Die = new Die(this, finalResultLeft.x + finalResultLeft.width + (i * DIE_PADDING), 15);
 			dieResultListLeft.push(die);
 		}
 		
 		dieResultListRight = new Array<Die>();
 		for ( i in 0...8 )
 		{
-			var die : Die = new Die(this, finalResultRight.x - finalResultRight.width - (i * DIE_PADDING), 10);
+			var die : Die = new Die(this, finalResultRight.x - finalResultRight.width - (i * DIE_PADDING), 15);
 			dieResultListRight.push(die);
 		}
 		

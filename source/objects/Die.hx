@@ -9,6 +9,8 @@ import states.PlayState;
  */
 class Die extends FlxSprite
 {
+	inline public static var DIE_DIMENSION : Int = 30;
+	
 	var dieFace:FlxSprite;
 	var whiteDieFace:FlxSprite;
 	var blackDieFace:FlxSprite;
@@ -20,12 +22,12 @@ class Die extends FlxSprite
 		
 		super(xPos, yPos);
 		
-		this.loadGraphic("assets/dieBG.png", false, false, 40, 40, true);
+		this.loadGraphic("assets/dieBG.png", false, false, DIE_DIMENSION, DIE_DIMENSION, true);
 		
 		whiteDieFace = new FlxSprite(xPos, yPos);
 		blackDieFace = new FlxSprite(xPos, yPos);
-		whiteDieFace.loadGraphic("assets/dice.png", false, false, 40, 40, false);
-		blackDieFace.loadGraphic("assets/dice.png", false, false, 40, 40, true);
+		whiteDieFace.loadGraphic("assets/dice.png", false, false, DIE_DIMENSION, DIE_DIMENSION, false);
+		blackDieFace.loadGraphic("assets/dice.png", false, false, DIE_DIMENSION, DIE_DIMENSION, true);
 		blackDieFace.color = 0x555555;
 		dieFace = blackDieFace;
 		
