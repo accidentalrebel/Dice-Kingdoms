@@ -63,6 +63,7 @@ class BattleManager
 			winText = "ATTACKER";
 			attacker.armyCount = attacker.armyCount - 1;
 			defender.setArmyCount(attacker.armyCount);
+			PlayState.playerManager.getPlayer(defender.ownerNumber).checkIfLost();
 			attacker.setArmyCount(1);
 			PlayState.playArea.assignTerritory(defender.territoryNumber, attacker.ownerNumber);
 		}

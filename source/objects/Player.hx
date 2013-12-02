@@ -16,6 +16,7 @@ class Player
 	public var isHuman:Bool = false;
 	public var ai:EnemyAI;	
 	public var playerNum:Int;
+	public var hasLost:Bool = false;
 
 	public function new(playerNum : Int, isHuman : Bool ) 
 	{
@@ -61,5 +62,11 @@ class Player
 			var territory : Territory = PlayState.territoryManager.getTerritory(territoryNum);
 			territory.increaseArmyCount(increaseCount);
 		}
+	}
+	
+	public function checkIfLost() 
+	{
+		if ( territories.length <= 0 )
+			hasLost = true;
 	}
 }

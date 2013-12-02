@@ -55,16 +55,21 @@ class PlayerManager
 	
 	public function nextPlayer() 
 	{
-		//TODO: Skip current player if he has no more army
 		//TODO: End game if only one player remains
 		
 		// We then increase our playerNumber
 		currentPlayerNumber += 1;
+		
+		// We go back to th first player
 		if ( currentPlayerNumber >= numOfPlayers )
 			currentPlayerNumber = 1;			
 		
 		// We then set the current player
 		setCurrentPlayer(currentPlayerNumber);
+		
+		// If this player has lost, we go to the next player
+		if ( currentPlayer.hasLost )
+			nextPlayer();
 		
 		// We then determine if AI would take over
 		if ( !currentPlayer.isHuman )
