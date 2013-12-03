@@ -20,6 +20,7 @@ import tools.ARFade;
 class GameGUILayer extends FlxGroup
 {
 	private var playerIndicator : FlxText;
+	private var doneButton:FlxButtonPlus;
 	
 	public function new() 
 	{
@@ -35,7 +36,7 @@ class GameGUILayer extends FlxGroup
 		var zoomButton : FlxButtonPlus = new FlxButtonPlus(5, Std.int(playerIndicator.height + 10), PlayState.cameraManager.toggleZoom, null, "TOGGLE ZOOM", 80, buttonHeight);		
 		add(zoomButton);
 		
-		var doneButton : FlxButtonPlus = new FlxButtonPlus(5, Std.int(playerIndicator.height + buttonHeight + 40), PlayState.gameplayManager.endCurrentPlayerMove, null, "DONE", 80, buttonHeight);		
+		doneButton = new FlxButtonPlus(5, Std.int(playerIndicator.height + buttonHeight + 40), PlayState.gameplayManager.endCurrentPlayerMove, null, "DONE", 80, buttonHeight);		
 		add(doneButton);
 		
 		// Everything in this group does not move from the camera
@@ -53,8 +54,16 @@ class GameGUILayer extends FlxGroup
 		playerIndicator.color = colorToUse;
 		
 		if ( isHuman )
+		{
 			playerIndicator.text = "Player's Turn";
+			doneButton.active = true;
+			doneButton.visible = true;
+		}
 		else
+		{
 			playerIndicator.text = "CPU's Turn";
+			doneButton.active = false;
+			doneButton.visible = false;
+		}
 	}
 }

@@ -11,7 +11,7 @@ import tools.ARFade;
  */
 class AddArmyEffect extends FlxText
 {
-	inline public static var EFFECT_DURATION = 2;
+	inline public static var EFFECT_DURATION = 1;
 	
 	var taskManager : AntTaskManager;
 	
@@ -35,15 +35,15 @@ class AddArmyEffect extends FlxText
 			
 		taskManager = new AntTaskManager();
 		taskManager.addInstantTask(this, FlxTween.linearMotion, [this, xPos, yPos, xPos, yPos - 20, EFFECT_DURATION, true]);
-		taskManager.addPause(EFFECT_DURATION / 4);
+		taskManager.addPause(EFFECT_DURATION / 2);
 		taskManager.addInstantTask(this, fadeOut);
-		taskManager.addPause(EFFECT_DURATION / 1.3);
+		taskManager.addPause(EFFECT_DURATION / 2);
 		taskManager.addInstantTask(this, this.kill);
 	}
 	
 	function fadeOut()
 	{
 		var fadeScript : ARFade = cast(PlayState.gameGUI.recycle(ARFade), ARFade);
-		fadeScript.init(this, 0, EFFECT_DURATION / 1.3);			
+		fadeScript.init(this, 0, EFFECT_DURATION / 2);			
 	}
 }
