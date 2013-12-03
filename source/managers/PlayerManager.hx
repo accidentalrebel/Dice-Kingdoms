@@ -1,5 +1,6 @@
 package managers;
 import flash.Lib;
+import flixel.util.FlxArrayUtil;
 import haxe.Log;
 import objects.Player;
 import states.PlayState;
@@ -34,8 +35,9 @@ class PlayerManager
 			playerList.push(player);
 			
 			tNumOfHumans--;
-		}
+		}		
 		
+		FlxArrayUtil.shuffle(playerList, playerList.length * 2);		
 		setCurrentPlayer(1);
 	}
 	

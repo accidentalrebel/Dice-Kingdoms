@@ -70,7 +70,6 @@ class PlayState extends FlxState
 		PlayState.playArea.init(this);
 		PlayState.playArea.setupTerritories();	
 		
-		//TODO: Player arrangement should be randomized
 		PlayState.playerManager = new PlayerManager();
 		PlayState.playArea.assignTerritories();
 		PlayState.playerManager.initializeArmies();
