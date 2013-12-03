@@ -95,6 +95,6 @@ class PlayerManager
 	{
 		currentPlayerNumber = playerNumber;
 		currentPlayer = getPlayer(currentPlayerNumber);
-		PlayState.gameGUI.playerIndicator.color = getPlayer(currentPlayerNumber).territoryColor;
+		PlayState.gameGUI.updatePlayerIndicator(currentPlayer.isHuman, getPlayer(currentPlayerNumber).territoryColor);
 	}
 }
