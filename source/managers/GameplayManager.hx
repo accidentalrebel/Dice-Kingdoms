@@ -37,7 +37,7 @@ class GameplayManager
 			return clickedTerritory.territoryNumber;
 		}
 		
-		var clickedTile : HexaTile = PlayState.playArea.checkForClickedTiles(xPos, yPos);
+		var clickedTile : HexaTile = PlayState.playArea.checkForClickedTiles(xPos, yPos);		
 		if ( clickedTile != null )
 		{
 			var clickedTerritory : Territory = PlayState.territoryManager.getTerritory(clickedTile.territoryNumber);

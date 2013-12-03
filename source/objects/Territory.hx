@@ -14,7 +14,7 @@ class Territory extends FlxBasic
 	public var armyCount : Int = 0;
 	public var centerTile : HexaTile = null;
 	public var members : Array<HexaTile>;
-	public var ownerNumber : Int;
+	public var ownerNumber : Int = 0;
 	public var territoryNumber : Int;
 	public var markAsChecked : Bool = false;
 

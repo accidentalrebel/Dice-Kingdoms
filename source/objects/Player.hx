@@ -66,6 +66,10 @@ class Player
 	
 	public function checkIfLost() 
 	{
+		trace("Checking if lost " + territories.length );
+		for ( territory in territories )
+			trace(territory);
+		
 		if ( territories.length <= 0 )
 			hasLost = true;
 	}

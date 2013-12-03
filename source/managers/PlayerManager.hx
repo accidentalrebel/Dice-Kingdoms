@@ -39,7 +39,7 @@ class PlayerManager
 		setCurrentPlayer(1);
 	}
 	
-	public function getPlayer(playerNum : Int) 
+	public function getPlayer(playerNum : Int) : Player
 	{
 		return playerList[playerNum-1];
 	}

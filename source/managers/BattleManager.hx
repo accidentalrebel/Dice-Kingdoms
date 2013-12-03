@@ -1,4 +1,5 @@
 package managers;
+import objects.Player;
 import objects.Territory;
 import layers.PlayAreaLayer;
 import states.PlayState;
@@ -52,6 +53,7 @@ class BattleManager
 		var attackerColor : Int = PlayState.playerManager.getPlayer(attacker.ownerNumber).territoryColor;
 		
 		var defenderDiceResults : Array<Int> = rollAllDice(defender.armyCount);
+		var defenderPlayer : Player = PlayState.playerManager.getPlayer(defender.ownerNumber);
 		var defenderRoll : Int = getTotalCount(defenderDiceResults);
 		var defenderColor : Int = PlayState.playerManager.getPlayer(defender.ownerNumber).territoryColor;
 		
@@ -63,9 +65,9 @@ class BattleManager
 			winText = "ATTACKER";
 			attacker.armyCount = attacker.armyCount - 1;
 			defender.setArmyCount(attacker.armyCount);
-			PlayState.playerManager.getPlayer(defender.ownerNumber).checkIfLost();
 			attacker.setArmyCount(1);
 			PlayState.playArea.assignTerritory(defender.territoryNumber, attacker.ownerNumber);
+			defenderPlayer.checkIfLost();
 		}
 		else
 		{
