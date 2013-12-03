@@ -19,7 +19,7 @@ class Player
 	public var playerNum:Int;
 	public var hasLost:Bool = false;
 
-	public function new(playerNum : Int, isHuman : Bool ) 
+	public function new(playerNum : Int, isHuman : Bool, territoryColor : Int ) 
 	{
 		this.playerNum = playerNum;
 		this.isHuman = isHuman;
@@ -27,7 +27,7 @@ class Player
 		if ( !this.isHuman )
 			this.ai = new EnemyAI(this);
 		
-		this.territoryColor = PlayerColor.colorList[playerNum-1];
+		this.territoryColor = territoryColor;
 		this.territories = new Array<Int>();
 	}
 	
