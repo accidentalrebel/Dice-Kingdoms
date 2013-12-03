@@ -37,6 +37,11 @@ class EnemyAI
 		aiType = Type.createEnumIndex(AIType, Std.int(Math.floor(Math.random() * Type.allEnums(AIType).length)));
 	}
 	
+	public function destroy()
+	{
+		this.playerScript = null;
+	}
+	
 	public function startPlanning()
 	{
 		function getAvailableTerritories() : Null<Territory>

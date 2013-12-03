@@ -34,12 +34,13 @@ class PlayerManager
 			else
 				isHuman = true;
 			
-			var player : Player = new Player(i, isHuman, PlayerColor.colorList[i-1]);
+			var player : Player = new Player(i, PlayerColor.colorList[i-1]);
 			playerList.push(player);
 			
 			tNumOfHumans--;
-		}		
-			
+		}
+		
+		getPlayer(1).setAsHuman();	
 		setCurrentPlayer(1);
 	}
 	

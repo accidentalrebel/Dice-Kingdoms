@@ -19,16 +19,22 @@ class Player
 	public var playerNum:Int;
 	public var hasLost:Bool = false;
 
-	public function new(playerNum : Int, isHuman : Bool, territoryColor : Int ) 
+	public function new(playerNum : Int, territoryColor : Int ) 
 	{
 		this.playerNum = playerNum;
-		this.isHuman = isHuman;
-		
-		if ( !this.isHuman )
-			this.ai = new EnemyAI(this);
 		
 		this.territoryColor = territoryColor;
 		this.territories = new Array<Int>();
+		
+		this.ai = new EnemyAI(this);
+	}
+	
+	public function setAsHuman()
+	{
+		this.isHuman = true;
+		
+		this.ai.destroy();
+		this.ai = null;
 	}
 	
 	public function randomlyAssignArmies(maxArmyCount) 
