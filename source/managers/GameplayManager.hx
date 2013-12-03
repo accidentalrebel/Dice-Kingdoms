@@ -115,6 +115,13 @@ class GameplayManager
 		return false;
 	}
 	
+	public function startGame() 
+	{
+		var currentPlayer : Player = PlayState.playerManager.currentPlayer;
+		if ( !currentPlayer.isHuman )
+			currentPlayer.ai.startPlanning();
+	}
+	
 	public function resetGame() 
 	{
 		FlxG.resetGame();

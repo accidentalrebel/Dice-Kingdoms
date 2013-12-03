@@ -88,5 +88,7 @@ class PlayState extends FlxState
 		PlayState.playArea.setAll("cameras", [ PlayState.cameraManager.mainCamera ]);
 		PlayState.battleLayer.setAll("cameras", [ PlayState.cameraManager.topBarCamera ], true);
 		PlayState.gameGUI.setAll("cameras", [ PlayState.cameraManager.mainCamera ]);
+		
+		PlayState.gameplayManager.startGame();
 	}
 }
