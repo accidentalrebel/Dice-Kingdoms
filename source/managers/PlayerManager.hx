@@ -26,21 +26,31 @@ class PlayerManager
 		numOfHumans = tNumOfHumans;
 		playerList = new Array<Player>();
 		
-		var isHuman : Bool = true;
+		// We create the players first
 		for ( i in 1...(numOfPlayers+1) )
 		{
-			if ( tNumOfHumans <= 0 )
-				isHuman = false;
-			else
-				isHuman = true;
-			
 			var player : Player = new Player(i, PlayerColor.colorList[i-1]);
 			playerList.push(player);
-			
-			tNumOfHumans--;
 		}
 		
-		getPlayer(1).setAsHuman();	
+		// We then randomly assign which of the players is human
+		var maxRetries : Int = 0;
+		while ( tNumOfHumans > 0 || maxRetries > 100 )
+		{
+			var randomPlayer : Player = FlxArrayUtil.getRandom(playerList);
+			if ( randomPlayer == null )
+				break;
+				
+			if ( !randomPlayer.isHuman )
+			{
+				randomPlayer.setAsHuman();
+				maxRetries = 0;
+				tNumOfHumans--;
+			}
+			
+			maxRetries++;
+		}
+		
 		setCurrentPlayer(1);
 	}
 	

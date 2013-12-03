@@ -115,6 +115,7 @@ class GameplayManager
 		return false;
 	}
 	
+	//TODO: Consider using FLxRandom instead of Math.Random
 	public function startGame() 
 	{
 		var currentPlayer : Player = PlayState.playerManager.currentPlayer;
