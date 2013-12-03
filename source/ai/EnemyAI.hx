@@ -92,7 +92,7 @@ class EnemyAI
 			}
 			
 			// We shuffle the neighbors of this territory for randomness
-			FlxArrayUtil.shuffle(territory.neighbors, Std.int(territory.neighbors.length * 2));
+			territory.neighbors = FlxArrayUtil.shuffle(territory.neighbors, Std.int(territory.neighbors.length * 2));
 			
 			// We go through each neighbors
 			for ( tNeighbor in territory.neighbors )

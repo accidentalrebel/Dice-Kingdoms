@@ -2,6 +2,7 @@ package managers;
 import flash.Lib;
 import flixel.util.FlxArrayUtil;
 import haxe.Log;
+import misc.PlayerColor;
 import objects.Player;
 import states.PlayState;
 
@@ -19,6 +20,8 @@ class PlayerManager
 	
 	public function new(tNumOfPlayers : Int = 8, tNumOfHumans : Int = 1) 
 	{
+		PlayerColor.shuffle();
+		
 		numOfPlayers = tNumOfPlayers;
 		numOfHumans = tNumOfHumans;
 		playerList = new Array<Player>();
@@ -36,8 +39,7 @@ class PlayerManager
 			
 			tNumOfHumans--;
 		}		
-		
-		FlxArrayUtil.shuffle(playerList, playerList.length * 2);		
+			
 		setCurrentPlayer(1);
 	}
 	

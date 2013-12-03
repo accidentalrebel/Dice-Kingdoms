@@ -1,4 +1,5 @@
 package misc;
+import flixel.util.FlxArrayUtil;
 
 /**
  * ...
@@ -18,9 +19,9 @@ class PlayerColor
 	public static var colorList : Array<Int> = [ PlayerColor.RED, PlayerColor.GREEN, PlayerColor.BLUE, PlayerColor.YELLOW
 		, PlayerColor.LIGHT_BLUE, PlayerColor.PINK, PlayerColor.ORANGE, PlayerColor.WHITE ];	
 	
-	public function new() 
+	static public function shuffle() 
 	{
-		
+		colorList = FlxArrayUtil.shuffle(colorList, colorList.length * 2);
 	}
 	
 }
