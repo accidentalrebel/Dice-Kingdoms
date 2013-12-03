@@ -1,6 +1,7 @@
 package managers;
 import flash.Lib;
 import flixel.util.FlxArrayUtil;
+import flixel.util.FlxMath;
 import haxe.Log;
 import misc.PlayerColor;
 import objects.Player;
@@ -20,6 +21,9 @@ class PlayerManager
 	
 	public function new(tNumOfPlayers : Int = 8, tNumOfHumans : Int = 1) 
 	{
+		tNumOfPlayers = Std.int(FlxMath.bound(tNumOfPlayers, 1, 8));
+		tNumOfHumans = Std.int(FlxMath.bound(tNumOfHumans, 1, 8));
+		
 		PlayerColor.shuffle();
 		
 		numOfPlayers = tNumOfPlayers;
