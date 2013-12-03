@@ -2,6 +2,7 @@ package objects;
 import ai.EnemyAI;
 import managers.PlayerManager;
 import managers.TerritoryManager;
+import misc.PlayerColor;
 import states.PlayState;
 import tools.Tools;
 
@@ -26,7 +27,7 @@ class Player
 		if ( !this.isHuman )
 			this.ai = new EnemyAI(this);
 		
-		this.territoryColor = PlayState.colorList[playerNum-1];
+		this.territoryColor = PlayerColor.colorList[playerNum-1];
 		this.territories = new Array<Int>();
 	}
 	

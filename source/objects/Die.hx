@@ -1,6 +1,7 @@
 package objects;
 import flixel.FlxSprite;
 import flixel.group.FlxGroup;
+import misc.PlayerColor;
 import states.PlayState;
 
 /**
@@ -58,9 +59,9 @@ class Die extends FlxSprite
 	
 	function updateColor(colorToUse:Int) 
 	{
-		if ( colorToUse == 0x33FFFF 		// If light blue
-			|| colorToUse == 0xFFFF33 		// If yellow
-			|| colorToUse == 0xFFFFFF ) 	// If white
+		if ( colorToUse == PlayerColor.LIGHT_BLUE 		
+			|| colorToUse == PlayerColor.YELLOW
+			|| colorToUse == PlayerColor.WHITE ) 
 		{
 			dieFace = blackDieFace;
 			parent.remove(whiteDieFace);

@@ -25,9 +25,6 @@ import tools.Tools;
  */
 class PlayState extends FlxState
 {
-	//TODO: Make an enum for the colors
-												// RED		GREEN	   BLUE		 YELLOW   L.BLUE	PINK	   ORANGE	WHITE   
-	public static var colorList : Array<Int> = [ 0xFF3333, 0x33FF33, 0x3333FF, 0xFFFF33, 0x33FFFF, 0xFF33FF, 0xffa800, 0xFFFFFF ];		
 	public static var maxTerritories : Int = Math.floor(PlayAreaLayer.PLAY_AREA_ROWS / 5) * Math.floor(PlayAreaLayer.PLAY_AREA_COLUMNS / 5);	
 	public static var playAreaPadding : FlxPoint = new FlxPoint(15, 15);
 	
