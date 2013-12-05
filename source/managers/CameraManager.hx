@@ -141,6 +141,5 @@ class CameraManager
 	{
 		FlxG.camera.scroll = new FlxPoint(-((FlxG.width - PlayAreaLayer.areaWidth)/ 2)
 			, -((FlxG.height - PlayAreaLayer.areaHeight + topBarCamera.height) / 2));
-		trace(FlxG.camera.scroll);
 	}
 }

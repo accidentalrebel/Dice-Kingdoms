@@ -95,7 +95,6 @@ class EnemyAI
 			// If no territory is availble, we now end our turn
 			if ( territory == null )
 			{
-				trace("Did not get any territories, going to the next player");
 				endMove();
 				return;
 			}

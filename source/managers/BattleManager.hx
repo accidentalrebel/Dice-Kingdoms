@@ -37,9 +37,7 @@ class BattleManager
 		{
 			var totalCount : Int = 0;
 			for ( result in dieResults )
-			{
 				totalCount += result;
-			}
 			
 			return totalCount;
 		}

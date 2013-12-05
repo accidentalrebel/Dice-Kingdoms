@@ -29,10 +29,7 @@ class Territory extends FlxBasic
 	public function setArmyCount(count:Int) 
 	{
 		if ( centerTile == null )
-		{
-			trace("CENTER TILE IS NOT INITIALIZED");
 			return;
-		}
 		
 		armyCount = count;
 		centerTile.updateLabel(Std.string(count));
