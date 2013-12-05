@@ -77,8 +77,11 @@ class EnemyAI
 				territory.markAsChecked = false;
 			}
 			
+			
+			taskManager.clear();
+			
 			// We then go to the next player
-			PlayState.gameplayManager.endCurrentPlayerMove();
+			PlayState.gameplayManager.endCurrentPlayerMove();			
 		}
 		
 		function getNextMove()
