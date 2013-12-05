@@ -26,12 +26,11 @@ class Die extends FlxSprite
 		this.loadGraphic("assets/dieBG.png", false, false, DIE_DIMENSION, DIE_DIMENSION, true);
 		
 		whiteDieFace = new FlxSprite(xPos, yPos);
-		whiteDieFace.loadGraphic("assets/dice.png", false, false, DIE_DIMENSION, DIE_DIMENSION, false);
+		whiteDieFace.loadGraphic("assets/dice-white.png", false, false, DIE_DIMENSION, DIE_DIMENSION, false);
 		whiteDieFace.visible = false;
 		
 		blackDieFace = new FlxSprite(xPos, yPos);
-		blackDieFace.loadGraphic("assets/dice.png", false, false, DIE_DIMENSION, DIE_DIMENSION, true);
-		blackDieFace.color = 0x555555;
+		blackDieFace.loadGraphic("assets/dice-black.png", false, false, DIE_DIMENSION, DIE_DIMENSION, false);
 		blackDieFace.visible = false;
 		
 		dieFace = blackDieFace;
