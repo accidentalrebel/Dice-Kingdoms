@@ -2,6 +2,7 @@ package objects;
 import flash.display.Sprite;
 import flixel.group.FlxGroup;
 import flixel.system.layer.frames.FlxFrame;
+import flixel.util.FlxRandom;
 import managers.PlayerManager;
 import managers.TerritoryManager;
 import objects.Territory;
@@ -63,7 +64,7 @@ class HexaTile extends FlxSprite
 		super(xPos + PlayState.playAreaPadding.x, yPos + PlayState.playAreaPadding.y);
 		
 		this.loadGraphic("assets/hexaTerrain.png", false, false, TILE_WIDTH, TILE_HEIGHT);
-		this.animation.frameIndex = Tools.randomMinMax(3, 8);
+		this.animation.frameIndex = FlxRandom.intRanged(3, 8);
 		
 		this.parent = parent;
 		PlayState.playArea.add(this);
@@ -141,6 +142,6 @@ class HexaTile extends FlxSprite
 	public function turnToSeaTile()
 	{
 		this.isATerritory = false;
-		this.animation.frameIndex = Tools.randomMinMax(0, 2);		// Set to the sea graphic
+		this.animation.frameIndex = FlxRandom.intRanged(0, 2);		// Set to the sea graphic
 	}
 }

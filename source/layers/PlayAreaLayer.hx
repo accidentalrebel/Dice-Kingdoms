@@ -5,6 +5,7 @@ import flixel.addons.display.FlxSpriteAniRot;
 import flixel.FlxG;
 import flixel.FlxSprite;
 import flixel.group.FlxGroup;
+import flixel.util.FlxRandom;
 import managers.CameraManager;
 import managers.PlayerManager;
 import managers.TerritoryManager;
@@ -194,7 +195,7 @@ class PlayAreaLayer extends FlxGroup
 					&& currentHexaTile.territoryNumber != currentTerritoryNumber))
 				return null;
 			
-		    var roll : Int = Std.random(neighborList.length);
+		    var roll : Int = FlxRandom.intRanged(0, neighborList.length-1);
 		    var pickedNeighbor : HexaTile = neighborList[roll];
 		    
 		    setupCenter(pickedNeighbor);
@@ -230,8 +231,8 @@ class PlayAreaLayer extends FlxGroup
 		function setupTerritory(rollX : Int, rollY : Int, centerBaseList : Array<HexaTile>)
 		{	
 			// We move the center slightly to make it more random
-			var rollXModifier = Std.random(2) - 1;
-			var rollYModifier = Std.random(2) - 1;
+			var rollXModifier = FlxRandom.intRanged(-1, 0);
+			var rollYModifier = FlxRandom.intRanged(-1, 0);
 			
 			rollX = rollX + rollXModifier;
 			rollY = rollY + rollYModifier;
@@ -329,7 +330,7 @@ class PlayAreaLayer extends FlxGroup
 			var roll : Int = 0;
 			while (true)
 			{
-				roll = Std.random(PlayState.territoryManager.territoryList.length);
+				roll = FlxRandom.intRanged(0, PlayState.territoryManager.territoryList.length-1);
 				if ( !Lambda.has(pickedTerritories, roll) )
 					break;
 			}

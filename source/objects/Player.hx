@@ -1,5 +1,6 @@
 package objects;
 import ai.EnemyAI;
+import flixel.util.FlxRandom;
 import managers.PlayerManager;
 import managers.TerritoryManager;
 import misc.PlayerColor;
@@ -44,7 +45,7 @@ class Player
 		
 		while ( maxArmyCount > 0 && territoryListCopy.length > 0)
 		{
-			var roll : Int = Std.random(territoryListCopy.length);
+			var roll : Int = FlxRandom.intRanged(0, territoryListCopy.length -1);
 			var territoryNum : Int = territoryListCopy[roll];
 			var territory : Territory = PlayState.territoryManager.getTerritory(territoryNum);
 			

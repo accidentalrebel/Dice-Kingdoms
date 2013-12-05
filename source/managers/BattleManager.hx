@@ -1,4 +1,5 @@
 package managers;
+import flixel.util.FlxRandom;
 import objects.Player;
 import objects.Territory;
 import layers.PlayAreaLayer;
@@ -25,7 +26,7 @@ class BattleManager
 			var dieResults : Array<Int> = new Array<Int>();
 			for ( die in 0...numOfDice )
 			{
-				var dieRoll : Int = Tools.randomMinMax(1, 6);
+				var dieRoll : Int = FlxRandom.intRanged(1, 6);
 				dieResults.push(dieRoll);
 			}
 			

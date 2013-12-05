@@ -2,6 +2,7 @@ package ai;
 import flixel.addons.plugin.taskManager.AntTaskManager;
 import flixel.FlxG;
 import flixel.util.FlxArrayUtil;
+import flixel.util.FlxRandom;
 import managers.BattleManager;
 import managers.CameraManager;
 import managers.GameplayManager;
@@ -34,7 +35,7 @@ class EnemyAI
 		this.playerScript = playerScript;
 		
 		// We roll for the AI type
-		aiType = Type.createEnumIndex(AIType, Std.int(Math.floor(Math.random() * Type.allEnums(AIType).length)));
+		aiType = Type.createEnumIndex(AIType, FlxRandom.intRanged(0, Type.allEnums(AIType).length-1));
 	}
 	
 	public function destroy()
