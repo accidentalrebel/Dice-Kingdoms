@@ -74,6 +74,8 @@ class GameplayManager
 	
 	public function endCurrentPlayerMove() 
 	{
+		PlayState.gameGUI.hideDoneButton();	
+		
 		// We add a short delay
 		if ( taskManager != null )
 			taskManager.clear();
@@ -94,6 +96,7 @@ class GameplayManager
 		}
 		
 		PlayState.playerManager.nextPlayer();
+		PlayState.gameGUI.updateDoneButtonVisibility();			
 	}
 	
 	public function checkIfGameHasEnded() 
@@ -118,6 +121,8 @@ class GameplayManager
 	
 	public function startGame() 
 	{
+		PlayState.gameGUI.updateDoneButtonVisibility();	
+		
 		var currentPlayer : Player = PlayState.playerManager.currentPlayer;
 		if ( !currentPlayer.isHuman )
 			currentPlayer.ai.startPlanning();

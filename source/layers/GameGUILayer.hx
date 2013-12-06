@@ -54,16 +54,28 @@ class GameGUILayer extends FlxGroup
 		playerIndicator.color = colorToUse;
 		
 		if ( isHuman )
-		{
-			playerIndicator.text = "Player's Turn";
-			doneButton.active = true;
-			doneButton.visible = true;
-		}
+			playerIndicator.text = "Player's Turn";		
 		else
-		{
 			playerIndicator.text = "CPU's Turn";
-			doneButton.active = false;
-			doneButton.visible = false;
-		}
+	}
+	
+	public function updateDoneButtonVisibility() 
+	{
+		if ( PlayState.playerManager.currentPlayer.isHuman )
+			showDoneButton();	
+		else
+			hideDoneButton();	
+	}
+	
+	public function hideDoneButton()
+	{
+		doneButton.active = false;
+		doneButton.visible = false;
+	}
+	
+	public function showDoneButton()
+	{
+		doneButton.active = true;
+		doneButton.visible = true;
 	}
 }
