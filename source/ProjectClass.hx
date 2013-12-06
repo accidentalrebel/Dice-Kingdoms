@@ -25,7 +25,7 @@ class ProjectClass extends FlxGame
 		var ratioY:Float = stageHeight / 600;
 		var ratio:Float = Math.max(ratioX, ratioY);
 		
-		super(Math.ceil(stageWidth / ratio), Math.ceil(stageHeight / ratio), MenuState, ratio, 60, 60);
+		super(Math.ceil(stageWidth / ratio), Math.ceil(stageHeight / ratio), MenuState, ratio, 30, 30);
 		
 		// We then save these values to our MainStage class
 		// From now on, we weill be using this values to refer to the actual size of the mainStage
