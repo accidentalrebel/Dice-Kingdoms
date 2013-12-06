@@ -101,7 +101,6 @@ class GameplayManager
 	
 	public function checkIfGameHasEnded() 
 	{
-		//TODO: Check if all players are lost, if so, end game.
 		var lostCount : Int = 0;
 		var playerList : Array<Player> = PlayState.playerManager.playerList;
 		for ( tPlayer in playerList )
@@ -135,6 +134,8 @@ class GameplayManager
 	
 	function endGame() 
 	{
+		taskManager.clear();		
+		
 		FlxG.switchState(new MenuState());
 		trace("Game has ended!");
 	}

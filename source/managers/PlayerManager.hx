@@ -22,7 +22,7 @@ class PlayerManager
 	public function new(tNumOfPlayers : Int = 8, tNumOfHumans : Int = 1) 
 	{
 		tNumOfPlayers = Std.int(FlxMath.bound(tNumOfPlayers, 1, 8));
-		tNumOfHumans = Std.int(FlxMath.bound(tNumOfHumans, 1, 8));
+		tNumOfHumans = Std.int(FlxMath.bound(tNumOfHumans, 0, 8));
 		
 		PlayerColor.shuffle();
 		

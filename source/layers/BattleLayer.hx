@@ -14,7 +14,6 @@ import objects.Die;
  */
 class BattleLayer extends FlxGroup
 {
-	//TODO: Use dice instead of just numbers
 	inline static var DIE_PADDING : Int = Die.DIE_DIMENSION + 5;
  	
 	var battleBackground:FlxSprite;

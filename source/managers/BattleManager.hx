@@ -18,7 +18,6 @@ class BattleManager
 		
 	}
 	
-	//TODO: Investigate attacking slowdown
 	static public function startAttack(attackerTerritoryNum:Int, defenderTerritoryNum:Int) : Bool
 	{	
 		function rollAllDice(numOfDice:Int) : Array<Int>

@@ -31,8 +31,6 @@ class GameGUILayer extends FlxGroup
 		playerIndicator = new FlxText(5, 5, 300, "Player 1", 16);
 		add(playerIndicator);
 		
-		//TODO: Do not allow to be clicked multiple times
-		
 		var zoomButton : FlxButtonPlus = new FlxButtonPlus(5, Std.int(playerIndicator.height + 10), PlayState.cameraManager.toggleZoom, null, "TOGGLE ZOOM", 80, buttonHeight);		
 		add(zoomButton);
 		
