@@ -113,7 +113,7 @@ class GameplayManager
 			}
 		}
 		
-		if ( lostCount >= playerList.length - 2 )
+		if ( lostCount >= playerList.length - 1 )
 			return true;
 		
 		return false;
