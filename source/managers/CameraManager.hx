@@ -62,7 +62,8 @@ class CameraManager
 		
 		// We then apply and save the new scale
 		mainCamera.zoom = newScale;
-		normalZoomValue = FlxG.camera.zoom;						// We set the normalZoom value according to the ratio when the game is initialized
+		normalZoomValue = newScale;								// We set the normalZoom value according to the ratio when the game is initialized
+		currentZoomValue = newScale;
 		magnifiedZoomValue = normalZoomValue * 1.5;				// Whatever the normal zoom is, the magnified zoom is 150 percent of that value	
 
 		// We then adjust the mainCamera viewing area
@@ -139,6 +140,7 @@ class CameraManager
 	 */
 	public function centerCamera()
 	{
+		trace(FlxG.width + " " + mainCamera.width + " " + FlxG.stage.stageWidth + " " + Lib.current.stage.stageWidth + " " + PlayAreaLayer.areaWidth);
 		FlxG.camera.scroll = new FlxPoint(-((FlxG.width - PlayAreaLayer.areaWidth)/ 2)
 			, -((FlxG.height - PlayAreaLayer.areaHeight + topBarCamera.height) / 2));
 	}
