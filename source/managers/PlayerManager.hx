@@ -74,8 +74,6 @@ class PlayerManager
 	
 	public function nextPlayer() 
 	{
-		//TODO: End game if only one player remains
-		
 		// We then increase our playerNumber
 		currentPlayerNumber += 1;
 		

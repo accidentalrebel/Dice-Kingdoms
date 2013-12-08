@@ -118,6 +118,12 @@ class EnemyAI
 					|| (aiType == AIType.AGGRESSIVE
 						&& territory.armyCount >= neighborTerritory.armyCount - 1 ))	// If even the enemy has one army more than mine
 				{
+					if ( PlayState.cameraManager.isZoomedIn )
+					{
+						PlayState.cameraManager.focusOnTerritory(territory.territoryNumber);
+						taskManager.addPause(0.35);
+					}
+					
 					taskManager.addPause(0.15);
 					
 					// We highlight the attacker and the one being attacked
