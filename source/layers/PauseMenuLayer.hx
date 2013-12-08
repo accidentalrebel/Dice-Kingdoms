@@ -2,6 +2,7 @@ package layers;
 import flixel.group.FlxGroup;
 import flixel.group.FlxSpriteGroup;
 import flixel.ui.FlxButton;
+import flixel.util.FlxPoint;
 import misc.PlayerRow;
 import objects.Player;
 import states.PlayState;
@@ -23,6 +24,8 @@ class PauseMenuLayer extends FlxSpriteGroup
 		setupPlayerList();
 		
 		this.setPosition(200, 0);
+		this.scrollFactor = new FlxPoint(0, 0);
+		this.setAll("cameras", [ PlayState.cameraManager.mainCamera], true);
 	}
 	
 	function setupPlayerList() : Void
