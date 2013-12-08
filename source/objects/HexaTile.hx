@@ -62,7 +62,7 @@ class HexaTile extends FlxSprite
 		else
 			yPos = row * TILE_HEIGHT - 1;
 		
-		super(xPos + PlayState.playAreaPadding.x, yPos + PlayState.playAreaPadding.y);
+		super(xPos, yPos);
 		
 		this.loadGraphic("assets/hexaTerrain.png", false, false, TILE_WIDTH, TILE_HEIGHT);
 		this.animation.frameIndex = FlxRandom.intRanged(3, 8);

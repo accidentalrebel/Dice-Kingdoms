@@ -140,8 +140,9 @@ class CameraManager
 	 */
 	public function centerCamera()
 	{
-		trace(FlxG.width + " " + mainCamera.width + " " + FlxG.stage.stageWidth + " " + Lib.current.stage.stageWidth + " " + PlayAreaLayer.areaWidth);
-		FlxG.camera.scroll = new FlxPoint(-((FlxG.width - PlayAreaLayer.areaWidth)/ 2)
-			, -((FlxG.height - PlayAreaLayer.areaHeight + topBarCamera.height) / 2));
+		FlxG.camera.scroll = new FlxPoint(-((FlxG.stage.stageWidth - PlayAreaLayer.areaWidth)/ 2)
+			, -((FlxG.stage.stageHeight - topBarCamera.height - PlayAreaLayer.areaHeight * currentZoomValue) / 2));
+		trace(FlxG.stage.stageHeight + " " + FlxG.height + " " + topBarCamera.height + " " + PlayAreaLayer.areaHeight + " " + currentZoomValue);
+		trace(FlxG.camera.screen.y);
 	}
 }

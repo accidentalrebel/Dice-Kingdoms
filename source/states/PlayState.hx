@@ -26,7 +26,6 @@ import tools.Tools;
 class PlayState extends FlxState
 {
 	public static var maxTerritories : Int = Math.floor(PlayAreaLayer.PLAY_AREA_ROWS / 5) * Math.floor(PlayAreaLayer.PLAY_AREA_COLUMNS / 5);	
-	public static var playAreaPadding : FlxPoint = new FlxPoint(15, 15);
 	
 	static public var territoryPerPlayer:Int;	
 	static public var initialArmyCount:Int = 20;	
