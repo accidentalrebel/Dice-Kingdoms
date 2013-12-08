@@ -33,7 +33,9 @@ class PlayAreaLayer extends FlxGroup
 	inline public static var areaWidth : Float =  
 			(((PlayAreaLayer.PLAY_AREA_COLUMNS) / 2)) * HexaTile.TILE_WIDTH
 				+ ((PlayAreaLayer.PLAY_AREA_COLUMNS) / 2) * HexaTile.TILE_FACE_WIDTH;
-	inline public static var areaHeight : Float = PlayAreaLayer.PLAY_AREA_ROWS * HexaTile.TILE_WIDTH;
+	inline public static var areaHeight : Float = 
+			(PlayAreaLayer.PLAY_AREA_ROWS * HexaTile.TILE_HEIGHT)
+				+ HexaTile.TILE_HEIGHT / 2;
 	
 	public function new()
 	{
@@ -50,12 +52,12 @@ class PlayAreaLayer extends FlxGroup
 		
 		playAreaArray = new Array<Array<HexaTile>>();
 		
-		for ( col in 0...PLAY_AREA_COLUMNS+1 )
+		for ( col in 0...PLAY_AREA_COLUMNS )
 		{
 			var rowArray : Array<HexaTile> = new Array<HexaTile>();
 			playAreaArray.push(rowArray);
 			
-			for ( row in 0...PLAY_AREA_ROWS+1 )
+			for ( row in 0...PLAY_AREA_ROWS )
 			{
 				var hexaTile : HexaTile = new HexaTile(this, col, row);
 				playAreaArray[col].push(hexaTile);
@@ -63,9 +65,9 @@ class PlayAreaLayer extends FlxGroup
 		}
 	   
 		// We set the neighbors of each hexaTile
-		for ( col in 0...PLAY_AREA_COLUMNS+1 )
+		for ( col in 0...PLAY_AREA_COLUMNS )
 		{
-			for ( row in 0...PLAY_AREA_ROWS+1 )
+			for ( row in 0...PLAY_AREA_ROWS )
 			{
 				var currentHexaTile : HexaTile = playAreaArray[col][row];
 				
@@ -290,9 +292,9 @@ class PlayAreaLayer extends FlxGroup
 			PlayState.territoryManager.territoryList.push(territory);
 		}
 		
-		for ( row in 0...PLAY_AREA_ROWS+1)
+		for ( row in 0...PLAY_AREA_ROWS)
 		{
-			for ( col in 0...PLAY_AREA_COLUMNS+1)
+			for ( col in 0...PLAY_AREA_COLUMNS)
 			{
 				var hexaTile : HexaTile = playAreaArray[col][row];
 				if (hexaTile != null)
@@ -377,9 +379,9 @@ class PlayAreaLayer extends FlxGroup
 	
 	public function checkForClickedTiles(xPos:Float, yPos:Float) 
 	{
-		for ( col in 0...PLAY_AREA_COLUMNS+1 )
+		for ( col in 0...PLAY_AREA_COLUMNS )
 		{
-			for ( row in 0...PLAY_AREA_ROWS+1 )
+			for ( row in 0...PLAY_AREA_ROWS )
 			{
 				var hexaTile : HexaTile = playAreaArray[col][row];
 				if ( hexaTile.checkIfClicked(xPos, yPos) )
