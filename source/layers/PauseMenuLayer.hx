@@ -10,7 +10,7 @@ import states.PlayState;
  * ...
  * @author Karlo
  */
-class PauseMenuLayer extends FlxGroup
+class PauseMenuLayer extends FlxSpriteGroup
 {
 	inline public static var PAUSE_MENU_WIDTH : Float = 200;
 	inline public static var PAUSE_MENU_HEIGHT : Float = 200;
@@ -21,6 +21,8 @@ class PauseMenuLayer extends FlxGroup
 		super();
 		
 		setupPlayerList();
+		
+		this.setPosition(200, 0);
 	}
 	
 	function setupPlayerList() : Void
@@ -31,8 +33,7 @@ class PauseMenuLayer extends FlxGroup
 		for ( tPlayer in PlayState.playerManager.playerList )
 		{
 			var player : Player = tPlayer;
-			var playerRow : PlayerRow = new PlayerRow(100, i * 30);
-			add(playerRow);
+			var playerRow : PlayerRow = new PlayerRow(this, 0, i * 30);
 			i++;
 		}
 	}
