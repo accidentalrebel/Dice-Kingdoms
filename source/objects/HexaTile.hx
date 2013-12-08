@@ -94,11 +94,11 @@ class HexaTile extends FlxSprite
 	public function setupLabel(textToDisplay : String)
 	{		
 		//TODO: Take note of the scaled height so that it is consistent on all devices
-		label = new FlxText(this.x + this.width / 2, this.y + this.height / 2, LABEL_WIDTH);
-		label.x -= label.width / 2;
-		label.y -= label.height / 2 * PlayState.cameraManager.currentZoomValue;
-		label.alignment = "center";
+		label = new FlxText(castleGraphic.x + castleGraphic.width / 2, castleGraphic.y + castleGraphic.height / 2 , LABEL_WIDTH);
 		label.size = LABEL_HEIGHT;
+		label.x -= label.width / 2;
+		label.y -= label.size / 2;
+		label.alignment = "center";
 		label.color = 0xFFFFFF;
 		
 		PlayState.gameObjectsLayer.add(label);
