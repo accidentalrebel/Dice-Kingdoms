@@ -32,7 +32,7 @@ class PlayAreaLayer extends FlxGroup
 	
 	inline public static var areaWidth : Float =  
 			(((PlayAreaLayer.PLAY_AREA_COLUMNS) / 2)) * HexaTile.TILE_WIDTH
-				+ ((PlayAreaLayer.PLAY_AREA_COLUMNS) / 2) * HexaTile.TILE_FACE_WIDTH;
+				+ ((PlayAreaLayer.PLAY_AREA_COLUMNS + 1) / 2) * HexaTile.TILE_FACE_WIDTH;
 	inline public static var areaHeight : Float = 
 			(PlayAreaLayer.PLAY_AREA_ROWS * HexaTile.TILE_HEIGHT)
 				+ HexaTile.TILE_HEIGHT / 2;
