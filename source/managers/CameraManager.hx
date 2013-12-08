@@ -121,8 +121,8 @@ class CameraManager
 	public function focusOnTerritory(territoryNum:Int) 
 	{
 		var territory : Territory = PlayState.territoryManager.getTerritory(territoryNum);
-		FlxG.camera.scroll = new FlxPoint(territory.centerTile.x - FlxG.width / 2 / PlayState.cameraManager.magnifiedZoomValue
-			, territory.centerTile.y - FlxG.height / 2 / PlayState.cameraManager.magnifiedZoomValue);
+		FlxG.camera.scroll = new FlxPoint(territory.centerTile.x + (territory.centerTile.width / 2) - FlxG.stage.stageWidth / 2 / currentZoomValue
+			, territory.centerTile.y + (territory.centerTile.height / 2) - (FlxG.stage.stageHeight - topBarCamera.height) / 2 / currentZoomValue);
 	}
 	
 	/**
