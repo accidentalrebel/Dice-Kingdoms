@@ -30,12 +30,11 @@ class PlayAreaLayer extends FlxGroup
 	public var playAreaCanvas:FlxSprite;
 	public var setupFinished : Bool = false;
 	
-	inline public static var areaWidth : Float =  
-			(((PlayAreaLayer.PLAY_AREA_COLUMNS) / 2)) * HexaTile.TILE_WIDTH
-				+ ((PlayAreaLayer.PLAY_AREA_COLUMNS + 1) / 2) * HexaTile.TILE_FACE_WIDTH;
-	inline public static var areaHeight : Float = 
-			(PlayAreaLayer.PLAY_AREA_ROWS * HexaTile.TILE_HEIGHT)
-				+ HexaTile.TILE_HEIGHT / 2;
+	inline public static var areaWidth : Float = (((PlayAreaLayer.PLAY_AREA_COLUMNS) / 2)) * HexaTile.TILE_WIDTH
+		+ ((PlayAreaLayer.PLAY_AREA_COLUMNS) / 2) * HexaTile.TILE_FACE_WIDTH 
+		+ (HexaTile.TILE_WIDTH - HexaTile.TILE_FACE_WIDTH) /2;		
+	inline public static var areaHeight : Float = (PlayAreaLayer.PLAY_AREA_ROWS * HexaTile.TILE_HEIGHT)
+		+ HexaTile.TILE_HEIGHT / 2;
 	
 	public function new()
 	{
