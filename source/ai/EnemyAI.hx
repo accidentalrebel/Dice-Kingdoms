@@ -135,6 +135,12 @@ class EnemyAI
 					taskManager.addInstantTask(this, BattleManager.startAttack, [territory.territoryNumber, neighborTerritory.territoryNumber], true);
 					taskManager.addInstantTask(this, PlayState.playArea.deselectTerritory, [territory.territoryNumber], true);
 					taskManager.addInstantTask(this, PlayState.playArea.deselectTerritory, [neighborTerritory.territoryNumber], true);
+					
+					// We add a short delay when the camera is zoomed in to show the result of the attack
+					if ( PlayState.cameraManager.isZoomedIn )
+						taskManager.addPause(0.25);
+					
+					taskManager.addPause(0.25);
 					taskManager.addInstantTask(this, getNextMove, null, true);
 					break;
 				}
