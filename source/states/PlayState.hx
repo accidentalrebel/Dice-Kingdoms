@@ -5,6 +5,7 @@ import flixel.util.FlxPoint;
 import layers.BattleLayer;
 import layers.GameGUILayer;
 import layers.GameObjectsLayer;
+import layers.PauseMenuLayer;
 import managers.CameraManager;
 import managers.GameplayManager;
 import managers.InputManager;
@@ -40,6 +41,7 @@ class PlayState extends FlxState
 	static public var playerManager:PlayerManager;
 	static public var inputManager:InputManager;
 	static public var gameObjectsLayer: FlxGroup;
+	static public var pauseMenuLayer:PauseMenuLayer;
 	
 	override public function create():Void 
 	{
@@ -50,15 +52,15 @@ class PlayState extends FlxState
 		super.create();
 		
 		PlayState.cameraManager 		= new CameraManager();
-		PlayState.gameplayManager	= new GameplayManager();
+		PlayState.gameplayManager		= new GameplayManager();
 		
 		// We setup the input Manager
 		PlayState.inputManager 		= new InputManager();
 		add(PlayState.inputManager);
 		
 		// We setup the layers
-		PlayState.gameGUI 			= new GameGUILayer();
-		PlayState.battleLayer 		= new BattleLayer();
+		PlayState.gameGUI 				= new GameGUILayer();
+		PlayState.battleLayer 			= new BattleLayer();
 		PlayState.gameObjectsLayer		= new GameObjectsLayer();
 		
 		// We setup the territory manager
@@ -74,7 +76,7 @@ class PlayState extends FlxState
 		PlayState.playerManager.initializeArmies();
 		PlayState.playArea.setupFinished = true;
 		
-		//PlayState.cameraManager.focusOnRandomTerritory(PlayState.playerManager.currentPlayerNumber);
+		PlayState.pauseMenuLayer		= new PauseMenuLayer();
 		
 		// We arrange the different layers
 		add(PlayState.playArea);
@@ -82,6 +84,7 @@ class PlayState extends FlxState
 		add(PlayState.gameObjectsLayer);
 		add(PlayState.gameGUI);
 		add(PlayState.battleLayer);
+		add(PlayState.pauseMenuLayer);
 		
 		// We assign layers to their respective cameras
 		PlayState.playArea.setAll("cameras", [ PlayState.cameraManager.mainCamera ]);
