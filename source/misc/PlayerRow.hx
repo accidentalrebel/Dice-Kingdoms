@@ -23,13 +23,13 @@ class PlayerRow
 		positionLabel = new FlxText(xPos, yPos, 20, position, 14);
 		positionLabel.alignment = "center";
 		
-		nameLabel = new FlxText(xPos + positionLabel.width, yPos, 150, playerName, 14);
+		nameLabel = new FlxText(xPos + positionLabel.width, yPos, 100, playerName, 14);
 		nameLabel.alignment = "center";
 		
-		aiLabel = new FlxText(xPos + nameLabel.width + positionLabel.width, yPos, 100, aiType, 14);
+		aiLabel = new FlxText(xPos + nameLabel.width + positionLabel.width, yPos, 150, aiType, 14);
 		aiLabel.alignment = "center";
 		
-		territoryCountLabel = new FlxText(xPos + nameLabel.width + positionLabel.width + aiLabel.width, yPos, 150, territoryCount, 14);
+		territoryCountLabel = new FlxText(xPos + nameLabel.width + positionLabel.width + aiLabel.width, yPos, 50, territoryCount, 14);
 		aiLabel.alignment = "center";
 		
 		parent.add(positionLabel);

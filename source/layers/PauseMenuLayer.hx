@@ -1,4 +1,5 @@
 package layers;
+import flixel.FlxSprite;
 import flixel.group.FlxGroup;
 import flixel.group.FlxSpriteGroup;
 import flixel.ui.FlxButton;
@@ -16,16 +17,26 @@ class PauseMenuLayer extends FlxSpriteGroup
 	inline public static var PAUSE_MENU_WIDTH : Float = 200;
 	inline public static var PAUSE_MENU_HEIGHT : Float = 200;
 	private var playerList : Array<PlayerRow>;
+	var background:FlxSprite;
 	
 	public function new() 
 	{
 		super();
 		
+		setupBackground();
 		setupPlayerList();
 		
 		this.setPosition(200, 0);
 		this.scrollFactor = new FlxPoint(0, 0);
 		this.setAll("cameras", [ PlayState.cameraManager.mainCamera], true);
+	}
+	
+	function setupBackground() 
+	{
+		background = new FlxSprite(0, 0);
+		background.makeGraphic(300, 300, 0xFFcccccc);
+		
+		this.add(background);
 	}
 	
 	function setupPlayerList() : Void
