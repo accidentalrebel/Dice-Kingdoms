@@ -27,7 +27,7 @@ enum AIType {
 class EnemyAI
 {
 	var playerScript:Player;
-	var aiType:AIType;
+	public var aiType:AIType;
 	var taskManager:AntTaskManager;
 	
 	public function new(playerScript : Player) 

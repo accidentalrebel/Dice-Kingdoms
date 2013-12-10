@@ -36,7 +36,20 @@ class PauseMenuLayer extends FlxSpriteGroup
 		for ( tPlayer in PlayState.playerManager.playerList )
 		{
 			var player : Player = tPlayer;
-			var playerRow : PlayerRow = new PlayerRow(this, 0, i * 30);
+			var playerName : String = "";
+			var aiType : String = "";
+			if ( player.isHuman )
+			{
+				playerName = "Human";
+				aiType = "None";
+			}
+			else
+			{
+				playerName = "CPU";
+				aiType = Std.string(player.ai.aiType);
+			}
+			
+			var playerRow : PlayerRow = new PlayerRow(this, 0, i * 30, Std.string(i+1), playerName, aiType, Std.string(player.territories.length));
 			i++;
 		}
 	}

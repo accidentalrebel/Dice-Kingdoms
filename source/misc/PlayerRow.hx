@@ -10,23 +10,29 @@ import flixel.text.FlxText;
  */
 class PlayerRow
 {
-	private var nameLabel 	: FlxText;
-	private var aiLabel 	: FlxText;
+	private var positionLabel 		: FlxText;
+	private var nameLabel 			: FlxText;
+	private var aiLabel 			: FlxText;
 	private var territoryCountLabel	: FlxText;
-	private var parent:FlxSpriteGroup;
+	private var parent				: FlxSpriteGroup;
 
-	public function new(tParent : FlxSpriteGroup, xPos : Float, yPos : Float) 
+	public function new(tParent : FlxSpriteGroup, xPos : Float, yPos : Float, position : String, playerName : String, aiType : String, territoryCount : String) 
 	{		
 		parent = tParent;
-		nameLabel = new FlxText(xPos, yPos, 150, "Player Label", 14);
+		
+		positionLabel = new FlxText(xPos, yPos, 20, position, 14);
+		positionLabel.alignment = "center";
+		
+		nameLabel = new FlxText(xPos + positionLabel.width, yPos, 150, playerName, 14);
 		nameLabel.alignment = "center";
 		
-		aiLabel = new FlxText(xPos + 150, yPos, 100, "AI Label", 14);
+		aiLabel = new FlxText(xPos + nameLabel.width + positionLabel.width, yPos, 100, aiType, 14);
 		aiLabel.alignment = "center";
 		
-		territoryCountLabel = new FlxText(xPos + 150 + 100, yPos, 150, "Territory Label", 14);
+		territoryCountLabel = new FlxText(xPos + nameLabel.width + positionLabel.width + aiLabel.width, yPos, 150, territoryCount, 14);
 		aiLabel.alignment = "center";
 		
+		parent.add(positionLabel);
 		parent.add(nameLabel);
 		parent.add(aiLabel);
 		parent.add(territoryCountLabel);
