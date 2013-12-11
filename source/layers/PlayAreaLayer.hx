@@ -358,6 +358,9 @@ class PlayAreaLayer extends FlxGroup
 		{
 			var oldOwner : Player = PlayState.playerManager.getPlayer(territory.ownerNumber);
 			oldOwner.territories.remove(territoryNum);
+			
+			if ( PlayState.pauseMenuLayer != null )
+				PlayState.pauseMenuLayer.setTerritoryCount(territory.ownerNumber, oldOwner.territories.length);
 		}
 			
 		// We now assign to the new owner
@@ -374,6 +377,10 @@ class PlayAreaLayer extends FlxGroup
 				member.drawBoundaries(PlayState.playerManager.getPlayer(playerNum).territoryColor);
 			}
 		}
+		
+		// We update the territory count on the pauseMenuLayer
+		if ( PlayState.pauseMenuLayer != null )
+			PlayState.pauseMenuLayer.setTerritoryCount(playerNum, newOwner.territories.length);
 	}
 	
 	public function checkForClickedTiles(xPos:Float, yPos:Float) 

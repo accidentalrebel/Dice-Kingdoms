@@ -55,7 +55,13 @@ class PauseMenuLayer extends FlxSpriteGroup
 				playerType = Std.string(player.ai.aiType);
 			
 			var playerRow : PlayerRow = new PlayerRow(this, 40, i * 30 + 30, Std.string(i+1), player.territoryColor, playerType, Std.string(player.territories.length));
+			playerList.push(playerRow);
 			i++;
 		}
+	}
+	
+	public function setTerritoryCount(playerNumber : Int, territoryCount : Int)
+	{
+		playerList[playerNumber - 1].setTerritoryCountTo(Std.string(territoryCount));
 	}
 }

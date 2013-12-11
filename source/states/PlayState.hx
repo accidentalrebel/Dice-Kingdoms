@@ -75,8 +75,7 @@ class PlayState extends FlxState
 		PlayState.playArea.assignTerritories();
 		PlayState.playerManager.initializeArmies();
 		PlayState.playArea.setupFinished = true;
-		
-		PlayState.pauseMenuLayer		= new PauseMenuLayer();
+		PlayState.pauseMenuLayer = new PauseMenuLayer();
 		
 		// We arrange the different layers
 		add(PlayState.playArea);

@@ -42,4 +42,9 @@ class PlayerRow
 		parent.add(territoryCountLabel);
 	}
 	
+	public function setTerritoryCountTo(newTerritoryCount : String) 
+	{
+		territoryCountLabel.text = newTerritoryCount;
+	}
+	
 }
