@@ -97,6 +97,7 @@ class GameplayManager
 		
 		PlayState.playerManager.nextPlayer();
 		PlayState.gameGUI.updateDoneButtonVisibility();			
+		PlayState.pauseMenuLayer.hightlightPlayerRow(PlayState.playerManager.currentPlayerNumber-1);
 	}
 	
 	public function checkIfGameHasEnded() 

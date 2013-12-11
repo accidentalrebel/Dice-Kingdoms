@@ -10,9 +10,9 @@ import flixel.text.FlxText;
  */
 class PlayerRow
 {
-	private static inline var FONT_SIZE : Int = 18;
+	public static inline var FONT_SIZE : Int = 18;
 	
-	private var positionLabel 		: FlxText;
+	public var positionLabel 		: FlxText;
 	private var nameLabel 			: FlxText;
 	private var aiLabel 			: FlxText;
 	private var territoryCountLabel	: FlxText;
@@ -46,5 +46,4 @@ class PlayerRow
 	{
 		territoryCountLabel.text = newTerritoryCount;
 	}
-	
 }
