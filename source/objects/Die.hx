@@ -64,7 +64,7 @@ class Die extends FlxSprite
 	
 	function updateColor(colorToUse:Int) 
 	{
-		if ( colorToUse == PlayerColor.LIGHT_BLUE 		
+		if ( colorToUse == PlayerColor.AQUA 		
 			|| colorToUse == PlayerColor.YELLOW
 			|| colorToUse == PlayerColor.WHITE ) 
 		{

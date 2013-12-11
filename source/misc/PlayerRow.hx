@@ -10,27 +10,31 @@ import flixel.text.FlxText;
  */
 class PlayerRow
 {
+	private static inline var FONT_SIZE : Int = 18;
+	
 	private var positionLabel 		: FlxText;
 	private var nameLabel 			: FlxText;
 	private var aiLabel 			: FlxText;
 	private var territoryCountLabel	: FlxText;
 	private var parent				: FlxSpriteGroup;
 
-	public function new(tParent : FlxSpriteGroup, xPos : Float, yPos : Float, position : String, playerName : String, aiType : String, territoryCount : String) 
+	public function new(tParent : FlxSpriteGroup, xPos : Float, yPos : Float, position : String, playerColor : Int, playerType : String, territoryCount : String) 
 	{		
 		parent = tParent;
 		
-		positionLabel = new FlxText(xPos, yPos, 20, position, 14);
+		positionLabel = new FlxText(xPos, yPos, 20, position, FONT_SIZE);
 		positionLabel.alignment = "center";
-		
-		nameLabel = new FlxText(xPos + positionLabel.width, yPos, 100, playerName, 14);
+
+		var colorString : String = PlayerColor.getColorAsString(playerColor);
+		nameLabel = new FlxText(xPos + positionLabel.width, yPos, 120, colorString, FONT_SIZE);
+		nameLabel.color = playerColor;
 		nameLabel.alignment = "center";
 		
-		aiLabel = new FlxText(xPos + nameLabel.width + positionLabel.width, yPos, 150, aiType, 14);
+		aiLabel = new FlxText(xPos + nameLabel.width + positionLabel.width, yPos, 150, playerType, FONT_SIZE);
 		aiLabel.alignment = "center";
 		
-		territoryCountLabel = new FlxText(xPos + nameLabel.width + positionLabel.width + aiLabel.width, yPos, 50, territoryCount, 14);
-		aiLabel.alignment = "center";
+		territoryCountLabel = new FlxText(xPos + nameLabel.width + positionLabel.width + aiLabel.width, yPos, 40, territoryCount, FONT_SIZE);
+		territoryCountLabel.alignment = "center";
 		
 		parent.add(positionLabel);
 		parent.add(nameLabel);

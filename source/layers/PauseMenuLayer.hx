@@ -14,8 +14,9 @@ import states.PlayState;
  */
 class PauseMenuLayer extends FlxSpriteGroup
 {
-	inline public static var PAUSE_MENU_WIDTH : Float = 200;
-	inline public static var PAUSE_MENU_HEIGHT : Float = 200;
+	inline public static var PAUSE_MENU_WIDTH : Float = 400;
+	inline public static var PAUSE_MENU_HEIGHT : Float = 400;
+	
 	private var playerList : Array<PlayerRow>;
 	var background:FlxSprite;
 	
@@ -34,7 +35,7 @@ class PauseMenuLayer extends FlxSpriteGroup
 	function setupBackground() 
 	{
 		background = new FlxSprite(0, 0);
-		background.makeGraphic(300, 300, 0xFFcccccc);
+		background.makeGraphic(PAUSE_MENU_WIDTH, PAUSE_MENU_HEIGHT, 0xCC000000);
 		
 		this.add(background);
 	}
@@ -47,20 +48,13 @@ class PauseMenuLayer extends FlxSpriteGroup
 		for ( tPlayer in PlayState.playerManager.playerList )
 		{
 			var player : Player = tPlayer;
-			var playerName : String = "";
-			var aiType : String = "";
+			var playerType : String = "";
 			if ( player.isHuman )
-			{
-				playerName = "Human";
-				aiType = "None";
-			}
+				playerType = "HUMAN";
 			else
-			{
-				playerName = "CPU";
-				aiType = Std.string(player.ai.aiType);
-			}
+				playerType = Std.string(player.ai.aiType);
 			
-			var playerRow : PlayerRow = new PlayerRow(this, 0, i * 30, Std.string(i+1), playerName, aiType, Std.string(player.territories.length));
+			var playerRow : PlayerRow = new PlayerRow(this, 40, i * 30 + 30, Std.string(i+1), player.territoryColor, playerType, Std.string(player.territories.length));
 			i++;
 		}
 	}
