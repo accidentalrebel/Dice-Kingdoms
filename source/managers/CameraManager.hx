@@ -82,6 +82,8 @@ class CameraManager
 			zoomOut();
 		else
 			zoomIn();
+			
+		PlayState.gameGUI.onCameraScale(currentZoomValue);
 	}
 	
 	/**

@@ -4,6 +4,7 @@ import flixel.addons.ui.FlxButtonPlus;
 import flixel.FlxBasic;
 import flixel.FlxG;
 import flixel.group.FlxGroup;
+import flixel.group.FlxSpriteGroup;
 import flixel.text.FlxText;
 import flixel.ui.FlxButton;
 import flixel.util.FlxPoint;
@@ -17,10 +18,13 @@ import tools.ARFade;
  * ...
  * @author Karlo
  */
-class GameGUILayer extends FlxGroup
+class GameGUILayer extends FlxSpriteGroup
 {
 	private var playerIndicator : FlxText;
 	private var doneButton:FlxButtonPlus;
+	private var zoomButton:FlxButtonPlus;
+	private var pauseButton:FlxButtonPlus;
+	
 	private static inline var BUTTON_HEIGHT:Int = 60;
 	private static inline var BUTTON_WIDTH : Int = 80;
 	private static inline var PADDING : Int = 5;
@@ -32,7 +36,7 @@ class GameGUILayer extends FlxGroup
 		playerIndicator = new FlxText(PADDING, PADDING, 300, "Player 1", 16);
 		add(playerIndicator);
 		
-		var zoomButton : FlxButtonPlus = new FlxButtonPlus(PADDING, Std.int(playerIndicator.height + PADDING)
+		zoomButton = new FlxButtonPlus(PADDING, Std.int(playerIndicator.height + PADDING)
 			, PlayState.cameraManager.toggleZoom, null
 			, "TOGGLE ZOOM", BUTTON_WIDTH, BUTTON_HEIGHT);		
 		add(zoomButton);
@@ -43,7 +47,7 @@ class GameGUILayer extends FlxGroup
 		add(doneButton);
 		
 		//TODO: Consider having a MainStage.width height instead of second guessing all the time
-		var pauseButton : FlxButtonPlus = new FlxButtonPlus(Std.int(PlayState.cameraManager.mainCamera.width - BUTTON_WIDTH - PADDING)
+		pauseButton = new FlxButtonPlus(Std.int(PlayState.cameraManager.mainCamera.width - BUTTON_WIDTH - PADDING)
 			, Std.int(playerIndicator.height + PADDING), PlayState.gameplayManager.pauseGame, null
 			, "PAUSE", BUTTON_WIDTH, BUTTON_HEIGHT);
 		add(pauseButton);
@@ -86,5 +90,22 @@ class GameGUILayer extends FlxGroup
 	{
 		doneButton.active = true;
 		doneButton.visible = true;
+	}
+	
+	public function onCameraScale(newScale : Float) 
+	{
+		this.origin = new FlxPoint();
+		this.scale = new FlxPoint(1 / newScale, 1 / newScale);
+		
+		playerIndicator.x = playerIndicator.y = PADDING / newScale;
+		
+		zoomButton.x = PADDING / newScale;
+		zoomButton.y = (playerIndicator.height + PADDING) / newScale;
+		
+		doneButton.x = PADDING / newScale; 
+		doneButton.y = (playerIndicator.height + BUTTON_HEIGHT + PADDING * 2) / newScale;
+		
+		pauseButton.x = (FlxG.width - BUTTON_WIDTH - PADDING) / newScale ;
+		pauseButton.y = (playerIndicator.height +  PADDING) / newScale;
 	}
 }

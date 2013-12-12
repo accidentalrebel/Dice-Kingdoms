@@ -8,7 +8,7 @@ import flixel.FlxSprite;
  * This is just a substitute to the FlxTween.multivar since it is currently not working. (11/28/2013)
  * @author Karlo
  */
-class ARFade extends FlxBasic
+class ARFade extends FlxSprite
 {
 	var spriteToFade:FlxSprite;
 	var fadeStart : Bool = false;
@@ -24,6 +24,8 @@ class ARFade extends FlxBasic
 	public function init(SpriteToFade : FlxSprite, FadeTo : Float, FadeDuration : Float) 
 	{	
 		this.revive();
+		this.visible = true;
+		this.active = true;
 		
 		fadeStart = false;
 		spriteToFade = SpriteToFade;
@@ -79,5 +81,7 @@ class ARFade extends FlxBasic
 	{
 		fadeStart = false;
 		this.kill();
+		this.visible = false;
+		this.active = false;
 	}
 }
