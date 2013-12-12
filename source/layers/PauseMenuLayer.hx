@@ -85,6 +85,8 @@ class PauseMenuLayer extends FlxSpriteGroup
 	
 	public function show()
 	{
+		PlayState.gameGUI.hideButtons();
+		
 		function setTerritoryCount(playerNumber : Int, territoryCount : Int)
 		{
 			playerList[playerNumber-1].setTerritoryCountTo(Std.string(territoryCount));
@@ -103,11 +105,13 @@ class PauseMenuLayer extends FlxSpriteGroup
 		}
 		
 		// We then highlight the current player
-		hightlightPlayerRow(PlayState.playerManager.currentPlayerNumber-1);
+		hightlightPlayerRow(PlayState.playerManager.currentPlayerNumber - 1);
 	}
 	
 	public function hide()
 	{
+		PlayState.gameGUI.showButtons();
+		
 		this.visible = false;
 	}
 	

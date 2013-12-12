@@ -103,4 +103,20 @@ class GameGUILayer extends FlxSpriteGroup
 		pauseButton.x = (FlxG.width - BUTTON_WIDTH - PADDING) / newScale ;
 		pauseButton.y = (playerIndicator.height +  PADDING) / newScale;
 	}
+	
+	public function hideButtons() 
+	{
+		hideDoneButton();
+		
+		zoomButton.visible = false;
+		zoomButton.active = false;
+	}
+	
+	public function showButtons()
+	{
+		showDoneButton();
+		
+		zoomButton.visible = true;
+		zoomButton.active = true;
+	}
 }
