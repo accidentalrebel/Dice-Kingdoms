@@ -129,8 +129,14 @@ class GameplayManager
 	
 	public function pauseGame()
 	{
+		PlayState.gameGUI.hideButtons();
 		PlayState.pauseMenuLayer.toggleStatus();
 		PlayState.cameraManager.zoomOut();	
+	}
+	
+	public function resumeGame()
+	{
+		PlayState.gameGUI.showButtons();
 	}
 	
 	public function resetGame() 
