@@ -45,6 +45,7 @@ class GameGUILayer extends FlxSpriteGroup
 		pauseButton = new FlxButtonPlus(Std.int(PlayState.cameraManager.mainCamera.width - BUTTON_WIDTH - PADDING)
 			, Std.int(playerIndicator.height + PADDING), PlayState.gameplayManager.pauseGame, null
 			, "PAUSE", BUTTON_WIDTH, BUTTON_HEIGHT);
+		pauseButton.pauseProof = true;
 		add(pauseButton);
 		
 		// Everything in this group does not move from the camera

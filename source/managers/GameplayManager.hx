@@ -129,6 +129,9 @@ class GameplayManager
 	
 	public function pauseGame()
 	{
+		//TODO: Create your own AntTaskManager that follows FlxG.paused
+		FlxG.paused = true;
+		
 		PlayState.gameGUI.hideButtons();
 		PlayState.pauseMenuLayer.toggleStatus();
 		PlayState.cameraManager.zoomOut();	
@@ -136,6 +139,8 @@ class GameplayManager
 	
 	public function resumeGame()
 	{
+		FlxG.paused = false;
+		
 		PlayState.gameGUI.showButtons();
 	}
 	

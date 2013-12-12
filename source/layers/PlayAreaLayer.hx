@@ -15,6 +15,7 @@ import states.PlayState;
  */
 class PlayAreaLayer extends FlxGroup
 {
+	//TODO: Just remove the hexaTiles that has no surrounding same-territory neighbors
 	inline public static var PLAY_AREA_COLUMNS 	: Int = 42;
 	inline public static var PLAY_AREA_ROWS 	: Int = 26;
 	
