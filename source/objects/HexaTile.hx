@@ -1,19 +1,9 @@
 package objects;
-import flash.display.Sprite;
-import flixel.group.FlxGroup;
-import flixel.system.layer.frames.FlxFrame;
-import flixel.util.FlxRandom;
-import managers.PlayerManager;
-import managers.TerritoryManager;
-import objects.Territory;
-import flixel.system.FlxAssets;
 import flixel.FlxSprite;
-import flixel.FlxState;
+import flixel.group.FlxGroup;
 import flixel.text.FlxText;
-import flixel.util.FlxPoint;
-import flixel.util.FlxRect;
+import flixel.util.FlxRandom;
 import states.PlayState;
-import tools.Tools;
 
 /**
  * ...
@@ -21,31 +11,31 @@ import tools.Tools;
  */
 class HexaTile extends FlxSprite
 {
-	inline public static var TILE_WIDTH : Int = 22;
-	inline public static var TILE_HEIGHT : Int = 20;
-	inline public static var LABEL_WIDTH : Int = 30;
-	inline public static var LABEL_HEIGHT : Int = 20;
-	static public inline var TILE_FACE_WIDTH: Float = (HexaTile.TILE_WIDTH / 1.57);		// Refers to the width of the face side of the hexagon
+	inline public static var TILE_WIDTH 	:Int = 22;
+	inline public static var TILE_HEIGHT 	:Int = 20;
+	inline public static var LABEL_WIDTH 	:Int = 30;
+	inline public static var LABEL_HEIGHT 	:Int = 20;
+	static public inline var TILE_FACE_WIDTH:Float = (HexaTile.TILE_WIDTH / 1.57);		// Refers to the width of the face side of the hexagon
 	
-	var col : Int = 0;
-	var row : Int = 0;
-	var parent : FlxGroup = null;
-	var label : FlxText;
+	var col 	:Int = 0;
+	var row 	:Int = 0;
+	var parent	:FlxGroup = null;
+	var label 	:FlxText;
 	var castleGraphic:FlxSprite;
 	
-	public var isCenter : Bool = false;
-	public var isATerritory : Bool = false;
-	public var territoryNumber : Int = 0;
-	public var isMainBase : Bool = false;
-	public var isPicked : Bool = false;
+	public var isCenter 	:Bool = false;
+	public var isATerritory :Bool = false;
+	public var territoryNumber :Int = 0;
+	public var isMainBase 	:Bool = false;
+	public var isPicked 	:Bool = false;
 	
 	// Neighbors
-	public var top : HexaTile = null;
-	public var topRight : HexaTile= null;
-	public var bottomRight : HexaTile = null;
-	public var bottom : HexaTile = null;
-	public var bottomLeft : HexaTile = null;
-	public var topLeft : HexaTile = null;
+	public var top 			:HexaTile = null;
+	public var topRight 	:HexaTile = null;
+	public var bottomRight 	:HexaTile = null;
+	public var bottom 		:HexaTile = null;
+	public var bottomLeft 	:HexaTile = null;
+	public var topLeft 		:HexaTile = null;
 	
 	public function new(parent : FlxGroup, col : Int , row : Int) 
 	{

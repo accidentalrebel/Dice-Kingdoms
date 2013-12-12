@@ -1,9 +1,6 @@
 package managers;
-import flash.events.TouchEvent;
 import flixel.FlxBasic;
 import flixel.FlxG;
-import flixel.system.input.mouse.FlxMouse;
-import flixel.system.input.touch.FlxTouch;
 import flixel.util.FlxMath;
 import flixel.util.FlxPoint;
 import states.PlayState;
@@ -14,10 +11,10 @@ import states.PlayState;
  */
 class InputManager extends FlxBasic
 {	
-	var startTouchPos : FlxPoint = null;
-	var screenDrag : Float = 0.5;
-	var distanceToDrag : Float = 10;
-	var isDragging:Bool = false;
+	var startTouchPos 	: FlxPoint 	= null;
+	var screenDrag 		: Float	 	= 0.5;
+	var distanceToDrag 	: Float 	= 10;
+	var isDragging		: Bool 		= false;
 	
 	public function new() 
 	{
@@ -28,6 +25,8 @@ class InputManager extends FlxBasic
 	{
 		super.update();
 		
+		//TODO: Use FlxG.touches instead of FlxG.mouse
+		//TODO: Add a pinch zoom feature
 		var distanceFromStartTouch : Float = 0;
 		if ( startTouchPos != null )
 			distanceFromStartTouch = FlxMath.getDistance(startTouchPos, new FlxPoint(FlxG.mouse.x, FlxG.mouse.y));

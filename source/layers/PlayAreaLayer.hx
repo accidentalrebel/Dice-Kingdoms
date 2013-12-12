@@ -1,20 +1,12 @@
 package layers;
-import flash.Lib;
-import flash.Memory;
-import flixel.addons.display.FlxSpriteAniRot;
 import flixel.FlxG;
 import flixel.FlxSprite;
+import flixel.FlxState;
 import flixel.group.FlxGroup;
 import flixel.util.FlxRandom;
-import managers.CameraManager;
-import managers.PlayerManager;
-import managers.TerritoryManager;
 import objects.HexaTile;
 import objects.Player;
 import objects.Territory;
-import flixel.FlxBasic;
-import flixel.FlxState;
-import flixel.util.FlxPoint;
 import states.PlayState;
 
 /**
@@ -23,12 +15,12 @@ import states.PlayState;
  */
 class PlayAreaLayer extends FlxGroup
 {
-	inline public static var PLAY_AREA_COLUMNS : Int = 42;
-	inline public static var PLAY_AREA_ROWS : Int = 26;
+	inline public static var PLAY_AREA_COLUMNS 	: Int = 42;
+	inline public static var PLAY_AREA_ROWS 	: Int = 26;
 	
-	public var playAreaArray : Array<Array<HexaTile>>;
-	public var playAreaCanvas:FlxSprite;
-	public var setupFinished : Bool = false;
+	public var playAreaArray 	: Array<Array<HexaTile>>;
+	public var playAreaCanvas	:FlxSprite;
+	public var setupFinished 	: Bool = false;
 	
 	inline public static var areaWidth : Float = (((PlayAreaLayer.PLAY_AREA_COLUMNS) / 2)) * HexaTile.TILE_WIDTH
 		+ ((PlayAreaLayer.PLAY_AREA_COLUMNS) / 2) * HexaTile.TILE_FACE_WIDTH 

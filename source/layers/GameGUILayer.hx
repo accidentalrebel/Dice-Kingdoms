@@ -1,18 +1,11 @@
 package layers;
 import effects.AddArmyEffect;
 import flixel.addons.ui.FlxButtonPlus;
-import flixel.FlxBasic;
 import flixel.FlxG;
-import flixel.group.FlxGroup;
 import flixel.group.FlxSpriteGroup;
 import flixel.text.FlxText;
-import flixel.ui.FlxButton;
 import flixel.util.FlxPoint;
-import managers.CameraManager;
-import managers.GameplayManager;
-import objects.Player;
 import states.PlayState;
-import tools.ARFade;
 
 /**
  * ...
@@ -20,14 +13,14 @@ import tools.ARFade;
  */
 class GameGUILayer extends FlxSpriteGroup
 {
-	private var playerIndicator : FlxText;
-	private var doneButton:FlxButtonPlus;
-	private var zoomButton:FlxButtonPlus;
-	private var pauseButton:FlxButtonPlus;
+	private var playerIndicator :FlxText;
+	private var doneButton		:FlxButtonPlus;
+	private var zoomButton		:FlxButtonPlus;
+	private var pauseButton		:FlxButtonPlus;
 	
-	private static inline var BUTTON_HEIGHT:Int = 60;
-	private static inline var BUTTON_WIDTH : Int = 80;
-	private static inline var PADDING : Int = 5;
+	private static inline var BUTTON_HEIGHT	:Int = 60;
+	private static inline var BUTTON_WIDTH 	:Int = 80;
+	private static inline var PADDING 		:Int = 5;
 	
 	public function new() 
 	{

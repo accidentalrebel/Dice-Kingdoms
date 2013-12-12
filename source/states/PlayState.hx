@@ -1,24 +1,17 @@
 package states;
-import flixel.FlxSprite;
+import flixel.FlxG;
+import flixel.FlxState;
 import flixel.group.FlxGroup;
-import flixel.util.FlxPoint;
 import layers.BattleLayer;
 import layers.GameGUILayer;
 import layers.GameObjectsLayer;
 import layers.PauseMenuLayer;
+import layers.PlayAreaLayer;
 import managers.CameraManager;
 import managers.GameplayManager;
 import managers.InputManager;
 import managers.PlayerManager;
-import flixel.ui.FlxButton;
-import flixel.FlxG;
-import flixel.FlxState;
-import flixel.text.FlxText;
-import flixel.util.FlxMath;
-import layers.PlayAreaLayer;
 import managers.TerritoryManager;
-import objects.HexaTile;
-import tools.Tools;
 
 /**
  * ...
@@ -28,20 +21,20 @@ class PlayState extends FlxState
 {
 	public static var maxTerritories : Int = Math.floor(PlayAreaLayer.PLAY_AREA_ROWS / 5) * Math.floor(PlayAreaLayer.PLAY_AREA_COLUMNS / 5);	
 	
-	static public var territoryPerPlayer:Int;	
-	static public var initialArmyCount:Int = 20;	
-	static public var maxArmyCountPerTerritory : Int = 8;	
+	static public var territoryPerPlayer		: Int;	
+	static public var initialArmyCount			: Int = 20;	
+	static public var maxArmyCountPerTerritory 	: Int = 8;	
 	
-	static public var gameGUI:GameGUILayer;
-	static public var playArea:PlayAreaLayer;
-	static public var battleLayer: BattleLayer;
-	static public var territoryManager:TerritoryManager;
-	static public var gameplayManager:GameplayManager;
-	static public var cameraManager : CameraManager;
-	static public var playerManager:PlayerManager;
-	static public var inputManager:InputManager;
-	static public var gameObjectsLayer: FlxGroup;
-	static public var pauseMenuLayer:PauseMenuLayer;
+	static public var gameGUI			:GameGUILayer;
+	static public var playArea			:PlayAreaLayer;
+	static public var battleLayer		:BattleLayer;
+	static public var territoryManager	:TerritoryManager;
+	static public var gameplayManager	:GameplayManager;
+	static public var cameraManager 	:CameraManager;
+	static public var playerManager		:PlayerManager;
+	static public var inputManager		:InputManager;
+	static public var gameObjectsLayer	:FlxGroup;
+	static public var pauseMenuLayer	:PauseMenuLayer;
 	
 	override public function create():Void 
 	{
