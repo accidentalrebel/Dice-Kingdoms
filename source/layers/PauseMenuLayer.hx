@@ -14,7 +14,8 @@ import states.PlayState;
  * @author Karlo
  */
 class PauseMenuLayer extends FlxSpriteGroup
-{
+{	
+	//TODO: Add column labels
 	inline public static var PAUSE_MENU_WIDTH : Float = 400;
 	inline public static var PAUSE_MENU_HEIGHT : Float = 400;
 	
@@ -81,5 +82,23 @@ class PauseMenuLayer extends FlxSpriteGroup
 	public function setTerritoryCount(playerNumber : Int, territoryCount : Int)
 	{
 		playerList[playerNumber-1].setTerritoryCountTo(Std.string(territoryCount));
+	}
+	
+	public function show()
+	{
+		this.visible = true;
+	}
+	
+	public function hide()
+	{
+		this.visible = false;
+	}
+	
+	public function toggleStatus() 
+	{
+		if ( this.visible )
+			hide();
+		else
+			show();
 	}
 }
