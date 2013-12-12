@@ -23,7 +23,10 @@ class CameraManager
 	
 	public function new() 
 	{
+		//TODO: Use FlxCamera.follow with lerp to add smooth camera switching
+		//TODO: Try to use FLxCamera.bounds as well to bound the camera from moving outside
 		//TODO: Add a pinch zoom feature
+		
 		var topBarHeight : Int = 60;
 		
 		// First we get the mainCamera
