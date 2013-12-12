@@ -38,7 +38,9 @@ class GameGUILayer extends FlxSpriteGroup
 		
 		zoomButton = new FlxButtonPlus(PADDING, Std.int(playerIndicator.height + PADDING)
 			, PlayState.cameraManager.toggleZoom, null
-			, "TOGGLE ZOOM", BUTTON_WIDTH, BUTTON_HEIGHT);		
+			, "TOGGLE ZOOM", BUTTON_WIDTH, BUTTON_HEIGHT);	
+		zoomButton.buttonNormal.loadGraphic("assets/buttonTest.png", false, false, BUTTON_WIDTH, BUTTON_HEIGHT);
+		zoomButton.buttonHighlight.loadGraphic("assets/buttonTestHighlight.png", false, false, BUTTON_WIDTH, BUTTON_HEIGHT);
 		add(zoomButton);
 		
 		doneButton = new FlxButtonPlus(PADDING, Std.int(playerIndicator.height + BUTTON_HEIGHT + PADDING * 2)
