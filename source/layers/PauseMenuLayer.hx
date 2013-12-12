@@ -72,21 +72,38 @@ class PauseMenuLayer extends FlxSpriteGroup
 		this.setPosition(200, 0);
 		this.scrollFactor = new FlxPoint(0, 0);
 		this.setAll("cameras", [ PlayState.cameraManager.mainCamera], true);
+		
+		hide();
 	}
 	
-	public function hightlightPlayerRow(rowNumber : Int)
+	function hightlightPlayerRow(rowNumber : Int)
 	{
 		highlighterSprite.y = playerList[rowNumber].positionLabel.y;
-	}
-	
-	public function setTerritoryCount(playerNumber : Int, territoryCount : Int)
-	{
-		playerList[playerNumber-1].setTerritoryCountTo(Std.string(territoryCount));
+		//TODO: Mark those who are dead as dead
+		//TODO: Only do the updating when the pause menu is shown
 	}
 	
 	public function show()
 	{
+		function setTerritoryCount(playerNumber : Int, territoryCount : Int)
+		{
+			playerList[playerNumber-1].setTerritoryCountTo(Std.string(territoryCount));
+		}
+		
 		this.visible = true;
+		
+		// We go through each player and update its territory count
+		var i : Int = 1;
+		for ( tPlayerRow in playerList )
+		{
+			var playerRow : PlayerRow = tPlayerRow;
+			var player : Player = PlayState.playerManager.getPlayer(i);
+			setTerritoryCount(i, player.territories.length);
+			i++;
+		}
+		
+		// We then highlight the current player
+		hightlightPlayerRow(PlayState.playerManager.currentPlayerNumber-1);
 	}
 	
 	public function hide()
