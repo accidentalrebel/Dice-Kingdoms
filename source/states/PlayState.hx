@@ -55,7 +55,7 @@ class PlayState extends FlxState
 		PlayState.gameplayManager		= new GameplayManager();
 		
 		// We setup the input Manager
-		PlayState.inputManager 		= new InputManager();
+		PlayState.inputManager 			= new InputManager();
 		add(PlayState.inputManager);
 		
 		// We setup the layers
@@ -64,18 +64,18 @@ class PlayState extends FlxState
 		PlayState.gameObjectsLayer		= new GameObjectsLayer();
 		
 		// We setup the territory manager
-		PlayState.territoryManager 	= new TerritoryManager();
+		PlayState.territoryManager 		= new TerritoryManager();
 		
 		// We setup the playArea and player manager
-		PlayState.playArea 			= new PlayAreaLayer();
+		PlayState.playArea 				= new PlayAreaLayer();
 		PlayState.playArea.init(this);
 		PlayState.playArea.setupTerritories();	
 		
-		PlayState.playerManager = new PlayerManager();
+		PlayState.playerManager 		= new PlayerManager();
 		PlayState.playArea.assignTerritories();
 		PlayState.playerManager.initializeArmies();
 		PlayState.playArea.setupFinished = true;
-		PlayState.pauseMenuLayer = new PauseMenuLayer();
+		PlayState.pauseMenuLayer 		= new PauseMenuLayer();
 		
 		// We arrange the different layers
 		add(PlayState.playArea);
@@ -90,7 +90,7 @@ class PlayState extends FlxState
 		PlayState.battleLayer.setAll("cameras", [ PlayState.cameraManager.topBarCamera ], true);
 		PlayState.gameGUI.setAll("cameras", [ PlayState.cameraManager.mainCamera ]);
 		
-		PlayState.gameGUI.setupPauseButton();
+		// We start the game
 		PlayState.gameplayManager.startGame();
 	}
 }

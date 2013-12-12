@@ -128,6 +128,11 @@ class GameplayManager
 			currentPlayer.ai.startPlanning();
 	}
 	
+	public function pauseGame()
+	{
+		PlayState.pauseMenuLayer.toggleStatus();
+	}
+	
 	public function resetGame() 
 	{
 		FlxG.resetGame();
