@@ -64,13 +64,13 @@ class Die extends FlxSprite
 		dieFace.visible = false;
 	}
 	
-	function updateFace(frameIndex : Int = 0) 
+	public function updateDieFace(frameIndex : Int = 0) 
 	{
 		dieFace.animation.frameIndex = frameIndex;
 		currentFaceIndex = frameIndex;
 	}
 	
-	function updateColor(colorToUse:Int) 
+	public function updateDieColor(colorToUse:Int) 
 	{
 		if ( colorToUse == PlayerColor.AQUA 		
 			|| colorToUse == PlayerColor.YELLOW
@@ -90,17 +90,11 @@ class Die extends FlxSprite
 		this.color = colorToUse;
 	}
 	
-	public function updateDie(attackerColor:Int, frameIndex:Int) 
-	{
-		updateColor(attackerColor);
-		updateFace(frameIndex);
-	}
-	
 	/**
 	 * Stats the rolling animation
 	 * @param	tDuration		The duration of the rollAnimation
 	 */
-	public function rollAnimation(tDuration : Float = 0.25) 
+	public function rollAnimation(tDuration : Float) 
 	{
 		if ( taskManager != null )
 			taskManager.clear();
@@ -118,6 +112,6 @@ class Die extends FlxSprite
 	function revealRoll() 
 	{
 		dieFace.animation.pause();
-		updateFace(currentFaceIndex);
+		updateDieFace(currentFaceIndex);
 	}
 }

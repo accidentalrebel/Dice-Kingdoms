@@ -7,6 +7,7 @@ import flixel.text.FlxText;
 import flixel.util.FlxPoint;
 import managers.CameraManager;
 import objects.Die;
+import tools.ARTaskManager;
 
 /**
  * ...
@@ -15,6 +16,7 @@ import objects.Die;
 class BattleLayer extends FlxGroup
 {
 	inline static var DIE_PADDING : Int = Die.DIE_DIMENSION + 5;
+	private static inline var DIE_ROLL_DURATION : Float = 0.25;
  	
 	var battleBackground:FlxSprite;
 	var battleResult:FlxText;
@@ -97,10 +99,20 @@ class BattleLayer extends FlxGroup
 		reset(dieResultListRight);
 	}
 	
-	public function updateElements(attackerRoll:Int, attackerDiceResults:Array<Int>
-		, defenderRoll:Int, defenderDiceResults:Array<Int>, attackerColor : Int, defenderColor : Int)
+	public function hideBattleResults()
 	{
+		finalResultLeft.visible = false;
+		finalResultRight.visible = false;
+	}
+	
+	public function showBattleResults(attackerRoll:Int, attackerDiceResults:Array<Int>
+		, defenderRoll:Int, defenderDiceResults:Array<Int>)
+	{	
+		//TODO: Just hide the uneeded dice, do not hide all
 		resetDieResults();
+		
+		finalResultLeft.visible = true;
+		finalResultRight.visible = true;
 		
 		finalResultLeft.text = Std.string(attackerRoll);
 		finalResultRight.text = Std.string(defenderRoll);
@@ -110,8 +122,8 @@ class BattleLayer extends FlxGroup
 			var die : Die = dieResultListLeft[i];
 			if ( attackerDiceResults[i] != 0 )
 			{	
-				die.updateDie(attackerColor, attackerDiceResults[i] - 1);
-				die.rollAnimation();
+				die.updateDieFace(attackerDiceResults[i] - 1);
+				die.show();
 			}
 		}
 		
@@ -120,9 +132,27 @@ class BattleLayer extends FlxGroup
 			var die : Die = dieResultListRight[i];
 			if ( defenderDiceResults[i] != 0 )
 			{
-				die.updateDie(defenderColor, defenderDiceResults[i] - 1);
-				die.rollAnimation();
+				die.updateDieFace(defenderDiceResults[i] - 1);
+				die.show();
 			}
+		}
+	}
+	
+	public function rollAllDice(diceForLeft : Int, colorForLeft : Int, diceForRight : Int, colorForRight : Int)
+	{
+		for ( i in 0...diceForLeft )
+		{
+			var die : Die = dieResultListLeft[i];	
+			die.updateDieColor(colorForLeft);
+			die.rollAnimation(DIE_ROLL_DURATION);
+			//TODO: Consider hiding the uneeded dice here
+		}
+		
+		for ( i in 0...diceForRight )
+		{
+			var die : Die = dieResultListRight[i];
+			die.updateDieColor(colorForRight);
+			die.rollAnimation(DIE_ROLL_DURATION);
 		}
 	}
 }

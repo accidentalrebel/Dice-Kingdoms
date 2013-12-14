@@ -47,7 +47,7 @@ class GameplayManager
 				// We check if what we clicked is a neighbor of the selected territory 
 				if ( PlayState.territoryManager.getTerritory(selectedTerritory).checkIfEnemyNeighbor(clickedTile.territoryNumber) )
 				{
-					BattleManager.startAttack(selectedTerritory, clickedTile.territoryNumber);
+					PlayState.battleManager.startAttack(selectedTerritory, clickedTile.territoryNumber);
 					selectedTerritory = PlayState.playArea.deselectTerritory(selectedTerritory);					
 				}
 				// We check if we clicked the same territory

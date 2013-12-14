@@ -132,7 +132,7 @@ class EnemyAI
 					taskManager.addPause(0.25);
 					
 					// We then start the battle and unhighlight territories
-					taskManager.addInstantTask(this, BattleManager.startAttack, [territory.territoryNumber, neighborTerritory.territoryNumber], true);
+					taskManager.addInstantTask(this, PlayState.battleManager.startAttack, [territory.territoryNumber, neighborTerritory.territoryNumber], true);
 					taskManager.addInstantTask(this, PlayState.playArea.deselectTerritory, [territory.territoryNumber], true);
 					taskManager.addInstantTask(this, PlayState.playArea.deselectTerritory, [neighborTerritory.territoryNumber], true);
 					

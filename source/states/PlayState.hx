@@ -7,6 +7,7 @@ import layers.GameGUILayer;
 import layers.GameObjectsLayer;
 import layers.PauseMenuLayer;
 import layers.PlayAreaLayer;
+import managers.BattleManager;
 import managers.CameraManager;
 import managers.GameplayManager;
 import managers.InputManager;
@@ -27,6 +28,7 @@ class PlayState extends FlxState
 	
 	static public var gameGUI			:GameGUILayer;
 	static public var playArea			:PlayAreaLayer;
+	static public var battleManager		:BattleManager;
 	static public var battleLayer		:BattleLayer;
 	static public var territoryManager	:TerritoryManager;
 	static public var gameplayManager	:GameplayManager;
@@ -46,6 +48,7 @@ class PlayState extends FlxState
 		
 		PlayState.cameraManager 		= new CameraManager();
 		PlayState.gameplayManager		= new GameplayManager();
+		PlayState.battleManager			= new BattleManager();
 		
 		// We setup the input Manager
 		PlayState.inputManager 			= new InputManager();
