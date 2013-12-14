@@ -129,7 +129,7 @@ class EnemyAI
 					// We highlight the attacker and the one being attacked
 					taskManager.addInstantTask(this, PlayState.playArea.selectTerritory, [territory], true);
 					taskManager.addInstantTask(this, PlayState.playArea.selectTerritory, [neighborTerritory, true], true);
-					taskManager.addPause(0.25);
+					taskManager.addPause(0.5);
 					
 					// We then start the battle and unhighlight territories
 					taskManager.addInstantTask(this, PlayState.battleManager.startAttack, [territory.territoryNumber, neighborTerritory.territoryNumber], true);
@@ -140,7 +140,7 @@ class EnemyAI
 					if ( PlayState.cameraManager.isZoomedIn )
 						taskManager.addPause(0.25);
 					
-					taskManager.addPause(0.25);
+					taskManager.addPause(1);
 					taskManager.addInstantTask(this, getNextMove, null, true);
 					break;
 				}

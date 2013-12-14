@@ -92,8 +92,8 @@ class BattleManager
 		PlayState.battleLayer.hideBattleResults();
 			
 		taskManager = new ARTaskManager(false);
-		taskManager.addPause(0.25);
-		taskManager.addInstantTask(this, startBattle); 
+		taskManager.addPause(0.5);
+		taskManager.addInstantTask(this, startBattle);
 		
 		//TODO: Consider adding a pause after a battle
 		return true;

@@ -16,7 +16,9 @@ import tools.ARTaskManager;
 class BattleLayer extends FlxGroup
 {
 	inline static var DIE_PADDING : Int = Die.DIE_DIMENSION + 5;
-	private static inline var DIE_ROLL_DURATION : Float = 0.25;
+	
+	//TODO: Remove this and have battleManager pass in the dieRollDuration
+	private static inline var DIE_ROLL_DURATION : Float = 0.5;
  	
 	var battleBackground:FlxSprite;
 	var battleResult:FlxText;
