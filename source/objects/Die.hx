@@ -1,8 +1,10 @@
 package objects;
 import flixel.FlxSprite;
 import flixel.group.FlxGroup;
+import flixel.util.FlxRandom;
 import misc.PlayerColor;
 import states.PlayState;
+import tools.ARTaskManager;
 
 /**
  * ...
@@ -16,6 +18,8 @@ class Die extends FlxSprite
 	var whiteDieFace:FlxSprite;
 	var blackDieFace:FlxSprite;
 	var parent:FlxGroup;
+	var taskManager:ARTaskManager;
+	var currentFaceIndex:Int;
 
 	public function new(tParent : FlxGroup, xPos : Float, yPos : Float) 
 	{
@@ -26,11 +30,11 @@ class Die extends FlxSprite
 		this.loadGraphic("assets/dieBG.png", false, false, DIE_DIMENSION, DIE_DIMENSION, true);
 		
 		whiteDieFace = new FlxSprite(xPos, yPos);
-		whiteDieFace.loadGraphic("assets/dice-white.png", false, false, DIE_DIMENSION, DIE_DIMENSION, false);
+		whiteDieFace.loadGraphic("assets/dice-white.png", true, false, DIE_DIMENSION, DIE_DIMENSION, false);
 		whiteDieFace.visible = false;
 		
 		blackDieFace = new FlxSprite(xPos, yPos);
-		blackDieFace.loadGraphic("assets/dice-black.png", false, false, DIE_DIMENSION, DIE_DIMENSION, false);
+		blackDieFace.loadGraphic("assets/dice-black.png", true, false, DIE_DIMENSION, DIE_DIMENSION, false);
 		blackDieFace.visible = false;
 		
 		dieFace = blackDieFace;
@@ -60,6 +64,7 @@ class Die extends FlxSprite
 	function updateFace(frameIndex : Int = 0) 
 	{
 		dieFace.animation.frameIndex = frameIndex;
+		currentFaceIndex = frameIndex;
 	}
 	
 	function updateColor(colorToUse:Int) 
@@ -86,5 +91,31 @@ class Die extends FlxSprite
 	{
 		updateColor(attackerColor);
 		updateFace(frameIndex);
+	}
+	
+	/**
+	 * Stats the rolling animation
+	 * @param	tDuration		The duration of the rollAnimation
+	 */
+	public function rollAnimation(tDuration : Float = 0.25) 
+	{
+		if ( taskManager != null )
+			taskManager.clear();
+		
+		show();
+		dieFace.animation.add("roll", [0, 1, 2, 3, 4, 5], 10, true);
+		dieFace.animation.play("roll", false, FlxRandom.intRanged(0, 5));
+		taskManager = new ARTaskManager(false);
+		taskManager.addPause(tDuration);
+		taskManager.addInstantTask(this, revealRoll);
+	}
+	
+	/**
+	 * Reveals the actual roll value
+	 */
+	function revealRoll() 
+	{
+		dieFace.animation.pause();
+		updateFace(currentFaceIndex);
 	}
 }

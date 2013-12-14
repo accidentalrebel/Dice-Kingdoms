@@ -82,7 +82,7 @@ class BattleLayer extends FlxGroup
 		battleResult.text = battleResultText;
 	}
 	
-	function resetDieResultTexts()
+	function resetDieResults()
 	{
 		function reset(dieResultList : Array<Die>)
 		{
@@ -100,7 +100,7 @@ class BattleLayer extends FlxGroup
 	public function updateElements(attackerRoll:Int, attackerDiceResults:Array<Int>
 		, defenderRoll:Int, defenderDiceResults:Array<Int>, attackerColor : Int, defenderColor : Int)
 	{
-		resetDieResultTexts();
+		resetDieResults();
 		
 		finalResultLeft.text = Std.string(attackerRoll);
 		finalResultRight.text = Std.string(defenderRoll);
@@ -111,7 +111,7 @@ class BattleLayer extends FlxGroup
 			if ( attackerDiceResults[i] != 0 )
 			{	
 				die.updateDie(attackerColor, attackerDiceResults[i] - 1);
-				die.show();
+				die.rollAnimation();
 			}
 		}
 		
@@ -121,7 +121,7 @@ class BattleLayer extends FlxGroup
 			if ( defenderDiceResults[i] != 0 )
 			{
 				die.updateDie(defenderColor, defenderDiceResults[i] - 1);
-				die.show();
+				die.rollAnimation();
 			}
 		}
 	}
