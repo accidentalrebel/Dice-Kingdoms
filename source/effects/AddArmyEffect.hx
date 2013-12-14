@@ -1,5 +1,5 @@
 package effects;
-import flixel.addons.plugin.taskManager.AntTaskManager;
+import tools.ARTaskManager;
 import flixel.text.FlxText;
 import flixel.tweens.FlxTween;
 import states.PlayState;
@@ -13,7 +13,7 @@ class AddArmyEffect extends FlxText
 {
 	inline public static var EFFECT_DURATION = 1;
 	
-	var taskManager : AntTaskManager;
+	var taskManager : ARTaskManager;
 	
 	public function new()
 	{
@@ -33,7 +33,7 @@ class AddArmyEffect extends FlxText
 		if ( taskManager != null )
 			taskManager.clear();
 			
-		taskManager = new AntTaskManager();
+		taskManager = new ARTaskManager();
 		taskManager.addInstantTask(this, FlxTween.linearMotion, [this, xPos, yPos, xPos, yPos - 20, EFFECT_DURATION, true]);
 		taskManager.addPause(EFFECT_DURATION / 2);
 		taskManager.addInstantTask(this, fadeOut);

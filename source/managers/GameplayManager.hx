@@ -1,6 +1,6 @@
 package managers;
 import effects.AddArmyEffect;
-import flixel.addons.plugin.taskManager.AntTaskManager;
+import tools.ARTaskManager;
 import flixel.util.FlxPoint;
 import objects.HexaTile;
 import objects.Player;
@@ -17,7 +17,7 @@ import states.PlayState;
 class GameplayManager
 {
 	private var selectedTerritory : Int = -1;
-	private var taskManager:AntTaskManager;
+	private var taskManager:ARTaskManager;
 	
 	public function new()
 	{
@@ -80,7 +80,7 @@ class GameplayManager
 		if ( taskManager != null )
 			taskManager.clear();
 		
-		taskManager = new AntTaskManager(false);
+		taskManager = new ARTaskManager(false);
 		taskManager.addPause(0.25);
 		taskManager.addInstantTask(this, PlayState.playerManager.currentPlayer.randomlyAssignArmies, [PlayState.playerManager.currentPlayer.territories.length], true);
 		taskManager.addPause(AddArmyEffect.EFFECT_DURATION);
@@ -129,7 +129,7 @@ class GameplayManager
 	
 	public function pauseGame()
 	{
-		//TODO: Create your own AntTaskManager that follows FlxG.paused
+		//TODO: Create your own ARTaskManager that follows FlxG.paused
 		FlxG.paused = true;
 		
 		PlayState.gameGUI.hideButtons();

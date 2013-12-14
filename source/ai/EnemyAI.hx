@@ -1,5 +1,4 @@
 package ai;
-import flixel.addons.plugin.taskManager.AntTaskManager;
 import flixel.FlxG;
 import flixel.util.FlxArrayUtil;
 import flixel.util.FlxRandom;
@@ -11,6 +10,7 @@ import managers.TerritoryManager;
 import objects.Player;
 import objects.Territory;
 import states.PlayState;
+import tools.ARTaskManager;
 import tools.Tools;
 
 /**
@@ -28,7 +28,7 @@ class EnemyAI
 {
 	var playerScript:Player;
 	public var aiType:AIType;
-	var taskManager:AntTaskManager;
+	var taskManager:ARTaskManager;
 	
 	public function new(playerScript : Player) 
 	{
@@ -89,7 +89,7 @@ class EnemyAI
 			if ( taskManager != null )
 				taskManager.clear();
 			
-			taskManager = new AntTaskManager(false);
+			taskManager = new ARTaskManager(false);
 			var territory : Null<Territory> = getAvailableTerritories();
 			
 			// If no territory is availble, we now end our turn
