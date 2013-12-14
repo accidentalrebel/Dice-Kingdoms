@@ -13,6 +13,7 @@ import tools.ARTaskManager;
 class Die extends FlxSprite
 {
 	inline public static var DIE_DIMENSION : Int = 30;
+	private static inline var DIE_ROLL_SPEED : Int = 15;
 	
 	var dieFace:FlxSprite;
 	var whiteDieFace:FlxSprite;
@@ -31,10 +32,12 @@ class Die extends FlxSprite
 		
 		whiteDieFace = new FlxSprite(xPos, yPos);
 		whiteDieFace.loadGraphic("assets/dice-white.png", true, false, DIE_DIMENSION, DIE_DIMENSION, false);
+		whiteDieFace.animation.add("roll", [0, 1, 2, 3, 4, 5], DIE_ROLL_SPEED, true);
 		whiteDieFace.visible = false;
 		
 		blackDieFace = new FlxSprite(xPos, yPos);
 		blackDieFace.loadGraphic("assets/dice-black.png", true, false, DIE_DIMENSION, DIE_DIMENSION, false);
+		blackDieFace.animation.add("roll", [0, 1, 2, 3, 4, 5], DIE_ROLL_SPEED, true);
 		blackDieFace.visible = false;
 		
 		dieFace = blackDieFace;
@@ -103,8 +106,7 @@ class Die extends FlxSprite
 			taskManager.clear();
 		
 		show();
-		dieFace.animation.add("roll", [0, 1, 2, 3, 4, 5], 10, true);
-		dieFace.animation.play("roll", false, FlxRandom.intRanged(0, 5));
+		dieFace.animation.play("roll", true, FlxRandom.intRanged(0, 5));
 		taskManager = new ARTaskManager(false);
 		taskManager.addPause(tDuration);
 		taskManager.addInstantTask(this, revealRoll);
