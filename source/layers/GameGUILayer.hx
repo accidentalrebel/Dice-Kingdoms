@@ -22,6 +22,8 @@ class GameGUILayer extends FlxSpriteGroup
 	private static inline var BUTTON_HEIGHT	:Int = 60;
 	private static inline var BUTTON_WIDTH 	:Int = 80;
 	private static inline var PADDING 		:Int = 5;
+	public var attackerBattleResult:BattleResult;
+	public var defenderBattleResult:BattleResult;
 	
 	public function new() 
 	{
@@ -53,9 +55,9 @@ class GameGUILayer extends FlxSpriteGroup
 		this.setAll("scrollFactor", new FlxPoint(0, 0));
 		
 		// We setup the battleResult sprites
-		var attackerBattleResult : BattleResult = new BattleResult(100, 100);
+		attackerBattleResult = new BattleResult(100, 100);
 		this.add(attackerBattleResult);
-		var defenderBattleResult : BattleResult = new BattleResult(200, 200);	
+		defenderBattleResult = new BattleResult(200, 200);	
 		this.add(defenderBattleResult);
 	}
 	

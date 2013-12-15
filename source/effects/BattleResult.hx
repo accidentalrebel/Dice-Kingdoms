@@ -37,7 +37,6 @@ class BattleResult extends FlxSpriteGroup
 	public function attachToTerritory(territoryNumber : Int)
 	{
 		var territoryToAttachTo : Territory = PlayState.territoryManager.getTerritory(territoryNumber);
-		this.x = territoryToAttachTo.centerTile.x ;
-		this.y = territoryToAttachTo.centerTile.y ;
+		this.setPosition(territoryToAttachTo.centerTile.x, this.y = territoryToAttachTo.centerTile.y);
 	}
 }

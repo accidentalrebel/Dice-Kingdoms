@@ -88,5 +88,8 @@ class PlayState extends FlxState
 		
 		// We start the game
 		PlayState.gameplayManager.startGame();
+		
+		PlayState.gameGUI.attackerBattleResult.attachToTerritory(1);
+		PlayState.gameGUI.defenderBattleResult.attachToTerritory(5);
 	}
 }
