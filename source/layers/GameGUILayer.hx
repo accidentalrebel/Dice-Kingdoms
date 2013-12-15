@@ -49,12 +49,14 @@ class GameGUILayer extends FlxSpriteGroup
 		pauseButton.pauseProof = true;
 		add(pauseButton);
 		
-		// We setup the battleResult sprites
-		var attackerBattleResult : BattleResult = new BattleResult(this, 100, 100);
-		var defenderBattleResult : BattleResult = new BattleResult(this, 200, 200);
-		
 		// Everything in this group does not move from the camera
 		this.setAll("scrollFactor", new FlxPoint(0, 0));
+		
+		// We setup the battleResult sprites
+		var attackerBattleResult : BattleResult = new BattleResult(100, 100);
+		this.add(attackerBattleResult);
+		var defenderBattleResult : BattleResult = new BattleResult(200, 200);	
+		this.add(defenderBattleResult);
 	}
 	
 	public function spawnAddArmyEffect(xPos : Float = 0, yPos : Float = 0, amount : Int = 0 )
