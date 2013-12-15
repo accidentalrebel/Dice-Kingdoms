@@ -81,20 +81,36 @@ class BattleLayer extends FlxGroup
 		this.setAll("scrollFactor", new FlxPoint(0, 0));
 	}
 	
+	/**
+	 * Updates the battle result text
+	 * @param	battleResultText	The text to display
+	 */
 	public function updateTexts(battleResultText : String)
 	{
 		battleResult.text = battleResultText;
 	}
 	
+	/**
+	 * Hides the battle results
+	 */
 	public function hideBattleResults()
 	{
 		finalResultLeft.visible = false;
 		finalResultRight.visible = false;
 	}
 	
+	/**
+	 * Shows the battle results. Intended to be called after the roll animation of the dice.
+	 * @param	attackerRoll			The attacker's total roll count
+	 * @param	attackerDiceResults		The dice result list for the attacker
+	 * @param	defenderRoll			The defender's total roll count
+	 * @param	defenderDiceResults		The dice result list for the defender
+	 */
 	public function showBattleResults(attackerRoll:Int, attackerDiceResults:Array<Int>
 		, defenderRoll:Int, defenderDiceResults:Array<Int>)
 	{	
+		//TODO: Consider having the computation for the attacker Roll here
+		
 		finalResultLeft.visible = true;
 		finalResultRight.visible = true;
 		
@@ -122,6 +138,13 @@ class BattleLayer extends FlxGroup
 		}
 	}
 	
+	/**
+	 * Runs a visual animation of the dice. 
+	 * @param	diceForLeft		The number of dice to roll for the left dice list
+	 * @param	colorForLeft	The color of the dice for the left dice list
+	 * @param	diceForRight	The number of dice to roll for the right dice list
+	 * @param	colorForRight	The color of the dice for the right dice list
+	 */
 	public function rollAllDice(diceForLeft : Int, colorForLeft : Int, diceForRight : Int, colorForRight : Int)
 	{
 		function rollDiceList(dieArray : Array<Die>, numToShow : Int, dieColor : Int)
