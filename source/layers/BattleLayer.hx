@@ -124,34 +124,25 @@ class BattleLayer extends FlxGroup
 	
 	public function rollAllDice(diceForLeft : Int, colorForLeft : Int, diceForRight : Int, colorForRight : Int)
 	{
-		var i : Int = 0;
-		for ( tDie in dieResultListLeft )
+		function rollDiceList(dieArray : Array<Die>, numToShow : Int, dieColor : Int)
 		{
-			var die : Die = tDie;	
-			if ( i < diceForLeft )
+			var i : Int = 0;
+			for ( tDie in dieArray )
 			{
-				die.updateDieColor(colorForLeft);
-				die.rollAnimation(DIE_ROLL_DURATION);
+				var die : Die = tDie;	
+				if ( i < numToShow )
+				{
+					die.updateDieColor(dieColor);
+					die.rollAnimation(DIE_ROLL_DURATION);
+				}
+				else
+					die.hide();
+					
+				i++;
 			}
-			else
-				die.hide();
-				
-			i++;
 		}
 		
-		i = 0;
-		for ( tDie in dieResultListRight )
-		{
-			var die : Die = tDie;
-			if ( i < diceForRight )
-			{
-				die.updateDieColor(colorForRight);
-				die.rollAnimation(DIE_ROLL_DURATION);
-			}
-			else
-				die.hide();
-			
-			i++;
-		}
+		rollDiceList(dieResultListLeft, diceForLeft, colorForLeft);
+		rollDiceList(dieResultListRight, diceForRight, colorForRight);
 	}
 }
