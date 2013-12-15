@@ -127,8 +127,14 @@ class EnemyAI
 					taskManager.addPause(0.15);
 					
 					// We highlight the attacker and the one being attacked
-					taskManager.addInstantTask(this, PlayState.playArea.selectTerritory, [territory], true);
-					taskManager.addInstantTask(this, PlayState.playArea.selectTerritory, [neighborTerritory, true], true);
+					function selectInvolvedTerritories()
+					{
+						PlayState.playArea.selectTerritory(territory);
+						PlayState.playArea.selectTerritory(neighborTerritory);
+						PlayState.gameGUI.attackerBattleResult.attachToTerritory(territory.territoryNumber);
+						PlayState.gameGUI.defenderBattleResult.attachToTerritory(neighborTerritory.territoryNumber);	
+					}
+					taskManager.addInstantTask(this, selectInvolvedTerritories, [territory], true);
 					taskManager.addPause(0.5);
 					
 					// We then start the battle and unhighlight territories

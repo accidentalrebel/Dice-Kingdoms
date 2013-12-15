@@ -2,6 +2,7 @@ package effects;
 import flixel.FlxSprite;
 import flixel.group.FlxSpriteGroup;
 import flixel.text.FlxText;
+import objects.HexaTile;
 import objects.Territory;
 import states.PlayState;
 
@@ -37,6 +38,6 @@ class BattleResult extends FlxSpriteGroup
 	public function attachToTerritory(territoryNumber : Int)
 	{
 		var territoryToAttachTo : Territory = PlayState.territoryManager.getTerritory(territoryNumber);
-		this.setPosition(territoryToAttachTo.centerTile.x, this.y = territoryToAttachTo.centerTile.y);
+		this.setPosition(territoryToAttachTo.centerTile.x + HexaTile.TILE_WIDTH / 2 - battleSprite.width / 2, territoryToAttachTo.centerTile.y - 40);
 	}
 }

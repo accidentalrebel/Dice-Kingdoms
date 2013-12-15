@@ -90,7 +90,7 @@ class BattleManager
 		}
 		
 		PlayState.battleLayer.hideBattleResults();
-			
+		
 		taskManager = new ARTaskManager(false);
 		taskManager.addPause(0.5);
 		taskManager.addInstantTask(this, startBattle);
