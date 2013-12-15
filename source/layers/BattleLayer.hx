@@ -86,21 +86,6 @@ class BattleLayer extends FlxGroup
 		battleResult.text = battleResultText;
 	}
 	
-	function resetDieResults()
-	{
-		function reset(dieResultList : Array<Die>)
-		{
-			for ( tDie in dieResultList )
-			{
-				var die :Die = tDie;
-				die.hide();
-			}
-		}
-		
-		reset(dieResultListLeft);
-		reset(dieResultListRight);
-	}
-	
 	public function hideBattleResults()
 	{
 		finalResultLeft.visible = false;
@@ -110,9 +95,6 @@ class BattleLayer extends FlxGroup
 	public function showBattleResults(attackerRoll:Int, attackerDiceResults:Array<Int>
 		, defenderRoll:Int, defenderDiceResults:Array<Int>)
 	{	
-		//TODO: Just hide the uneeded dice, do not hide all
-		resetDieResults();
-		
 		finalResultLeft.visible = true;
 		finalResultRight.visible = true;
 		
@@ -142,19 +124,34 @@ class BattleLayer extends FlxGroup
 	
 	public function rollAllDice(diceForLeft : Int, colorForLeft : Int, diceForRight : Int, colorForRight : Int)
 	{
-		for ( i in 0...diceForLeft )
+		var i : Int = 0;
+		for ( tDie in dieResultListLeft )
 		{
-			var die : Die = dieResultListLeft[i];	
-			die.updateDieColor(colorForLeft);
-			die.rollAnimation(DIE_ROLL_DURATION);
-			//TODO: Consider hiding the uneeded dice here
+			var die : Die = tDie;	
+			if ( i < diceForLeft )
+			{
+				die.updateDieColor(colorForLeft);
+				die.rollAnimation(DIE_ROLL_DURATION);
+			}
+			else
+				die.hide();
+				
+			i++;
 		}
 		
-		for ( i in 0...diceForRight )
+		i = 0;
+		for ( tDie in dieResultListRight )
 		{
-			var die : Die = dieResultListRight[i];
-			die.updateDieColor(colorForRight);
-			die.rollAnimation(DIE_ROLL_DURATION);
+			var die : Die = tDie;
+			if ( i < diceForRight )
+			{
+				die.updateDieColor(colorForRight);
+				die.rollAnimation(DIE_ROLL_DURATION);
+			}
+			else
+				die.hide();
+			
+			i++;
 		}
 	}
 }
