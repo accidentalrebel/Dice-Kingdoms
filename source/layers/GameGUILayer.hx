@@ -1,5 +1,6 @@
 package layers;
 import effects.AddArmyEffect;
+import effects.BattleResult;
 import flixel.addons.ui.FlxButtonPlus;
 import flixel.FlxG;
 import flixel.group.FlxSpriteGroup;
@@ -47,6 +48,10 @@ class GameGUILayer extends FlxSpriteGroup
 			, "PAUSE", BUTTON_WIDTH, BUTTON_HEIGHT);
 		pauseButton.pauseProof = true;
 		add(pauseButton);
+		
+		// We setup the battleResult sprites
+		var attackerBattleResult : BattleResult = new BattleResult(this, 100, 100);
+		var defenderBattleResult : BattleResult = new BattleResult(this, 200, 200);
 		
 		// Everything in this group does not move from the camera
 		this.setAll("scrollFactor", new FlxPoint(0, 0));
