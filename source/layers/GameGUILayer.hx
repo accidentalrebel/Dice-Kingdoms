@@ -130,7 +130,8 @@ class GameGUILayer extends FlxSpriteGroup
 	
 	public function showButtons()
 	{
-		showDoneButton();
+		if ( PlayState.playerManager.currentPlayer.isHuman )
+			showDoneButton();
 		
 		zoomButton.visible = true;
 		zoomButton.active = true;
