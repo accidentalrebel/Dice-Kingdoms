@@ -14,6 +14,7 @@ import states.PlayState;
  */
 class CameraManager
 {
+	private static inline var ZOOM_VALUE : Float = 1.5;
 	public var magnifiedZoomValue : Float 	= 1.5;
 	public var normalZoomValue : Float 		= 1;
 	public var currentZoomValue : Float		= 1;
@@ -67,7 +68,7 @@ class CameraManager
 		mainCamera.zoom = newScale;
 		normalZoomValue = newScale;								// We set the normalZoom value according to the ratio when the game is initialized
 		currentZoomValue = newScale;
-		magnifiedZoomValue = normalZoomValue * 1.5;				// Whatever the normal zoom is, the magnified zoom is 150 percent of that value	
+		magnifiedZoomValue = normalZoomValue * ZOOM_VALUE;				// Whatever the normal zoom is, the magnified zoom is 150 percent of that value	
 
 		// We then adjust the mainCamera viewing area
 		mainCamera.width = Std.int(Math.round(Lib.current.stage.stageWidth / newScale));
@@ -99,7 +100,7 @@ class CameraManager
 		FlxG.camera.zoom = magnifiedZoomValue;
 		currentZoomValue = FlxG.camera.zoom;
 		
-		PlayState.gameGUI.onCameraScale(currentZoomValue);
+		PlayState.gameGUI.onCameraScale(1/ZOOM_VALUE);
 	}
 	
 	/**
@@ -118,7 +119,7 @@ class CameraManager
 		//FlxG.camera.scroll = new FlxPoint();
 		centerCamera();
 		
-		PlayState.gameGUI.onCameraScale(currentZoomValue);
+		PlayState.gameGUI.onCameraScale(1);
 	}
 	
 	/**

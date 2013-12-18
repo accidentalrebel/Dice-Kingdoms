@@ -100,7 +100,7 @@ class GameGUILayer extends FlxSpriteGroup
 	public function onCameraScale(newScale : Float) 
 	{
 		this.origin = new FlxPoint();
-		this.scale = new FlxPoint(1 / newScale, 1 / newScale);
+		this.scale = new FlxPoint(newScale, newScale);
 		
 		playerIndicator.x = playerIndicator.y = PADDING / newScale;
 		
