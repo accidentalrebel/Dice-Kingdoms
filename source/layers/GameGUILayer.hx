@@ -97,21 +97,26 @@ class GameGUILayer extends FlxSpriteGroup
 		doneButton.visible = true;
 	}
 	
-	public function onCameraScale(newScale : Float) 
+	public function onCameraScale(zoomValue : Float, isZoomIn : Bool = false) 
 	{
+		var newScale : Float = 1;
+		if ( isZoomIn )
+			zoomValue = newScale = 1 / zoomValue;
+		
 		this.origin = new FlxPoint();
 		this.scale = new FlxPoint(newScale, newScale);
+			
+		pauseButton.x *= zoomValue;
+		pauseButton.y *= zoomValue;
 		
-		playerIndicator.x = playerIndicator.y = PADDING / newScale;
+		playerIndicator.x *= zoomValue;
+		playerIndicator.y *= zoomValue;
 		
-		zoomButton.x = PADDING / newScale;
-		zoomButton.y = (playerIndicator.height + PADDING) / newScale;
+		zoomButton.x *= zoomValue;
+		zoomButton.y *= zoomValue;
 		
-		doneButton.x = PADDING / newScale; 
-		doneButton.y = (playerIndicator.height + BUTTON_HEIGHT + PADDING * 2) / newScale;
-		
-		pauseButton.x = (FlxG.width - BUTTON_WIDTH - PADDING) / newScale ;
-		pauseButton.y = (playerIndicator.height +  PADDING) / newScale;
+		doneButton.x *= zoomValue;
+		doneButton.y *= zoomValue;
 	}
 	
 	public function hideButtons() 

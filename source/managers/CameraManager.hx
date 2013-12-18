@@ -100,7 +100,7 @@ class CameraManager
 		FlxG.camera.zoom = magnifiedZoomValue;
 		currentZoomValue = FlxG.camera.zoom;
 		
-		PlayState.gameGUI.onCameraScale(1/ZOOM_VALUE);
+		PlayState.gameGUI.onCameraScale(ZOOM_VALUE, true);
 	}
 	
 	/**
@@ -119,7 +119,7 @@ class CameraManager
 		//FlxG.camera.scroll = new FlxPoint();
 		centerCamera();
 		
-		PlayState.gameGUI.onCameraScale(1);
+		PlayState.gameGUI.onCameraScale(ZOOM_VALUE, false);
 	}
 	
 	/**
