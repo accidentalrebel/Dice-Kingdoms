@@ -26,6 +26,14 @@ class GameplayManager
 	
 	public function onClick(xPos:Float, yPos:Float)
 	{
+		handleTerritoryClick(xPos, yPos);
+	}
+	
+	function handleTerritoryClick(xPos:Float, yPos:Float)
+	{
+		if ( !PlayState.playerManager.currentPlayer.isHuman )
+			return;
+		
 		function selectTerritoryAndHighlightNeighbors(clickedTerritory : Territory) : Int
 		{
 			if (clickedTerritory.ownerNumber != PlayState.playerManager.currentPlayerNumber 
