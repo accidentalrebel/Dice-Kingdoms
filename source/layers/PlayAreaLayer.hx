@@ -39,8 +39,8 @@ class PlayAreaLayer extends FlxGroup
 		playAreaCanvas = new FlxSprite(0, 0);
 		playAreaCanvas.cameras = [ PlayState.cameraManager.mainCamera ];
 		
-		playAreaCanvas.makeGraphic(Std.int(FlxG.width)
-			, Std.int((FlxG.height + 100) / FlxG.camera.zoom), 0);
+		playAreaCanvas.makeGraphic(Std.int(PlayState.cameraManager.mainCamera.width)
+			, Std.int(PlayState.cameraManager.mainCamera.height), 0);
 		
 		playAreaArray = new Array<Array<HexaTile>>();
 		
@@ -363,7 +363,7 @@ class PlayAreaLayer extends FlxGroup
 			var member : HexaTile = tMember;
 			if ( member != null )
 			{
-				//TODO: Add a fade when changing color. Doing a fade might be less performance heavy.
+				//TODO: Add a fade when changing color. Doing an alpha fade might be less performance heavy.
 				member.setCoverColorTo(PlayState.playerManager.getPlayer(playerNum).territoryColor);
 				member.drawBoundaries(PlayState.playerManager.getPlayer(playerNum).territoryColor);
 			}
