@@ -363,6 +363,7 @@ class PlayAreaLayer extends FlxGroup
 			var member : HexaTile = tMember;
 			if ( member != null )
 			{
+				//TODO: Add a fade when changing color. Doing a fade might be less performance heavy.
 				member.setCoverColorTo(PlayState.playerManager.getPlayer(playerNum).territoryColor);
 				member.drawBoundaries(PlayState.playerManager.getPlayer(playerNum).territoryColor);
 			}
