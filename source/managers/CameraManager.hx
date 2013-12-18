@@ -35,6 +35,7 @@ class CameraManager
 		
 		// We then create the topBarCamera
 		topBarCamera = new FlxCamera(0, 0, Lib.current.stage.stageWidth, topBarHeight, 1);
+		topBarCamera.zoom = mainCamera.zoom;
 		FlxG.cameras.add(topBarCamera);
 		
 		// Then we set up the mainCamera height and position

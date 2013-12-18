@@ -99,6 +99,7 @@ class GameGUILayer extends FlxSpriteGroup
 	
 	public function onCameraScale(zoomValue : Float, isZoomIn : Bool = false) 
 	{
+		//TODO: Consider strealining this code by making it a class
 		var newScale : Float = 1;
 		if ( isZoomIn )
 			zoomValue = newScale = 1 / zoomValue;

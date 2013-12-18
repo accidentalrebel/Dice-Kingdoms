@@ -16,6 +16,8 @@ import tools.ARTaskManager;
 class BattleLayer extends FlxGroup
 {
 	inline static var DIE_PADDING : Int = Die.DIE_DIMENSION + 5;
+	private static inline var PADDING_TOP : Float = 15;
+	private static inline var PADDING_SIDES : Float = 5;
 	
 	//TODO: Remove this and have battleManager pass in the dieRollDuration
 	private static inline var DIE_ROLL_DURATION : Float = 0.5;
@@ -39,7 +41,8 @@ class BattleLayer extends FlxGroup
 	{
 		super();
 
-		bgWidth = Lib.current.stage.stageWidth;
+		//TODO: Really consider creating a MainStage.resizedWidth
+		bgWidth = FlxG.width;
 		bgHeight = 60;
 		
 		battleBackground = new FlxSprite(0, 0);
@@ -47,33 +50,35 @@ class BattleLayer extends FlxGroup
 		battleBackground.alpha = 0.5;
 		add(battleBackground);
 		
-		battleResult = new FlxText(0, 0, Std.int(battleBackground.width), "");
+		battleResult = new FlxText(0, PADDING_TOP, Std.int(battleBackground.width), "");
 		battleResult.alignment = "center";
 		battleResult.scale = new FlxPoint(2, 2);
 		add(battleResult);
 		
 		// We setup the final result FlxTexts
-		finalResultLeft = new FlxText(5, battleBackground.y + battleBackground.height / 2 - finalResultHeight / 2 - bottomPadding
+		finalResultLeft = new FlxText(PADDING_SIDES, battleBackground.y + battleBackground.height / 2 - finalResultHeight / 2 - bottomPadding
 			, finalResultWidth, "88", finalResultHeight);
+		finalResultLeft.alignment = "center";
 		add(finalResultLeft);
 		
 		finalResultRight = new FlxText(bgWidth - finalResultWidth
 			, battleBackground.y + battleBackground.height / 2 - finalResultHeight / 2 - bottomPadding
 			, finalResultWidth, "88", finalResultHeight);
+		finalResultRight.alignment = "center";
 		add(finalResultRight);
 		
 		// We setup the dieResults
 		dieResultListLeft = new Array<Die>();
 		for ( i in 0...8 )
 		{
-			var die : Die = new Die(this, finalResultLeft.x + finalResultLeft.width + (i * DIE_PADDING), 15);
+			var die : Die = new Die(this, finalResultLeft.x + finalResultLeft.width + (i * DIE_PADDING), PADDING_TOP);
 			dieResultListLeft.push(die);
 		}
 		
 		dieResultListRight = new Array<Die>();
 		for ( i in 0...8 )
 		{
-			var die : Die = new Die(this, finalResultRight.x - finalResultRight.width - (i * DIE_PADDING), 15);
+			var die : Die = new Die(this, finalResultRight.x - PADDING_SIDES - Die.DIE_DIMENSION - (i * DIE_PADDING), PADDING_TOP);
 			dieResultListRight.push(die);
 		}
 		
