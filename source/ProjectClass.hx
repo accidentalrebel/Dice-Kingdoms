@@ -7,6 +7,9 @@ import states.MenuState;
 	
 class ProjectClass extends FlxGame
 {	
+	private static var DESIGN_WIDTH : Float = 800;
+	private static var DESIGN_HEIGHT : Float = 600;
+	
 	public function new()
 	{
 		var stageWidth:Int = Lib.current.stage.stageWidth;
@@ -21,9 +24,9 @@ class ProjectClass extends FlxGame
 			stageHeight = temp;
 		}
 		
-		var ratioX:Float = stageWidth / 800;
-		var ratioY:Float = stageHeight / 600;
-		var ratio:Float = Math.max(ratioX, ratioY);
+		var ratioX:Float = stageWidth / DESIGN_WIDTH;
+		var ratioY:Float = stageHeight / DESIGN_HEIGHT;
+		var ratio:Float = Math.min(ratioX, ratioY);
 		
 		super(Math.ceil(stageWidth / ratio), Math.ceil(stageHeight / ratio), MenuState, ratio, 30, 30);
 		
