@@ -28,15 +28,17 @@ class CameraManager
 		//TODO: Try to use FLxCamera.bounds as well to bound the camera from moving outside
 		//TODO: Add a pinch zoom feature
 		
-		var topBarHeight : Int = 60;
+		var topBarHeight : Float = 60;
 		
 		// First we get the mainCamera
 		mainCamera = FlxG.camera;
 		
 		// We then create the topBarCamera
-		topBarCamera = new FlxCamera(0, 0, Lib.current.stage.stageWidth, topBarHeight, 1);
+		topBarCamera = new FlxCamera(0, 0, Lib.current.stage.stageWidth, Std.int(topBarHeight), 1);
 		topBarCamera.zoom = mainCamera.zoom;
 		FlxG.cameras.add(topBarCamera);
+		
+		topBarHeight *= topBarCamera.zoom;
 		
 		// Then we set up the mainCamera height and position
 		mainCamera.height = Std.int(Lib.current.stage.stageHeight - topBarHeight) * 2;
@@ -72,8 +74,8 @@ class CameraManager
 		magnifiedZoomValue = normalZoomValue * ZOOM_VALUE;				// Whatever the normal zoom is, the magnified zoom is 150 percent of that value	
 
 		// We then adjust the mainCamera viewing area
-		mainCamera.width = Std.int(Math.round(Lib.current.stage.stageWidth / newScale));
-		mainCamera.height = Std.int(Math.round((Lib.current.stage.stageHeight - topBarHeight) / newScale));
+		mainCamera.width = Std.int(Math.round(Lib.current.stage.stageWidth));
+		mainCamera.height = Std.int(Math.round(Lib.current.stage.stageHeight - topBarHeight));
 		
 		centerCamera();
 	}
@@ -149,9 +151,8 @@ class CameraManager
 	 */
 	public function centerCamera()
 	{
+		//TODO: Fix the horizontal centering of the camera
 		FlxG.camera.scroll = new FlxPoint(-((FlxG.stage.stageWidth - PlayAreaLayer.areaWidth * currentZoomValue)/ 2)
 			, -((FlxG.stage.stageHeight - topBarCamera.height - PlayAreaLayer.areaHeight * currentZoomValue) / 2));
-		trace(FlxG.stage.stageWidth + " " + PlayAreaLayer.areaWidth);
-		trace(FlxG.camera.scroll.x);
 	}
 }
