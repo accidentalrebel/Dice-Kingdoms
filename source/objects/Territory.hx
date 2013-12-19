@@ -66,7 +66,7 @@ class Territory extends FlxSprite
 	
 	public function select(isNeighborSelect : Bool = false) 
 	{
-		this.y -= 10;
+		this.alpha = 0.5;
 		return;
 		
 		for ( tHexaTile in members )
@@ -85,7 +85,7 @@ class Territory extends FlxSprite
 	
 	public function deselect(isNeighborDeselect : Bool = false)
 	{
-		this.y += 10;
+		this.alpha = 1;
 		return;
 		
 		for ( tHexaTile in members )
@@ -104,7 +104,7 @@ class Territory extends FlxSprite
 	
 	public function highlightNeighbors() 
 	{
-		this.y -= 10;
+		this.alpha = 0.5;
 		return;
 		
 		for ( tNeighborNum in neighbors )
@@ -119,7 +119,7 @@ class Territory extends FlxSprite
 	
 	public function unhighlightNeighbors() 
 	{
-		this.y += 10;
+		this.alpha = 1;
 		return;
 		
 		for ( tNeighborNum in neighbors )
@@ -140,7 +140,7 @@ class Territory extends FlxSprite
 	public function setupTerritorySprite() 
 	{
 		var boundingBox : FlxRect = Tools.getBoundingBox(members);
-		this.makeGraphic(Std.int(boundingBox.width), Std.int(boundingBox.height), 0xFFFF00FF, true);
+		this.makeGraphic(Std.int(boundingBox.width), Std.int(boundingBox.height), 0, true);
 		this.setPosition(boundingBox.x, boundingBox.y);
 		
 		for ( tHexaTile in members )
