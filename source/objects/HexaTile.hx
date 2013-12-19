@@ -21,6 +21,9 @@ class HexaTile extends FlxSprite
 	var row 	:Int = 0;
 	var parent	:FlxGroup = null;
 	var label 	:FlxText;
+	
+	//TODO: Create a hexaTileGraphic sprite
+	//TODO: Create a hexaTile Rect dimensions variable
 	var castleGraphic:FlxSprite;
 	
 	public var isCenter 	:Bool = false;
