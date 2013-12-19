@@ -30,7 +30,7 @@ class TerritoryManager
 	
 	public function setupTerritorySprites() 
 	{
-		territoryList[0].setupTerritorySprite();
+		territoryList[10].setupTerritorySprite();
 		return;
 		
 		for ( tTerritory in territoryList )

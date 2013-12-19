@@ -1,9 +1,12 @@
 package objects;
 import flixel.FlxSprite;
+import flixel.system.replay.FlxReplay;
+import flixel.util.FlxRect;
 import managers.GameplayManager;
 import managers.TerritoryManager;
 import flixel.FlxBasic;
 import states.PlayState;
+import tools.Tools;
 
 /**
  * ...
@@ -23,8 +26,8 @@ class Territory extends FlxSprite
 	{
 		super();
 	
-		this.makeGraphic(Std.int(100)
-			, Std.int(100), 0, true);
+		//this.makeGraphic(Std.int(100)
+			//, Std.int(100), 0xFFFF00FF, true);
 		this.territoryNumber = territoryNumber;
 		neighbors = new Array<Int>();
 		members = new Array<HexaTile>();
@@ -136,10 +139,14 @@ class Territory extends FlxSprite
 	
 	public function setupTerritorySprite() 
 	{
+		var boundingBox : FlxRect = Tools.getBoundingBox(members);
+		this.makeGraphic(Std.int(boundingBox.width), Std.int(boundingBox.height), 0xFFFF00FF, true);
+		this.setPosition(boundingBox.x, boundingBox.y);
+		
 		for ( tHexaTile in members )
 		{
 			var hexaTile : HexaTile = tHexaTile;
-			this.stamp(hexaTile, Std.int(hexaTile.x), Std.int(hexaTile.y));
+			this.stamp(hexaTile, Std.int(hexaTile.x-boundingBox.x), Std.int(hexaTile.y-boundingBox.y));
 		}
 	}
 }
