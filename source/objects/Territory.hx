@@ -104,9 +104,6 @@ class Territory extends FlxSprite
 	
 	public function highlightNeighbors() 
 	{
-		this.alpha = 0.5;
-		return;
-		
 		for ( tNeighborNum in neighbors )
 		{
 			var neighborNum : Int = tNeighborNum;
@@ -119,9 +116,6 @@ class Territory extends FlxSprite
 	
 	public function unhighlightNeighbors() 
 	{
-		this.alpha = 1;
-		return;
-		
 		for ( tNeighborNum in neighbors )
 		{
 			var neighborNum : Int = tNeighborNum;
