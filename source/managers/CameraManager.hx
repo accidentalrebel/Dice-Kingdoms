@@ -34,15 +34,15 @@ class CameraManager
 		mainCamera = FlxG.camera;
 		
 		// We then create the topBarCamera
-		topBarCamera = new FlxCamera(0, 0, Lib.current.stage.stageWidth, Std.int(topBarHeight), 1);
+		topBarCamera = new FlxCamera(0, 0, Std.int(MainStage.cameraWidth), Std.int(topBarHeight), 1);
 		topBarCamera.zoom = mainCamera.zoom;
 		FlxG.cameras.add(topBarCamera);
 		
 		topBarHeight *= topBarCamera.zoom;
 		
 		// Then we set up the mainCamera height and position
-		mainCamera.height = Std.int(Lib.current.stage.stageHeight - topBarHeight) * 2;
-		mainCamera.y = topBarCamera.height;
+		mainCamera.height = Std.int(MainStage.cameraHeight - topBarHeight) * 2;
+		mainCamera.y = topBarHeight;
 		
 		// We then get the PlayAreaLayer.areaWidth and height
 		var newScale : Float = mainCamera.zoom;
@@ -51,19 +51,19 @@ class CameraManager
 		
 		// We then adjust the mainCamera zoom factor for the mainCamera so that the 
 		// playArea would fit on the screen
-		if ( PlayAreaLayer.areaWidth > Lib.current.stage.stageWidth )
+		if ( PlayAreaLayer.areaWidth > MainStage.cameraWidth )
 		{
-			newScale = (Lib.current.stage.stageWidth) / PlayAreaLayer.areaWidth;
+			newScale = (MainStage.cameraWidth) / PlayAreaLayer.areaWidth;
 		}
 		else if ( PlayAreaLayer.areaHeight > (Lib.current.stage.stageHeight - topBarHeight) )
 		{
 			newScale = (Lib.current.stage.stageHeight - topBarHeight) / PlayAreaLayer.areaHeight;
 		}
-		else if ( PlayAreaLayer.areaWidth <= Lib.current.stage.stageWidth 
-			&& PlayAreaLayer.areaHeight <= (Lib.current.stage.stageHeight - topBarHeight))
+		else if ( PlayAreaLayer.areaWidth <= MainStage.cameraWidth 
+			&& PlayAreaLayer.areaHeight <= (MainStage.cameraHeight - topBarHeight))
 		{
-			newScaleX = Lib.current.stage.stageWidth / PlayAreaLayer.areaWidth;	
-			newScaleY = (Lib.current.stage.stageHeight - topBarHeight) / PlayAreaLayer.areaHeight;
+			newScaleX = MainStage.cameraWidth / PlayAreaLayer.areaWidth;	
+			newScaleY = (MainStage.cameraHeight - topBarHeight) / PlayAreaLayer.areaHeight;
 			newScale = Math.min(newScaleX, newScaleY);
 		}
 		
@@ -74,8 +74,8 @@ class CameraManager
 		magnifiedZoomValue = normalZoomValue * ZOOM_VALUE;				// Whatever the normal zoom is, the magnified zoom is 150 percent of that value	
 
 		// We then adjust the mainCamera viewing area
-		mainCamera.width = Std.int(Math.round(Lib.current.stage.stageWidth));
-		mainCamera.height = Std.int(Math.round(Lib.current.stage.stageHeight - topBarHeight));
+		mainCamera.width = Std.int(Math.round(MainStage.cameraWidth));
+		mainCamera.height = Std.int(Math.round(MainStage.cameraHeight - topBarHeight));
 		
 		centerCamera();
 	}

@@ -58,8 +58,6 @@ class HexaTile extends FlxSprite
 		this.animation.frameIndex = FlxRandom.intRanged(3, 8);
 		
 		this.parent = parent;
-		//PlayState.playArea.add(this);
-		//PlayState.playArea.add(coverGraphic);
 	}	
 	
 	public function checkIfClicked(xPos:Float, yPos:Float)
