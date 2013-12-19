@@ -27,4 +27,13 @@ class TerritoryManager
 		var playersTerritories : Array<Int> = PlayState.playerManager.getPlayer(playerNum).territories;
 		return getTerritory(playersTerritories[FlxRandom.intRanged(0, playersTerritories.length-1)]);
 	}
+	
+	public function setupTerritorySprites() 
+	{
+		for ( tTerritory in territoryList )
+		{
+			var territory : Territory = tTerritory;
+			territory.setupTerritorySprite();
+		}
+	}
 }

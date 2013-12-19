@@ -281,6 +281,7 @@ class PlayAreaLayer extends FlxGroup
 		for ( i in 0...PlayState.maxTerritories )
 		{
 			var territory : Territory = new Territory(i);
+			this.add(territory);
 			PlayState.territoryManager.territoryList.push(territory);
 		}
 		
@@ -312,6 +313,8 @@ class PlayAreaLayer extends FlxGroup
 			var center : HexaTile = tCenter;
 			PlayState.territoryManager.getTerritory(center.territoryNumber).centerTile = center;
 		}
+		
+		PlayState.territoryManager.setupTerritorySprites();
 	} 
 	
 	public function assignTerritories() 

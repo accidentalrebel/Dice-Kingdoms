@@ -1,4 +1,5 @@
 package objects;
+import flixel.FlxSprite;
 import managers.GameplayManager;
 import managers.TerritoryManager;
 import flixel.FlxBasic;
@@ -8,7 +9,7 @@ import states.PlayState;
  * ...
  * @author 
  */
-class Territory extends FlxBasic
+class Territory extends FlxSprite
 {
 	public var neighbors : Array<Int>;
 	public var armyCount : Int = 0;
@@ -21,6 +22,8 @@ class Territory extends FlxBasic
 	public function new(territoryNumber : Int) 
 	{
 		super();
+	
+		this.makeGraphic(100, 100, 0xFFFF00FF);
 		this.territoryNumber = territoryNumber;
 		neighbors = new Array<Int>();
 		members = new Array<HexaTile>();
@@ -116,5 +119,14 @@ class Territory extends FlxBasic
 			return false;
 			
 		return Lambda.has(neighbors, territoryNumber);
+	}
+	
+	public function setupTerritorySprite() 
+	{
+		for ( tHexaTile in members )
+		{
+			var hexaTile : HexaTile = tHexaTile;
+			this.stamp(hexaTile, Std.int(hexaTile.x), Std.int(hexaTile.y));
+		}
 	}
 }
