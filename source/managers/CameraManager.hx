@@ -34,7 +34,7 @@ class CameraManager
 		mainCamera = FlxG.camera;
 		
 		// We then create the topBarCamera
-		topBarCamera = new FlxCamera(0, 0, Std.int(MainStage.adjustedWidth), Std.int(topBarHeight), 1);
+		topBarCamera = new FlxCamera(0, 0, Std.int(MainStage.cameraWidth), Std.int(topBarHeight), 1);
 		topBarCamera.zoom = mainCamera.zoom;
 		FlxG.cameras.add(topBarCamera);
 		
@@ -74,8 +74,8 @@ class CameraManager
 		magnifiedZoomValue = normalZoomValue * ZOOM_VALUE;				// Whatever the normal zoom is, the magnified zoom is 150 percent of that value	
 
 		// We then adjust the mainCamera viewing area
-		mainCamera.width = Std.int(Math.round(MainStage.adjustedWidth));
-		mainCamera.height = Std.int(Math.round(MainStage.adjustedHeight - topBarHeight));
+		mainCamera.width = Std.int(MainStage.cameraWidth);
+		mainCamera.height = Std.int(MainStage.cameraHeight - topBarHeight);
 		
 		centerCamera();
 	}
