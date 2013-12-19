@@ -128,6 +128,10 @@ class CameraManager
 	public function centerCamera()
 	{
 		//TODO: Fix the horizontal centering of the camera
+		//TODO: Use MainStage.actualScreenSize instead of FlxG.stage.stageWidth
+		trace(FlxG.stage.stageWidth);
+		trace(Lib.current.stage.stageWidth + " " + MainStage.adjustedWidth + " " + MainStage.cameraWidth);
+		
 		FlxG.camera.scroll = new FlxPoint(-((FlxG.stage.stageWidth - PlayAreaLayer.areaWidth * currentZoomValue)/ 2)
 			, -((FlxG.stage.stageHeight - topBarCamera.height - PlayAreaLayer.areaHeight * currentZoomValue) / 2));
 	}

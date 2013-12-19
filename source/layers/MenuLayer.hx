@@ -19,7 +19,7 @@ class MenuLayer extends FlxGroup
 		super();
 		
 		var startButton : FlxButtonPlus = new FlxButtonPlus
-			(Std.int(FlxG.width / 2 - BUTTON_DIMENSIONS_X / 2), Std.int(FlxG.height / 2 - BUTTON_DIMENSIONS_Y)
+			(Std.int(MainStage.cameraWidth / 2 - BUTTON_DIMENSIONS_X / 2), Std.int(MainStage.cameraHeight / 2 - BUTTON_DIMENSIONS_Y)
 			, MenuState.mainMenuManager.startGame, null, "START GAME", BUTTON_DIMENSIONS_X, BUTTON_DIMENSIONS_Y);		
 		add(startButton);
 	}

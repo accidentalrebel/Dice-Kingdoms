@@ -12,8 +12,8 @@ class ProjectClass extends FlxGame
 	
 	public function new()
 	{
-		var stageWidth:Int = MainStage.screenWidth = Lib.current.stage.stageWidth;
-		var stageHeight:Int = MainStage.screenHeight = Lib.current.stage.stageHeight;
+		var stageWidth:Int = Lib.current.stage.stageWidth;
+		var stageHeight:Int = Lib.current.stage.stageHeight;
 		
 		// The code below is a fail safe just in case the width and height
 		// values are interchanged due to some loading problems

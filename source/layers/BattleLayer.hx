@@ -42,7 +42,7 @@ class BattleLayer extends FlxGroup
 		super();
 
 		//TODO: Really consider creating a MainStage.resizedWidth
-		bgWidth = FlxG.width;
+		bgWidth = Std.int(MainStage.cameraWidth);
 		bgHeight = 60;
 		
 		battleBackground = new FlxSprite(0, 0);

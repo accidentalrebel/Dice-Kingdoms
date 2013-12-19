@@ -70,7 +70,7 @@ class PauseMenuLayer extends FlxSpriteGroup
 		setupHighlighter();
 		setupPlayerList();
 		
-		this.setPosition(FlxG.width / 2 - PAUSE_MENU_WIDTH / 2, 0);
+		this.setPosition(MainStage.cameraWidth / 2 - PAUSE_MENU_WIDTH / 2, 0);
 		this.scrollFactor = new FlxPoint(0, 0);
 		this.setAll("cameras", [ PlayState.cameraManager.mainCamera], true);
 		
