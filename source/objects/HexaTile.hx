@@ -110,7 +110,9 @@ class HexaTile extends FlxSprite
 			boundaryGraphic.animation.frameIndex = frameToUse;
 		
 			//stamp(boundaryGraphic, this.animation.frameIndex * tileWidth);
-			PlayState.playArea.playAreaCanvas.stamp(boundaryGraphic, Std.int(this.x), Std.int(this.y));
+			var territory : Territory = PlayState.territoryManager.getTerritory(territoryNumber);
+			territory.setupBorders(boundaryGraphic, this.x, this.y);
+			//territory.stamp(boundaryGraphic, Std.int(this.x), Std.int(this.y));
 		}
 		
 		drawBoundary(this.top, 0);

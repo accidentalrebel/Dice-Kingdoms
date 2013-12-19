@@ -20,7 +20,6 @@ class PlayAreaLayer extends FlxGroup
 	inline public static var PLAY_AREA_ROWS 	: Int = 26;
 	
 	public var playAreaArray 	: Array<Array<HexaTile>>;
-	public var playAreaCanvas	:FlxSprite;
 	public var setupFinished 	: Bool = false;
 	
 	inline public static var areaWidth : Float = (((PlayAreaLayer.PLAY_AREA_COLUMNS) / 2)) * HexaTile.TILE_WIDTH
@@ -36,12 +35,6 @@ class PlayAreaLayer extends FlxGroup
 	
 	public function init(parent : FlxState) 
 	{		
-		playAreaCanvas = new FlxSprite(0, 0);
-		playAreaCanvas.cameras = [ PlayState.cameraManager.mainCamera ];
-		
-		playAreaCanvas.makeGraphic(Std.int(PlayState.cameraManager.mainCamera.width)
-			, Std.int(PlayState.cameraManager.mainCamera.height), 0);
-		
 		playAreaArray = new Array<Array<HexaTile>>();
 		
 		for ( col in 0...PLAY_AREA_COLUMNS )
@@ -371,6 +364,8 @@ class PlayAreaLayer extends FlxGroup
 				member.drawBoundaries(PlayState.playerManager.getPlayer(playerNum).territoryColor);
 			}
 		}
+		
+		//TODO: We now have no more use for the HexaTile's sprite. Destroy it here.
 	}
 	
 	public function checkForClickedTiles(xPos:Float, yPos:Float) 

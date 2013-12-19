@@ -75,7 +75,6 @@ class PlayState extends FlxState
 		
 		// We arrange the different layers
 		add(PlayState.playArea);
-		add(PlayState.playArea.playAreaCanvas);
 		add(PlayState.gameObjectsLayer);
 		add(PlayState.gameGUI);
 		add(PlayState.battleLayer);

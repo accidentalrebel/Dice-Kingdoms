@@ -42,8 +42,11 @@ class Territory extends FlxSprite
 			var hexaTile : HexaTile = tHexaTile;
 			this.stamp(hexaTile, Std.int(hexaTile.x-boundingBox.x), Std.int(hexaTile.y-boundingBox.y));
 		}
+	}
 		
-		//TODO: We now have no more use for the HexaTile's sprite. Destroy it here.
+	public function setupBorders(boundaryGraphic:FlxSprite, xPos:Float, yPos:Float) 
+	{
+		this.stamp(boundaryGraphic, Std.int(xPos - this.x), Std.int(yPos - this.y));
 	}
 	
 	public function setArmyCount(count:Int) 
@@ -117,6 +120,4 @@ class Territory extends FlxSprite
 			
 		return Lambda.has(neighbors, territoryNumber);
 	}
-	
-	
 }
