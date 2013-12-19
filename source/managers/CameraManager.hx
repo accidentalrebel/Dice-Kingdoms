@@ -44,33 +44,9 @@ class CameraManager
 		mainCamera.height = Std.int(MainStage.adjustedHeight - topBarHeight) * 2;
 		mainCamera.y = topBarHeight;
 		
-		// We then get the PlayAreaLayer.areaWidth and height
-		var newScale : Float = mainCamera.zoom;
-		var newScaleX : Float = 1;
-		var newScaleY : Float = 1;
-		
-		// We then adjust the mainCamera zoom factor for the mainCamera so that the 
-		// playArea would fit on the screen
-		if ( PlayAreaLayer.areaWidth > MainStage.adjustedWidth )
-		{
-			newScale = (MainStage.adjustedWidth) / PlayAreaLayer.areaWidth;
-		}
-		else if ( PlayAreaLayer.areaHeight > (Lib.current.stage.stageHeight - topBarHeight) )
-		{
-			newScale = (Lib.current.stage.stageHeight - topBarHeight) / PlayAreaLayer.areaHeight;
-		}
-		else if ( PlayAreaLayer.areaWidth <= MainStage.adjustedWidth 
-			&& PlayAreaLayer.areaHeight <= (MainStage.adjustedHeight - topBarHeight))
-		{
-			newScaleX = MainStage.adjustedWidth / PlayAreaLayer.areaWidth;	
-			newScaleY = (MainStage.adjustedHeight - topBarHeight) / PlayAreaLayer.areaHeight;
-			newScale = Math.min(newScaleX, newScaleY);
-		}
-		
 		// We then apply and save the new scale
-		mainCamera.zoom = newScale;
-		normalZoomValue = newScale;								// We set the normalZoom value according to the ratio when the game is initialized
-		currentZoomValue = newScale;
+		normalZoomValue = mainCamera.zoom;								// We set the normalZoom value according to the ratio when the game is initialized
+		currentZoomValue = mainCamera.zoom;
 		magnifiedZoomValue = normalZoomValue * ZOOM_VALUE;				// Whatever the normal zoom is, the magnified zoom is 150 percent of that value	
 
 		// We then adjust the mainCamera viewing area
