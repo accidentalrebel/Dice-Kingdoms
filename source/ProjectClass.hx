@@ -34,19 +34,19 @@ class ProjectClass extends FlxGame
 		// We then save these values to our MainStage class
 		// From now on, we weill be using this values to refer to the actual size of the mainStage
 		if ( stageWidth < DESIGN_WIDTH )
-			MainStage.adjustedWidth = MainStage.cameraWidth = stageWidth / ratio;
+			MainStage.adjustedWidth = MainStage.cameraWidth = Math.round(stageWidth / ratio);
 		else
 		{
 			MainStage.adjustedWidth = stageWidth;
-			MainStage.cameraWidth = stageWidth / ratio;
+			MainStage.cameraWidth = Math.round(stageWidth / ratio);
 		}
 			
 		if ( stageHeight < DESIGN_HEIGHT )
-			MainStage.adjustedHeight = MainStage.cameraHeight = stageHeight / ratio;
+			MainStage.adjustedHeight = MainStage.cameraHeight = Math.round(stageHeight / ratio);
 		else
 		{
 			MainStage.adjustedHeight = stageHeight;
-			MainStage.cameraHeight = stageHeight / ratio;
+			MainStage.cameraHeight = Math.round(stageHeight / ratio);
 		}
 	}
 }
