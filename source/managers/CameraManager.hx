@@ -51,7 +51,7 @@ class CameraManager
 
 		// We then adjust the mainCamera viewing area
 		mainCamera.width = Std.int(MainStage.cameraWidth);
-		mainCamera.height = Std.int(MainStage.cameraHeight - topBarHeight);
+		mainCamera.height = Std.int(MainStage.cameraHeight - 60);
 		
 		centerCamera();
 	}
