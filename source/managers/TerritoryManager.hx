@@ -30,6 +30,9 @@ class TerritoryManager
 	
 	public function setupTerritorySprites() 
 	{
+		territoryList[0].setupTerritorySprite();
+		return;
+		
 		for ( tTerritory in territoryList )
 		{
 			var territory : Territory = tTerritory;

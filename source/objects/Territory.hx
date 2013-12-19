@@ -23,7 +23,8 @@ class Territory extends FlxSprite
 	{
 		super();
 	
-		this.makeGraphic(100, 100, 0xFFFF00FF);
+		this.makeGraphic(Std.int(100)
+			, Std.int(100), 0, true);
 		this.territoryNumber = territoryNumber;
 		neighbors = new Array<Int>();
 		members = new Array<HexaTile>();
@@ -62,6 +63,9 @@ class Territory extends FlxSprite
 	
 	public function select(isNeighborSelect : Bool = false) 
 	{
+		this.y -= 10;
+		return;
+		
 		for ( tHexaTile in members )
 		{
 			var hexaTile : HexaTile = tHexaTile;
@@ -78,6 +82,9 @@ class Territory extends FlxSprite
 	
 	public function deselect(isNeighborDeselect : Bool = false)
 	{
+		this.y += 10;
+		return;
+		
 		for ( tHexaTile in members )
 		{
 			var hexaTile : HexaTile = tHexaTile;
@@ -94,6 +101,9 @@ class Territory extends FlxSprite
 	
 	public function highlightNeighbors() 
 	{
+		this.y -= 10;
+		return;
+		
 		for ( tNeighborNum in neighbors )
 		{
 			var neighborNum : Int = tNeighborNum;
@@ -106,6 +116,9 @@ class Territory extends FlxSprite
 	
 	public function unhighlightNeighbors() 
 	{
+		this.y += 10;
+		return;
+		
 		for ( tNeighborNum in neighbors )
 		{
 			var neighborNum : Int = tNeighborNum;
