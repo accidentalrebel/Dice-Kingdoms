@@ -25,12 +25,25 @@ class Territory extends FlxSprite
 	public function new(territoryNumber : Int) 
 	{
 		super();
-	
-		//this.makeGraphic(Std.int(100)
-			//, Std.int(100), 0xFFFF00FF, true);
+
 		this.territoryNumber = territoryNumber;
 		neighbors = new Array<Int>();
 		members = new Array<HexaTile>();
+	}
+	
+	public function setupTerritorySprite() 
+	{
+		var boundingBox : FlxRect = Tools.getBoundingBox(members);
+		this.makeGraphic(Std.int(boundingBox.width), Std.int(boundingBox.height), 0, true);
+		this.setPosition(boundingBox.x, boundingBox.y);
+		
+		for ( tHexaTile in members )
+		{
+			var hexaTile : HexaTile = tHexaTile;
+			this.stamp(hexaTile, Std.int(hexaTile.x-boundingBox.x), Std.int(hexaTile.y-boundingBox.y));
+		}
+		
+		//TODO: We now have no more use for the HexaTile's sprite. Destroy it here.
 	}
 	
 	public function setArmyCount(count:Int) 
@@ -68,38 +81,12 @@ class Territory extends FlxSprite
 	{
 		this.alpha = 0.5;
 		return;
-		
-		for ( tHexaTile in members )
-		{
-			var hexaTile : HexaTile = tHexaTile;
-			
-			if ( isNeighborSelect )
-				hexaTile.scale.x = 0.5;
-			else
-			{
-				hexaTile.angle = 90;
-				hexaTile.scale.x = 0.5;
-			}
-		}
 	}
 	
 	public function deselect(isNeighborDeselect : Bool = false)
 	{
 		this.alpha = 1;
 		return;
-		
-		for ( tHexaTile in members )
-		{
-			var hexaTile : HexaTile = tHexaTile;
-			
-			if ( isNeighborDeselect )
-				hexaTile.scale.x = 1;
-			else
-			{
-				hexaTile.angle = 0;
-				hexaTile.scale.x = 1;
-			}
-		}
 	}
 	
 	public function highlightNeighbors() 
@@ -131,16 +118,5 @@ class Territory extends FlxSprite
 		return Lambda.has(neighbors, territoryNumber);
 	}
 	
-	public function setupTerritorySprite() 
-	{
-		var boundingBox : FlxRect = Tools.getBoundingBox(members);
-		this.makeGraphic(Std.int(boundingBox.width), Std.int(boundingBox.height), 0, true);
-		this.setPosition(boundingBox.x, boundingBox.y);
-		
-		for ( tHexaTile in members )
-		{
-			var hexaTile : HexaTile = tHexaTile;
-			this.stamp(hexaTile, Std.int(hexaTile.x-boundingBox.x), Std.int(hexaTile.y-boundingBox.y));
-		}
-	}
+	
 }

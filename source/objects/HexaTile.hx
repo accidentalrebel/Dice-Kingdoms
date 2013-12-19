@@ -56,7 +56,6 @@ class HexaTile extends FlxSprite
 		
 		this.loadGraphic("assets/hexaTerrain.png", false, false, TILE_WIDTH, TILE_HEIGHT);
 		this.animation.frameIndex = FlxRandom.intRanged(3, 8);
-		
 		this.parent = parent;
 	}	
 	
