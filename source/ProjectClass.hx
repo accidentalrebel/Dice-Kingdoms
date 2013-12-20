@@ -30,7 +30,7 @@ class ProjectClass extends FlxGame
 		
 		super(Math.ceil(stageWidth / ratio), Math.ceil(stageHeight / ratio), MenuState, ratio, 30, 30);
 		
-				// We then save these values to our MainStage class
+		// We then save these values to our MainStage class
 		// From now on, we weill be using this values to refer to the actual size of the mainStage
 		MainStage.setup(stageWidth, stageHeight, DESIGN_WIDTH, ratio);
 	}

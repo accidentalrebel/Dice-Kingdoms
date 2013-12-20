@@ -13,7 +13,7 @@ class PlayerColor
 	inline public static var YELLOW : Int = 0xFFFF00;
 	inline public static var AQUA 	: Int = 0x00FFFF;
 	inline public static var PINK 	: Int = 0xFF00FF;
-	inline public static var ORANGE : Int = 0xFF5500;
+	inline public static var ORANGE : Int = 0xE89E00;
 	inline public static var WHITE 	: Int = 0xCCCCCC;
 
 	public static var colorList : Array<Int> = [ PlayerColor.RED, PlayerColor.GREEN, PlayerColor.BLUE, PlayerColor.YELLOW
