@@ -21,6 +21,8 @@ class Territory extends FlxSprite
 	public var ownerNumber : Int = 0;
 	public var territoryNumber : Int;
 	public var markAsChecked : Bool = false;
+	
+	public var coverSprite : FlxSprite;
 
 	public function new(territoryNumber : Int) 
 	{
@@ -42,11 +44,21 @@ class Territory extends FlxSprite
 			var hexaTile : HexaTile = tHexaTile;
 			this.stamp(hexaTile, Std.int(hexaTile.x-boundingBox.x), Std.int(hexaTile.y-boundingBox.y));
 		}
+		
+		setupCoverGraphic();
+	}
+	
+	public function setupCoverGraphic()
+	{
+		coverSprite = new FlxSprite();
+		coverSprite.makeGraphic(Std.int(this.width), Std.int(this.height), 0, true);	
+		coverSprite.setPosition(this.x, this.y);
+		PlayState.playArea.add(coverSprite);
 	}
 		
 	public function setupBorders(boundaryGraphic:FlxSprite, xPos:Float, yPos:Float) 
 	{
-		this.stamp(boundaryGraphic, Std.int(xPos - this.x), Std.int(yPos - this.y));
+		coverSprite.stamp(boundaryGraphic, Std.int(xPos - this.x), Std.int(yPos - this.y));
 	}
 	
 	public function setArmyCount(count:Int) 
