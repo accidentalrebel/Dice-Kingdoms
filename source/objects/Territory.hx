@@ -16,7 +16,7 @@ import tools.Tools;
  */
 class Territory extends FlxSprite
 {
-	private static inline var COVER_ALPHA : Float = 0.5;
+	private static inline var COVER_ALPHA : Float = 0.6;
 	
 	public var neighbors : Array<Int>;
 	public var armyCount : Int = 0;
