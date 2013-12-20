@@ -30,23 +30,8 @@ class ProjectClass extends FlxGame
 		
 		super(Math.ceil(stageWidth / ratio), Math.ceil(stageHeight / ratio), MenuState, ratio, 30, 30);
 		
-		//TODO: Consider moving the code below to MainStage.hx
-		// We then save these values to our MainStage class
+				// We then save these values to our MainStage class
 		// From now on, we weill be using this values to refer to the actual size of the mainStage
-		if ( stageWidth < DESIGN_WIDTH )
-			MainStage.adjustedWidth = MainStage.cameraWidth = Math.round(stageWidth / ratio);
-		else
-		{
-			MainStage.adjustedWidth = stageWidth;
-			MainStage.cameraWidth = Math.round(stageWidth / ratio);
-		}
-			
-		if ( stageHeight < DESIGN_HEIGHT )
-			MainStage.adjustedHeight = MainStage.cameraHeight = Math.round(stageHeight / ratio);
-		else
-		{
-			MainStage.adjustedHeight = stageHeight;
-			MainStage.cameraHeight = Math.round(stageHeight / ratio);
-		}
+		MainStage.setup(stageWidth, stageHeight, DESIGN_WIDTH, ratio);
 	}
 }
