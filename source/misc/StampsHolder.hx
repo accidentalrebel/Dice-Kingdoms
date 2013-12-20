@@ -9,17 +9,21 @@ import objects.HexaTile;
  */
 class StampsHolder
 {
-	public var landStamp : FlxSprite;	
+	public var landStamp : FlxSprite;
+	public var boundaryStamp : FlxSprite;
 	
 	public function new() 
 	{
 		landStamp = new FlxSprite(0, 0);
 		landStamp.loadGraphic("assets/hexaTerrain.png", false, false, HexaTile.TILE_WIDTH, HexaTile.TILE_HEIGHT);
+		
+		boundaryStamp = new FlxSprite(0, 0);
+		boundaryStamp.loadGraphic("assets/boundaryLines.png", false, false, HexaTile.TILE_WIDTH, HexaTile.TILE_HEIGHT);
 	}
 	
-	public function getRandomLand() : FlxSprite
+	public function randomizeFrame(theSprite : FlxSprite) : FlxSprite
 	{
-		landStamp.animation.frameIndex = FlxRandom.intRanged(3, 8);
-		return landStamp;
+		theSprite.animation.frameIndex = FlxRandom.intRanged(3, 8);
+		return theSprite;
 	}
 }
