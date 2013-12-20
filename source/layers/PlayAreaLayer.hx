@@ -38,7 +38,7 @@ class PlayAreaLayer extends FlxGroup
 	public function init(parent : FlxState) 
 	{		
 		seaCanvas = new FlxSprite(0, 0);
-		seaCanvas.makeGraphic(Std.int(AREA_WIDTH), Std.int(AREA_HEIGHT), 0xFFFF00FF);
+		seaCanvas.makeGraphic(Std.int(AREA_WIDTH), Std.int(AREA_HEIGHT), 0);
 		this.add(seaCanvas);
 		playAreaArray = new Array<Array<HexaTile>>();
 		
@@ -379,7 +379,7 @@ class PlayAreaLayer extends FlxGroup
 				if ( theNeighbor == null || !theNeighbor.isATerritory )
 					return;
 					
-				var boundaryGraphic : FlxSprite = PlayState.stampsHolder.setToFrame(PlayState.stampsHolder.boundaryStamp, frameToUse);
+				var boundaryGraphic : FlxSprite = PlayState.stampsHolder.setToFrame(PlayState.stampsHolder.seaBoundaryStamp, frameToUse);
 				boundaryGraphic.color = colorToUse;
 				seaCanvas.stamp(boundaryGraphic, Std.int(hexaTile.x)
 					, Std.int(hexaTile.y));
