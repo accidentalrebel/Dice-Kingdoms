@@ -262,7 +262,7 @@ class PlayAreaLayer extends FlxGroup
 		{
 			for (col in 1...(Math.floor(PLAY_AREA_COLUMNS/5) + 1))
 			{  
-				setupTerritory((col * 5)-1, (row * 5)-1, centerBaseList);
+				setupTerritory((col * 5)-1, (row * 5)-2, centerBaseList);
 				currentTerritoryNumber += 1;
 			}
         }
