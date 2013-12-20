@@ -132,7 +132,7 @@ class CameraManager
 		trace(FlxG.stage.stageWidth);
 		trace(Lib.current.stage.stageWidth + " " + MainStage.adjustedWidth + " " + MainStage.cameraWidth);
 		
-		FlxG.camera.scroll = new FlxPoint(-((FlxG.stage.stageWidth - PlayAreaLayer.areaWidth * currentZoomValue)/ 2)
-			, -((FlxG.stage.stageHeight - topBarCamera.height - PlayAreaLayer.areaHeight * currentZoomValue) / 2));
+		FlxG.camera.scroll = new FlxPoint(-((FlxG.stage.stageWidth - PlayAreaLayer.AREA_WIDTH * currentZoomValue)/ 2)
+			, -((FlxG.stage.stageHeight - topBarCamera.height - PlayAreaLayer.AREA_HEIGHT * currentZoomValue) / 2));
 	}
 }

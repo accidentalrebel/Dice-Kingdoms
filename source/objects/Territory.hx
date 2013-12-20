@@ -54,7 +54,7 @@ class Territory extends FlxSprite
 		}
 		
 		setupCoverGraphic(boundingBox);		
-		drawBoundaries();
+		//drawBoundaries();
 	}
 	
 	public function setupCoverGraphic(boundingBox:FlxRect)
@@ -71,42 +71,6 @@ class Territory extends FlxSprite
 			PlayState.stampsHolder.hexaTileStamp.alpha = COVER_ALPHA;
 			coverSprite.stamp(PlayState.stampsHolder.hexaTileStamp, Std.int(hexaTile.x-boundingBox.x), Std.int(hexaTile.y-boundingBox.y));
 		}
-	}
-	
-	public function drawBoundaries()
-	{
-		// We now draw the boundaries
-	    for ( tMember in members )
-		{
-			var member : HexaTile = tMember;
-			if ( member != null )
-			{
-				drawMemberBoundary(member, PlayerColor.WHITE);
-			}
-		}
-	}
-	
-	private function drawMemberBoundary(hexaTile : HexaTile, colorToUse : Int) 
-	{		
-		function drawBoundary(theNeighbor : HexaTile, frameToUse:Int) 
-		{
-			if ( theNeighbor != null && theNeighbor.isATerritory
-				&& hexaTile.territoryNumber == theNeighbor.territoryNumber )
-				return;
-				
-			var boundaryGraphic : FlxSprite = PlayState.stampsHolder.setToFrame(PlayState.stampsHolder.boundaryStamp, frameToUse);
-			boundaryGraphic.color = colorToUse;
-		
-			var territory : Territory = PlayState.territoryManager.getTerritory(territoryNumber);
-			coverSprite.stamp(boundaryGraphic, Std.int(hexaTile.x - this.x), Std.int(hexaTile.y - this.y));			
-		}
-		
-		drawBoundary(hexaTile.top, 0);
-		drawBoundary(hexaTile.topRight, 1);
-		drawBoundary(hexaTile.bottomRight, 2);
-		drawBoundary(hexaTile.bottom, 3);
-		drawBoundary(hexaTile.bottomLeft, 4);
-		drawBoundary(hexaTile.topLeft, 5);
 	}
 	
 	/**************************************************************************************

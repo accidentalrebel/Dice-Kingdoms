@@ -4,6 +4,7 @@ import flixel.FlxSprite;
 import flixel.FlxState;
 import flixel.group.FlxGroup;
 import flixel.util.FlxRandom;
+import misc.PlayerColor;
 import objects.HexaTile;
 import objects.Player;
 import objects.Territory;
@@ -19,13 +20,14 @@ class PlayAreaLayer extends FlxGroup
 	inline public static var PLAY_AREA_COLUMNS 	: Int = 42;
 	inline public static var PLAY_AREA_ROWS 	: Int = 26;
 	
+	public var seaCanvas		: FlxSprite;
 	public var playAreaArray 	: Array<Array<HexaTile>>;
 	public var setupFinished 	: Bool = false;
 	
-	inline public static var areaWidth : Float = (((PlayAreaLayer.PLAY_AREA_COLUMNS) / 2)) * HexaTile.TILE_WIDTH
+	inline public static var AREA_WIDTH : Float = (((PlayAreaLayer.PLAY_AREA_COLUMNS) / 2)) * HexaTile.TILE_WIDTH
 		+ ((PlayAreaLayer.PLAY_AREA_COLUMNS) / 2) * HexaTile.TILE_FACE_WIDTH 
 		+ (HexaTile.TILE_WIDTH - HexaTile.TILE_FACE_WIDTH) /2;		
-	inline public static var areaHeight : Float = (PlayAreaLayer.PLAY_AREA_ROWS * HexaTile.TILE_HEIGHT)
+	inline public static var AREA_HEIGHT : Float = (PlayAreaLayer.PLAY_AREA_ROWS * HexaTile.TILE_HEIGHT)
 		+ HexaTile.TILE_HEIGHT / 2;
 	
 	public function new()
@@ -35,6 +37,9 @@ class PlayAreaLayer extends FlxGroup
 	
 	public function init(parent : FlxState) 
 	{		
+		seaCanvas = new FlxSprite(0, 0);
+		seaCanvas.makeGraphic(Std.int(AREA_WIDTH), Std.int(AREA_HEIGHT), 0xFFFF00FF);
+		this.add(seaCanvas);
 		playAreaArray = new Array<Array<HexaTile>>();
 		
 		for ( col in 0...PLAY_AREA_COLUMNS )
@@ -308,6 +313,7 @@ class PlayAreaLayer extends FlxGroup
 		}
 		
 		PlayState.territoryManager.setupTerritorySprites();
+		this.drawBoundaries();
 	} 
 	
 	public function assignTerritories() 
@@ -336,6 +342,41 @@ class PlayAreaLayer extends FlxGroup
 				PlayState.playArea.assignTerritory(getRandomTerritoryNum(), playerNum);        
 			}
 	    }
+	}
+	
+	public function drawBoundaries()
+	{
+		for ( col in 0...PLAY_AREA_COLUMNS )
+		{			
+			for ( row in 0...PLAY_AREA_ROWS )
+			{
+				drawTileBoundary(playAreaArray[col][row], PlayerColor.WHITE);
+			}
+		}
+	}
+	
+	private function drawTileBoundary(hexaTile : HexaTile, colorToUse : Int) 
+	{		
+		function drawBoundary(theNeighbor : HexaTile, frameToUse:Int) 
+		{
+			if ( theNeighbor != null && theNeighbor.isATerritory
+				&& hexaTile.territoryNumber == theNeighbor.territoryNumber )
+				return;
+				
+			var boundaryGraphic : FlxSprite = PlayState.stampsHolder.setToFrame(PlayState.stampsHolder.boundaryStamp, frameToUse);
+			boundaryGraphic.color = colorToUse;
+		
+			var territory : Territory = PlayState.territoryManager.getTerritory(hexaTile.territoryNumber);
+			territory.coverSprite.stamp(boundaryGraphic, Std.int(hexaTile.x - territory.x)
+				, Std.int(hexaTile.y - territory.y));			
+		}
+		
+		drawBoundary(hexaTile.top, 0);
+		drawBoundary(hexaTile.topRight, 1);
+		drawBoundary(hexaTile.bottomRight, 2);
+		drawBoundary(hexaTile.bottom, 3);
+		drawBoundary(hexaTile.bottomLeft, 4);
+		drawBoundary(hexaTile.topLeft, 5);
 	}
 	
 	public function assignTerritory(territoryNum : Int, playerNum : Int)
