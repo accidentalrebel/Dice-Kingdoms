@@ -359,16 +359,31 @@ class PlayAreaLayer extends FlxGroup
 	{		
 		function drawBoundary(theNeighbor : HexaTile, frameToUse:Int) 
 		{
-			if ( theNeighbor != null && theNeighbor.isATerritory
-				&& hexaTile.territoryNumber == theNeighbor.territoryNumber )
-				return;
-				
-			var boundaryGraphic : FlxSprite = PlayState.stampsHolder.setToFrame(PlayState.stampsHolder.boundaryStamp, frameToUse);
-			boundaryGraphic.color = colorToUse;
-		
-			var territory : Territory = PlayState.territoryManager.getTerritory(hexaTile.territoryNumber);
-			territory.coverSprite.stamp(boundaryGraphic, Std.int(hexaTile.x - territory.x)
-				, Std.int(hexaTile.y - territory.y));			
+			// IF this tile is a land territory
+			if ( hexaTile.isATerritory )
+			{
+				if ( theNeighbor != null && theNeighbor.isATerritory
+					&& hexaTile.territoryNumber == theNeighbor.territoryNumber )
+					return;
+					
+				var boundaryGraphic : FlxSprite = PlayState.stampsHolder.setToFrame(PlayState.stampsHolder.boundaryStamp, frameToUse);
+				boundaryGraphic.color = colorToUse;
+			
+				var territory : Territory = PlayState.territoryManager.getTerritory(hexaTile.territoryNumber);
+				territory.coverSprite.stamp(boundaryGraphic, Std.int(hexaTile.x - territory.x)
+					, Std.int(hexaTile.y - territory.y));
+			}
+			// If this tile is a sea tile
+			else
+			{
+				if ( theNeighbor == null || !theNeighbor.isATerritory )
+					return;
+					
+				var boundaryGraphic : FlxSprite = PlayState.stampsHolder.setToFrame(PlayState.stampsHolder.boundaryStamp, frameToUse);
+				boundaryGraphic.color = colorToUse;
+				seaCanvas.stamp(boundaryGraphic, Std.int(hexaTile.x)
+					, Std.int(hexaTile.y));
+			}
 		}
 		
 		drawBoundary(hexaTile.top, 0);
