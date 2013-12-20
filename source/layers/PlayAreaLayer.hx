@@ -332,7 +332,7 @@ class PlayAreaLayer extends FlxGroup
 		for (playerNum in 1...PlayState.playerManager.playerList.length+1 )
 	    {
 			for (j in 0...PlayState.territoryPerPlayer)
-			{
+			{				
 				PlayState.playArea.assignTerritory(getRandomTerritoryNum(), playerNum);        
 			}
 	    }
@@ -356,17 +356,6 @@ class PlayAreaLayer extends FlxGroup
 		
 		// We set the territory cover color
 		territory.setCoverColorTo(PlayState.playerManager.getPlayer(playerNum).territoryColor);
-		
-		// We now draw the boundaries
-	    for ( tMember in territory.members )
-		{
-			var member : HexaTile = tMember;
-			if ( member != null )
-			{
-				//TODO: Add a fade when changing color. Doing an alpha fade might be less performance heavy.
-				member.drawBoundaries(PlayState.playerManager.getPlayer(playerNum).territoryColor);
-			}
-		}
 		
 		//TODO: We now have no more use for the HexaTile's sprite. Destroy it here.
 	}

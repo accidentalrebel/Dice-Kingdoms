@@ -5,6 +5,7 @@ import flixel.util.FlxRect;
 import managers.GameplayManager;
 import managers.TerritoryManager;
 import flixel.FlxBasic;
+import misc.PlayerColor;
 import objects.Player;
 import states.PlayState;
 import tools.Tools;
@@ -36,6 +37,7 @@ class Territory extends FlxSprite
 		members = new Array<HexaTile>();
 	}
 	
+	//TODO: COnsider having a setup function that has all the setup graphic functions
 	public function setupTerritorySprite() 
 	{
 		var boundingBox : FlxRect = Tools.getBoundingBox(members);
@@ -49,7 +51,8 @@ class Territory extends FlxSprite
 			this.stamp(PlayState.stampsHolder.randomizeFrame(PlayState.stampsHolder.landStamp), Std.int(hexaTile.x-boundingBox.x), Std.int(hexaTile.y-boundingBox.y));
 		}
 		
-		setupCoverGraphic(boundingBox);
+		setupCoverGraphic(boundingBox);		
+		drawBoundaries();
 	}
 	
 	public function setupCoverGraphic(boundingBox:FlxRect)
@@ -65,6 +68,19 @@ class Territory extends FlxSprite
 			var hexaTile : HexaTile = tHexaTile;
 			PlayState.stampsHolder.hexaTileStamp.alpha = COVER_ALPHA;
 			coverSprite.stamp(PlayState.stampsHolder.hexaTileStamp, Std.int(hexaTile.x-boundingBox.x), Std.int(hexaTile.y-boundingBox.y));
+		}
+	}
+	
+	public function drawBoundaries()
+	{
+		// We now draw the boundaries
+	    for ( tMember in members )
+		{
+			var member : HexaTile = tMember;
+			if ( member != null )
+			{
+				member.drawBoundaries(PlayerColor.WHITE);
+			}
 		}
 	}
 	
