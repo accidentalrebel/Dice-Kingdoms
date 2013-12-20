@@ -26,4 +26,10 @@ class StampsHolder
 		theSprite.animation.frameIndex = FlxRandom.intRanged(3, 8);
 		return theSprite;
 	}
+	
+	public function setToFrame(theSprite : FlxSprite, index : Int) : FlxSprite
+	{
+		theSprite.animation.frameIndex = index;
+		return theSprite;
+	}
 }

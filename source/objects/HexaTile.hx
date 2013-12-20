@@ -109,15 +109,11 @@ class HexaTile extends FlxSprite
 				&& this.territoryNumber == theNeighbor.territoryNumber )
 				return;
 				
-			var boundaryGraphic : FlxSprite = new FlxSprite(0, 0);
-			boundaryGraphic.loadGraphic("assets/boundaryLines.png", false, false, TILE_WIDTH, TILE_HEIGHT);
+			var boundaryGraphic : FlxSprite = PlayState.stampsHolder.setToFrame(PlayState.stampsHolder.boundaryStamp, frameToUse);
 			boundaryGraphic.color = colorToUse;
-			boundaryGraphic.animation.frameIndex = frameToUse;
 		
-			//stamp(boundaryGraphic, this.animation.frameIndex * tileWidth);
 			var territory : Territory = PlayState.territoryManager.getTerritory(territoryNumber);
-			territory.setupBorders(boundaryGraphic, this.x, this.y);
-			//territory.stamp(boundaryGraphic, Std.int(this.x), Std.int(this.y));
+			territory.setupBorders(boundaryGraphic, this.x, this.y);			
 		}
 		
 		drawBoundary(this.top, 0);
