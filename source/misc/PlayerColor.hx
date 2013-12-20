@@ -7,14 +7,14 @@ import flixel.util.FlxArrayUtil;
  */
 class PlayerColor
 {
-	inline public static var RED : Int = 0xFF0000;
-	inline public static var GREEN : Int = 0x00FF00;
-	inline public static var BLUE : Int = 0x0000FF;
+	inline public static var RED 	: Int = 0xFF0000;
+	inline public static var GREEN 	: Int = 0x00FF00;
+	inline public static var BLUE 	: Int = 0x0000FF;
 	inline public static var YELLOW : Int = 0xFFFF00;
-	inline public static var AQUA : Int = 0x00FFFF;
-	inline public static var PINK : Int = 0xFF00FF;
+	inline public static var AQUA 	: Int = 0x00FFFF;
+	inline public static var PINK 	: Int = 0xFF00FF;
 	inline public static var ORANGE : Int = 0xFF5500;
-	inline public static var WHITE : Int = 0xFFFFFF;
+	inline public static var WHITE 	: Int = 0xCCCCCC;
 
 	public static var colorList : Array<Int> = [ PlayerColor.RED, PlayerColor.GREEN, PlayerColor.BLUE, PlayerColor.YELLOW
 		, PlayerColor.AQUA, PlayerColor.PINK, PlayerColor.ORANGE, PlayerColor.WHITE ];	
