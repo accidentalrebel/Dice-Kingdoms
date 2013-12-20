@@ -39,21 +39,29 @@ class Territory extends FlxSprite
 		this.makeGraphic(Std.int(boundingBox.width), Std.int(boundingBox.height), 0, true);
 		this.setPosition(boundingBox.x, boundingBox.y);
 		
+		// For each hexaTile, we get it's positino and stamp a randomized land
 		for ( tHexaTile in members )
 		{
 			var hexaTile : HexaTile = tHexaTile;
 			this.stamp(PlayState.stampsHolder.randomizeFrame(PlayState.stampsHolder.landStamp), Std.int(hexaTile.x-boundingBox.x), Std.int(hexaTile.y-boundingBox.y));
 		}
 		
-		setupCoverGraphic();
+		setupCoverGraphic(boundingBox);
 	}
 	
-	public function setupCoverGraphic()
+	public function setupCoverGraphic(boundingBox:FlxRect)
 	{
 		coverSprite = new FlxSprite();
 		coverSprite.makeGraphic(Std.int(this.width), Std.int(this.height), 0, true);	
 		coverSprite.setPosition(this.x, this.y);
 		PlayState.playArea.add(coverSprite);
+		
+		// For each hexaTile, we get it's position and stamp a cover
+		for ( tHexaTile in members )
+		{
+			var hexaTile : HexaTile = tHexaTile;
+			this.stamp(PlayState.stampsHolder.hexaTileStamp, Std.int(hexaTile.x-boundingBox.x), Std.int(hexaTile.y-boundingBox.y));
+		}
 	}
 		
 	public function setupBorders(boundaryGraphic:FlxSprite, xPos:Float, yPos:Float) 

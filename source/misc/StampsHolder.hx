@@ -9,8 +9,9 @@ import objects.HexaTile;
  */
 class StampsHolder
 {
-	public var landStamp : FlxSprite;
-	public var boundaryStamp : FlxSprite;
+	public var landStamp 		: FlxSprite;
+	public var boundaryStamp 	: FlxSprite;
+	public var hexaTileStamp	: FlxSprite;
 	
 	public function new() 
 	{
@@ -19,6 +20,9 @@ class StampsHolder
 		
 		boundaryStamp = new FlxSprite(0, 0);
 		boundaryStamp.loadGraphic("assets/boundaryLines.png", false, false, HexaTile.TILE_WIDTH, HexaTile.TILE_HEIGHT);
+		
+		hexaTileStamp = new FlxSprite(0, 0);
+		hexaTileStamp.loadGraphic("assets/hexaTile.png", false, false, HexaTile.TILE_WIDTH, HexaTile.TILE_HEIGHT);
 	}
 	
 	public function randomizeFrame(theSprite : FlxSprite) : FlxSprite
