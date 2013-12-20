@@ -23,8 +23,9 @@ class HexaTile extends FlxSprite
 	var label 	:FlxText;
 	
 	//TODO: Create a hexaTileGraphic sprite
+	//TODO: Might be a good idea to create a stamper class
 	//TODO: Create a hexaTile Rect dimensions variable
-	var castleGraphic:FlxSprite;
+	var castleGraphic:FlxSprite;	
 	
 	public var isCenter 	:Bool = false;
 	public var isATerritory :Bool = false;
@@ -99,6 +100,7 @@ class HexaTile extends FlxSprite
 		label.text = text;
 	}
 	
+	//TODO: Move this to another class as it doesn't fit this one anymore
 	public function drawBoundaries(colorToUse : Int) 
 	{		
 		function drawBoundary(theNeighbor : HexaTile, frameToUse:Int) 

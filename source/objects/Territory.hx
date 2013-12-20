@@ -42,7 +42,7 @@ class Territory extends FlxSprite
 		for ( tHexaTile in members )
 		{
 			var hexaTile : HexaTile = tHexaTile;
-			this.stamp(hexaTile, Std.int(hexaTile.x-boundingBox.x), Std.int(hexaTile.y-boundingBox.y));
+			this.stamp(PlayState.stampsHolder.getRandomLand(), Std.int(hexaTile.x-boundingBox.x), Std.int(hexaTile.y-boundingBox.y));
 		}
 		
 		setupCoverGraphic();

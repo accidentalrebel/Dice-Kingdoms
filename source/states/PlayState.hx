@@ -13,6 +13,7 @@ import managers.GameplayManager;
 import managers.InputManager;
 import managers.PlayerManager;
 import managers.TerritoryManager;
+import misc.StampsHolder;
 
 /**
  * ...
@@ -37,6 +38,7 @@ class PlayState extends FlxState
 	static public var inputManager		:InputManager;
 	static public var gameObjectsLayer	:FlxGroup;
 	static public var pauseMenuLayer	:PauseMenuLayer;
+	static public var stampsHolder		:StampsHolder;
 	
 	override public function create():Void 
 	{
@@ -49,6 +51,7 @@ class PlayState extends FlxState
 		PlayState.cameraManager 		= new CameraManager();
 		PlayState.gameplayManager		= new GameplayManager();
 		PlayState.battleManager			= new BattleManager();
+		PlayState.stampsHolder 			= new StampsHolder();
 		
 		// We setup the input Manager
 		PlayState.inputManager 			= new InputManager();
