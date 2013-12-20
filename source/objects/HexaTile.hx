@@ -17,8 +17,8 @@ class HexaTile extends FlxSprite
 	inline public static var LABEL_HEIGHT 	:Int = 20;
 	static public inline var TILE_FACE_WIDTH:Float = (HexaTile.TILE_WIDTH / 1.57);		// Refers to the width of the face side of the hexagon
 	
-	var col 	:Int = 0;
-	var row 	:Int = 0;
+	public var col 	:Int = 0;
+	public var row 	:Int = 0;
 	var parent	:FlxGroup = null;
 	var label 	:FlxText;
 	

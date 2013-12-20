@@ -109,9 +109,11 @@ class PlayAreaLayer extends FlxGroup
 		var recursiveCount : Int = 0;
 		var alpha : Float = 0;
 	    
+		//TODO: Turn to a sea tile function to be removed
 		function markTerritory(hexaTile : HexaTile, canOverride : Bool = false) : Bool
 		{  
-			if (hexaTile == null || hexaTile.isATerritory)
+			if (hexaTile == null || hexaTile.isATerritory || hexaTile.col <= 0 || hexaTile.row <= 0 
+				|| hexaTile.col >= PLAY_AREA_COLUMNS - 1 || hexaTile.row >= PLAY_AREA_ROWS - 1)
 				return false;
 			
 			hexaTile.isATerritory = true;	
