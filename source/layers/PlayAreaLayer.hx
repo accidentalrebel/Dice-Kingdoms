@@ -257,6 +257,7 @@ class PlayAreaLayer extends FlxGroup
 			checkNeighbor(hexaTile.topLeft);
 		}
 		
+		// TODO: Check why players are being skipped even though they still have one territory left
 		// We initialize the territories
 		for (row in 1...(Math.floor(PLAY_AREA_ROWS/5) + 1))
 		{
