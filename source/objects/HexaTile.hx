@@ -100,30 +100,6 @@ class HexaTile extends FlxSprite
 		label.text = text;
 	}
 	
-	//TODO: Move this to another class as it doesn't fit this one anymore
-	public function drawBoundaries(colorToUse : Int) 
-	{		
-		function drawBoundary(theNeighbor : HexaTile, frameToUse:Int) 
-		{
-			if ( theNeighbor != null && theNeighbor.isATerritory
-				&& this.territoryNumber == theNeighbor.territoryNumber )
-				return;
-				
-			var boundaryGraphic : FlxSprite = PlayState.stampsHolder.setToFrame(PlayState.stampsHolder.boundaryStamp, frameToUse);
-			boundaryGraphic.color = colorToUse;
-		
-			var territory : Territory = PlayState.territoryManager.getTerritory(territoryNumber);
-			territory.setupBorders(boundaryGraphic, this.x, this.y);			
-		}
-		
-		drawBoundary(this.top, 0);
-		drawBoundary(this.topRight, 1);
-		drawBoundary(this.bottomRight, 2);
-		drawBoundary(this.bottom, 3);
-		drawBoundary(this.bottomLeft, 4);
-		drawBoundary(this.topLeft, 5);
-	}
-	
 	public function turnToSeaTile()
 	{
 		this.isATerritory = false;

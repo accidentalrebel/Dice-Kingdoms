@@ -37,7 +37,9 @@ class Territory extends FlxSprite
 		members = new Array<HexaTile>();
 	}
 	
-	//TODO: COnsider having a setup function that has all the setup graphic functions
+	/**************************************************************************************
+	 * Territory Sprite setup
+	 **************************************************************************************/
 	public function setupTerritorySprite() 
 	{
 		var boundingBox : FlxRect = Tools.getBoundingBox(members);
@@ -79,21 +81,45 @@ class Territory extends FlxSprite
 			var member : HexaTile = tMember;
 			if ( member != null )
 			{
-				member.drawBoundaries(PlayerColor.WHITE);
+				drawMemberBoundary(member, PlayerColor.WHITE);
 			}
 		}
 	}
 	
+	private function drawMemberBoundary(hexaTile : HexaTile, colorToUse : Int) 
+	{		
+		function drawBoundary(theNeighbor : HexaTile, frameToUse:Int) 
+		{
+			if ( theNeighbor != null && theNeighbor.isATerritory
+				&& hexaTile.territoryNumber == theNeighbor.territoryNumber )
+				return;
+				
+			var boundaryGraphic : FlxSprite = PlayState.stampsHolder.setToFrame(PlayState.stampsHolder.boundaryStamp, frameToUse);
+			boundaryGraphic.color = colorToUse;
+		
+			var territory : Territory = PlayState.territoryManager.getTerritory(territoryNumber);
+			coverSprite.stamp(boundaryGraphic, Std.int(hexaTile.x - this.x), Std.int(hexaTile.y - this.y));			
+		}
+		
+		drawBoundary(hexaTile.top, 0);
+		drawBoundary(hexaTile.topRight, 1);
+		drawBoundary(hexaTile.bottomRight, 2);
+		drawBoundary(hexaTile.bottom, 3);
+		drawBoundary(hexaTile.bottomLeft, 4);
+		drawBoundary(hexaTile.topLeft, 5);
+	}
+	
+	/**************************************************************************************
+	 * Territory Sprite manipulation methods
+	 **************************************************************************************/
 	public function setCoverColorTo(thisColor:Int) 
 	{
 		coverSprite.color = thisColor;
 	}
-		
-	public function setupBorders(boundaryGraphic:FlxSprite, xPos:Float, yPos:Float) 
-	{
-		coverSprite.stamp(boundaryGraphic, Std.int(xPos - this.x), Std.int(yPos - this.y));
-	}
 	
+	/**************************************************************************************
+	 * Army count
+	 **************************************************************************************/
 	public function setArmyCount(count:Int) 
 	{
 		if ( centerTile == null )
@@ -125,6 +151,9 @@ class Territory extends FlxSprite
 		return true;
 	}
 	
+	/**************************************************************************************
+	 * Territory selection
+	 **************************************************************************************/
 	public function select(isNeighborSelect : Bool = false) 
 	{
 		this.alpha = 0.5;
