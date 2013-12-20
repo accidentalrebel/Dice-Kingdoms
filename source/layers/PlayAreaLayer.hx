@@ -354,13 +354,16 @@ class PlayAreaLayer extends FlxGroup
 		var newOwner: Player = PlayState.playerManager.getPlayer(playerNum);
 		newOwner.territories.push(territoryNum);
 		
+		// We set the territory cover color
+		territory.setCoverColorTo(PlayState.playerManager.getPlayer(playerNum).territoryColor);
+		
+		// We now draw the boundaries
 	    for ( tMember in territory.members )
 		{
 			var member : HexaTile = tMember;
 			if ( member != null )
 			{
 				//TODO: Add a fade when changing color. Doing an alpha fade might be less performance heavy.
-				member.setCoverColorTo(PlayState.playerManager.getPlayer(playerNum).territoryColor);
 				member.drawBoundaries(PlayState.playerManager.getPlayer(playerNum).territoryColor);
 			}
 		}

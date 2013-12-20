@@ -5,6 +5,7 @@ import flixel.util.FlxRect;
 import managers.GameplayManager;
 import managers.TerritoryManager;
 import flixel.FlxBasic;
+import objects.Player;
 import states.PlayState;
 import tools.Tools;
 
@@ -14,6 +15,8 @@ import tools.Tools;
  */
 class Territory extends FlxSprite
 {
+	private static inline var COVER_ALPHA : Float = 0.5;
+	
 	public var neighbors : Array<Int>;
 	public var armyCount : Int = 0;
 	public var centerTile : HexaTile = null;
@@ -60,8 +63,14 @@ class Territory extends FlxSprite
 		for ( tHexaTile in members )
 		{
 			var hexaTile : HexaTile = tHexaTile;
-			this.stamp(PlayState.stampsHolder.hexaTileStamp, Std.int(hexaTile.x-boundingBox.x), Std.int(hexaTile.y-boundingBox.y));
+			PlayState.stampsHolder.hexaTileStamp.alpha = COVER_ALPHA;
+			coverSprite.stamp(PlayState.stampsHolder.hexaTileStamp, Std.int(hexaTile.x-boundingBox.x), Std.int(hexaTile.y-boundingBox.y));
 		}
+	}
+	
+	public function setCoverColorTo(thisColor:Int) 
+	{
+		coverSprite.color = thisColor;
 	}
 		
 	public function setupBorders(boundaryGraphic:FlxSprite, xPos:Float, yPos:Float) 

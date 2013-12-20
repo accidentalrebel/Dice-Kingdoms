@@ -124,11 +124,6 @@ class HexaTile extends FlxSprite
 		drawBoundary(this.topLeft, 5);
 	}
 	
-	public function setCoverColorTo(tColor : Int)
-	{		
-		this.color = tColor;
-	}
-	
 	public function turnToSeaTile()
 	{
 		this.isATerritory = false;
