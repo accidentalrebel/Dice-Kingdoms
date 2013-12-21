@@ -120,13 +120,21 @@ class Territory extends FlxSprite
 	 **************************************************************************************/
 	public function select(isNeighborSelect : Bool = false) 
 	{
-		this.alpha = 0.5;
+		var alphaValue : Float = 1;
+		if ( isNeighborSelect )
+			alphaValue = 0.25;
+		else
+			alphaValue = 0.5;
+			
+		this.alpha = alphaValue;
+		this.coverSprite.alpha = alphaValue;
 		return;
 	}
 	
 	public function deselect(isNeighborDeselect : Bool = false)
 	{
 		this.alpha = 1;
+		this.coverSprite.alpha = 1;
 		return;
 	}
 	
