@@ -31,9 +31,19 @@ class BattleResult extends FlxSpriteGroup
 		this.add(battleLabel);
 	}
 	
-	public function rollAnimation(finalRollResult : Int )
+	public function changeLabelText(labelText : String )
 	{
-		this.battleLabel.text = Std.string(finalRollResult);
+		this.battleLabel.text = labelText;
+	}
+	
+	public function hideLabel()
+	{
+		this.battleLabel.visible = false;
+	}
+	
+	public function showLabel()
+	{
+		this.battleLabel.visible = true;
 	}
 	
 	/**

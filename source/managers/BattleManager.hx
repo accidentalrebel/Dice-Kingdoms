@@ -66,8 +66,10 @@ class BattleManager
 			var defenderPlayer : Player = PlayState.playerManager.getPlayer(defender.ownerNumber);
 			var winText : String = "";
 			
-			PlayState.gameGUI.attackerBattleResult.rollAnimation(attackerRoll);
-			PlayState.gameGUI.defenderBattleResult.rollAnimation(defenderRoll);
+			PlayState.gameGUI.attackerBattleResult.showLabel();
+			PlayState.gameGUI.attackerBattleResult.changeLabelText(Std.string(attackerRoll));
+			PlayState.gameGUI.defenderBattleResult.showLabel();
+			PlayState.gameGUI.defenderBattleResult.changeLabelText(Std.string(defenderRoll));
 		
 			// We resolve the battle
 			if ( attackerRoll > defenderRoll )
@@ -94,8 +96,8 @@ class BattleManager
 		
 		PlayState.battleLayer.hideBattleResults();
 		
-		PlayState.gameGUI.attackerBattleResult.rollAnimation(0);
-		PlayState.gameGUI.defenderBattleResult.rollAnimation(0);
+		PlayState.gameGUI.attackerBattleResult.hideLabel();
+		PlayState.gameGUI.defenderBattleResult.hideLabel();
 		PlayState.gameGUI.attackerBattleResult.attachToTerritory(attackerTerritoryNum);
 		PlayState.gameGUI.defenderBattleResult.attachToTerritory(defenderTerritoryNum);	
 		
