@@ -148,7 +148,7 @@ class EnemyAI
 					if ( PlayState.cameraManager.isZoomedIn )
 						taskManager.addPause(0.25);
 					
-					taskManager.addPause(1.5);
+					taskManager.addPause(2);
 					taskManager.addInstantTask(this, getNextMove, null, true);
 					break;
 				}

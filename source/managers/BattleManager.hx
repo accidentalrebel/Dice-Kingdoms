@@ -67,10 +67,7 @@ class BattleManager
 			PlayState.gameGUI.attackerBattleResult.changeLabelText(Std.string(attackerRoll));
 			PlayState.gameGUI.defenderBattleResult.showLabel();
 			PlayState.gameGUI.defenderBattleResult.changeLabelText(Std.string(defenderRoll));
-		}
-		
-		function resolveBattle()
-		{
+			
 			var defenderPlayer : Player = PlayState.playerManager.getPlayer(defender.ownerNumber);
 			var winText : String = "";
 			
@@ -105,8 +102,6 @@ class BattleManager
 		taskManager = new ARTaskManager(false);
 		taskManager.addPause(0.5);
 		taskManager.addInstantTask(this, startBattle);
-		taskManager.addPause(0.5);
-		taskManager.addInstantTask(this, resolveBattle);
 		return true;
 	} 
 }
