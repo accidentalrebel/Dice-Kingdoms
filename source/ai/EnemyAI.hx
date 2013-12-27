@@ -131,8 +131,6 @@ class EnemyAI
 					{
 						PlayState.playArea.selectTerritory(territory);
 						PlayState.playArea.selectTerritory(neighborTerritory);
-						PlayState.gameGUI.attackerBattleResult.attachToTerritory(territory.territoryNumber);
-						PlayState.gameGUI.defenderBattleResult.attachToTerritory(neighborTerritory.territoryNumber);	
 					}
 					taskManager.addInstantTask(this, selectInvolvedTerritories, [territory], true);
 					taskManager.addPause(0.5);
@@ -146,7 +144,7 @@ class EnemyAI
 					if ( PlayState.cameraManager.isZoomedIn )
 						taskManager.addPause(0.25);
 					
-					taskManager.addPause(1);
+					taskManager.addPause(1.5);
 					taskManager.addInstantTask(this, getNextMove, null, true);
 					break;
 				}

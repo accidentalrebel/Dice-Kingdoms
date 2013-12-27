@@ -63,14 +63,17 @@ class BattleManager
 		function startBattle()
 		{
 			// We start rolling
-			var defenderPlayer : Player = PlayState.playerManager.getPlayer(defender.ownerNumber);
-			var winText : String = "";
-			
 			PlayState.gameGUI.attackerBattleResult.showLabel();
 			PlayState.gameGUI.attackerBattleResult.changeLabelText(Std.string(attackerRoll));
 			PlayState.gameGUI.defenderBattleResult.showLabel();
 			PlayState.gameGUI.defenderBattleResult.changeLabelText(Std.string(defenderRoll));
+		}
 		
+		function resolveBattle()
+		{
+			var defenderPlayer : Player = PlayState.playerManager.getPlayer(defender.ownerNumber);
+			var winText : String = "";
+			
 			// We resolve the battle
 			if ( attackerRoll > defenderRoll )
 			{
@@ -104,8 +107,8 @@ class BattleManager
 		taskManager = new ARTaskManager(false);
 		taskManager.addPause(0.5);
 		taskManager.addInstantTask(this, startBattle);
-		
-		//TODO: Consider adding a pause after a battle
+		taskManager.addPause(0.5);
+		taskManager.addInstantTask(this, resolveBattle);
 		return true;
 	} 
 }
