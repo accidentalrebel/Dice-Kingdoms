@@ -90,6 +90,8 @@ class BattleManager
 		}
 		
 		PlayState.battleLayer.hideBattleResults();
+		PlayState.gameGUI.attackerBattleResult.attachToTerritory(attackerTerritoryNum);
+		PlayState.gameGUI.defenderBattleResult.attachToTerritory(defenderTerritoryNum);	
 		
 		taskManager = new ARTaskManager(false);
 		taskManager.addPause(0.5);

@@ -30,6 +30,11 @@ class BattleResult extends FlxSpriteGroup
 		this.add(battleLabel);
 	}
 	
+	public function updateLabel(textToDisplay : String )
+	{
+		this.battleLabel.text = textToDisplay;
+	}
+	
 	/**
 	 * Attaches this battle result to the specified territory.
 	 * Handles the positioning.
