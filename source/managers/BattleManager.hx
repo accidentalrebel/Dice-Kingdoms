@@ -20,6 +20,7 @@ class BattleManager
 		
 	}
 	
+	//TODO: Check out why sometimes "ZERO" appears as the final result
 	public function startAttack(attackerTerritoryNum:Int, defenderTerritoryNum:Int) : Bool
 	{	
 		function rollAllDice(numOfDice:Int) : Array<Int>
@@ -34,18 +35,6 @@ class BattleManager
 			return dieResults;
 		}
 		
-		var attacker : Territory = PlayState.territoryManager.getTerritory(attackerTerritoryNum);
-		var defender : Territory = PlayState.territoryManager.getTerritory(defenderTerritoryNum);
-		
-		var attackerDiceResults : Array<Int> = rollAllDice(attacker.armyCount);
-		var defenderDiceResults : Array<Int> = rollAllDice(defender.armyCount);
-		
-		var attackerColor : Int = PlayState.playerManager.getPlayer(attacker.ownerNumber).territoryColor;
-		var defenderColor : Int = PlayState.playerManager.getPlayer(defender.ownerNumber).territoryColor;
-		
-		PlayState.battleLayer.rollAllDice(attackerDiceResults.length, attackerColor
-			, defenderDiceResults.length, defenderColor);
-		
 		function getTotalCount(dieResults : Array<Int>) : Int
 		{
 			var totalCount : Int = 0;
@@ -55,17 +44,31 @@ class BattleManager
 			return totalCount;
 		}
 		
+		var attacker : Territory = PlayState.territoryManager.getTerritory(attackerTerritoryNum);
+		var defender : Territory = PlayState.territoryManager.getTerritory(defenderTerritoryNum);
+		
+		var attackerDiceResults : Array<Int> = rollAllDice(attacker.armyCount);
+		var defenderDiceResults : Array<Int> = rollAllDice(defender.armyCount);
+		
+		var attackerColor : Int = PlayState.playerManager.getPlayer(attacker.ownerNumber).territoryColor;
+		var defenderColor : Int = PlayState.playerManager.getPlayer(defender.ownerNumber).territoryColor;
+		
+		var attackerRoll : Int = getTotalCount(attackerDiceResults);
+		var defenderRoll : Int = getTotalCount(defenderDiceResults);
+			
+		PlayState.battleLayer.rollAllDice(attackerDiceResults.length, attackerColor
+			, defenderDiceResults.length, defenderColor);
+		
 		//TODO: Consider renaming this function
 		function startBattle()
 		{
 			// We start rolling
-			var attackerRoll : Int = getTotalCount(attackerDiceResults);
-			
 			var defenderPlayer : Player = PlayState.playerManager.getPlayer(defender.ownerNumber);
-			var defenderRoll : Int = getTotalCount(defenderDiceResults);
-			
 			var winText : String = "";
 			
+			PlayState.gameGUI.attackerBattleResult.rollAnimation(attackerRoll);
+			PlayState.gameGUI.defenderBattleResult.rollAnimation(defenderRoll);
+		
 			// We resolve the battle
 			if ( attackerRoll > defenderRoll )
 			{
@@ -90,6 +93,9 @@ class BattleManager
 		}
 		
 		PlayState.battleLayer.hideBattleResults();
+		
+		PlayState.gameGUI.attackerBattleResult.rollAnimation(0);
+		PlayState.gameGUI.defenderBattleResult.rollAnimation(0);
 		PlayState.gameGUI.attackerBattleResult.attachToTerritory(attackerTerritoryNum);
 		PlayState.gameGUI.defenderBattleResult.attachToTerritory(defenderTerritoryNum);	
 		

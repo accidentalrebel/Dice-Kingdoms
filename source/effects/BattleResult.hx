@@ -25,14 +25,15 @@ class BattleResult extends FlxSpriteGroup
 		battleLabel = new FlxText(0, 0, 31, "88", 18);
 		battleLabel.x = battleSprite.width / 2 - battleLabel.width / 2;
 		battleLabel.y = battleSprite.height / 2 - battleLabel.height / 2;
+		battleLabel.alignment = "center";
 		
 		this.add(battleSprite);
 		this.add(battleLabel);
 	}
 	
-	public function updateLabel(textToDisplay : String )
+	public function rollAnimation(finalRollResult : Int )
 	{
-		this.battleLabel.text = textToDisplay;
+		this.battleLabel.text = Std.string(finalRollResult);
 	}
 	
 	/**
