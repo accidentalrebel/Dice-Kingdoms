@@ -99,8 +99,6 @@ class BattleManager
 		
 		PlayState.battleLayer.hideBattleResults();
 		
-		PlayState.gameGUI.attackerBattleResult.hideLabel();
-		PlayState.gameGUI.defenderBattleResult.hideLabel();
 		PlayState.gameGUI.attackerBattleResult.attachToTerritory(attackerTerritoryNum);
 		PlayState.gameGUI.defenderBattleResult.attachToTerritory(defenderTerritoryNum);	
 		

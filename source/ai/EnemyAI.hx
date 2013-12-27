@@ -131,6 +131,10 @@ class EnemyAI
 					{
 						PlayState.playArea.selectTerritory(territory);
 						PlayState.playArea.selectTerritory(neighborTerritory);
+						PlayState.gameGUI.attackerBattleResult.attachToTerritory(territory.territoryNumber);
+						PlayState.gameGUI.defenderBattleResult.attachToTerritory(neighborTerritory.territoryNumber);	
+						PlayState.gameGUI.attackerBattleResult.hideLabel();
+						PlayState.gameGUI.defenderBattleResult.hideLabel();
 					}
 					taskManager.addInstantTask(this, selectInvolvedTerritories, [territory], true);
 					taskManager.addPause(0.5);
