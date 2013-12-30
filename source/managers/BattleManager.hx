@@ -62,11 +62,8 @@ class BattleManager
 		//TODO: Consider renaming this function
 		function startBattle()
 		{
-			// We start rolling
 			PlayState.gameGUI.attackerBattleResult.showLabel();
-			PlayState.gameGUI.attackerBattleResult.changeLabelText(Std.string(attackerRoll));
 			PlayState.gameGUI.defenderBattleResult.showLabel();
-			PlayState.gameGUI.defenderBattleResult.changeLabelText(Std.string(defenderRoll));
 			
 			var defenderPlayer : Player = PlayState.playerManager.getPlayer(defender.ownerNumber);
 			var winText : String = "";
@@ -80,11 +77,17 @@ class BattleManager
 				attacker.setArmyCount(1);
 				PlayState.playArea.assignTerritory(defender.territoryNumber, attacker.ownerNumber);
 				defenderPlayer.checkIfLost();
+				
+				PlayState.gameGUI.attackerBattleResult.changeLabelText("WINNER");
+				PlayState.gameGUI.defenderBattleResult.changeLabelText("LOSER");
 			}
 			else
 			{
 				winText = "DEFENDER";
 				attacker.setArmyCount(1);
+				
+				PlayState.gameGUI.attackerBattleResult.changeLabelText("LOSER");
+				PlayState.gameGUI.defenderBattleResult.changeLabelText("WINNER");
 			}
 			
 			if ( taskManager != null )
@@ -95,6 +98,9 @@ class BattleManager
 		}
 		
 		PlayState.battleLayer.hideBattleResults();
+		
+		PlayState.gameGUI.attackerBattleResult.hideLabel();
+		PlayState.gameGUI.defenderBattleResult.hideLabel();
 		
 		PlayState.gameGUI.attackerBattleResult.attachToTerritory(attackerTerritoryNum);
 		PlayState.gameGUI.defenderBattleResult.attachToTerritory(defenderTerritoryNum);	

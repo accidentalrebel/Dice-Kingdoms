@@ -22,7 +22,7 @@ class BattleResult extends FlxSpriteGroup
 		battleSprite = new FlxSprite(0, 0);
 		battleSprite.loadGraphic("assets/soldier.png", false, false);
 		
-		battleLabel = new FlxText(0, 0, 31, "88", 18);
+		battleLabel = new FlxText(0, 0, 100, "88", 12);
 		battleLabel.x = battleSprite.width / 2 - battleLabel.width / 2;
 		battleLabel.y = battleSprite.height / 2 - battleLabel.height / 2;
 		battleLabel.alignment = "center";
