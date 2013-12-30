@@ -78,16 +78,16 @@ class BattleManager
 				PlayState.playArea.assignTerritory(defender.territoryNumber, attacker.ownerNumber);
 				defenderPlayer.checkIfLost();
 				
-				PlayState.gameGUI.attackerBattleResult.changeLabelText("WINNER");
-				PlayState.gameGUI.defenderBattleResult.changeLabelText("LOSER");
+				PlayState.gameGUI.attackerBattleResult.setAsWinner();
+				PlayState.gameGUI.defenderBattleResult.setAsLoser();
 			}
 			else
 			{
 				winText = "DEFENDER";
 				attacker.setArmyCount(1);
 				
-				PlayState.gameGUI.attackerBattleResult.changeLabelText("LOSER");
-				PlayState.gameGUI.defenderBattleResult.changeLabelText("WINNER");
+				PlayState.gameGUI.attackerBattleResult.setAsLoser();
+				PlayState.gameGUI.defenderBattleResult.setAsWinner();
 			}
 			
 			if ( taskManager != null )

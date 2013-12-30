@@ -56,4 +56,14 @@ class BattleResult extends FlxSpriteGroup
 		var territoryToAttachTo : Territory = PlayState.territoryManager.getTerritory(territoryNumber);
 		this.setPosition(territoryToAttachTo.centerTile.x + HexaTile.TILE_WIDTH / 2 - battleSprite.width / 2, territoryToAttachTo.centerTile.y - 40);
 	}
+	
+	public function setAsWinner() 
+	{
+		changeLabelText("WINNER");
+	}
+	
+	public function setAsLoser() 
+	{
+		changeLabelText("LOSER");
+	}
 }
