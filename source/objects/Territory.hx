@@ -52,7 +52,7 @@ class Territory extends FlxSprite
 		for ( tHexaTile in members )
 		{
 			var hexaTile : HexaTile = tHexaTile;
-			var stamp : FlxSprite = PlayState.stampsHolder.randomizeFrame(PlayState.stampsHolder.landStamp);
+			var stamp : FlxSprite = PlayState.stampsHolder.setToFrame(PlayState.stampsHolder.landStamp, 3);
 			
 			//TODO: Instead of changing the alpha, change the color
 			stamp.alpha = FlxRandom.floatRanged(0.5, 1);

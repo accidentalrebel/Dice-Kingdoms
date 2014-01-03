@@ -29,9 +29,9 @@ class StampsHolder
 		hexaTileStamp.loadGraphic("assets/hexaTile.png", false, false, HexaTile.TILE_WIDTH, HexaTile.TILE_HEIGHT);
 	}
 	
-	public function randomizeFrame(theSprite : FlxSprite) : FlxSprite
+	public function randomizeFrame(theSprite : FlxSprite, minFrame : Int, maxFrame : Int) : FlxSprite
 	{
-		theSprite.animation.frameIndex = FlxRandom.intRanged(3, 3);
+		theSprite.animation.frameIndex = FlxRandom.intRanged(minFrame, maxFrame);
 		return theSprite;
 	}
 	

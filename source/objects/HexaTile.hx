@@ -3,6 +3,7 @@ import flixel.FlxSprite;
 import flixel.group.FlxGroup;
 import flixel.text.FlxText;
 import flixel.util.FlxRandom;
+import flixel.util.FlxRect;
 import states.PlayState;
 
 /**
@@ -100,9 +101,14 @@ class HexaTile extends FlxSprite
 		label.text = text;
 	}
 	
-	public function turnToSeaTile()
+	public function turnToSeaTile(seaCanvas:FlxSprite)
 	{
 		this.isATerritory = false;
-		this.animation.frameIndex = FlxRandom.intRanged(0, 2);		// Set to the sea graphic
+		
+		var stamp : FlxSprite = PlayState.stampsHolder.setToFrame(PlayState.stampsHolder.landStamp, 0);
+		
+		//TODO: Instead of changing the alpha, change the color
+		//stamp.alpha = FlxRandom.floatRanged(0.5, 1);		
+		seaCanvas.stamp(stamp, Std.int(this.x), Std.int(this.y));
 	}
 }

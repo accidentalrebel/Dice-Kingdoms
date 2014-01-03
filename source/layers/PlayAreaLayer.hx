@@ -296,8 +296,9 @@ class PlayAreaLayer extends FlxGroup
 				{
 					// We turn non territories to sea tiles
 					if ( !hexaTile.isATerritory )
-						//hexaTile.kill();
-						hexaTile.turnToSeaTile();
+					{
+						hexaTile.turnToSeaTile(seaCanvas);
+					}
 					else
 					{						
 						var currentTerritory : Territory = PlayState.territoryManager.getTerritory(hexaTile.territoryNumber);
