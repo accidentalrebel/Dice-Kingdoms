@@ -55,7 +55,7 @@ class Territory extends FlxSprite
 			var stamp : FlxSprite = PlayState.stampsHolder.randomizeFrame(PlayState.stampsHolder.landStamp);
 			
 			//TODO: Instead of changing the alpha, change the color
-			stamp.alpha = FlxRandom.floatRanged(0.7, 1);
+			stamp.alpha = FlxRandom.floatRanged(0.6, 1);
 			this.stamp(stamp, Std.int(hexaTile.x-boundingBox.x), Std.int(hexaTile.y-boundingBox.y));
 		}
 		
