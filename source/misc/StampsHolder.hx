@@ -31,7 +31,7 @@ class StampsHolder
 	
 	public function randomizeFrame(theSprite : FlxSprite) : FlxSprite
 	{
-		theSprite.animation.frameIndex = FlxRandom.intRanged(3, 19);
+		theSprite.animation.frameIndex = FlxRandom.intRanged(3, 3);
 		return theSprite;
 	}
 	
