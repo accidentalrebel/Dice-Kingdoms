@@ -19,6 +19,7 @@ class PlayAreaLayer extends FlxGroup
 	//TODO: Just remove the hexaTiles that has no surrounding same-territory neighbors
 	inline public static var PLAY_AREA_COLUMNS 	: Int = 42;
 	inline public static var PLAY_AREA_ROWS 	: Int = 26;
+	inline public static var BOUNDARY_COLOR_MINUEND 	: Int = 0x111111;
 	
 	public var seaCanvas		: FlxSprite;
 	public var playAreaArray 	: Array<Array<HexaTile>>;
@@ -370,7 +371,7 @@ class PlayAreaLayer extends FlxGroup
 					return;
 					
 				var boundaryGraphic : FlxSprite = PlayState.stampsHolder.setToFrame(PlayState.stampsHolder.boundaryStamp, frameToUse);
-				boundaryGraphic.color = colorToUse;
+				boundaryGraphic.color = colorToUse - BOUNDARY_COLOR_MINUEND;
 			
 				var territory : Territory = PlayState.territoryManager.getTerritory(hexaTile.territoryNumber);
 				territory.coverSprite.stamp(boundaryGraphic, Std.int(hexaTile.x - territory.x)
