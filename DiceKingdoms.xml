@@ -39,6 +39,10 @@
 		
 	</assets>
 	
+	<assets path="assets">
+		<font path="fonts/courier.ttf" id="Courier" />
+	</assets>
+	
 	<assets path="assets" exclude="*.wav" if="flash" />
 	<assets path="assets" exclude="*.svg" if="html5" />
 	<assets path="assets" if="desktop" />
