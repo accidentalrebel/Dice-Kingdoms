@@ -44,7 +44,7 @@ class PlayState extends FlxState
 	{
 		//TODO: Work on the menu
 		
-		FlxG.cameras.bgColor = 0xFF222222;
+		FlxG.cameras.bgColor = 0xFF111111;
 		
 		super.create();
 		

@@ -108,7 +108,7 @@ class HexaTile extends FlxSprite
 		var stamp : FlxSprite = PlayState.stampsHolder.setToFrame(PlayState.stampsHolder.landStamp, 0);
 		
 		//TODO: Instead of changing the alpha, change the color
-		//stamp.alpha = FlxRandom.floatRanged(0.5, 1);		
+		stamp.alpha = FlxRandom.floatRanged(0, 0.5);		
 		seaCanvas.stamp(stamp, Std.int(this.x), Std.int(this.y));
 	}
 }
