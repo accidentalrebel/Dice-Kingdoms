@@ -1,6 +1,8 @@
 package objects;
+import flash.display.Sprite;
 import flixel.FlxSprite;
 import flixel.system.replay.FlxReplay;
+import flixel.util.FlxRandom;
 import flixel.util.FlxRect;
 import managers.GameplayManager;
 import managers.TerritoryManager;
@@ -50,7 +52,11 @@ class Territory extends FlxSprite
 		for ( tHexaTile in members )
 		{
 			var hexaTile : HexaTile = tHexaTile;
-			this.stamp(PlayState.stampsHolder.randomizeFrame(PlayState.stampsHolder.landStamp), Std.int(hexaTile.x-boundingBox.x), Std.int(hexaTile.y-boundingBox.y));
+			var stamp : FlxSprite = PlayState.stampsHolder.randomizeFrame(PlayState.stampsHolder.landStamp);
+			
+			//TODO: Instead of changing the alpha, change the color
+			stamp.alpha = FlxRandom.floatRanged(0.7, 1);
+			this.stamp(stamp, Std.int(hexaTile.x-boundingBox.x), Std.int(hexaTile.y-boundingBox.y));
 		}
 		
 		setupCoverGraphic(boundingBox);		
