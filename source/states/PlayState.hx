@@ -2,6 +2,7 @@ package states;
 import flixel.FlxG;
 import flixel.FlxState;
 import flixel.group.FlxGroup;
+import flixel.system.FlxSound;
 import layers.BattleLayer;
 import layers.GameGUILayer;
 import layers.GameObjectsLayer;
@@ -45,7 +46,11 @@ class PlayState extends FlxState
 		//TODO: Work on the menu
 		
 		FlxG.cameras.bgColor = 0xFF111111;
-		
+		var soundPlayer : FlxSound = new FlxSound();
+		soundPlayer.loadEmbedded("001", true);
+		soundPlayer.play();
+		add(soundPlayer);
+				
 		super.create();
 		
 		PlayState.cameraManager 		= new CameraManager();

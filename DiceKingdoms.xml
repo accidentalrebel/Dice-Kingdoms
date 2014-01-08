@@ -41,6 +41,7 @@
 	
 	<assets path="assets">
 		<font path="fonts/courier.ttf" id="Courier" />
+		<sound path="audio/bgm/001.mp3" id="001" />
 	</assets>
 	
 	<assets path="assets" exclude="*.wav" if="flash" />
