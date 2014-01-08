@@ -44,6 +44,8 @@ class PlayState extends FlxState
 	override public function create():Void 
 	{
 		//TODO: Work on the menu
+		//TODO: Make it 22 to 43 territories
+		//TODO: Convert to 7 players
 		
 		FlxG.cameras.bgColor = 0xFF111111;
 		var soundPlayer : FlxSound = new FlxSound();
