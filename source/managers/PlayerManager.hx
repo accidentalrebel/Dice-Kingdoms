@@ -13,7 +13,9 @@ import states.PlayState;
  */
 class PlayerManager
 {
-	public var numOfPlayers:Int = 8;
+	public static inline var MAX_NUM_OF_PLAYERS : Int = 7;
+	
+	public var numOfPlayers:Int = MAX_NUM_OF_PLAYERS;
 	public var numOfHumans:Int = 1;
 	public var playerList:Array<Player>;
 	public var currentPlayerNumber : Int = 1;
@@ -21,8 +23,8 @@ class PlayerManager
 	
 	public function new(tNumOfPlayers : Int = 8, tNumOfHumans : Int = 1) 
 	{
-		tNumOfPlayers = Std.int(FlxMath.bound(tNumOfPlayers, 1, 8));
-		tNumOfHumans = Std.int(FlxMath.bound(tNumOfHumans, 0, 8));
+		tNumOfPlayers = Std.int(FlxMath.bound(tNumOfPlayers, 1, MAX_NUM_OF_PLAYERS));
+		tNumOfHumans = Std.int(FlxMath.bound(tNumOfHumans, 0, MAX_NUM_OF_PLAYERS));
 		
 		PlayerColor.shuffle();
 		

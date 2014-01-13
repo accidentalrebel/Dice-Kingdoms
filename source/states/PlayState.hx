@@ -20,9 +20,7 @@ import misc.StampsHolder;
  * @author Karlo
  */
 class PlayState extends FlxState
-{
-	public static var maxTerritories : Int = Math.floor(PlayAreaLayer.PLAY_AREA_ROWS / 5) * Math.floor(PlayAreaLayer.PLAY_AREA_COLUMNS / 5);	
-	
+{	
 	static public var territoryPerPlayer		: Int;	
 	static public var initialArmyCount			: Int = 20;	
 	static public var maxArmyCountPerTerritory 	: Int = 8;	

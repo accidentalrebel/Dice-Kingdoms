@@ -1,5 +1,6 @@
 package managers;
 import flixel.util.FlxRandom;
+import layers.PlayAreaLayer;
 import objects.Territory;
 import flixel.FlxBasic;
 import states.PlayState;
@@ -10,6 +11,10 @@ import states.PlayState;
  */
 class TerritoryManager
 {
+	public static inline var TERRITORIES_PER_ROW : Int		= 7;
+	public static inline var TERRITORIES_PER_COLUMN : Int 	= 5;
+	public static var MAX_NUM_OF_TERRITORIES : Int 			= TERRITORIES_PER_COLUMN * TERRITORIES_PER_ROW;
+
 	public var territoryList : Array<Territory>;
 
 	public function new()

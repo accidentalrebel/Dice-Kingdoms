@@ -4,6 +4,7 @@ import flixel.FlxSprite;
 import flixel.FlxState;
 import flixel.group.FlxGroup;
 import flixel.util.FlxRandom;
+import managers.TerritoryManager;
 import misc.PlayerColor;
 import objects.HexaTile;
 import objects.Player;
@@ -260,9 +261,9 @@ class PlayAreaLayer extends FlxGroup
 		
 		// TODO: Check why players are being skipped even though they still have one territory left
 		// We initialize the territories
-		for (row in 1...(Math.floor(PLAY_AREA_ROWS/5) + 1))
+		for (row in 1...(TerritoryManager.TERRITORIES_PER_COLUMN + 1))
 		{
-			for (col in 1...(Math.floor(PLAY_AREA_COLUMNS/5) + 1))
+			for (col in 1...(TerritoryManager.TERRITORIES_PER_ROW + 1))
 			{  
 				setupTerritory((col * 5)-1, (row * 5)-2, centerBaseList);
 				currentTerritoryNumber += 1;
@@ -280,7 +281,7 @@ class PlayAreaLayer extends FlxGroup
 		
 		// We group the territories		
 		// We create the territory list
-		for ( i in 0...PlayState.maxTerritories )
+		for ( i in 0...TerritoryManager.MAX_NUM_OF_TERRITORIES )
 		{
 			var territory : Territory = new Territory(i);
 			this.add(territory);
@@ -339,7 +340,7 @@ class PlayAreaLayer extends FlxGroup
 			return roll;
 		}
       
-		PlayState.territoryPerPlayer = Math.floor(PlayState.maxTerritories / PlayState.playerManager.playerList.length);
+		PlayState.territoryPerPlayer = Math.floor(TerritoryManager.MAX_NUM_OF_TERRITORIES / PlayState.playerManager.playerList.length);
 		for (playerNum in 1...PlayState.playerManager.playerList.length+1 )
 	    {
 			for (j in 0...PlayState.territoryPerPlayer)
