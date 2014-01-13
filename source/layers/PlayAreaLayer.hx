@@ -18,9 +18,10 @@ import states.PlayState;
 class PlayAreaLayer extends FlxGroup
 {
 	//TODO: Just remove the hexaTiles that has no surrounding same-territory neighbors
-	inline public static var PLAY_AREA_COLUMNS 	: Int = 42;
-	inline public static var PLAY_AREA_ROWS 	: Int = 26;
+	inline public static var PLAY_AREA_COLUMNS 			: Int = 42;
+	inline public static var PLAY_AREA_ROWS 			: Int = 26;
 	inline public static var BOUNDARY_COLOR_MINUEND 	: Int = 0x111111;
+	inline public static var ENABLE_ONE_TILE_PADDING 	: Bool = false;
 	
 	public var seaCanvas		: FlxSprite;
 	public var playAreaArray 	: Array<Array<HexaTile>>;
@@ -114,8 +115,9 @@ class PlayAreaLayer extends FlxGroup
 		//TODO: Turn to a sea tile function to be removed
 		function markTerritory(hexaTile : HexaTile, canOverride : Bool = false) : Bool
 		{  
-			if (hexaTile == null || hexaTile.isATerritory || hexaTile.col <= 0 || hexaTile.row <= 0 
-				|| hexaTile.col >= PLAY_AREA_COLUMNS - 1 || hexaTile.row >= PLAY_AREA_ROWS - 1)
+			if ( !ENABLE_ONE_TILE_PADDING && ( hexaTile == null || hexaTile.isATerritory)
+				|| ENABLE_ONE_TILE_PADDING && (hexaTile == null || hexaTile.isATerritory || hexaTile.col <= 0 || hexaTile.row <= 0 
+				|| hexaTile.col >= PLAY_AREA_COLUMNS - 1 || hexaTile.row >= PLAY_AREA_ROWS - 1))
 				return false;
 			
 			hexaTile.isATerritory = true;	
