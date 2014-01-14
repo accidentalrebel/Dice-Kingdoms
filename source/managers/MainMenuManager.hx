@@ -19,4 +19,19 @@ class MainMenuManager
 		FlxG.switchState(new PlayState());
 	}
 	
+	public function showStartGameMenu() 
+	{
+		
+	}
+	
+	public function showSettingsMenu() 
+	{
+		
+	}
+	
+	public function showCreditsMenu() 
+	{
+		
+	}
+	
 }
