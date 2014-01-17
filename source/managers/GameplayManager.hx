@@ -154,13 +154,16 @@ class GameplayManager
 	
 	public function resetGame() 
 	{
-		FlxG.resetGame();
+		FlxG.paused = false;
+		FlxG.resetState();
 	}
 	
-	function endGame() 
+	public function endGame() 
 	{
-		taskManager.clear();		
+		if ( taskManager != null )
+			taskManager.clear();		
 		
+		FlxG.paused = false;
 		FlxG.switchState(new MenuState());
 		trace("Game has ended!");
 	}

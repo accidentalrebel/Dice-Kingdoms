@@ -78,7 +78,7 @@ class PlayState extends FlxState
 		PlayState.playArea.assignTerritories();
 		PlayState.playerManager.initializeArmies();
 		PlayState.playArea.setupFinished = true;
-		PlayState.pauseMenuLayer 		= new PauseMenuLayer();
+		PlayState.pauseMenuLayer 		= new PauseMenuLayer(this);
 		
 		// We arrange the different layers
 		add(PlayState.playArea);
@@ -86,6 +86,7 @@ class PlayState extends FlxState
 		add(PlayState.gameGUI);
 		add(PlayState.battleLayer);
 		add(PlayState.pauseMenuLayer);
+		add(PlayState.pauseMenuLayer.playerListGroup);
 		
 		// We assign layers to their respective cameras
 		PlayState.playArea.setAll("cameras", [ PlayState.cameraManager.mainCamera ]);

@@ -111,6 +111,9 @@ class Die extends FlxSprite
 	 */
 	function revealRoll() 
 	{
+		if ( dieFace.animation == null )
+			return;
+		
 		dieFace.animation.pause();
 		updateDieFace(currentFaceIndex);
 	}
