@@ -30,6 +30,7 @@ class PauseMenuLayer extends FlxSpriteGroup
 	
 	public function new(parentToAddTo : FlxState) 
 	{
+		//TODO: Override the back function for Android
 		playerListGroup = new FlxSpriteGroup(MainStage.cameraWidth / 2 - PAUSE_MENU_WIDTH / 2, 0);
 		
 		function setupBackground() 
@@ -72,13 +73,13 @@ class PauseMenuLayer extends FlxSpriteGroup
 		{
 			var restartButton : FlxButtonPlus = new FlxButtonPlus(0, 0
 				, PlayState.gameplayManager.resetGame, null, "New Game", 200, 70);
-			restartButton.setPosition(MainStage.adjustedWidth / 2 - 210, MainStage.cameraHeight - 130);
+			restartButton.setPosition(MainStage.cameraWidth / 2 - 210, MainStage.cameraHeight - 130);
 			restartButton.pauseProof = true;
 			this.add(restartButton);
 			
 			var mainMenuButton : FlxButtonPlus = new FlxButtonPlus(0, 0
 				, PlayState.gameplayManager.endGame, null, "MainMenu", 200, 70);
-			mainMenuButton.setPosition(MainStage.adjustedWidth / 2 + 10, MainStage.cameraHeight - 130);
+			mainMenuButton.setPosition(MainStage.cameraWidth / 2 + 10, MainStage.cameraHeight - 130);
 			mainMenuButton.pauseProof = true;
 			this.add(mainMenuButton);
 		}
@@ -90,8 +91,9 @@ class PauseMenuLayer extends FlxSpriteGroup
 		setupPlayerList();
 		setupButtons();
 		
-		//this.setPosition(MainStage.cameraWidth / 2 - PAUSE_MENU_WIDTH / 2, 0);
-		this.scrollFactor = new FlxPoint(0, 0);
+		this.scrollFactor = new FlxPoint();
+		playerListGroup.scrollFactor = new FlxPoint();
+		
 		this.setAll("cameras", [ PlayState.cameraManager.mainCamera], true);
 		playerListGroup.setAll("cameras", [ PlayState.cameraManager.mainCamera], true);
 		
