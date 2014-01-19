@@ -1,6 +1,6 @@
 package states;
 
-import layers.MenuLayer;
+import layers.MainMenuLayer;
 import managers.MainMenuManager;
 import openfl.Assets;
 import flash.geom.Rectangle;
@@ -12,10 +12,10 @@ import flixel.util.FlxSave;
 import flixel.FlxSprite;
 import flixel.FlxState;
 
-class MenuState extends FlxState
+class MainMenuState extends FlxState
 {	
 	public static var mainMenuManager:MainMenuManager;
-	public static var menuLayer : MenuLayer;
+	public static var menuLayer : MainMenuLayer;
 	
 	/**
 	 * Function that is called up when to state is created to set it up. 
@@ -33,7 +33,7 @@ class MenuState extends FlxState
 		super.create();
 		
 		mainMenuManager = new MainMenuManager();
-		menuLayer = new MenuLayer();
+		menuLayer = new MainMenuLayer();
 		
 		this.add(menuLayer);
 		//MenuState.mainMenuManager.startGame();

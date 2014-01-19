@@ -3,7 +3,7 @@ import flixel.FlxSprite;
 import flixel.group.FlxGroup;
 import flixel.util.FlxRandom;
 import misc.PlayerColor;
-import states.PlayState;
+import states.GameState;
 import tools.ARTaskManager;
 
 /**
@@ -48,8 +48,8 @@ class Die extends FlxSprite
 		
 		hide();
 		
-		whiteDieFace.cameras = [ PlayState.cameraManager.topBarCamera ];
-		blackDieFace.cameras = [ PlayState.cameraManager.topBarCamera ];
+		whiteDieFace.cameras = [ GameState.cameraManager.topBarCamera ];
+		blackDieFace.cameras = [ GameState.cameraManager.topBarCamera ];
 	}
 	
 	public function show() 
@@ -96,7 +96,7 @@ class Die extends FlxSprite
 	 */
 	public function rollAnimation(tDuration : Float) 
 	{
-		if ( taskManager != null )
+		if ( taskManager != null || dieFace.animation == null)
 			taskManager.clear();
 		
 		show();

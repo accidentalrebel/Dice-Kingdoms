@@ -6,7 +6,7 @@ import flixel.util.FlxPoint;
 import layers.PlayAreaLayer;
 import objects.HexaTile;
 import objects.Territory;
-import states.PlayState;
+import states.GameState;
 
 /**
  * ...
@@ -79,7 +79,7 @@ class CameraManager
 		FlxG.camera.zoom = magnifiedZoomValue;
 		currentZoomValue = FlxG.camera.zoom;
 		
-		PlayState.gameGUI.onCameraScale(ZOOM_VALUE, true);
+		GameState.gameGUI.onCameraScale(ZOOM_VALUE, true);
 	}
 	
 	/**
@@ -98,7 +98,7 @@ class CameraManager
 		//FlxG.camera.scroll = new FlxPoint();
 		centerCamera();
 		
-		PlayState.gameGUI.onCameraScale(ZOOM_VALUE, false);
+		GameState.gameGUI.onCameraScale(ZOOM_VALUE, false);
 	}
 	
 	/**
@@ -107,7 +107,7 @@ class CameraManager
 	 */
 	public function focusOnTerritory(territoryNum:Int) 
 	{
-		var territory : Territory = PlayState.territoryManager.getTerritory(territoryNum);
+		var territory : Territory = GameState.territoryManager.getTerritory(territoryNum);
 		FlxG.camera.scroll = new FlxPoint(territory.centerTile.x + (territory.centerTile.width / 2) - FlxG.stage.stageWidth / 2 / currentZoomValue
 			, territory.centerTile.y + (territory.centerTile.height / 2) - (FlxG.stage.stageHeight - topBarCamera.height) / 2 / currentZoomValue);
 	}
@@ -118,8 +118,8 @@ class CameraManager
 	 */
 	public function focusOnRandomTerritory(playerNumber : Int) 
 	{
-		var territory : Territory = PlayState.territoryManager.getRandomTerritory(playerNumber);
-		PlayState.cameraManager.focusOnTerritory(territory.territoryNumber);
+		var territory : Territory = GameState.territoryManager.getRandomTerritory(playerNumber);
+		GameState.cameraManager.focusOnTerritory(territory.territoryNumber);
 	}
 	
 	/**

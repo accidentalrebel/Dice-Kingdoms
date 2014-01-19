@@ -9,7 +9,7 @@ import managers.TerritoryManager;
 import flixel.FlxBasic;
 import misc.PlayerColor;
 import objects.Player;
-import states.PlayState;
+import states.GameState;
 import tools.Tools;
 
 /**
@@ -52,7 +52,7 @@ class Territory extends FlxSprite
 		for ( tHexaTile in members )
 		{
 			var hexaTile : HexaTile = tHexaTile;
-			var stamp : FlxSprite = PlayState.stampsHolder.setToFrame(PlayState.stampsHolder.landStamp, 3);
+			var stamp : FlxSprite = GameState.stampsHolder.setToFrame(GameState.stampsHolder.landStamp, 3);
 			
 			//TODO: Instead of changing the alpha, change the color
 			stamp.alpha = FlxRandom.floatRanged(0.5, 1);
@@ -68,14 +68,14 @@ class Territory extends FlxSprite
 		coverSprite = new FlxSprite();
 		coverSprite.makeGraphic(Std.int(this.width), Std.int(this.height), 0, true);	
 		coverSprite.setPosition(this.x, this.y);
-		PlayState.playArea.add(coverSprite);
+		GameState.playArea.add(coverSprite);
 		
 		// For each hexaTile, we get it's position and stamp a cover
 		for ( tHexaTile in members )
 		{
 			var hexaTile : HexaTile = tHexaTile;
-			PlayState.stampsHolder.hexaTileStamp.alpha = COVER_ALPHA;
-			coverSprite.stamp(PlayState.stampsHolder.hexaTileStamp, Std.int(hexaTile.x-boundingBox.x), Std.int(hexaTile.y-boundingBox.y));
+			GameState.stampsHolder.hexaTileStamp.alpha = COVER_ALPHA;
+			coverSprite.stamp(GameState.stampsHolder.hexaTileStamp, Std.int(hexaTile.x-boundingBox.x), Std.int(hexaTile.y-boundingBox.y));
 		}
 	}
 	
@@ -101,7 +101,7 @@ class Territory extends FlxSprite
 	
 	public function canIncreaseArmyCount(amount : Int = 1) : Bool 
 	{
-		if ( armyCount + amount > PlayState.maxArmyCountPerTerritory )
+		if ( armyCount + amount > GameState.maxArmyCountPerTerritory )
 			return false;
 			
 		return true;
@@ -109,14 +109,14 @@ class Territory extends FlxSprite
 	
 	public function increaseArmyCount(amount : Int = 1) : Bool
 	{
-		if ( armyCount + amount > PlayState.maxArmyCountPerTerritory )
+		if ( armyCount + amount > GameState.maxArmyCountPerTerritory )
 			return false;
 		
 		armyCount += amount;
 		setArmyCount(armyCount);
 		
-		if ( PlayState.playArea.setupFinished )
-			PlayState.gameGUI.spawnAddArmyEffect(centerTile.x, centerTile.y, amount);
+		if ( GameState.playArea.setupFinished )
+			GameState.gameGUI.spawnAddArmyEffect(centerTile.x, centerTile.y, amount);
 		
 		return true;
 	}
@@ -149,10 +149,10 @@ class Territory extends FlxSprite
 		for ( tNeighborNum in neighbors )
 		{
 			var neighborNum : Int = tNeighborNum;
-			if ( PlayState.territoryManager.getTerritory(neighborNum).ownerNumber == ownerNumber )
+			if ( GameState.territoryManager.getTerritory(neighborNum).ownerNumber == ownerNumber )
 				continue;
 			
-			PlayState.territoryManager.getTerritory(neighborNum).select(true);
+			GameState.territoryManager.getTerritory(neighborNum).select(true);
 		}
 	}
 	
@@ -161,13 +161,13 @@ class Territory extends FlxSprite
 		for ( tNeighborNum in neighbors )
 		{
 			var neighborNum : Int = tNeighborNum;
-			PlayState.territoryManager.getTerritory(neighborNum).deselect(true);
+			GameState.territoryManager.getTerritory(neighborNum).deselect(true);
 		}
 	}
 	
 	public function checkIfEnemyNeighbor(territoryNumber:Int) 
 	{
-		if ( PlayState.territoryManager.getTerritory(territoryNumber).ownerNumber == ownerNumber )
+		if ( GameState.territoryManager.getTerritory(territoryNumber).ownerNumber == ownerNumber )
 			return false;
 			
 		return Lambda.has(neighbors, territoryNumber);

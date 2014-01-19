@@ -5,7 +5,7 @@ import flixel.util.FlxMath;
 import haxe.Log;
 import misc.PlayerColor;
 import objects.Player;
-import states.PlayState;
+import states.GameState;
 
 /**
  * ...
@@ -70,7 +70,7 @@ class PlayerManager
 		for ( tPlayer in playerList )
 		{
 			var player : Player = tPlayer;
-			player.randomlyAssignArmies(PlayState.initialArmyCount - PlayState.territoryPerPlayer);			
+			player.randomlyAssignArmies(GameState.initialArmyCount - GameState.territoryPerPlayer);			
 		}
 	}
 	
@@ -99,6 +99,6 @@ class PlayerManager
 	{
 		currentPlayerNumber = playerNumber;
 		currentPlayer = getPlayer(currentPlayerNumber);
-		PlayState.gameGUI.updatePlayerIndicator(currentPlayer.isHuman, getPlayer(currentPlayerNumber).territoryColor);
+		GameState.gameGUI.updatePlayerIndicator(currentPlayer.isHuman, getPlayer(currentPlayerNumber).territoryColor);
 	}
 }

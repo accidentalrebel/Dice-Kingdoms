@@ -1,6 +1,6 @@
 package managers;
 import flixel.FlxG;
-import states.PlayState;
+import states.GameState;
 
 /**
  * ...
@@ -16,7 +16,7 @@ class MainMenuManager
 	
 	public function startGame()
 	{
-		FlxG.switchState(new PlayState());
+		FlxG.switchState(new GameState());
 	}
 	
 	public function showStartGameMenu() 

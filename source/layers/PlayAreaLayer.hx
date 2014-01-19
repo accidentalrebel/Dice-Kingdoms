@@ -9,7 +9,7 @@ import misc.PlayerColor;
 import objects.HexaTile;
 import objects.Player;
 import objects.Territory;
-import states.PlayState;
+import states.GameState;
 
 /**
  * ...
@@ -247,7 +247,7 @@ class PlayAreaLayer extends FlxGroup
 				
 				if ( neighborToCheck.territoryNumber != hexaTile.territoryNumber )
 				{
-					var neighborList : Array<Int> = PlayState.territoryManager.getTerritory(hexaTile.territoryNumber).neighbors;
+					var neighborList : Array<Int> = GameState.territoryManager.getTerritory(hexaTile.territoryNumber).neighbors;
 					if ( !Lambda.has(neighborList, neighborToCheck.territoryNumber))
 						neighborList.push(neighborToCheck.territoryNumber);
 				}
@@ -290,7 +290,7 @@ class PlayAreaLayer extends FlxGroup
 		{
 			var territory : Territory = new Territory(i);
 			this.add(territory);
-			PlayState.territoryManager.territoryList.push(territory);
+			GameState.territoryManager.territoryList.push(territory);
 		}
 		
 		for ( row in 0...PLAY_AREA_ROWS)
@@ -307,7 +307,7 @@ class PlayAreaLayer extends FlxGroup
 					}
 					else
 					{						
-						var currentTerritory : Territory = PlayState.territoryManager.getTerritory(hexaTile.territoryNumber);
+						var currentTerritory : Territory = GameState.territoryManager.getTerritory(hexaTile.territoryNumber);
 						currentTerritory.members.push(hexaTile);
 						
 						// We set the neighboring territories
@@ -320,10 +320,10 @@ class PlayAreaLayer extends FlxGroup
 		for ( tCenter in centerBaseList )
 		{
 			var center : HexaTile = tCenter;
-			PlayState.territoryManager.getTerritory(center.territoryNumber).centerTile = center;
+			GameState.territoryManager.getTerritory(center.territoryNumber).centerTile = center;
 		}
 		
-		PlayState.territoryManager.setupTerritorySprites();
+		GameState.territoryManager.setupTerritorySprites();
 		this.drawBoundaries();
 	} 
 	
@@ -336,7 +336,7 @@ class PlayAreaLayer extends FlxGroup
 			var roll : Int = 0;
 			while (true)
 			{
-				roll = FlxRandom.intRanged(0, PlayState.territoryManager.territoryList.length-1);
+				roll = FlxRandom.intRanged(0, GameState.territoryManager.territoryList.length-1);
 				if ( !Lambda.has(pickedTerritories, roll) )
 					break;
 			}
@@ -345,12 +345,12 @@ class PlayAreaLayer extends FlxGroup
 			return roll;
 		}
       
-		PlayState.territoryPerPlayer = Math.floor(TerritoryManager.MAX_NUM_OF_TERRITORIES / PlayState.playerManager.playerList.length);
-		for (playerNum in 1...PlayState.playerManager.playerList.length+1 )
+		GameState.territoryPerPlayer = Math.floor(TerritoryManager.MAX_NUM_OF_TERRITORIES / GameState.playerManager.playerList.length);
+		for (playerNum in 1...GameState.playerManager.playerList.length+1 )
 	    {
-			for (j in 0...PlayState.territoryPerPlayer)
+			for (j in 0...GameState.territoryPerPlayer)
 			{				
-				PlayState.playArea.assignTerritory(getRandomTerritoryNum(), playerNum);        
+				GameState.playArea.assignTerritory(getRandomTerritoryNum(), playerNum);        
 			}
 	    }
 	}
@@ -377,10 +377,10 @@ class PlayAreaLayer extends FlxGroup
 					&& hexaTile.territoryNumber == theNeighbor.territoryNumber )
 					return;
 					
-				var boundaryGraphic : FlxSprite = PlayState.stampsHolder.setToFrame(PlayState.stampsHolder.boundaryStamp, frameToUse);
+				var boundaryGraphic : FlxSprite = GameState.stampsHolder.setToFrame(GameState.stampsHolder.boundaryStamp, frameToUse);
 				boundaryGraphic.color = colorToUse - BOUNDARY_COLOR_MINUEND;
 			
-				var territory : Territory = PlayState.territoryManager.getTerritory(hexaTile.territoryNumber);
+				var territory : Territory = GameState.territoryManager.getTerritory(hexaTile.territoryNumber);
 				territory.coverSprite.stamp(boundaryGraphic, Std.int(hexaTile.x - territory.x)
 					, Std.int(hexaTile.y - territory.y));
 			}
@@ -390,7 +390,7 @@ class PlayAreaLayer extends FlxGroup
 				if ( theNeighbor == null || !theNeighbor.isATerritory )
 					return;
 					
-				var boundaryGraphic : FlxSprite = PlayState.stampsHolder.setToFrame(PlayState.stampsHolder.seaBoundaryStamp, frameToUse);
+				var boundaryGraphic : FlxSprite = GameState.stampsHolder.setToFrame(GameState.stampsHolder.seaBoundaryStamp, frameToUse);
 				boundaryGraphic.color = colorToUse;
 				seaCanvas.stamp(boundaryGraphic, Std.int(hexaTile.x)
 					, Std.int(hexaTile.y));
@@ -407,22 +407,22 @@ class PlayAreaLayer extends FlxGroup
 	
 	public function assignTerritory(territoryNum : Int, playerNum : Int)
 	{
-		var territory : Territory = PlayState.territoryManager.getTerritory(territoryNum);
+		var territory : Territory = GameState.territoryManager.getTerritory(territoryNum);
 		
 		// If someone already owns this territory
 		if ( territory.ownerNumber > 0 )
 		{
-			var oldOwner : Player = PlayState.playerManager.getPlayer(territory.ownerNumber);
+			var oldOwner : Player = GameState.playerManager.getPlayer(territory.ownerNumber);
 			oldOwner.territories.remove(territoryNum);
 		}
 			
 		// We now assign to the new owner
 		territory.ownerNumber = playerNum;
-		var newOwner: Player = PlayState.playerManager.getPlayer(playerNum);
+		var newOwner: Player = GameState.playerManager.getPlayer(playerNum);
 		newOwner.territories.push(territoryNum);
 		
 		// We set the territory cover color
-		territory.setCoverColorTo(PlayState.playerManager.getPlayer(playerNum).territoryColor);
+		territory.setCoverColorTo(GameState.playerManager.getPlayer(playerNum).territoryColor);
 		
 		//TODO: We now have no more use for the HexaTile's sprite. Destroy it here.
 	}
@@ -450,7 +450,7 @@ class PlayAreaLayer extends FlxGroup
     
 	public function deselectTerritory(thisTerritory : Int) : Int
 	{
-		var toDeselect : Territory = PlayState.territoryManager.getTerritory(thisTerritory);
+		var toDeselect : Territory = GameState.territoryManager.getTerritory(thisTerritory);
 		toDeselect.deselect();
 		toDeselect.unhighlightNeighbors();
 		

@@ -5,13 +5,13 @@ import flixel.FlxSprite;
 import flixel.group.FlxGroup;
 import flixel.group.FlxSpriteGroup;
 import flixel.util.FlxPoint;
-import states.MenuState;
+import states.MainMenuState;
 
 /**
  * ...
  * @author Karlo
  */
-class MenuLayer extends FlxSpriteGroup
+class MainMenuLayer extends FlxSpriteGroup
 {
 	inline private static var BUTTON_WIDTH = 140;
 	inline private static var BUTTON_HEIGHT = 50;
@@ -31,17 +31,17 @@ class MenuLayer extends FlxSpriteGroup
 		
 		var startButton : FlxButtonPlus = new FlxButtonPlus
 			(Std.int(MainStage.cameraWidth / 2 - BUTTON_WIDTH / 2), Std.int(LOGO_HEIGHT + BUTTON_PADDING + (BUTTON_HEIGHT + BUTTON_PADDING) * 0)
-			, MenuState.mainMenuManager.startGame, null, "START GAME", BUTTON_WIDTH, BUTTON_HEIGHT);		
+			, MainMenuState.mainMenuManager.startGame, null, "START GAME", BUTTON_WIDTH, BUTTON_HEIGHT);		
 		add(startButton);
 		
 		var settingsButton : FlxButtonPlus = new FlxButtonPlus
 			(Std.int(MainStage.cameraWidth / 2 - BUTTON_WIDTH / 2), Std.int(LOGO_HEIGHT + BUTTON_PADDING + (BUTTON_HEIGHT + BUTTON_PADDING) * 1)
-			, MenuState.mainMenuManager.showSettingsMenu, null, "SETTINGS", BUTTON_WIDTH, BUTTON_HEIGHT);		
+			, MainMenuState.mainMenuManager.showSettingsMenu, null, "SETTINGS", BUTTON_WIDTH, BUTTON_HEIGHT);		
 		add(settingsButton);
 		
 		var creditsButton : FlxButtonPlus = new FlxButtonPlus
 			(Std.int(MainStage.cameraWidth / 2 - BUTTON_WIDTH / 2), Std.int(LOGO_HEIGHT + BUTTON_PADDING + (BUTTON_HEIGHT + BUTTON_PADDING) * 2)
-			, MenuState.mainMenuManager.showCreditsMenu, null, "CREDITS", BUTTON_WIDTH, BUTTON_HEIGHT);		
+			, MainMenuState.mainMenuManager.showCreditsMenu, null, "CREDITS", BUTTON_WIDTH, BUTTON_HEIGHT);		
 		add(creditsButton);
 		
 		this.setPosition(0, MainStage.cameraHeight / 2 - (creditsButton.y + BUTTON_HEIGHT) / 2);

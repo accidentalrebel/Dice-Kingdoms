@@ -20,7 +20,7 @@ import misc.StampsHolder;
  * ...
  * @author Karlo
  */
-class PlayState extends FlxState
+class GameState extends FlxState
 {	
 	static public var territoryPerPlayer		: Int;	
 	static public var initialArmyCount			: Int = 20;	
@@ -52,48 +52,55 @@ class PlayState extends FlxState
 		
 		super.create();
 		
-		PlayState.cameraManager 		= new CameraManager();
-		PlayState.gameplayManager		= new GameplayManager();
-		PlayState.battleManager			= new BattleManager();
-		PlayState.stampsHolder 			= new StampsHolder();
+		GameState.cameraManager 		= new CameraManager();
+		GameState.gameplayManager		= new GameplayManager();
+		GameState.battleManager			= new BattleManager();
+		GameState.stampsHolder 			= new StampsHolder();
 		
 		// We setup the input Manager
-		PlayState.inputManager 			= new InputManager();
-		add(PlayState.inputManager);
+		GameState.inputManager 			= new InputManager();
+		add(GameState.inputManager);
 		
 		// We setup the layers
-		PlayState.gameGUI 				= new GameGUILayer();
-		PlayState.battleLayer 			= new BattleLayer();
-		PlayState.gameObjectsLayer		= new GameObjectsLayer();
+		GameState.gameGUI 				= new GameGUILayer();
+		GameState.battleLayer 			= new BattleLayer();
+		GameState.gameObjectsLayer		= new GameObjectsLayer();
 		
 		// We setup the territory manager
-		PlayState.territoryManager 		= new TerritoryManager();
+		GameState.territoryManager 		= new TerritoryManager();
 		
 		// We setup the playArea and player manager
-		PlayState.playArea 				= new PlayAreaLayer();
-		PlayState.playArea.init(this);
-		PlayState.playArea.setupTerritories();	
+		GameState.playArea 				= new PlayAreaLayer();
+		GameState.playArea.init(this);
+		GameState.playArea.setupTerritories();	
 		
-		PlayState.playerManager 		= new PlayerManager();
-		PlayState.playArea.assignTerritories();
-		PlayState.playerManager.initializeArmies();
-		PlayState.playArea.setupFinished = true;
-		PlayState.pauseMenuLayer 		= new PauseMenuLayer(this);
+		GameState.playerManager 		= new PlayerManager();
+		GameState.playArea.assignTerritories();
+		GameState.playerManager.initializeArmies();
+		GameState.playArea.setupFinished = true;
+		GameState.pauseMenuLayer 		= new PauseMenuLayer(this);
 		
 		// We arrange the different layers
-		add(PlayState.playArea);
-		add(PlayState.gameObjectsLayer);
-		add(PlayState.gameGUI);
-		add(PlayState.battleLayer);
-		add(PlayState.pauseMenuLayer);
-		add(PlayState.pauseMenuLayer.playerListGroup);
+		add(GameState.playArea);
+		add(GameState.gameObjectsLayer);
+		add(GameState.gameGUI);
+		add(GameState.battleLayer);
+		add(GameState.pauseMenuLayer);
+		add(GameState.pauseMenuLayer.playerListGroup);
 		
 		// We assign layers to their respective cameras
-		PlayState.playArea.setAll("cameras", [ PlayState.cameraManager.mainCamera ]);
-		PlayState.battleLayer.setAll("cameras", [ PlayState.cameraManager.topBarCamera ], true);
-		PlayState.gameGUI.setAll("cameras", [ PlayState.cameraManager.mainCamera ]);
+		GameState.playArea.setAll("cameras", [ GameState.cameraManager.mainCamera ]);
+		GameState.battleLayer.setAll("cameras", [ GameState.cameraManager.topBarCamera ], true);
+		GameState.gameGUI.setAll("cameras", [ GameState.cameraManager.mainCamera ]);
 		
 		// We start the game
-		PlayState.gameplayManager.startGame();
+		GameState.gameplayManager.startGame();
+	}
+	
+	override public function destroy():Void 
+	{
+		super.destroy();
+		
+		GameState.battleLayer.destroy();
 	}
 }

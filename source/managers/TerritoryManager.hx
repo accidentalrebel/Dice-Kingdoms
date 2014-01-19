@@ -3,7 +3,7 @@ import flixel.util.FlxRandom;
 import layers.PlayAreaLayer;
 import objects.Territory;
 import flixel.FlxBasic;
-import states.PlayState;
+import states.GameState;
 
 /**
  * ...
@@ -30,7 +30,7 @@ class TerritoryManager
 	
 	public function getRandomTerritory(playerNum:Int) : Territory
 	{
-		var playersTerritories : Array<Int> = PlayState.playerManager.getPlayer(playerNum).territories;
+		var playersTerritories : Array<Int> = GameState.playerManager.getPlayer(playerNum).territories;
 		return getTerritory(playersTerritories[FlxRandom.intRanged(0, playersTerritories.length-1)]);
 	}
 	

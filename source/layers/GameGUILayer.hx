@@ -6,7 +6,7 @@ import flixel.FlxG;
 import flixel.group.FlxSpriteGroup;
 import flixel.text.FlxText;
 import flixel.util.FlxPoint;
-import states.PlayState;
+import states.GameState;
 
 /**
  * ...
@@ -33,20 +33,20 @@ class GameGUILayer extends FlxSpriteGroup
 		add(playerIndicator);
 		
 		zoomButton = new FlxButtonPlus(PADDING, Std.int(playerIndicator.height + PADDING)
-			, PlayState.cameraManager.toggleZoom, null
+			, GameState.cameraManager.toggleZoom, null
 			, "TOGGLE ZOOM", BUTTON_WIDTH, BUTTON_HEIGHT);	
 		zoomButton.buttonNormal.loadGraphic("assets/buttonTest.png", false, false, BUTTON_WIDTH, BUTTON_HEIGHT);
 		zoomButton.buttonHighlight.loadGraphic("assets/buttonTestHighlight.png", false, false, BUTTON_WIDTH, BUTTON_HEIGHT);
 		add(zoomButton);
 		
 		doneButton = new FlxButtonPlus(PADDING, Std.int(playerIndicator.height + BUTTON_HEIGHT + PADDING * 2)
-			, PlayState.gameplayManager.endCurrentPlayerMove, null
+			, GameState.gameplayManager.endCurrentPlayerMove, null
 			, "DONE", BUTTON_WIDTH, BUTTON_HEIGHT);		
 		add(doneButton);
 		
 		//TODO: Consider having a MainStage.width height instead of second guessing all the time
-		pauseButton = new FlxButtonPlus(Std.int(PlayState.cameraManager.mainCamera.width - BUTTON_WIDTH - PADDING)
-			, Std.int(playerIndicator.height + PADDING), PlayState.gameplayManager.pauseGame, null
+		pauseButton = new FlxButtonPlus(Std.int(GameState.cameraManager.mainCamera.width - BUTTON_WIDTH - PADDING)
+			, Std.int(playerIndicator.height + PADDING), GameState.gameplayManager.pauseGame, null
 			, "PAUSE", BUTTON_WIDTH, BUTTON_HEIGHT);
 		pauseButton.pauseProof = true;
 		add(pauseButton);
@@ -79,7 +79,7 @@ class GameGUILayer extends FlxSpriteGroup
 	
 	public function updateDoneButtonVisibility() 
 	{
-		if ( PlayState.playerManager.currentPlayer.isHuman )
+		if ( GameState.playerManager.currentPlayer.isHuman )
 			showDoneButton();	
 		else
 			hideDoneButton();	
@@ -130,7 +130,7 @@ class GameGUILayer extends FlxSpriteGroup
 	
 	public function showButtons()
 	{
-		if ( PlayState.playerManager.currentPlayer.isHuman )
+		if ( GameState.playerManager.currentPlayer.isHuman )
 			showDoneButton();
 		
 		zoomButton.visible = true;

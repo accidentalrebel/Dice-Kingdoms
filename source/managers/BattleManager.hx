@@ -3,7 +3,7 @@ import flixel.util.FlxRandom;
 import objects.Player;
 import objects.Territory;
 import layers.PlayAreaLayer;
-import states.PlayState;
+import states.GameState;
 import tools.ARTaskManager;
 import tools.Tools;
 
@@ -44,28 +44,28 @@ class BattleManager
 			return totalCount;
 		}
 		
-		var attacker : Territory = PlayState.territoryManager.getTerritory(attackerTerritoryNum);
-		var defender : Territory = PlayState.territoryManager.getTerritory(defenderTerritoryNum);
+		var attacker : Territory = GameState.territoryManager.getTerritory(attackerTerritoryNum);
+		var defender : Territory = GameState.territoryManager.getTerritory(defenderTerritoryNum);
 		
 		var attackerDiceResults : Array<Int> = rollAllDice(attacker.armyCount);
 		var defenderDiceResults : Array<Int> = rollAllDice(defender.armyCount);
 		
-		var attackerColor : Int = PlayState.playerManager.getPlayer(attacker.ownerNumber).territoryColor;
-		var defenderColor : Int = PlayState.playerManager.getPlayer(defender.ownerNumber).territoryColor;
+		var attackerColor : Int = GameState.playerManager.getPlayer(attacker.ownerNumber).territoryColor;
+		var defenderColor : Int = GameState.playerManager.getPlayer(defender.ownerNumber).territoryColor;
 		
 		var attackerRoll : Int = getTotalCount(attackerDiceResults);
 		var defenderRoll : Int = getTotalCount(defenderDiceResults);
 			
-		PlayState.battleLayer.rollAllDice(attackerDiceResults.length, attackerColor
+		GameState.battleLayer.rollAllDice(attackerDiceResults.length, attackerColor
 			, defenderDiceResults.length, defenderColor);
 		
 		//TODO: Consider renaming this function
 		function startBattle()
 		{
-			PlayState.gameGUI.attackerBattleResult.showLabel();
-			PlayState.gameGUI.defenderBattleResult.showLabel();
+			GameState.gameGUI.attackerBattleResult.showLabel();
+			GameState.gameGUI.defenderBattleResult.showLabel();
 			
-			var defenderPlayer : Player = PlayState.playerManager.getPlayer(defender.ownerNumber);
+			var defenderPlayer : Player = GameState.playerManager.getPlayer(defender.ownerNumber);
 			var winText : String = "";
 			
 			// We resolve the battle
@@ -75,35 +75,35 @@ class BattleManager
 				attacker.armyCount = attacker.armyCount - 1;
 				defender.setArmyCount(attacker.armyCount);
 				attacker.setArmyCount(1);
-				PlayState.playArea.assignTerritory(defender.territoryNumber, attacker.ownerNumber);
+				GameState.playArea.assignTerritory(defender.territoryNumber, attacker.ownerNumber);
 				defenderPlayer.checkIfLost();
 				
-				PlayState.gameGUI.attackerBattleResult.setAsWinner();
-				PlayState.gameGUI.defenderBattleResult.setAsLoser();
+				GameState.gameGUI.attackerBattleResult.setAsWinner();
+				GameState.gameGUI.defenderBattleResult.setAsLoser();
 			}
 			else
 			{
 				winText = "DEFENDER";
 				attacker.setArmyCount(1);
 				
-				PlayState.gameGUI.attackerBattleResult.setAsLoser();
-				PlayState.gameGUI.defenderBattleResult.setAsWinner();
+				GameState.gameGUI.attackerBattleResult.setAsLoser();
+				GameState.gameGUI.defenderBattleResult.setAsWinner();
 			}
 			
 			if ( taskManager != null )
 				taskManager.clear();
 			
-			PlayState.battleLayer.updateTexts(winText + " WINS!!");
-			PlayState.battleLayer.showBattleResults(attackerRoll, attackerDiceResults, defenderRoll, defenderDiceResults);
+			GameState.battleLayer.updateTexts(winText + " WINS!!");
+			GameState.battleLayer.showBattleResults(attackerRoll, attackerDiceResults, defenderRoll, defenderDiceResults);
 		}
 		
-		PlayState.battleLayer.hideBattleResults();
+		GameState.battleLayer.hideBattleResults();
 		
-		PlayState.gameGUI.attackerBattleResult.hideLabel();
-		PlayState.gameGUI.defenderBattleResult.hideLabel();
+		GameState.gameGUI.attackerBattleResult.hideLabel();
+		GameState.gameGUI.defenderBattleResult.hideLabel();
 		
-		PlayState.gameGUI.attackerBattleResult.attachToTerritory(attackerTerritoryNum);
-		PlayState.gameGUI.defenderBattleResult.attachToTerritory(defenderTerritoryNum);	
+		GameState.gameGUI.attackerBattleResult.attachToTerritory(attackerTerritoryNum);
+		GameState.gameGUI.defenderBattleResult.attachToTerritory(defenderTerritoryNum);	
 		
 		taskManager = new ARTaskManager(false);
 		taskManager.addPause(0.5);

@@ -4,7 +4,7 @@ import flixel.group.FlxGroup;
 import flixel.text.FlxText;
 import flixel.util.FlxRandom;
 import flixel.util.FlxRect;
-import states.PlayState;
+import states.GameState;
 
 /**
  * ...
@@ -77,7 +77,7 @@ class HexaTile extends FlxSprite
 		castleGraphic = new FlxSprite(this.x + this.width / 2, this.y + this.height / 2 , "assets/castle.png");
 		castleGraphic.x -= castleGraphic.width / 2;
 		castleGraphic.y -= castleGraphic.height / 2;
-		PlayState.gameObjectsLayer.add(castleGraphic);
+		GameState.gameObjectsLayer.add(castleGraphic);
 		
 		this.setupLabel("1");
 	}
@@ -92,7 +92,7 @@ class HexaTile extends FlxSprite
 		label.alignment = "center";
 		label.color = 0xFFFFFF;
 		
-		PlayState.gameObjectsLayer.add(label);
+		GameState.gameObjectsLayer.add(label);
 		updateLabel(textToDisplay);
 	}
 	
@@ -105,7 +105,7 @@ class HexaTile extends FlxSprite
 	{
 		this.isATerritory = false;
 		
-		var stamp : FlxSprite = PlayState.stampsHolder.setToFrame(PlayState.stampsHolder.landStamp, 0);
+		var stamp : FlxSprite = GameState.stampsHolder.setToFrame(GameState.stampsHolder.landStamp, 0);
 		
 		//TODO: Instead of changing the alpha, change the color
 		stamp.alpha = FlxRandom.floatRanged(0, 0.5);		

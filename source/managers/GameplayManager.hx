@@ -7,8 +7,8 @@ import objects.Player;
 import objects.Territory;
 import flixel.FlxG;
 import layers.PlayAreaLayer;
-import states.MenuState;
-import states.PlayState;
+import states.MainMenuState;
+import states.GameState;
 
 /**
  * ...
@@ -31,42 +31,42 @@ class GameplayManager
 	
 	function handleTerritoryClick(xPos:Float, yPos:Float)
 	{
-		if ( !PlayState.playerManager.currentPlayer.isHuman )
+		if ( !GameState.playerManager.currentPlayer.isHuman )
 			return;
 		
 		function selectTerritoryAndHighlightNeighbors(clickedTerritory : Territory) : Int
 		{
-			if (clickedTerritory.ownerNumber != PlayState.playerManager.currentPlayerNumber 
+			if (clickedTerritory.ownerNumber != GameState.playerManager.currentPlayerNumber 
 				|| clickedTerritory.armyCount <= 1)
 					return -1;
 		
-			PlayState.playArea.selectTerritory(clickedTerritory);
+			GameState.playArea.selectTerritory(clickedTerritory);
 			clickedTerritory.highlightNeighbors();
 			return clickedTerritory.territoryNumber;
 		}
 		
-		var clickedTile : HexaTile = PlayState.playArea.checkForClickedTiles(xPos, yPos);		
+		var clickedTile : HexaTile = GameState.playArea.checkForClickedTiles(xPos, yPos);		
 		if ( clickedTile != null )
 		{
-			var clickedTerritory : Territory = PlayState.territoryManager.getTerritory(clickedTile.territoryNumber);
+			var clickedTerritory : Territory = GameState.territoryManager.getTerritory(clickedTile.territoryNumber);
 			
 			if ( selectedTerritory != -1)		// If there is a selected territory
 			{
 				// We check if what we clicked is a neighbor of the selected territory 
-				if ( PlayState.territoryManager.getTerritory(selectedTerritory).checkIfEnemyNeighbor(clickedTile.territoryNumber) )
+				if ( GameState.territoryManager.getTerritory(selectedTerritory).checkIfEnemyNeighbor(clickedTile.territoryNumber) )
 				{
-					PlayState.battleManager.startAttack(selectedTerritory, clickedTile.territoryNumber);
-					selectedTerritory = PlayState.playArea.deselectTerritory(selectedTerritory);					
+					GameState.battleManager.startAttack(selectedTerritory, clickedTile.territoryNumber);
+					selectedTerritory = GameState.playArea.deselectTerritory(selectedTerritory);					
 				}
 				// We check if we clicked the same territory
 				else if ( selectedTerritory == clickedTile.territoryNumber )
 				{
-					selectedTerritory = PlayState.playArea.deselectTerritory(selectedTerritory);					
+					selectedTerritory = GameState.playArea.deselectTerritory(selectedTerritory);					
 				}
 				else
 				{
 					// We deselect a selected territory
-					selectedTerritory = PlayState.playArea.deselectTerritory(selectedTerritory);
+					selectedTerritory = GameState.playArea.deselectTerritory(selectedTerritory);
 					
 					// We select the clicked territory
 					selectedTerritory = selectTerritoryAndHighlightNeighbors(clickedTerritory);
@@ -82,7 +82,7 @@ class GameplayManager
 	
 	public function endCurrentPlayerMove() 
 	{
-		PlayState.gameGUI.hideDoneButton();	
+		GameState.gameGUI.hideDoneButton();	
 		
 		// We add a short delay
 		if ( taskManager != null )
@@ -90,7 +90,7 @@ class GameplayManager
 		
 		taskManager = new ARTaskManager(false);
 		taskManager.addPause(0.25);
-		taskManager.addInstantTask(this, PlayState.playerManager.currentPlayer.randomlyAssignArmies, [PlayState.playerManager.currentPlayer.territories.length], true);
+		taskManager.addInstantTask(this, GameState.playerManager.currentPlayer.randomlyAssignArmies, [GameState.playerManager.currentPlayer.territories.length], true);
 		taskManager.addPause(AddArmyEffect.EFFECT_DURATION);
 		taskManager.addInstantTask(this, nextPlayer, null, true);
 	}
@@ -103,14 +103,14 @@ class GameplayManager
 			return;
 		}
 		
-		PlayState.playerManager.nextPlayer();
-		PlayState.gameGUI.updateDoneButtonVisibility();			
+		GameState.playerManager.nextPlayer();
+		GameState.gameGUI.updateDoneButtonVisibility();			
 	}
 	
 	public function checkIfGameHasEnded() 
 	{
 		var lostCount : Int = 0;
-		var playerList : Array<Player> = PlayState.playerManager.playerList;
+		var playerList : Array<Player> = GameState.playerManager.playerList;
 		for ( tPlayer in playerList )
 		{
 			var player : Player = tPlayer;
@@ -128,9 +128,9 @@ class GameplayManager
 	
 	public function startGame() 
 	{
-		PlayState.gameGUI.updateDoneButtonVisibility();	
+		GameState.gameGUI.updateDoneButtonVisibility();	
 		
-		var currentPlayer : Player = PlayState.playerManager.currentPlayer;
+		var currentPlayer : Player = GameState.playerManager.currentPlayer;
 		if ( !currentPlayer.isHuman )
 			currentPlayer.ai.startPlanning();
 	}
@@ -140,16 +140,16 @@ class GameplayManager
 		//TODO: Create your own ARTaskManager that follows FlxG.paused
 		FlxG.paused = true;
 		
-		PlayState.gameGUI.hideButtons();
-		PlayState.pauseMenuLayer.toggleStatus();
-		PlayState.cameraManager.zoomOut();	
+		GameState.gameGUI.hideButtons();
+		GameState.pauseMenuLayer.toggleStatus();
+		GameState.cameraManager.zoomOut();	
 	}
 	
 	public function resumeGame()
 	{
 		FlxG.paused = false;
 		
-		PlayState.gameGUI.showButtons();
+		GameState.gameGUI.showButtons();
 	}
 	
 	public function resetGame() 
@@ -164,7 +164,7 @@ class GameplayManager
 			taskManager.clear();		
 		
 		FlxG.paused = false;
-		FlxG.switchState(new MenuState());
+		FlxG.switchState(new MainMenuState());
 		trace("Game has ended!");
 	}
 }
