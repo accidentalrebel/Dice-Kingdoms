@@ -2,7 +2,7 @@ package effects;
 import tools.ARTaskManager;
 import flixel.text.FlxText;
 import flixel.tweens.FlxTween;
-import states.PlayState;
+import states.GameState;
 import tools.ARFade;
 
 /**
@@ -43,7 +43,7 @@ class AddArmyEffect extends FlxText
 	
 	function fadeOut()
 	{
-		var fadeScript : ARFade = cast(PlayState.gameGUI.recycle(ARFade), ARFade);
+		var fadeScript : ARFade = cast(GameState.gameGUI.recycle(ARFade), ARFade);
 		fadeScript.init(this, 0, EFFECT_DURATION / 2);			
 	}
 }

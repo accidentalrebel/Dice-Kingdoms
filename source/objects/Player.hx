@@ -4,7 +4,7 @@ import flixel.util.FlxRandom;
 import managers.PlayerManager;
 import managers.TerritoryManager;
 import misc.PlayerColor;
-import states.PlayState;
+import states.GameState;
 import tools.Tools;
 
 /**
@@ -47,7 +47,7 @@ class Player
 		{
 			var roll : Int = FlxRandom.intRanged(0, territoryListCopy.length -1);
 			var territoryNum : Int = territoryListCopy[roll];
-			var territory : Territory = PlayState.territoryManager.getTerritory(territoryNum);
+			var territory : Territory = GameState.territoryManager.getTerritory(territoryNum);
 			
 			// We check if we can allocate an army to this territory
 			if ( territory.canIncreaseArmyCount() )
@@ -67,7 +67,7 @@ class Player
 			if ( increaseCount <= 0 )
 				continue;
 				
-			var territory : Territory = PlayState.territoryManager.getTerritory(territoryNum);
+			var territory : Territory = GameState.territoryManager.getTerritory(territoryNum);
 			territory.increaseArmyCount(increaseCount);
 		}
 	}

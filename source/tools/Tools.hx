@@ -2,7 +2,7 @@ package tools;
 import flixel.FlxSprite;
 import flixel.util.FlxPoint;
 import flixel.util.FlxRect;
-import states.PlayState;
+import states.GameState;
 
 /**
  * ...

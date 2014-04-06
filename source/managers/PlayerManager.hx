@@ -5,7 +5,7 @@ import flixel.util.FlxMath;
 import haxe.Log;
 import misc.PlayerColor;
 import objects.Player;
-import states.PlayState;
+import states.GameState;
 
 /**
  * ...
@@ -13,7 +13,9 @@ import states.PlayState;
  */
 class PlayerManager
 {
-	public var numOfPlayers:Int = 8;
+	public static inline var MAX_NUM_OF_PLAYERS : Int = 7;
+	
+	public var numOfPlayers:Int = MAX_NUM_OF_PLAYERS;
 	public var numOfHumans:Int = 1;
 	public var playerList:Array<Player>;
 	public var currentPlayerNumber : Int = 1;
@@ -21,8 +23,8 @@ class PlayerManager
 	
 	public function new(tNumOfPlayers : Int = 8, tNumOfHumans : Int = 1) 
 	{
-		tNumOfPlayers = Std.int(FlxMath.bound(tNumOfPlayers, 1, 8));
-		tNumOfHumans = Std.int(FlxMath.bound(tNumOfHumans, 0, 8));
+		tNumOfPlayers = Std.int(FlxMath.bound(tNumOfPlayers, 1, MAX_NUM_OF_PLAYERS));
+		tNumOfHumans = Std.int(FlxMath.bound(tNumOfHumans, 0, MAX_NUM_OF_PLAYERS));
 		
 		PlayerColor.shuffle();
 		
@@ -68,7 +70,7 @@ class PlayerManager
 		for ( tPlayer in playerList )
 		{
 			var player : Player = tPlayer;
-			player.randomlyAssignArmies(PlayState.initialArmyCount - PlayState.territoryPerPlayer);			
+			player.randomlyAssignArmies(GameState.initialArmyCount - GameState.territoryPerPlayer);			
 		}
 	}
 	
@@ -97,6 +99,6 @@ class PlayerManager
 	{
 		currentPlayerNumber = playerNumber;
 		currentPlayer = getPlayer(currentPlayerNumber);
-		PlayState.gameGUI.updatePlayerIndicator(currentPlayer.isHuman, getPlayer(currentPlayerNumber).territoryColor);
+		GameState.gameGUI.updatePlayerIndicator(currentPlayer.isHuman, getPlayer(currentPlayerNumber).territoryColor);
 	}
 }

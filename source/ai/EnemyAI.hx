@@ -9,7 +9,7 @@ import managers.PlayerManager;
 import managers.TerritoryManager;
 import objects.Player;
 import objects.Territory;
-import states.PlayState;
+import states.GameState;
 import tools.ARTaskManager;
 import tools.Tools;
 
@@ -50,7 +50,7 @@ class EnemyAI
 			// We loop through each territory
 			for ( tTerritory in playerScript.territories )
 			{ 
-				var territory : Territory = PlayState.territoryManager.getTerritory(tTerritory);
+				var territory : Territory = GameState.territoryManager.getTerritory(tTerritory);
 				if ( territory.armyCount > 1
 					&& territory.ownerNumber == playerScript.playerNum 
 					&& territory.neighbors.length >= 1
@@ -73,7 +73,7 @@ class EnemyAI
 			// We loop through each territory and mark each territory as unchecked
 			for ( tTerritory in playerScript.territories )
 			{ 
-				var territory : Territory = PlayState.territoryManager.getTerritory(tTerritory);
+				var territory : Territory = GameState.territoryManager.getTerritory(tTerritory);
 				territory.markAsChecked = false;
 			}
 			
@@ -81,7 +81,7 @@ class EnemyAI
 			taskManager.clear();
 			
 			// We then go to the next player
-			PlayState.gameplayManager.endCurrentPlayerMove();			
+			GameState.gameplayManager.endCurrentPlayerMove();			
 		}
 		
 		function getNextMove()
@@ -105,7 +105,7 @@ class EnemyAI
 			// We go through each neighbors
 			for ( tNeighbor in territory.neighbors )
 			{
-				var neighborTerritory : Territory = PlayState.territoryManager.getTerritory(tNeighbor);
+				var neighborTerritory : Territory = GameState.territoryManager.getTerritory(tNeighbor);
 				
 				// If I own this territory
 				if ( neighborTerritory.ownerNumber == territory.ownerNumber )
@@ -118,9 +118,9 @@ class EnemyAI
 					|| (aiType == AIType.AGGRESSIVE
 						&& territory.armyCount >= neighborTerritory.armyCount - 1 ))	// If even the enemy has one army more than mine
 				{
-					if ( PlayState.cameraManager.isZoomedIn )
+					if ( GameState.cameraManager.isZoomedIn )
 					{
-						PlayState.cameraManager.focusOnTerritory(territory.territoryNumber);
+						GameState.cameraManager.focusOnTerritory(territory.territoryNumber);
 						taskManager.addPause(0.35);
 					}
 					
@@ -129,23 +129,23 @@ class EnemyAI
 					// We highlight the attacker and the one being attacked
 					function selectInvolvedTerritories()
 					{
-						PlayState.playArea.selectTerritory(territory);
-						PlayState.playArea.selectTerritory(neighborTerritory);
-						PlayState.gameGUI.attackerBattleResult.attachToTerritory(territory.territoryNumber);
-						PlayState.gameGUI.defenderBattleResult.attachToTerritory(neighborTerritory.territoryNumber);	
-						PlayState.gameGUI.attackerBattleResult.hideLabel();
-						PlayState.gameGUI.defenderBattleResult.hideLabel();
+						GameState.playArea.selectTerritory(territory);
+						GameState.playArea.selectTerritory(neighborTerritory);
+						GameState.gameGUI.attackerBattleResult.attachToTerritory(territory.territoryNumber);
+						GameState.gameGUI.defenderBattleResult.attachToTerritory(neighborTerritory.territoryNumber);	
+						GameState.gameGUI.attackerBattleResult.hideLabel();
+						GameState.gameGUI.defenderBattleResult.hideLabel();
 					}
 					taskManager.addInstantTask(this, selectInvolvedTerritories, [territory], true);
 					taskManager.addPause(0.5);
 					
 					// We then start the battle and unhighlight territories
-					taskManager.addInstantTask(this, PlayState.battleManager.startAttack, [territory.territoryNumber, neighborTerritory.territoryNumber], true);
-					taskManager.addInstantTask(this, PlayState.playArea.deselectTerritory, [territory.territoryNumber], true);
-					taskManager.addInstantTask(this, PlayState.playArea.deselectTerritory, [neighborTerritory.territoryNumber], true);
+					taskManager.addInstantTask(this, GameState.battleManager.startAttack, [territory.territoryNumber, neighborTerritory.territoryNumber], true);
+					taskManager.addInstantTask(this, GameState.playArea.deselectTerritory, [territory.territoryNumber], true);
+					taskManager.addInstantTask(this, GameState.playArea.deselectTerritory, [neighborTerritory.territoryNumber], true);
 					
 					// We add a short delay when the camera is zoomed in to show the result of the attack
-					if ( PlayState.cameraManager.isZoomedIn )
+					if ( GameState.cameraManager.isZoomedIn )
 						taskManager.addPause(0.25);
 					
 					taskManager.addPause(2);

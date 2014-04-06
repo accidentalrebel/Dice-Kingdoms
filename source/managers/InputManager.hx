@@ -3,7 +3,7 @@ import flixel.FlxBasic;
 import flixel.FlxG;
 import flixel.util.FlxMath;
 import flixel.util.FlxPoint;
-import states.PlayState;
+import states.GameState;
 
 /**
  * ...
@@ -38,7 +38,7 @@ class InputManager extends FlxBasic
 		else if ( startTouchPos != null && FlxG.mouse.justReleased )
 		{
 			if ( !isDragging && distanceFromStartTouch < distanceToDrag )			
-				PlayState.gameplayManager.onClick(FlxG.mouse.x, FlxG.mouse.y);			
+				GameState.gameplayManager.onClick(FlxG.mouse.x, FlxG.mouse.y);			
 				
 			startTouchPos = null;
 			isDragging = false;
@@ -52,6 +52,6 @@ class InputManager extends FlxBasic
 		}
 		
 		if ( FlxG.keys.justPressed.Z )
-			PlayState.cameraManager.toggleZoom();
+			GameState.cameraManager.toggleZoom();
 	}
 }
