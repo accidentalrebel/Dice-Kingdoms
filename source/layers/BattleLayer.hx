@@ -51,7 +51,7 @@ class BattleLayer extends FlxGroup
 		add(battleBackground);
 		
 		battleResult = new FlxText(0, PADDING_TOP, Std.int(battleBackground.width), "");
-		battleResult.font = "Courier";
+		//battleResult.font = "Courier";
 		battleResult.alignment = "center";
 		battleResult.scale = new FlxPoint(2, 2);
 		add(battleResult);
