@@ -4,6 +4,7 @@ import flixel.FlxG;
 import flixel.FlxSprite;
 import flixel.group.FlxGroup;
 import flixel.group.FlxSpriteGroup;
+import flixel.text.FlxText;
 import flixel.util.FlxPoint;
 import states.MainMenuState;
 
@@ -24,10 +25,14 @@ class MainMenuLayer extends FlxSpriteGroup
 	{
 		super();
 		
-		var logo : FlxSprite = new FlxSprite();
-		logo.makeGraphic(LOGO_WIDTH, LOGO_HEIGHT);
-		logo.setPosition(Std.int(MainStage.cameraWidth / 2 - LOGO_WIDTH / 2), 0);
-		add(logo);
+		//var logo : FlxSprite = new FlxSprite();
+		//logo.makeGraphic(LOGO_WIDTH, LOGO_HEIGHT);
+		//logo.setPosition(Std.int(MainStage.cameraWidth / 2 - LOGO_WIDTH / 2), 0);
+		//add(logo);
+		
+		var title : FlxText = new FlxText(Std.int(MainStage.cameraWidth / 2 - LOGO_WIDTH / 2), 0
+			, LOGO_WIDTH, "Dice Kingdoms", 32);
+		add(title);
 		
 		var startButton : FlxButtonPlus = new FlxButtonPlus
 			(Std.int(MainStage.cameraWidth / 2 - BUTTON_WIDTH / 2), Std.int(LOGO_HEIGHT + BUTTON_PADDING + (BUTTON_HEIGHT + BUTTON_PADDING) * 0)
