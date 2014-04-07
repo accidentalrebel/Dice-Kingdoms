@@ -39,23 +39,33 @@ class PlayerManager
 			playerList.push(player);
 		}
 		
-		// We then randomly assign which of the players is human
-		var maxRetries : Int = 0;
-		while ( tNumOfHumans > 0 || maxRetries > 100 )
+		if ( MainMenuManager.currentOrder != null )
 		{
-			var randomPlayer : Player = FlxArrayUtil.getRandom(playerList);
-			if ( randomPlayer == null )
-				break;
-				
-			if ( !randomPlayer.isHuman )
-			{
-				randomPlayer.setAsHuman();
-				maxRetries = 0;
-				tNumOfHumans--;
-			}
-			
-			maxRetries++;
+			var currentOrder = MainMenuManager.currentOrder;
+			var humanPlayer : Player = playerList[currentOrder - 1];
+			humanPlayer.setAsHuman();
 		}
+		else
+		{
+			// We then randomly assign which of the players is human
+			var maxRetries : Int = 0;
+			while ( tNumOfHumans > 0 || maxRetries > 100 )
+			{
+				var randomPlayer : Player = FlxArrayUtil.getRandom(playerList);
+				if ( randomPlayer == null )
+					break;
+					
+				if ( !randomPlayer.isHuman )
+				{
+					randomPlayer.setAsHuman();
+					maxRetries = 0;
+					tNumOfHumans--;
+				}
+				
+				maxRetries++;
+			}
+		}
+			
 		
 		setCurrentPlayer(1);
 	}
