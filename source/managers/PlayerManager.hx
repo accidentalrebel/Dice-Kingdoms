@@ -80,7 +80,7 @@ class PlayerManager
 		currentPlayerNumber += 1;
 		
 		// We go back to th first player
-		if ( currentPlayerNumber >= numOfPlayers )
+		if ( currentPlayerNumber > numOfPlayers )
 			currentPlayerNumber = 1;			
 		
 		// We then set the current player
