@@ -9,9 +9,10 @@ import states.GameState;
  */
 class MainMenuManager
 {
-	inline private static var MAX_PLAYER_COUNT = 7;
-	inline private static var MIN_PLAYER_COUNT = 2;
-	public static var currentPlayerCount = 7;
+	inline private static var MAX_PLAYER_COUNT : Int = 7;
+	inline private static var MIN_PLAYER_COUNT : Int = 2;
+	public static var currentPlayerCount : Int = 7;
+	public static var currentOrder : Null<Int> = null;
 
 	public function new() 
 	{
@@ -47,8 +48,28 @@ class MainMenuManager
 		startButton.text = "NUM OF PLAYERS: " + currentPlayerCount;
 	}
 	
-	public function adjustTurnPosition(turnPositionButton : FlxButtonPlus) 
+	public function adjustOrderPosition(turnOrderButton : FlxButtonPlus) 
 	{
-		turnPositionButton.setPosition(0, 0);
+		function getPostfix(currentOrder) {			
+			switch(currentOrder)
+			{
+				case 1: 	return "st";
+				case 2: 	return "nd";
+				case 3: 	return "rd";
+				default: 	return "th";
+			}
+		}
+		
+		if ( currentOrder == null )
+			currentOrder = 1;
+		else if ( currentOrder >= MAX_PLAYER_COUNT )
+			currentOrder = null;
+		else
+			currentOrder += 1;
+		
+		if ( currentOrder != null ) 
+			turnOrderButton.text = "TURN POSITION: " + currentOrder + getPostfix(currentOrder);
+		else
+			turnOrderButton.text = "TURN POSITION: RANDOM";
 	}
 }
