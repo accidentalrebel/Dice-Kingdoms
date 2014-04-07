@@ -105,7 +105,7 @@ class HexaTile extends FlxSprite
 	{
 		this.isATerritory = false;
 		
-		var stamp : FlxSprite = GameState.stampsHolder.setToFrame(GameState.stampsHolder.landStamp, 0);
+		var stamp : FlxSprite = GameState.stampsHolder.setToFrame(GameState.stampsHolder.landStamp, FlxRandom.intRanged(1, 2));
 		
 		//TODO: Instead of changing the alpha, change the color
 		stamp.alpha = FlxRandom.floatRanged(0, 0.5);		
