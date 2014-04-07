@@ -9,6 +9,9 @@ import states.GameState;
  */
 class MainMenuManager
 {
+	inline private static var MAX_PLAYER_COUNT = 7;
+	inline private static var MIN_PLAYER_COUNT = 2;
+	private static var currentPlayerCount = 7;
 
 	public function new() 
 	{
@@ -37,7 +40,11 @@ class MainMenuManager
 	
 	public function adjustNumOfPlayers(startButton : FlxButtonPlus) 
 	{
-		startButton.setPosition(0, 0);
+		currentPlayerCount -= 1;
+		if ( currentPlayerCount < MIN_PLAYER_COUNT )
+			currentPlayerCount = MAX_PLAYER_COUNT;
+		
+		startButton.text = "NUM OF PLAYERS: " + currentPlayerCount;
 	}
 	
 	public function adjustTurnPosition(turnPositionButton : FlxButtonPlus) 
