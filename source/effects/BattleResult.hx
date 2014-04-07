@@ -29,6 +29,20 @@ class BattleResult extends FlxSpriteGroup
 		
 		this.add(battleSprite);
 		this.add(battleLabel);
+		
+		this.hide();
+	}
+	
+	function hide() 
+	{
+		this.battleSprite.visible = false;
+		this.battleLabel.visible = false;
+	}
+	
+	function show()
+	{
+		this.battleSprite.visible = true;
+		this.battleLabel.visible = true;
 	}
 	
 	public function changeLabelText(labelText : String )
@@ -53,6 +67,8 @@ class BattleResult extends FlxSpriteGroup
 	 */
 	public function attachToTerritory(territoryNumber : Int)
 	{
+		this.show();
+		
 		var territoryToAttachTo : Territory = GameState.territoryManager.getTerritory(territoryNumber);
 		this.setPosition(territoryToAttachTo.centerTile.x + HexaTile.TILE_WIDTH / 2 - battleSprite.width / 2, territoryToAttachTo.centerTile.y - 40);
 	}
