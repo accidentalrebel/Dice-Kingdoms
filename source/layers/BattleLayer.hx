@@ -81,7 +81,7 @@ class BattleLayer extends FlxGroup
 			dieResultListRight.push(die);
 		}
 		
-		//hide();
+		hideBattleResults();
 		this.setAll("scrollFactor", new FlxPoint(0, 0));
 	}
 	
