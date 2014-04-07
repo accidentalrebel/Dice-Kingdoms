@@ -9,9 +9,9 @@ import states.GameState;
  */
 class MainMenuManager
 {
-	inline private static var MAX_PLAYER_COUNT : Int = 7;
+	inline public static var MAX_PLAYER_COUNT : Int = 7;
 	inline private static var MIN_PLAYER_COUNT : Int = 2;
-	public static var currentPlayerCount : Int = 7;
+	public static var currentOpponentCount : Int = MAX_PLAYER_COUNT - 1;
 	public static var currentOrder : Null<Int> = null;
 
 	public function new() 
@@ -24,28 +24,13 @@ class MainMenuManager
 		FlxG.switchState(new GameState());
 	}
 	
-	public function showStartGameMenu() 
+	public function adjustNumOfOpponents(numOfOpponentsButton : FlxButtonPlus) 
 	{
+		currentOpponentCount -= 1;
+		if ( currentOpponentCount < MIN_PLAYER_COUNT - 1)
+			currentOpponentCount = MAX_PLAYER_COUNT - 1;
 		
-	}
-	
-	public function showSettingsMenu() 
-	{
-		
-	}
-	
-	public function showCreditsMenu() 
-	{
-		
-	}
-	
-	public function adjustNumOfPlayers(startButton : FlxButtonPlus) 
-	{
-		currentPlayerCount -= 1;
-		if ( currentPlayerCount < MIN_PLAYER_COUNT )
-			currentPlayerCount = MAX_PLAYER_COUNT;
-		
-		startButton.text = "NUM OF PLAYERS: " + currentPlayerCount;
+		numOfOpponentsButton.text = "NUM OF OPPONENTS: " + currentOpponentCount;
 	}
 	
 	public function adjustOrderPosition(turnOrderButton : FlxButtonPlus) 

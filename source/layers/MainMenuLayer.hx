@@ -6,6 +6,7 @@ import flixel.group.FlxGroup;
 import flixel.group.FlxSpriteGroup;
 import flixel.text.FlxText;
 import flixel.util.FlxPoint;
+import managers.MainMenuManager;
 import states.MainMenuState;
 
 /**
@@ -34,11 +35,11 @@ class MainMenuLayer extends FlxSpriteGroup
 			, LOGO_WIDTH, "Dice Kingdoms", 32);
 		add(title);
 		
-		var numOfPlayersButton = new FlxButtonPlus
+		var numOfOpponentsButton = new FlxButtonPlus
 			(Std.int(MainStage.cameraWidth / 2 - BUTTON_WIDTH / 2), Std.int(LOGO_HEIGHT + BUTTON_PADDING + (BUTTON_HEIGHT + BUTTON_PADDING) * 0)
-			, null, null, "NUM OF PLAYERS: 7", BUTTON_WIDTH, BUTTON_HEIGHT);		
-		numOfPlayersButton.setOnClickCallback(MainMenuState.mainMenuManager.adjustNumOfPlayers, [numOfPlayersButton]);
-		add(numOfPlayersButton);
+			, null, null, "NUM OF OPPONENTS: " + Std.string(MainMenuManager.MAX_PLAYER_COUNT - 1), BUTTON_WIDTH, BUTTON_HEIGHT);		
+		numOfOpponentsButton.setOnClickCallback(MainMenuState.mainMenuManager.adjustNumOfOpponents, [numOfOpponentsButton]);
+		add(numOfOpponentsButton);
 		
 		var orderPositionButton = new FlxButtonPlus
 			(Std.int(MainStage.cameraWidth / 2 - BUTTON_WIDTH / 2), Std.int(LOGO_HEIGHT + BUTTON_PADDING + (BUTTON_HEIGHT + BUTTON_PADDING) * 1)
@@ -50,16 +51,6 @@ class MainMenuLayer extends FlxSpriteGroup
 			(Std.int(MainStage.cameraWidth / 2 - BUTTON_WIDTH / 2), Std.int(LOGO_HEIGHT + BUTTON_PADDING + (BUTTON_HEIGHT + BUTTON_PADDING) * 2.5)
 			, MainMenuState.mainMenuManager.startGame, null, "START GAME", BUTTON_WIDTH, BUTTON_HEIGHT);		
 		add(startButton);
-		
-		//var settingsButton : FlxButtonPlus = new FlxButtonPlus
-			//(Std.int(MainStage.cameraWidth / 2 - BUTTON_WIDTH / 2), Std.int(LOGO_HEIGHT + BUTTON_PADDING + (BUTTON_HEIGHT + BUTTON_PADDING) * 1)
-			//, MainMenuState.mainMenuManager.showSettingsMenu, null, "SETTINGS", BUTTON_WIDTH, BUTTON_HEIGHT);		
-		//add(settingsButton);
-		//
-		//var creditsButton : FlxButtonPlus = new FlxButtonPlus
-			//(Std.int(MainStage.cameraWidth / 2 - BUTTON_WIDTH / 2), Std.int(LOGO_HEIGHT + BUTTON_PADDING + (BUTTON_HEIGHT + BUTTON_PADDING) * 2)
-			//, MainMenuState.mainMenuManager.showCreditsMenu, null, "CREDITS", BUTTON_WIDTH, BUTTON_HEIGHT);		
-		//add(creditsButton);
 		
 		this.setPosition(0, MainStage.cameraHeight / 2 - (startButton.y + BUTTON_HEIGHT) / 2);
 	}

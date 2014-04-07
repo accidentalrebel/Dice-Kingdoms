@@ -75,7 +75,7 @@ class GameState extends FlxState
 		GameState.playArea.init(this);
 		GameState.playArea.setupTerritories();	
 		
-		GameState.playerManager 		= new PlayerManager(MainMenuManager.currentPlayerCount);
+		GameState.playerManager 		= new PlayerManager(MainMenuManager.currentOpponentCount + 1);
 		GameState.playArea.assignTerritories();
 		GameState.playerManager.initializeArmies();
 		GameState.playArea.setupFinished = true;
