@@ -10,8 +10,8 @@ import states.GameState;
 class MainMenuManager
 {
 	inline private static var MAX_PLAYER_COUNT = 7;
-	inline private static var MIN_PLAYER_COUNT = 2;
-	private static var currentPlayerCount = 7;
+	inline private static var MIN_PLAYER_COUNT = 4;
+	public static var currentPlayerCount = 7;
 
 	public function new() 
 	{

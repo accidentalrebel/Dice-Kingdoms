@@ -12,6 +12,7 @@ import managers.BattleManager;
 import managers.CameraManager;
 import managers.GameplayManager;
 import managers.InputManager;
+import managers.MainMenuManager;
 import managers.PlayerManager;
 import managers.TerritoryManager;
 import misc.StampsHolder;
@@ -77,7 +78,7 @@ class PlayState extends FlxState
 		PlayState.playArea.init(this);
 		PlayState.playArea.setupTerritories();	
 		
-		PlayState.playerManager 		= new PlayerManager();
+		PlayState.playerManager 		= new PlayerManager(MainMenuManager.);
 		PlayState.playArea.assignTerritories();
 		PlayState.playerManager.initializeArmies();
 		PlayState.playArea.setupFinished = true;
