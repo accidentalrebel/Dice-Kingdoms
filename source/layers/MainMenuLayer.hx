@@ -40,8 +40,14 @@ class MainMenuLayer extends FlxSpriteGroup
 		numOfPlayersButton.setOnClickCallback(MainMenuState.mainMenuManager.adjustNumOfPlayers, [numOfPlayersButton]);
 		add(numOfPlayersButton);
 		
+		var turnPositionButton = new FlxButtonPlus
+			(Std.int(MainStage.cameraWidth / 2 - BUTTON_WIDTH / 2), Std.int(LOGO_HEIGHT + BUTTON_PADDING + (BUTTON_HEIGHT + BUTTON_PADDING) * 1)
+			, null, null, "TURN POSITION: RANDOM", BUTTON_WIDTH, BUTTON_HEIGHT);		
+		turnPositionButton.setOnClickCallback(MainMenuState.mainMenuManager.adjustTurnPosition, [turnPositionButton]);
+		add(turnPositionButton);
+		
 		var startButton : FlxButtonPlus = new FlxButtonPlus
-			(Std.int(MainStage.cameraWidth / 2 - BUTTON_WIDTH / 2), Std.int(LOGO_HEIGHT + BUTTON_PADDING + (BUTTON_HEIGHT + BUTTON_PADDING) * 2)
+			(Std.int(MainStage.cameraWidth / 2 - BUTTON_WIDTH / 2), Std.int(LOGO_HEIGHT + BUTTON_PADDING + (BUTTON_HEIGHT + BUTTON_PADDING) * 2.5)
 			, MainMenuState.mainMenuManager.startGame, null, "START GAME", BUTTON_WIDTH, BUTTON_HEIGHT);		
 		add(startButton);
 		

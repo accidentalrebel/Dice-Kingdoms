@@ -39,4 +39,9 @@ class MainMenuManager
 	{
 		startButton.setPosition(0, 0);
 	}
+	
+	public function adjustTurnPosition(turnPositionButton : FlxButtonPlus) 
+	{
+		turnPositionButton.setPosition(0, 0);
+	}
 }
