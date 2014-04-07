@@ -1,4 +1,5 @@
 package managers;
+import flixel.addons.ui.FlxButtonPlus;
 import flixel.FlxG;
 import states.GameState;
 
@@ -34,4 +35,8 @@ class MainMenuManager
 		
 	}
 	
+	public function adjustNumOfPlayers(startButton : FlxButtonPlus) 
+	{
+		startButton.setPosition(0, 0);
+	}
 }
