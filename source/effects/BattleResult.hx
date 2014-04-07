@@ -25,6 +25,7 @@ class BattleResult extends FlxSpriteGroup
 		battleLabel = new FlxText(0, 0, 100, "88", 12);
 		battleLabel.x = battleSprite.width / 2 - battleLabel.width / 2;
 		battleLabel.y = battleSprite.height / 2 - battleLabel.height / 2;
+		battleLabel.setBorderStyle(FlxText.BORDER_OUTLINE_FAST, 0, 1, 1);
 		battleLabel.alignment = "center";
 		
 		this.add(battleSprite);
