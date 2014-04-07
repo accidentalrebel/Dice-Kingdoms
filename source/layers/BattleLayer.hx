@@ -47,7 +47,7 @@ class BattleLayer extends FlxGroup
 		
 		battleBackground = new FlxSprite(0, 0);
 		battleBackground = battleBackground.makeGraphic(bgWidth, bgHeight, 0xff000000 );
-		battleBackground.alpha = 0.5;
+		//battleBackground.alpha = 0.5;
 		add(battleBackground);
 		
 		battleResult = new FlxText(0, PADDING_TOP, Std.int(battleBackground.width), "");
