@@ -70,7 +70,7 @@ class PlayerManager
 		for ( tPlayer in playerList )
 		{
 			var player : Player = tPlayer;
-			player.randomlyAssignArmies(GameState.initialArmyCount - GameState.territoryPerPlayer);			
+			player.randomlyAssignArmies(GameState.initialArmyCount * GameState.territoryPerPlayer);			
 		}
 	}
 	

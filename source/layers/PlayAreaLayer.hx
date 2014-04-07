@@ -334,18 +334,23 @@ class PlayAreaLayer extends FlxGroup
 		function getRandomTerritoryNum()
 		{
 			var roll : Int = 0;
-			while (true)
+			var maxSafety : Int = 100;
+			var safety : Int = 0;
+			
+			while (true && safety < maxSafety)
 			{
 				roll = FlxRandom.intRanged(0, GameState.territoryManager.territoryList.length-1);
 				if ( !Lambda.has(pickedTerritories, roll) )
 					break;
+					
+				safety++;
 			}
 			
 			pickedTerritories.push(roll);
 			return roll;
 		}
       
-		GameState.territoryPerPlayer = Math.floor(TerritoryManager.MAX_NUM_OF_TERRITORIES / GameState.playerManager.playerList.length);
+		GameState.territoryPerPlayer = Math.round(TerritoryManager.MAX_NUM_OF_TERRITORIES / GameState.playerManager.playerList.length);
 		for (playerNum in 1...GameState.playerManager.playerList.length+1 )
 	    {
 			for (j in 0...GameState.territoryPerPlayer)

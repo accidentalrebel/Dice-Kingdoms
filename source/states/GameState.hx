@@ -24,8 +24,8 @@ import misc.StampsHolder;
 class GameState extends FlxState
 {	
 	static public var territoryPerPlayer		: Int;	
-	static public var initialArmyCount			: Int = 20;	
-	static public var maxArmyCountPerTerritory 	: Int = 8;	
+	static public var initialArmyCount			: Int = 3;	
+	static public var maxArmyCountPerTerritory 	: Int = 8;
 	
 	static public var gameGUI			:GameGUILayer;
 	static public var playArea			:PlayAreaLayer;
