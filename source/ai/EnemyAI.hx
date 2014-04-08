@@ -26,6 +26,8 @@ enum AIType {
  
 class EnemyAI
 {
+	inline private static var DECISION_SPEED_MODIFIER : Float = 0.5;
+	
 	var playerScript:Player;
 	public var aiType:AIType;
 	var taskManager:ARTaskManager;
@@ -121,10 +123,10 @@ class EnemyAI
 					if ( GameState.cameraManager.isZoomedIn )
 					{
 						GameState.cameraManager.focusOnTerritory(territory.territoryNumber);
-						taskManager.addPause(0.35);
+						taskManager.addPause(0.35 * DECISION_SPEED_MODIFIER);
 					}
 					
-					taskManager.addPause(0.15);
+					taskManager.addPause(0.15 * DECISION_SPEED_MODIFIER);
 					
 					// We highlight the attacker and the one being attacked
 					function selectInvolvedTerritories()
@@ -137,7 +139,7 @@ class EnemyAI
 						GameState.gameGUI.defenderBattleResult.hideLabel();
 					}
 					taskManager.addInstantTask(this, selectInvolvedTerritories, [territory], true);
-					taskManager.addPause(0.5);
+					taskManager.addPause(0.5 * DECISION_SPEED_MODIFIER);
 					
 					// We then start the battle and unhighlight territories
 					taskManager.addInstantTask(this, GameState.battleManager.startAttack, [territory.territoryNumber, neighborTerritory.territoryNumber], true);
@@ -146,9 +148,9 @@ class EnemyAI
 					
 					// We add a short delay when the camera is zoomed in to show the result of the attack
 					if ( GameState.cameraManager.isZoomedIn )
-						taskManager.addPause(0.25);
+						taskManager.addPause(0.25 * DECISION_SPEED_MODIFIER);
 					
-					taskManager.addPause(2);
+					taskManager.addPause(2 * DECISION_SPEED_MODIFIER);
 					taskManager.addInstantTask(this, getNextMove, null, true);
 					break;
 				}
