@@ -55,9 +55,9 @@ class GameGUILayer extends FlxSpriteGroup
 		this.setAll("scrollFactor", new FlxPoint(0, 0));
 		
 		// We setup the battleResult sprites
-		attackerBattleResult = new BattleResult(100, 100);
+		attackerBattleResult = new BattleResult(100, 100, BattleResultType.ATTACK);
 		this.add(attackerBattleResult);
-		defenderBattleResult = new BattleResult(200, 200);	
+		defenderBattleResult = new BattleResult(200, 200, BattleResultType.DEFEND);	
 		this.add(defenderBattleResult);
 	}
 	

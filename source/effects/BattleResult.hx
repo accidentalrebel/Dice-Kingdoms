@@ -10,17 +10,29 @@ import states.GameState;
  * ...
  * @author Karlo
  */
+enum BattleResultType {
+	ATTACK;
+	DEFEND;
+}
+ 
 class BattleResult extends FlxSpriteGroup
 {
 	var battleLabel : FlxText;
 	var battleSprite : FlxSprite;
 	
-	public function new(xPos, yPos) 
+	public function new(xPos : Float, yPos : Float, resultType : BattleResultType) 
 	{	
 		super(xPos, yPos);
 		
 		battleSprite = new FlxSprite(0, 0);
-		battleSprite.loadGraphic("assets/soldier.png", false, false);
+		
+		var imageToUse : String = "";
+		if ( resultType == BattleResultType.ATTACK )
+			imageToUse = "assets/swords.png";
+		else if ( resultType == BattleResultType.DEFEND )
+			imageToUse = "assets/shield.png";		
+		
+		battleSprite.loadGraphic(imageToUse, false, false);
 		
 		battleLabel = new FlxText(0, 0, 100, "88", 12);
 		battleLabel.x = battleSprite.width / 2 - battleLabel.width / 2;
