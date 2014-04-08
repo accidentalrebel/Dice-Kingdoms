@@ -41,6 +41,8 @@
 	
 	<assets path="assets">
 		<font path="fonts/courier.ttf" id="Courier" />
+		<font path="fonts/BlackCastleMF.ttf" id="BlackCastle" />
+		<font path="fonts/Primitive.ttf" id="Primitive" />
 		<sound path="audio/bgm.mp3" id="BGM" />
 	</assets>
 	

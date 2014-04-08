@@ -18,6 +18,7 @@ class AddArmyEffect extends FlxText
 	public function new()
 	{
 		super(0, 0, 40, "+0", 14);
+		this.font = "BlackCastle";
 		this.alignment = "center";
 	}
 	

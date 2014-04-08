@@ -30,6 +30,7 @@ class GameGUILayer extends FlxSpriteGroup
 		super();
 		
 		playerIndicator = new FlxText(PADDING, PADDING, 300, "Player 1", 16);
+		playerIndicator.font = "BlackCastle";
 		add(playerIndicator);
 		
 		zoomButton = new FlxButtonPlus(PADDING, Std.int(playerIndicator.height + PADDING)

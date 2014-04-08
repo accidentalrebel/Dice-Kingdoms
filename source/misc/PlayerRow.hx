@@ -23,17 +23,21 @@ class PlayerRow
 		parent = tParent;
 		
 		positionLabel = new FlxText(xPos, yPos, 20, position, FONT_SIZE);
+		positionLabel.font = "BlackCastle";
 		positionLabel.alignment = "center";
 
 		var colorString : String = PlayerColor.getColorAsString(playerColor);
 		nameLabel = new FlxText(xPos + positionLabel.width, yPos, 120, colorString, FONT_SIZE);
+		nameLabel.font = "BlackCastle";
 		nameLabel.color = playerColor;
 		nameLabel.alignment = "center";
 		
 		aiLabel = new FlxText(xPos + nameLabel.width + positionLabel.width, yPos, 150, playerType, FONT_SIZE);
+		aiLabel.font = "BlackCastle";
 		aiLabel.alignment = "center";
 		
 		territoryCountLabel = new FlxText(xPos + nameLabel.width + positionLabel.width + aiLabel.width, yPos, 40, territoryCount, FONT_SIZE);
+		territoryCountLabel.font = "BlackCastle";
 		territoryCountLabel.alignment = "center";
 		
 		parent.add(positionLabel);

@@ -49,20 +49,22 @@ class BattleLayer extends FlxGroup
 		battleBackground = battleBackground.makeGraphic(bgWidth, bgHeight, 0xff000000 );
 		add(battleBackground);
 		
-		battleResult = new FlxText(0, PADDING_TOP, Std.int(battleBackground.width), "");
+		battleResult = new FlxText(0, PADDING_TOP, Std.int(battleBackground.width), "", 20);
+		battleResult.font = "BlackCastle";
 		battleResult.alignment = "center";
-		battleResult.scale = new FlxPoint(2, 2);
 		add(battleResult);
 		
 		// We setup the final result FlxTexts
 		finalResultLeft = new FlxText(PADDING_SIDES, battleBackground.y + battleBackground.height / 2 - finalResultHeight / 2 - bottomPadding
 			, finalResultWidth, "88", finalResultHeight);
+		finalResultLeft.font = "BlackCastle";
 		finalResultLeft.alignment = "center";
 		add(finalResultLeft);
 		
 		finalResultRight = new FlxText(bgWidth - finalResultWidth
 			, battleBackground.y + battleBackground.height / 2 - finalResultHeight / 2 - bottomPadding
 			, finalResultWidth, "88", finalResultHeight);
+		finalResultRight.font = "BlackCastle";
 		finalResultRight.alignment = "center";
 		add(finalResultRight);
 		

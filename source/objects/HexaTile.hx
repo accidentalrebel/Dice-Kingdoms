@@ -86,6 +86,7 @@ class HexaTile extends FlxSprite
 	{		
 		//TODO: Take note of the scaled height so that it is consistent on all devices
 		label = new FlxText(castleGraphic.x + castleGraphic.width / 2, castleGraphic.y + castleGraphic.height / 2 , LABEL_WIDTH);
+		label.font = "BlackCastle";
 		label.size = LABEL_HEIGHT;
 		label.x -= label.width / 2;
 		label.y -= label.size / 2;
