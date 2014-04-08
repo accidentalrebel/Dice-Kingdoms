@@ -26,7 +26,7 @@ enum AIType {
  
 class EnemyAI
 {
-	inline private static var DECISION_SPEED_MODIFIER : Float = 0.5;
+	inline private static var DECISION_SPEED_MODIFIER : Float = 0.75;
 	
 	var playerScript:Player;
 	public var aiType:AIType;

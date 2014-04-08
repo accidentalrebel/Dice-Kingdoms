@@ -79,9 +79,8 @@ class BattleResult extends FlxSpriteGroup
 	 * @param	territoryNumber		The territory number to attach to
 	 */
 	public function attachToTerritory(territoryNumber : Int)
-	{
-		this.show();
-		
+	{	
+		this.battleSprite.visible = true;
 		var territoryToAttachTo : Territory = GameState.territoryManager.getTerritory(territoryNumber);
 		this.setPosition(territoryToAttachTo.centerTile.x + HexaTile.TILE_WIDTH / 2 - battleSprite.width / 2, territoryToAttachTo.centerTile.y - 40);
 	}
