@@ -100,7 +100,10 @@ class Die extends FlxSprite
 			taskManager.clear();
 		
 		show();
-		dieFace.animation.play("roll", true, FlxRandom.intRanged(0, 5));
+		
+		if ( dieFace != null && dieFace.animation != null )
+			dieFace.animation.play("roll", true, FlxRandom.intRanged(0, 5));
+			
 		taskManager = new ARTaskManager(false);
 		taskManager.addPause(tDuration);
 		taskManager.addInstantTask(this, revealRoll);
@@ -116,5 +119,16 @@ class Die extends FlxSprite
 		
 		dieFace.animation.pause();
 		updateDieFace(currentFaceIndex);
+	}
+	
+	override function destroy()
+	{
+		super.destroy();
+		
+		if ( taskManager != null )
+			taskManager.destroy();
+		
+		if ( dieFace != null )
+			dieFace.destroy();
 	}
 }

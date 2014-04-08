@@ -102,6 +102,7 @@ class GameState extends FlxState
 	{
 		super.destroy();
 		
+		GameState.battleManager.reset();
 		GameState.battleLayer.destroy();
 	}
 }

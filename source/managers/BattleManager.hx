@@ -17,7 +17,7 @@ class BattleManager
 
 	public function new() 
 	{
-		
+		taskManager = new ARTaskManager(false);
 	}
 	
 	//TODO: Check out why sometimes "ZERO" appears as the final result
@@ -105,9 +105,14 @@ class BattleManager
 		GameState.gameGUI.attackerBattleResult.attachToTerritory(attackerTerritoryNum);
 		GameState.gameGUI.defenderBattleResult.attachToTerritory(defenderTerritoryNum);	
 		
-		taskManager = new ARTaskManager(false);
 		taskManager.addPause(0.5);
 		taskManager.addInstantTask(this, startBattle);
 		return true;
 	} 
+	
+	public function reset()
+	{
+		if ( taskManager != null )
+			taskManager.destroy();
+	}
 }

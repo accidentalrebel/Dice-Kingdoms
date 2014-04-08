@@ -41,7 +41,11 @@ class EnemyAI
 	}
 	
 	public function destroy()
-	{
+	{	
+		trace("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ ENEMYAI DESTROYED");
+		if ( taskManager != null )
+			this.taskManager.destroy();
+			
 		this.playerScript = null;
 	}
 	
