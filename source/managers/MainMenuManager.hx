@@ -33,9 +33,12 @@ class MainMenuManager
 	
 	public static function adjustOrderPosition(turnOrderButton : CustomButton) 
 	{	
+		if ( currentOrder > currentOpponentCount + 1 )
+			currentOrder = currentOpponentCount + 1;
+		
 		if ( currentOrder == null )
 			currentOrder = 1;
-		else if ( currentOrder >= MAX_PLAYER_COUNT )
+		else if ( currentOrder >= currentOpponentCount + 1 )
 			currentOrder = null;
 		else
 			currentOrder += 1;

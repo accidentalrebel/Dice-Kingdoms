@@ -86,7 +86,12 @@ class GameState extends FlxState
 		
 		// We setup the playArea and player manager
 		GameState.playArea 				= new PlayAreaLayer();
-		GameState.generatePlayArea();
+		GameState.playArea.init(GameState.instance);
+		GameState.playArea.setupTerritories();	
+		GameState.playerManager = new PlayerManager(MainMenuManager.currentOpponentCount + 1);
+		GameState.playArea.assignTerritories();
+		GameState.playerManager.initializeArmies();
+		GameState.playArea.setupFinished = true;
 		GameState.pauseMenuLayer 		= new PauseMenuLayer(this);
 		
 		// We arrange the different layers
@@ -107,30 +112,14 @@ class GameState extends FlxState
 		this.add(menuLayer);
 	}
 	
-	public static function generatePlayArea() 
-	{
-		if ( GameState.playArea != null && GameState.playArea.setupFinished )
-		{
-			GameState.playArea.reset();
-			GameState.gameObjectsLayer.reset();
-			GameState.territoryManager.reset();
-			GameState.playerManager.reset();
-		}
-			
-		GameState.playArea.init(GameState.instance);
-		GameState.playArea.setupTerritories();	
-		GameState.playerManager = new PlayerManager(MainMenuManager.currentOpponentCount + 1);
-		GameState.playArea.assignTerritories();
-		GameState.playerManager.initializeArmies();
-		GameState.playArea.setupFinished = true;
-	}
-	
 	override public function destroy():Void 
 	{
 		super.destroy();
 		
 		GameState.battleManager.reset();
 		GameState.playerManager.reset();
+		GameState.territoryManager.reset();
+		GameState.playArea.reset();
 		GameState.battleLayer.destroy();
 	}
 }
