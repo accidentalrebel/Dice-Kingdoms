@@ -27,11 +27,6 @@ class MainMenuLayer extends FlxSpriteGroup
 	{
 		super();
 		
-		//var logo : FlxSprite = new FlxSprite();
-		//logo.makeGraphic(LOGO_WIDTH, LOGO_HEIGHT);
-		//logo.setPosition(Std.int(MainStage.cameraWidth / 2 - LOGO_WIDTH / 2), 0);
-		//add(logo);
-		
 		var title : FlxText = new FlxText(Std.int(MainStage.cameraWidth / 2 - LOGO_WIDTH / 2), 0
 			, LOGO_WIDTH, "Dice Kingdoms", 32);
 		title.font = GameState.DEFAULT_FONT;
