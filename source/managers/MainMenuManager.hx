@@ -31,6 +31,8 @@ class MainMenuManager
 			currentOpponentCount = MAX_PLAYER_COUNT - 1;
 		
 		numOfOpponentsButton.text = "NUM OF OPPONENTS: " + currentOpponentCount;
+		
+		GameState.generatePlayArea();
 	}
 	
 	public function adjustOrderPosition(turnOrderButton : CustomButton) 

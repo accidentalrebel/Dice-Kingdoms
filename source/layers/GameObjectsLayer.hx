@@ -12,5 +12,4 @@ class GameObjectsLayer extends FlxGroup
 	{
 		super();
 	}
-	
 }

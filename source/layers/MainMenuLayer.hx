@@ -35,18 +35,18 @@ class MainMenuLayer extends FlxSpriteGroup
 		var numOfOpponentsButton = new CustomButton
 			(Std.int(MainStage.cameraWidth / 2 - BUTTON_WIDTH / 2), Std.int(LOGO_HEIGHT + BUTTON_PADDING + (BUTTON_HEIGHT + BUTTON_PADDING) * 0)
 			, null, null, "NUM OF OPPONENTS: " + Std.string(MainMenuManager.MAX_PLAYER_COUNT - 1), BUTTON_WIDTH, BUTTON_HEIGHT);		
-		numOfOpponentsButton.setOnClickCallback(MainMenuState.mainMenuManager.adjustNumOfOpponents, [numOfOpponentsButton]);
+		numOfOpponentsButton.setOnClickCallback(GameState.mainMenuManager.adjustNumOfOpponents, [numOfOpponentsButton]);
 		add(numOfOpponentsButton);
 		
 		var orderPositionButton = new CustomButton
 			(Std.int(MainStage.cameraWidth / 2 - BUTTON_WIDTH / 2), Std.int(LOGO_HEIGHT + BUTTON_PADDING + (BUTTON_HEIGHT + BUTTON_PADDING) * 1)
 			, null, null, "TURN POSITION: RANDOM", BUTTON_WIDTH, BUTTON_HEIGHT);		
-		orderPositionButton.setOnClickCallback(MainMenuState.mainMenuManager.adjustOrderPosition, [orderPositionButton]);
+		orderPositionButton.setOnClickCallback(GameState.mainMenuManager.adjustOrderPosition, [orderPositionButton]);
 		add(orderPositionButton);
 		
 		var startButton : CustomButton = new CustomButton
 			(Std.int(MainStage.cameraWidth / 2 - BUTTON_WIDTH / 2), Std.int(LOGO_HEIGHT + BUTTON_PADDING + (BUTTON_HEIGHT + BUTTON_PADDING) * 2.5)
-			, MainMenuState.mainMenuManager.startGame, null, "START GAME", BUTTON_WIDTH, BUTTON_HEIGHT);		
+			, GameState.mainMenuManager.startGame, null, "START GAME", BUTTON_WIDTH, BUTTON_HEIGHT);		
 		add(startButton);
 		
 		this.setPosition(0, MainStage.cameraHeight / 2 - (startButton.y + BUTTON_HEIGHT) / 2);

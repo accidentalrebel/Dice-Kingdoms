@@ -42,4 +42,9 @@ class TerritoryManager
 			territory.setupTerritorySprite();
 		}
 	}
+	
+	public function destroy()
+	{
+		territoryList = [];
+	}
 }

@@ -6,6 +6,7 @@ import flixel.system.FlxSound;
 import layers.BattleLayer;
 import layers.GameGUILayer;
 import layers.GameObjectsLayer;
+import layers.MainMenuLayer;
 import layers.PauseMenuLayer;
 import layers.PlayAreaLayer;
 import managers.BattleManager;
@@ -33,6 +34,7 @@ class GameState extends FlxState
 	static public var territoryPerPlayer		: Int;	
 	static public var initialArmyCount			: Int = 3;	
 	static public var maxArmyCountPerTerritory 	: Int = 8;
+	static public var instance 			: GameState;
 	
 	static public var gameGUI			:GameGUILayer;
 	static public var playArea			:PlayAreaLayer;
@@ -47,6 +49,9 @@ class GameState extends FlxState
 	static public var pauseMenuLayer	:PauseMenuLayer;
 	static public var stampsHolder		:StampsHolder;
 	
+	public static var mainMenuManager	:MainMenuManager;
+	public static var menuLayer 		:MainMenuLayer;
+	
 	override public function create():Void 
 	{
 		//TODO: Create a sound manager
@@ -55,10 +60,14 @@ class GameState extends FlxState
 		bgm.play();
 		add(bgm);
 		
-		//TODO: Work on the menu
 		FlxG.cameras.bgColor = 0xFF111111;
+		#if !FLX_NO_MOUSE
+		FlxG.mouse.show();
+		#end
 		
 		super.create();
+		
+		GameState.instance 				= this;
 		
 		GameState.cameraManager 		= new CameraManager();
 		GameState.gameplayManager		= new GameplayManager();
@@ -72,20 +81,11 @@ class GameState extends FlxState
 		// We setup the layers
 		GameState.gameGUI 				= new GameGUILayer();
 		GameState.battleLayer 			= new BattleLayer();
-		GameState.gameObjectsLayer		= new GameObjectsLayer();
-		
-		// We setup the territory manager
 		GameState.territoryManager 		= new TerritoryManager();
 		
 		// We setup the playArea and player manager
 		GameState.playArea 				= new PlayAreaLayer();
-		GameState.playArea.init(this);
-		GameState.playArea.setupTerritories();	
-		
-		GameState.playerManager 		= new PlayerManager(MainMenuManager.currentOpponentCount + 1);
-		GameState.playArea.assignTerritories();
-		GameState.playerManager.initializeArmies();
-		GameState.playArea.setupFinished = true;
+		GameState.generatePlayArea();
 		GameState.pauseMenuLayer 		= new PauseMenuLayer(this);
 		
 		// We arrange the different layers
@@ -101,8 +101,32 @@ class GameState extends FlxState
 		GameState.battleLayer.setAll("cameras", [ GameState.cameraManager.topBarCamera ], true);
 		GameState.gameGUI.setAll("cameras", [ GameState.cameraManager.mainCamera ]);
 		
+		mainMenuManager = new MainMenuManager();
+		menuLayer 		= new MainMenuLayer();
+		
+		this.add(menuLayer);
+		
 		// We start the game
-		GameState.gameplayManager.startGame();
+		// GameState.gameplayManager.startGame();
+		
+	}
+	
+	public static function generatePlayArea() 
+	{
+		if ( GameState.playArea != null && GameState.playArea.setupFinished )
+		{
+			GameState.playArea.reset();
+			GameState.gameObjectsLayer.destroy();
+			GameState.territoryManager.destroy();
+		}
+		
+		GameState.gameObjectsLayer		= new GameObjectsLayer();	
+		GameState.playArea.init(GameState.instance);
+		GameState.playArea.setupTerritories();	
+		GameState.playerManager 		= new PlayerManager(MainMenuManager.currentOpponentCount + 1);
+		GameState.playArea.assignTerritories();
+		GameState.playerManager.initializeArmies();
+		GameState.playArea.setupFinished = true;
 	}
 	
 	override public function destroy():Void 

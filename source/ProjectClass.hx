@@ -3,6 +3,7 @@ package;
 import flash.Lib;
 import flixel.FlxG;
 import flixel.FlxGame;
+import states.GameState;
 import states.MainMenuState;
 	
 class ProjectClass extends FlxGame
@@ -28,7 +29,7 @@ class ProjectClass extends FlxGame
 		var ratioY:Float = stageHeight / DESIGN_HEIGHT;
 		var ratio:Float = Math.min(ratioX, ratioY);
 		
-		super(Math.ceil(stageWidth / ratio), Math.ceil(stageHeight / ratio), MainMenuState, ratio, 30, 30);
+		super(Math.ceil(stageWidth / ratio), Math.ceil(stageHeight / ratio), GameState, ratio, 30, 30);
 		
 		// We then save these values to our MainStage class
 		// From now on, we weill be using this values to refer to the actual size of the mainStage

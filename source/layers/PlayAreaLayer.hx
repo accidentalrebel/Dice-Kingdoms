@@ -461,4 +461,18 @@ class PlayAreaLayer extends FlxGroup
 		
 		return -1;
 	}
+	
+	public function reset()
+	{
+		setupFinished = false;
+		seaCanvas.destroy();
+		
+		for ( row in playAreaArray )
+		{
+			for ( hexaTile in row )
+			{
+				hexaTile.destroy();
+			}
+		}
+	}
 }
