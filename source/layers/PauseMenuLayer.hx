@@ -1,6 +1,5 @@
 package layers;
 import flash.display.Sprite;
-import flixel.addons.ui.FlxButtonPlus;
 import flixel.FlxG;
 import flixel.FlxSprite;
 import flixel.FlxState;
@@ -11,6 +10,7 @@ import flixel.util.FlxPoint;
 import misc.PlayerRow;
 import objects.Player;
 import states.GameState;
+import ui.CustomButton;
 
 /**
  * ...
@@ -71,13 +71,13 @@ class PauseMenuLayer extends FlxSpriteGroup
 		
 		function setupButtons()
 		{
-			var restartButton : FlxButtonPlus = new FlxButtonPlus(0, 0
+			var restartButton : CustomButton = new CustomButton(0, 0
 				, GameState.gameplayManager.resetGame, null, "New Game", 200, 70);
 			restartButton.setPosition(MainStage.cameraWidth / 2 - 210, MainStage.cameraHeight - 130);
 			restartButton.pauseProof = true;
 			this.add(restartButton);
 			
-			var mainMenuButton : FlxButtonPlus = new FlxButtonPlus(0, 0
+			var mainMenuButton : CustomButton = new CustomButton(0, 0
 				, GameState.gameplayManager.endGame, null, "MainMenu", 200, 70);
 			mainMenuButton.setPosition(MainStage.cameraWidth / 2 + 10, MainStage.cameraHeight - 130);
 			mainMenuButton.pauseProof = true;

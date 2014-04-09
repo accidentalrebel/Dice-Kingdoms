@@ -1,12 +1,12 @@
 package layers;
 import effects.AddArmyEffect;
 import effects.BattleResult;
-import flixel.addons.ui.FlxButtonPlus;
 import flixel.FlxG;
 import flixel.group.FlxSpriteGroup;
 import flixel.text.FlxText;
 import flixel.util.FlxPoint;
 import states.GameState;
+import ui.CustomButton;
 
 /**
  * ...
@@ -15,9 +15,9 @@ import states.GameState;
 class GameGUILayer extends FlxSpriteGroup
 {
 	private var playerIndicator :FlxText;
-	private var doneButton		:FlxButtonPlus;
-	private var zoomButton		:FlxButtonPlus;
-	private var pauseButton		:FlxButtonPlus;
+	private var doneButton		:CustomButton;
+	private var zoomButton		:CustomButton;
+	private var pauseButton		:CustomButton;
 	
 	private static inline var BUTTON_HEIGHT	:Int = 60;
 	private static inline var BUTTON_WIDTH 	:Int = 80;
@@ -33,20 +33,20 @@ class GameGUILayer extends FlxSpriteGroup
 		playerIndicator.font = GameState.DEFAULT_FONT;
 		add(playerIndicator);
 		
-		zoomButton = new FlxButtonPlus(PADDING, Std.int(playerIndicator.height + PADDING)
+		zoomButton = new CustomButton(PADDING, Std.int(playerIndicator.height + PADDING)
 			, GameState.cameraManager.toggleZoom, null
 			, "TOGGLE ZOOM", BUTTON_WIDTH, BUTTON_HEIGHT);	
 		zoomButton.buttonNormal.loadGraphic("assets/buttonTest.png", false, false, BUTTON_WIDTH, BUTTON_HEIGHT);
 		zoomButton.buttonHighlight.loadGraphic("assets/buttonTestHighlight.png", false, false, BUTTON_WIDTH, BUTTON_HEIGHT);
 		//add(zoomButton);
 		
-		doneButton = new FlxButtonPlus(PADDING, Std.int(playerIndicator.height + PADDING)
+		doneButton = new CustomButton(PADDING, Std.int(playerIndicator.height + PADDING)
 			, GameState.gameplayManager.endCurrentPlayerMove, null
 			, "DONE", BUTTON_WIDTH, BUTTON_HEIGHT);		
 		add(doneButton);
 		
 		//TODO: Consider having a MainStage.width height instead of second guessing all the time
-		pauseButton = new FlxButtonPlus(Std.int(GameState.cameraManager.mainCamera.width - BUTTON_WIDTH - PADDING)
+		pauseButton = new CustomButton(Std.int(GameState.cameraManager.mainCamera.width - BUTTON_WIDTH - PADDING)
 			, Std.int(playerIndicator.height + PADDING), GameState.gameplayManager.pauseGame, null
 			, "PAUSE", BUTTON_WIDTH, BUTTON_HEIGHT);
 		pauseButton.pauseProof = true;

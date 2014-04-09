@@ -1,5 +1,4 @@
 package layers;
-import flixel.addons.ui.FlxButtonPlus;
 import flixel.FlxG;
 import flixel.FlxSprite;
 import flixel.group.FlxGroup;
@@ -9,6 +8,7 @@ import flixel.util.FlxPoint;
 import managers.MainMenuManager;
 import states.GameState;
 import states.MainMenuState;
+import ui.CustomButton;
 
 /**
  * ...
@@ -37,19 +37,19 @@ class MainMenuLayer extends FlxSpriteGroup
 		title.font = GameState.DEFAULT_FONT;
 		add(title);
 		
-		var numOfOpponentsButton = new FlxButtonPlus
+		var numOfOpponentsButton = new CustomButton
 			(Std.int(MainStage.cameraWidth / 2 - BUTTON_WIDTH / 2), Std.int(LOGO_HEIGHT + BUTTON_PADDING + (BUTTON_HEIGHT + BUTTON_PADDING) * 0)
 			, null, null, "NUM OF OPPONENTS: " + Std.string(MainMenuManager.MAX_PLAYER_COUNT - 1), BUTTON_WIDTH, BUTTON_HEIGHT);		
 		numOfOpponentsButton.setOnClickCallback(MainMenuState.mainMenuManager.adjustNumOfOpponents, [numOfOpponentsButton]);
 		add(numOfOpponentsButton);
 		
-		var orderPositionButton = new FlxButtonPlus
+		var orderPositionButton = new CustomButton
 			(Std.int(MainStage.cameraWidth / 2 - BUTTON_WIDTH / 2), Std.int(LOGO_HEIGHT + BUTTON_PADDING + (BUTTON_HEIGHT + BUTTON_PADDING) * 1)
 			, null, null, "TURN POSITION: RANDOM", BUTTON_WIDTH, BUTTON_HEIGHT);		
 		orderPositionButton.setOnClickCallback(MainMenuState.mainMenuManager.adjustOrderPosition, [orderPositionButton]);
 		add(orderPositionButton);
 		
-		var startButton : FlxButtonPlus = new FlxButtonPlus
+		var startButton : CustomButton = new CustomButton
 			(Std.int(MainStage.cameraWidth / 2 - BUTTON_WIDTH / 2), Std.int(LOGO_HEIGHT + BUTTON_PADDING + (BUTTON_HEIGHT + BUTTON_PADDING) * 2.5)
 			, MainMenuState.mainMenuManager.startGame, null, "START GAME", BUTTON_WIDTH, BUTTON_HEIGHT);		
 		add(startButton);

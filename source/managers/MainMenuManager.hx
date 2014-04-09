@@ -1,7 +1,7 @@
 package managers;
-import flixel.addons.ui.FlxButtonPlus;
 import flixel.FlxG;
 import states.GameState;
+import ui.CustomButton;
 
 /**
  * ...
@@ -24,7 +24,7 @@ class MainMenuManager
 		FlxG.switchState(new GameState());
 	}
 	
-	public function adjustNumOfOpponents(numOfOpponentsButton : FlxButtonPlus) 
+	public function adjustNumOfOpponents(numOfOpponentsButton : CustomButton) 
 	{
 		currentOpponentCount -= 1;
 		if ( currentOpponentCount < MIN_PLAYER_COUNT - 1)
@@ -33,7 +33,7 @@ class MainMenuManager
 		numOfOpponentsButton.text = "NUM OF OPPONENTS: " + currentOpponentCount;
 	}
 	
-	public function adjustOrderPosition(turnOrderButton : FlxButtonPlus) 
+	public function adjustOrderPosition(turnOrderButton : CustomButton) 
 	{
 		function getPostfix(currentOrder) {			
 			switch(currentOrder)
