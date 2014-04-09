@@ -16,7 +16,7 @@ import ui.CustomButton;
  */
 class MainMenuLayer extends FlxSpriteGroup
 {
-	inline private static var BUTTON_WIDTH = 140;
+	inline private static var BUTTON_WIDTH = 200;
 	inline private static var BUTTON_HEIGHT = 50;
 	inline private static var BUTTON_PADDING = 20;
 	
