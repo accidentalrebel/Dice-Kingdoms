@@ -21,8 +21,15 @@ import misc.StampsHolder;
  * ...
  * @author Karlo
  */
+enum FontList {
+	BlackCastle;
+	Primitive;
+}
+ 
 class GameState extends FlxState
 {	
+	public static var DEFAULT_FONT : String	= Std.string(FontList.BlackCastle);
+	
 	static public var territoryPerPlayer		: Int;	
 	static public var initialArmyCount			: Int = 3;	
 	static public var maxArmyCountPerTerritory 	: Int = 8;

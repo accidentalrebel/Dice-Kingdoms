@@ -7,6 +7,7 @@ import flixel.group.FlxSpriteGroup;
 import flixel.text.FlxText;
 import flixel.util.FlxPoint;
 import managers.MainMenuManager;
+import states.GameState;
 import states.MainMenuState;
 
 /**
@@ -33,7 +34,7 @@ class MainMenuLayer extends FlxSpriteGroup
 		
 		var title : FlxText = new FlxText(Std.int(MainStage.cameraWidth / 2 - LOGO_WIDTH / 2), 0
 			, LOGO_WIDTH, "Dice Kingdoms", 32);
-		title.font = "BlackCastle";
+		title.font = GameState.DEFAULT_FONT;
 		add(title);
 		
 		var numOfOpponentsButton = new FlxButtonPlus

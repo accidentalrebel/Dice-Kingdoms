@@ -7,6 +7,7 @@ import flixel.text.FlxText;
 import flixel.util.FlxPoint;
 import managers.CameraManager;
 import objects.Die;
+import states.GameState;
 import tools.ARTaskManager;
 
 /**
@@ -50,21 +51,21 @@ class BattleLayer extends FlxGroup
 		add(battleBackground);
 		
 		battleResult = new FlxText(0, PADDING_TOP, Std.int(battleBackground.width), "", 20);
-		battleResult.font = "BlackCastle";
+		battleResult.font = GameState.DEFAULT_FONT;
 		battleResult.alignment = "center";
 		add(battleResult);
 		
 		// We setup the final result FlxTexts
 		finalResultLeft = new FlxText(PADDING_SIDES, battleBackground.y + battleBackground.height / 2 - finalResultHeight / 2 - bottomPadding
 			, finalResultWidth, "88", finalResultHeight);
-		finalResultLeft.font = "BlackCastle";
+		finalResultLeft.font = GameState.DEFAULT_FONT;
 		finalResultLeft.alignment = "center";
 		add(finalResultLeft);
 		
 		finalResultRight = new FlxText(bgWidth - finalResultWidth
 			, battleBackground.y + battleBackground.height / 2 - finalResultHeight / 2 - bottomPadding
 			, finalResultWidth, "88", finalResultHeight);
-		finalResultRight.font = "BlackCastle";
+		finalResultRight.font = GameState.DEFAULT_FONT;
 		finalResultRight.alignment = "center";
 		add(finalResultRight);
 		
