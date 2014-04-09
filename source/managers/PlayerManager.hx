@@ -111,4 +111,16 @@ class PlayerManager
 		currentPlayer = getPlayer(currentPlayerNumber);
 		GameState.gameGUI.updatePlayerIndicator(currentPlayer.isHuman, getPlayer(currentPlayerNumber).territoryColor);
 	}
+	
+	public function reset() 
+	{
+		for ( tPlayer in playerList )
+		{
+			var player : Player = tPlayer;
+			player.destroy();
+			playerList.remove(player);
+		}
+		
+		playerList = [];
+	}
 }

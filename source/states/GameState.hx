@@ -45,7 +45,7 @@ class GameState extends FlxState
 	static public var cameraManager 	:CameraManager;
 	static public var playerManager		:PlayerManager;
 	static public var inputManager		:InputManager;
-	static public var gameObjectsLayer	:FlxGroup;
+	static public var gameObjectsLayer	:GameObjectsLayer;
 	static public var pauseMenuLayer	:PauseMenuLayer;
 	static public var stampsHolder		:StampsHolder;
 	
@@ -81,6 +81,7 @@ class GameState extends FlxState
 		// We setup the layers
 		GameState.gameGUI 				= new GameGUILayer();
 		GameState.battleLayer 			= new BattleLayer();
+		GameState.gameObjectsLayer		= new GameObjectsLayer();
 		GameState.territoryManager 		= new TerritoryManager();
 		
 		// We setup the playArea and player manager
@@ -101,14 +102,9 @@ class GameState extends FlxState
 		GameState.battleLayer.setAll("cameras", [ GameState.cameraManager.topBarCamera ], true);
 		GameState.gameGUI.setAll("cameras", [ GameState.cameraManager.mainCamera ]);
 		
-		mainMenuManager = new MainMenuManager();
 		menuLayer 		= new MainMenuLayer();
 		
 		this.add(menuLayer);
-		
-		// We start the game
-		// GameState.gameplayManager.startGame();
-		
 	}
 	
 	public static function generatePlayArea() 
@@ -116,14 +112,14 @@ class GameState extends FlxState
 		if ( GameState.playArea != null && GameState.playArea.setupFinished )
 		{
 			GameState.playArea.reset();
-			GameState.gameObjectsLayer.destroy();
-			GameState.territoryManager.destroy();
+			GameState.gameObjectsLayer.reset();
+			GameState.territoryManager.reset();
+			GameState.playerManager.reset();
 		}
-		
-		GameState.gameObjectsLayer		= new GameObjectsLayer();	
+			
 		GameState.playArea.init(GameState.instance);
 		GameState.playArea.setupTerritories();	
-		GameState.playerManager 		= new PlayerManager(MainMenuManager.currentOpponentCount + 1);
+		GameState.playerManager = new PlayerManager(MainMenuManager.currentOpponentCount + 1);
 		GameState.playArea.assignTerritories();
 		GameState.playerManager.initializeArmies();
 		GameState.playArea.setupFinished = true;
@@ -134,6 +130,7 @@ class GameState extends FlxState
 		super.destroy();
 		
 		GameState.battleManager.reset();
+		GameState.playerManager.reset();
 		GameState.battleLayer.destroy();
 	}
 }

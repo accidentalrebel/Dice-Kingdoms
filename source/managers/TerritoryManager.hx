@@ -43,8 +43,15 @@ class TerritoryManager
 		}
 	}
 	
-	public function destroy()
+	public function reset()
 	{
+		for ( tTerritory in territoryList )
+		{
+			var territory : Territory = tTerritory;
+			GameState.playArea.remove(territory);
+			territory.destroy();
+		}
+		
 		territoryList = [];
 	}
 }

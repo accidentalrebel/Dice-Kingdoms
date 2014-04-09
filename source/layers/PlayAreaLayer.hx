@@ -389,17 +389,6 @@ class PlayAreaLayer extends FlxGroup
 				territory.coverSprite.stamp(boundaryGraphic, Std.int(hexaTile.x - territory.x)
 					, Std.int(hexaTile.y - territory.y));
 			}
-			// If this tile is a sea tile
-			else
-			{
-				if ( theNeighbor == null || !theNeighbor.isATerritory )
-					return;
-					
-				var boundaryGraphic : FlxSprite = GameState.stampsHolder.setToFrame(GameState.stampsHolder.seaBoundaryStamp, frameToUse);
-				boundaryGraphic.color = colorToUse;
-				seaCanvas.stamp(boundaryGraphic, Std.int(hexaTile.x)
-					, Std.int(hexaTile.y));
-			}
 		}
 		
 		drawBoundary(hexaTile.top, 0);
@@ -465,6 +454,8 @@ class PlayAreaLayer extends FlxGroup
 	public function reset()
 	{
 		setupFinished = false;
+		
+		this.remove(seaCanvas);
 		seaCanvas.destroy();
 		
 		for ( row in playAreaArray )
@@ -473,6 +464,10 @@ class PlayAreaLayer extends FlxGroup
 			{
 				hexaTile.destroy();
 			}
+			
+			playAreaArray.remove(row);
 		}
+		
+		playAreaArray = [];
 	}
 }

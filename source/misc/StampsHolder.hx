@@ -16,6 +16,11 @@ class StampsHolder
 	
 	public function new() 
 	{
+		setupSprites();
+	}
+	
+	public function setupSprites() 
+	{
 		landStamp = new FlxSprite(0, 0);
 		landStamp.loadGraphic("assets/hexaTerrain.png", false, false, HexaTile.TILE_WIDTH, HexaTile.TILE_HEIGHT);
 		

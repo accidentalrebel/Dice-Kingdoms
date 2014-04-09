@@ -128,6 +128,7 @@ class GameplayManager
 	
 	public function startGame() 
 	{
+		FlxG.paused = false;
 		GameState.gameGUI.updateDoneButtonVisibility();	
 		
 		var currentPlayer : Player = GameState.playerManager.currentPlayer;
@@ -163,8 +164,7 @@ class GameplayManager
 		if ( taskManager != null )
 			taskManager.clear();		
 		
-		FlxG.paused = false;
-		FlxG.switchState(new MainMenuState());
-		trace("Game has ended!");
+		FlxG.paused = true;
+		FlxG.switchState(new GameState());
 	}
 }

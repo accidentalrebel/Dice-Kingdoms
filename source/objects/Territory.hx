@@ -172,4 +172,12 @@ class Territory extends FlxSprite
 			
 		return Lambda.has(neighbors, territoryNumber);
 	}
+	
+	override public function destroy():Void 
+	{
+		GameState.playArea.remove(coverSprite);
+		coverSprite.destroy();
+		
+		super.destroy();
+	}
 }

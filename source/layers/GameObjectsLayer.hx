@@ -12,4 +12,14 @@ class GameObjectsLayer extends FlxGroup
 	{
 		super();
 	}
+	
+	public function reset()
+	{
+		for ( member in _members )
+		{
+			member.destroy();
+		}
+		
+		clear();
+	}
 }

@@ -77,4 +77,12 @@ class Player
 		if ( territories.length <= 0 )
 			hasLost = true;
 	}
+	
+	public function destroy() 
+	{
+		territories = [];
+		
+		if ( ai != null )
+			ai.destroy();
+	}
 }

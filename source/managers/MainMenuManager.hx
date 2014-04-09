@@ -13,18 +13,14 @@ class MainMenuManager
 	inline private static var MIN_PLAYER_COUNT : Int = 2;
 	public static var currentOpponentCount : Int = MAX_PLAYER_COUNT - 1;
 	public static var currentOrder : Null<Int> = null;
-
-	public function new() 
+	
+	public static function startGame()
 	{
-		
+		GameState.menuLayer.hide();
+		GameState.gameplayManager.startGame();
 	}
 	
-	public function startGame()
-	{
-		FlxG.switchState(new GameState());
-	}
-	
-	public function adjustNumOfOpponents(numOfOpponentsButton : CustomButton) 
+	public static function adjustNumOfOpponents(numOfOpponentsButton : CustomButton) 
 	{
 		currentOpponentCount -= 1;
 		if ( currentOpponentCount < MIN_PLAYER_COUNT - 1)
@@ -32,21 +28,11 @@ class MainMenuManager
 		
 		numOfOpponentsButton.text = "NUM OF OPPONENTS: " + currentOpponentCount;
 		
-		GameState.generatePlayArea();
+		FlxG.resetState();
 	}
 	
-	public function adjustOrderPosition(turnOrderButton : CustomButton) 
-	{
-		function getPostfix(currentOrder) {			
-			switch(currentOrder)
-			{
-				case 1: 	return "st";
-				case 2: 	return "nd";
-				case 3: 	return "rd";
-				default: 	return "th";
-			}
-		}
-		
+	public static function adjustOrderPosition(turnOrderButton : CustomButton) 
+	{	
 		if ( currentOrder == null )
 			currentOrder = 1;
 		else if ( currentOrder >= MAX_PLAYER_COUNT )
@@ -54,9 +40,6 @@ class MainMenuManager
 		else
 			currentOrder += 1;
 		
-		if ( currentOrder != null ) 
-			turnOrderButton.text = "TURN POSITION: " + currentOrder + getPostfix(currentOrder);
-		else
-			turnOrderButton.text = "TURN POSITION: RANDOM";
+		GameState.menuLayer.updateOrderPositionButton(currentOrder);
 	}
 }

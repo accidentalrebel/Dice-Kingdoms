@@ -22,6 +22,7 @@ class MainMenuLayer extends FlxSpriteGroup
 	
 	private static inline var LOGO_WIDTH = 300;
 	private static inline var LOGO_HEIGHT = 200;
+	var orderPositionButton:ui.CustomButton;
 	
 	public function new() 
 	{
@@ -34,21 +35,50 @@ class MainMenuLayer extends FlxSpriteGroup
 		
 		var numOfOpponentsButton = new CustomButton
 			(Std.int(MainStage.cameraWidth / 2 - BUTTON_WIDTH / 2), Std.int(LOGO_HEIGHT + BUTTON_PADDING + (BUTTON_HEIGHT + BUTTON_PADDING) * 0)
-			, null, null, "NUM OF OPPONENTS: " + Std.string(MainMenuManager.MAX_PLAYER_COUNT - 1), BUTTON_WIDTH, BUTTON_HEIGHT);		
-		numOfOpponentsButton.setOnClickCallback(GameState.mainMenuManager.adjustNumOfOpponents, [numOfOpponentsButton]);
+			, null, null, "NUM OF OPPONENTS: " + MainMenuManager.currentOpponentCount, BUTTON_WIDTH, BUTTON_HEIGHT);		
+		numOfOpponentsButton.setOnClickCallback(MainMenuManager.adjustNumOfOpponents, [numOfOpponentsButton]);
 		add(numOfOpponentsButton);
 		
-		var orderPositionButton = new CustomButton
+		orderPositionButton = new CustomButton
 			(Std.int(MainStage.cameraWidth / 2 - BUTTON_WIDTH / 2), Std.int(LOGO_HEIGHT + BUTTON_PADDING + (BUTTON_HEIGHT + BUTTON_PADDING) * 1)
-			, null, null, "TURN POSITION: RANDOM", BUTTON_WIDTH, BUTTON_HEIGHT);		
-		orderPositionButton.setOnClickCallback(GameState.mainMenuManager.adjustOrderPosition, [orderPositionButton]);
+			, null, null, "TURN POSITION: ", BUTTON_WIDTH, BUTTON_HEIGHT);		
+		orderPositionButton.setOnClickCallback(MainMenuManager.adjustOrderPosition, [orderPositionButton]);
 		add(orderPositionButton);
+		updateOrderPositionButton(MainMenuManager.currentOrder);
 		
 		var startButton : CustomButton = new CustomButton
 			(Std.int(MainStage.cameraWidth / 2 - BUTTON_WIDTH / 2), Std.int(LOGO_HEIGHT + BUTTON_PADDING + (BUTTON_HEIGHT + BUTTON_PADDING) * 2.5)
-			, GameState.mainMenuManager.startGame, null, "START GAME", BUTTON_WIDTH, BUTTON_HEIGHT);		
+			, MainMenuManager.startGame, null, "START GAME", BUTTON_WIDTH, BUTTON_HEIGHT);		
 		add(startButton);
 		
 		this.setPosition(0, MainStage.cameraHeight / 2 - (startButton.y + BUTTON_HEIGHT) / 2);
+	}
+	
+	public function updateOrderPositionButton(currentOrder:Null<Int>)
+	{
+		function getPostfix(currentOrder) {			
+			switch(currentOrder)
+			{
+				case 1: 	return "st";
+				case 2: 	return "nd";
+				case 3: 	return "rd";
+				default: 	return "th";
+			}
+		}
+		
+		if ( currentOrder != null ) 
+			orderPositionButton.text = "TURN POSITION: " + currentOrder + getPostfix(currentOrder);
+		else
+			orderPositionButton.text = "TURN POSITION: RANDOM";
+	}
+	
+	public function show()
+	{
+		this.visible = true;
+	}
+	
+	public function hide()
+	{
+		this.visible = false;
 	}
 }

@@ -32,7 +32,6 @@ class MainMenuState extends FlxState
 		
 		super.create();
 		
-		mainMenuManager = new MainMenuManager();
 		menuLayer = new MainMenuLayer();
 		
 		this.add(menuLayer);
