@@ -97,7 +97,7 @@ class Die extends FlxSprite
 	 */
 	public function rollAnimation(tDuration : Float) 
 	{
-		if ( taskManager != null || dieFace.animation == null)
+		if ( dieFace.animation == null)
 			taskManager.clear();
 		
 		show();
@@ -125,6 +125,7 @@ class Die extends FlxSprite
 	{
 		super.destroy();
 		
+		taskManager.clear();
 		taskManager.destroy();
 		
 		if ( dieFace != null )

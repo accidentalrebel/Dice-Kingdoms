@@ -98,8 +98,7 @@ class EnemyAI
 		
 		function getNextMove()
 		{
-			if ( taskManager != null )
-				taskManager.clear();
+			taskManager.clear();
 			
 			var territory : Null<Territory> = getAvailableTerritories();
 			
@@ -179,6 +178,7 @@ class EnemyAI
 	public function destroy()
 	{	
 		isEnabled = false;
+		this.taskManager.clear();
 		this.taskManager.destroy();
 		this.playerScript = null;
 	}

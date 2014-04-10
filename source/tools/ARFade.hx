@@ -1,6 +1,7 @@
 package tools;
 import flixel.FlxBasic;
 import flixel.FlxG;
+import flixel.FlxObject;
 import flixel.FlxSprite;
 
 /**
@@ -47,10 +48,10 @@ class ARFade extends FlxSprite
 	
 	override public function update():Void 
 	{
-		super.update();
-		
 		if ( !fadeStart )
 			return;	
+		
+		super.update();
 		
 		fadeDuration -= FlxG.elapsed;	
 		if ( fadeDuration <= 0 )

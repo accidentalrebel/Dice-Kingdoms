@@ -53,13 +53,7 @@ class GameState extends FlxState
 	public static var menuLayer 		:MainMenuLayer;
 	
 	override public function create():Void 
-	{
-		//TODO: Create a sound manager
-		var bgm : FlxSound = new FlxSound();
-		bgm.loadEmbedded("BGM", true);
-		bgm.play();
-		add(bgm);
-		
+	{	
 		FlxG.cameras.bgColor = 0xFF111111;
 		#if !FLX_NO_MOUSE
 		FlxG.mouse.show();

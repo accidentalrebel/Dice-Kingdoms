@@ -1,5 +1,6 @@
 package managers;
 import effects.AddArmyEffect;
+import flixel.system.FlxSound;
 import tools.ARTaskManager;
 import flixel.util.FlxPoint;
 import objects.HexaTile;
@@ -84,9 +85,7 @@ class GameplayManager
 	{
 		GameState.gameGUI.hideDoneButton();	
 		
-		// We add a short delay
-		if ( taskManager != null )
-			taskManager.clear();
+		taskManager.clear();
 		
 		taskManager.addPause(0.25);
 		taskManager.addInstantTask(this, GameState.playerManager.currentPlayer.randomlyAssignArmies, [GameState.playerManager.currentPlayer.territories.length], true);
@@ -128,6 +127,11 @@ class GameplayManager
 	
 	public function startGame() 
 	{
+		var bgm : FlxSound = new FlxSound();
+		bgm.loadEmbedded("BGM", true);
+		bgm.play();
+		GameState.instance.add(bgm);
+		
 		FlxG.paused = false;
 		GameState.gameGUI.show();
 		GameState.gameGUI.updateDoneButtonVisibility();

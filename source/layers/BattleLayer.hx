@@ -50,7 +50,7 @@ class BattleLayer extends FlxGroup
 		battleBackground = battleBackground.makeGraphic(bgWidth, bgHeight, 0xff000000 );
 		add(battleBackground);
 		
-		battleResult = new FlxText(0, PADDING_TOP, Std.int(battleBackground.width), "", 20);
+		battleResult = new FlxText(0, PADDING_TOP, Std.int(battleBackground.width), "", 28);
 		battleResult.font = GameState.DEFAULT_FONT;
 		battleResult.alignment = "center";
 		add(battleResult);

@@ -90,10 +90,9 @@ class BattleManager
 				GameState.gameGUI.defenderBattleResult.setAsWinner();
 			}
 			
-			if ( taskManager != null )
-				taskManager.clear();
+			taskManager.clear();
 			
-			GameState.battleLayer.updateTexts(winText + " WINS!!");
+			GameState.battleLayer.updateTexts(winText + " WINS!");
 			GameState.battleLayer.showBattleResults(attackerRoll, attackerDiceResults, defenderRoll, defenderDiceResults);
 		}
 		
@@ -105,6 +104,7 @@ class BattleManager
 		GameState.gameGUI.attackerBattleResult.attachToTerritory(attackerTerritoryNum);
 		GameState.gameGUI.defenderBattleResult.attachToTerritory(defenderTerritoryNum);	
 		
+		taskManager.clear();
 		taskManager.addPause(0.5);
 		taskManager.addInstantTask(this, startBattle);
 		return true;
@@ -112,6 +112,7 @@ class BattleManager
 	
 	public function reset()
 	{
+		taskManager.clear();
 		taskManager.destroy();
 	}
 }
