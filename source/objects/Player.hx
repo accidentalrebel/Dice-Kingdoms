@@ -85,8 +85,6 @@ class Player
 	public function destroy() 
 	{
 		territories = [];
-		
-		if ( ai != null )
-			ai.destroy();
+		ai.destroy();
 	}
 }
