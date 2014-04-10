@@ -34,17 +34,24 @@ class PreGameManager
 	
 	public static function adjustOrderPosition(turnOrderButton : CustomButton) 
 	{	
-		if ( currentOrder > currentOpponentCount + 1 )
-			currentOrder = currentOpponentCount + 1;
+		function capOrderAccordingToOpponentCount()
+		{
+			if ( currentOrder > currentOpponentCount + 1 )
+				currentOrder = currentOpponentCount + 1;
+		}
 		
-		if ( currentOrder == null )
-			currentOrder = 1;
-		else if ( currentOrder >= currentOpponentCount + 1 )
-			currentOrder = null;
-		else
-			currentOrder += 1;
+		function adjustCurrentOrder()
+		{
+			if ( currentOrder == null )
+				currentOrder = 1;
+			else if ( currentOrder >= currentOpponentCount + 1 )
+				currentOrder = null;
+			else
+				currentOrder += 1;
+		}
 		
-		GameState.menuLayer.updateOrderPositionButton(currentOrder);
+		capOrderAccordingToOpponentCount();
+		adjustCurrentOrder();
 		
 		GameState.playerManager.clearAllHumans();
 		
@@ -57,6 +64,8 @@ class PreGameManager
 		playerToSetAsHuman.setAsHuman();
 		
 		GameState.pauseMenuLayer.updatePlayerList();
+		GameState.menuLayer.updateOrderPositionButton(currentOrder);
+		GameState.gameGUI.updatePlayerIndicator();
 	}
 	
 	public static function adjustOrderAgainstOpponentCount()

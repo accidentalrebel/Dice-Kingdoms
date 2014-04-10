@@ -113,7 +113,8 @@ class PlayerManager
 	{
 		currentPlayerNumber = playerNumber;
 		currentPlayer = getPlayer(currentPlayerNumber);
-		GameState.gameGUI.updatePlayerIndicator(currentPlayer.isHuman, getPlayer(currentPlayerNumber).territoryColor);
+		
+		GameState.gameGUI.updatePlayerIndicator();
 	}
 	
 	public function reset() 

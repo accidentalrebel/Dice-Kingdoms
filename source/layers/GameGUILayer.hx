@@ -5,6 +5,8 @@ import flixel.FlxG;
 import flixel.group.FlxSpriteGroup;
 import flixel.text.FlxText;
 import flixel.util.FlxPoint;
+import managers.PlayerManager;
+import objects.Player;
 import states.GameState;
 import ui.CustomButton;
 
@@ -68,11 +70,17 @@ class GameGUILayer extends FlxSpriteGroup
 		addEffect.init(xPos, yPos, Std.string(amount));
 	}
 	
-	public function updatePlayerIndicator(isHuman:Bool, colorToUse:Int) 
+	public function updatePlayerIndicator() 
 	{
-		playerIndicator.color = colorToUse;
+		var playerManager : PlayerManager = GameState.playerManager;
+		if ( playerManager == null )
+			return;
 		
-		if ( isHuman )
+		var currentPlayer : Player = playerManager.currentPlayer;
+		
+		playerIndicator.color = currentPlayer.territoryColor;
+		
+		if ( currentPlayer.isHuman )
 			playerIndicator.text = "Player's Turn";		
 		else
 			playerIndicator.text = "CPU's Turn";
