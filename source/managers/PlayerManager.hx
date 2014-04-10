@@ -105,7 +105,6 @@ class PlayerManager
 	public function setCurrentPlayer(playerIndex:Int) 
 	{
 		currentPlayer = getPlayer(playerSequence[playerIndex]);
-		trace("currentPlayer is " + currentPlayer.playerNum + " " + Std.string(currentPlayer.territoryColor));
 		GameState.gameGUI.updatePlayerIndicator();
 	}
 	
