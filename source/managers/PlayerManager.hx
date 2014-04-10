@@ -44,6 +44,7 @@ class PlayerManager
 		humanPlayer.setAsHuman();
 		
 		setupPlayerSequence();
+		shufflePlayerSequence();
 		moveHumanPlayerAtPosition(null);
 		GameState.playerManager = this;
 		setCurrentPlayer(0);
@@ -56,15 +57,19 @@ class PlayerManager
 			playerSequence.push(i);
 	}
 	
+	function shufflePlayerSequence() 
+	{
+		FlxArrayUtil.shuffle(playerSequence, playerSequence.length * 2);
+	}
+	
 	public function moveHumanPlayerAtPosition(index : Null<Int>)
 	{
-		//playerList.remove(humanPlayer);
-		//FlxArrayUtil.shuffle(playerList, 2);
-		//
-		//if ( index == null ) 
-			//index = FlxRandom.intRanged(0, playerList.length - 1);
-		//
-		//playerList.insert(index, humanPlayer);
+		playerSequence.remove(humanPlayer.playerNum);
+		
+		if ( index == null ) 
+			index = FlxRandom.intRanged(0, playerSequence.length - 1);
+		
+		playerSequence.insert(index, humanPlayer.playerNum);
 	}
 	
 	public function getPlayer(playerNum : Int) : Player
