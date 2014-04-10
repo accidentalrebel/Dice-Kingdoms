@@ -107,6 +107,7 @@ class GameState extends FlxState
 		// We assign layers to their respective cameras
 		GameState.playArea.setAll("cameras", [ GameState.cameraManager.mainCamera ]);
 		GameState.battleLayer.setAll("cameras", [ GameState.cameraManager.topBarCamera ], true);
+		GameState.pauseMenuLayer.setAll("cameras", [ GameState.cameraManager.mainCamera ]);
 		GameState.gameGUI.setAll("cameras", [ GameState.cameraManager.mainCamera ]);
 		
 		menuLayer 		= new MainMenuLayer();

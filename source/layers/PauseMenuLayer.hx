@@ -53,7 +53,8 @@ class PauseMenuLayer extends FlxSpriteGroup
 		{	
 			var mainMenuButton : CustomButton = new CustomButton(0, 0
 				, GameState.gameplayManager.endGame, null, "MainMenu", 200, 70);
-			mainMenuButton.setPosition(MainStage.cameraWidth / 2 + 10, MainStage.cameraHeight - 130);
+			mainMenuButton.setPosition(MainStage.cameraWidth / 2 - mainMenuButton.width / 2
+				, MainStage.adjustedHeight - mainMenuButton.height * 2 - 20);
 			mainMenuButton.pauseProof = true;
 			this.add(mainMenuButton);
 		}
