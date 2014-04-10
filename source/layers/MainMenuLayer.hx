@@ -16,7 +16,7 @@ import ui.CustomButton;
  */
 class MainMenuLayer extends FlxSpriteGroup
 {
-	inline private static var BUTTON_WIDTH = 200;
+	inline private static var BUTTON_WIDTH = 300;
 	inline private static var BUTTON_HEIGHT = 50;
 	inline private static var BUTTON_PADDING = 20;
 	
@@ -29,7 +29,7 @@ class MainMenuLayer extends FlxSpriteGroup
 		super();
 		
 		var title : FlxText = new FlxText(0, 30
-			, Std.int(MainStage.adjustedWidth), "Dice Kingdoms", 64);
+			, Std.int(MainStage.cameraWidth), "Dice Kingdoms", 64);
 		title.font = GameState.DEFAULT_FONT;
 		title.alignment = "center";
 		title.setBorderStyle(FlxText.BORDER_OUTLINE_FAST, 0, 2, 1);

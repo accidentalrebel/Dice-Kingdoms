@@ -22,7 +22,7 @@ class GameGUILayer extends FlxSpriteGroup
 	private var zoomButton		:CustomButton;
 	private var pauseButton		:CustomButton;
 	
-	private static inline var BUTTON_HEIGHT	:Int = 60;
+	private static inline var BUTTON_HEIGHT	:Int = 50;
 	private static inline var BUTTON_WIDTH 	:Int = 80;
 	private static inline var PADDING 		:Int = 5;
 	public var attackerBattleResult:BattleResult;
@@ -45,13 +45,17 @@ class GameGUILayer extends FlxSpriteGroup
 		
 		doneButton = new CustomButton(PADDING, Std.int(playerIndicator.height + PADDING)
 			, GameState.gameplayManager.endCurrentPlayerMove, null
-			, "DONE", BUTTON_WIDTH, BUTTON_HEIGHT);		
+			, "DONE", BUTTON_WIDTH, BUTTON_HEIGHT);
+		doneButton.buttonNormal.loadGraphic("assets/buttons/small_button.png", false, false, BUTTON_WIDTH, BUTTON_HEIGHT);
+		doneButton.buttonHighlight.loadGraphic("assets/buttons/small_button.png", false, false, BUTTON_WIDTH, BUTTON_HEIGHT);
 		add(doneButton);
 		
 		//TODO: Consider having a MainStage.width height instead of second guessing all the time
 		pauseButton = new CustomButton(Std.int(GameState.cameraManager.mainCamera.width - BUTTON_WIDTH - PADDING)
 			, Std.int(playerIndicator.height + PADDING), onPauseClicked, null
 			, "PAUSE", BUTTON_WIDTH, BUTTON_HEIGHT);
+		pauseButton.buttonNormal.loadGraphic("assets/buttons/small_button.png", false, false, BUTTON_WIDTH, BUTTON_HEIGHT);
+		pauseButton.buttonHighlight.loadGraphic("assets/buttons/small_button.png", false, false, BUTTON_WIDTH, BUTTON_HEIGHT);
 		pauseButton.pauseProof = true;
 		add(pauseButton);
 		
