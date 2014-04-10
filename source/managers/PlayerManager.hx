@@ -22,8 +22,7 @@ class PlayerManager
 	public var playerSequence : Array<Int>;
 	public var playerList:Array<Player>;
 	public var currentPlayer : Player;
-	
-	private var currentPlayerIndex : Int = 0;
+	public var currentPlayerIndex : Int = 0;
 	
 	public function new(tNumOfPlayers : Int = 8, tNumOfHumans : Int = 1) 
 	{

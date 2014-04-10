@@ -135,7 +135,7 @@ class PauseMenuLayer extends FlxSpriteGroup
 		}
 		
 		// We then highlight the current player
-		hightlightPlayerRow(GameState.playerManager.currentPlayer.playerNum - 1);
+		hightlightPlayerRow(GameState.playerManager.currentPlayerIndex);
 	}
 	
 	public function hide()
