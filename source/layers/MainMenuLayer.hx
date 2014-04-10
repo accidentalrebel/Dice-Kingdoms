@@ -52,6 +52,7 @@ class MainMenuLayer extends FlxSpriteGroup
 		add(startButton);
 		
 		this.setPosition(0, MainStage.cameraHeight / 2 - (startButton.y + BUTTON_HEIGHT) / 2);
+		this.setAll("scrollFactor", new FlxPoint(0, 0));
 	}
 	
 	public function updateOrderPositionButton(currentOrder:Null<Int>)
