@@ -33,9 +33,13 @@ class Player
 	public function setAsHuman()
 	{
 		this.isHuman = true;
-		
-		this.ai.destroy();
-		this.ai = null;
+		this.ai.disable();
+	}
+	
+	public function setAsCPU() 
+	{
+		this.isHuman = false;
+		this.ai.enable();
 	}
 	
 	public function randomlyAssignArmies(maxArmyCount) 

@@ -41,26 +41,6 @@ class PauseMenuLayer extends FlxSpriteGroup
 			playerListGroup.add(background);
 		}
 		
-		function setupPlayerList() : Void
-		{
-			playerList = new Array<PlayerRow>();
-			
-			var i : Int = 0;
-			for ( tPlayer in GameState.playerManager.playerList )
-			{
-				var player : Player = tPlayer;
-				var playerType : String = "";
-				if ( player.isHuman )
-					playerType = "HUMAN";
-				else
-					playerType = Std.string(player.ai.aiType);
-				
-				var playerRow : PlayerRow = new PlayerRow(playerListGroup, 40, i * 30 + 30, Std.string(i+1), player.territoryColor, playerType, Std.string(player.territories.length));
-				playerList.push(playerRow);
-				i++;
-			}
-		}
-		
 		function setupHighlighter()
 		{
 			highlighterSprite = new FlxSprite(0, 0);
@@ -92,6 +72,32 @@ class PauseMenuLayer extends FlxSpriteGroup
 		playerListGroup.setAll("cameras", [ GameState.cameraManager.mainCamera], true);
 		
 		hide();
+	}
+	
+	public function updatePlayerList()
+	{
+		destroyPlayerList();
+		setupPlayerList();
+	}
+	
+	function setupPlayerList() : Void
+	{
+		playerList = new Array<PlayerRow>();
+		
+		var i : Int = 0;
+		for ( tPlayer in GameState.playerManager.playerList )
+		{
+			var player : Player = tPlayer;
+			var playerType : String = "";
+			if ( player.isHuman )
+				playerType = "HUMAN";
+			else
+				playerType = Std.string(player.ai.aiType);
+			
+			var playerRow : PlayerRow = new PlayerRow(playerListGroup, 40, i * 30 + 30, Std.string(i+1), player.territoryColor, playerType, Std.string(player.territories.length));
+			playerList.push(playerRow);
+			i++;
+		}
 	}
 	
 	function hightlightPlayerRow(rowNumber : Int)
@@ -138,5 +144,20 @@ class PauseMenuLayer extends FlxSpriteGroup
 			hide();
 		else
 			show();
+	}
+	
+	override public function destroy():Void 
+	{
+		destroyPlayerList();
+		super.destroy();
+	}
+	
+	private function destroyPlayerList()
+	{
+		for ( tPlayerRow in playerList )
+		{
+			var playerRow : PlayerRow = tPlayerRow;
+			playerRow.destroy();
+		}
 	}
 }

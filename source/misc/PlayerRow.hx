@@ -51,4 +51,21 @@ class PlayerRow
 	{
 		territoryCountLabel.text = newTerritoryCount;
 	}
+	
+	public function destroy() 
+	{
+		parent.remove(positionLabel);
+		positionLabel.destroy();
+		
+		parent.remove(nameLabel);
+		nameLabel.destroy();
+		
+		parent.remove(aiLabel);
+		aiLabel.destroy();
+		
+		parent.remove(territoryCountLabel);
+		territoryCountLabel.destroy();
+		
+		parent = null;
+	}
 }

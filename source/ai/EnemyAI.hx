@@ -31,6 +31,7 @@ class EnemyAI
 	var playerScript:Player;
 	public var aiType:AIType;
 	var taskManager:ARTaskManager;
+	var isEnabled: Bool	= true;
 	
 	public function new(playerScript : Player) 
 	{
@@ -38,6 +39,16 @@ class EnemyAI
 		
 		// We roll for the AI type
 		aiType = Type.createEnumIndex(AIType, FlxRandom.intRanged(0, Type.allEnums(AIType).length-1));
+	}
+	
+	public function enable()
+	{
+		isEnabled = true;
+	}
+	
+	public function disable() 
+	{
+		isEnabled = false;
 	}
 	
 	public function destroy()
@@ -51,6 +62,9 @@ class EnemyAI
 	
 	public function startPlanning()
 	{
+		if ( !isEnabled )
+			return;
+		
 		function getAvailableTerritories() : Null<Territory>
 		{
 			// We loop through each territory

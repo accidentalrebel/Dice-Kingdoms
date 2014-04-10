@@ -123,4 +123,14 @@ class PlayerManager
 		
 		playerList = [];
 	}
+	
+	public function clearAllHumans() 
+	{
+		for ( tPlayer in playerList )
+		{
+			var player : Player = tPlayer;
+			if ( player.isHuman )
+				player.setAsCPU();
+		}
+	}
 }

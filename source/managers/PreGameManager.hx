@@ -1,5 +1,6 @@
 package managers;
 import flixel.FlxG;
+import objects.Player;
 import states.GameState;
 import ui.CustomButton;
 
@@ -44,6 +45,11 @@ class PreGameManager
 			currentOrder += 1;
 		
 		GameState.menuLayer.updateOrderPositionButton(currentOrder);
+		GameState.playerManager.clearAllHumans();
+		var playerToSetAsHuman : Player = GameState.playerManager.getPlayer(currentOrder);
+		playerToSetAsHuman.setAsHuman();
+		
+		GameState.pauseMenuLayer.updatePlayerList();
 	}
 	
 	public static function adjustOrderAgainstOpponentCount()
