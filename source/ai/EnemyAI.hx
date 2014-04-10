@@ -98,6 +98,9 @@ class EnemyAI
 		
 		function getNextMove()
 		{
+			if ( playerScript.playerNum != GameState.playerManager.currentPlayer.playerNum )
+				return;
+			
 			taskManager.clear();
 			
 			var territory : Null<Territory> = getAvailableTerritories();
@@ -160,7 +163,7 @@ class EnemyAI
 					
 					taskManager.addPause(2 * DECISION_SPEED_MODIFIER);
 					taskManager.addInstantTask(this, getNextMove, null, true);
-					break;
+					return;
 				}
 			}
 			
@@ -169,6 +172,7 @@ class EnemyAI
 			{
 				territory.markAsChecked = true;
 				getNextMove();
+				return;
 			}
 		}
 		

@@ -19,6 +19,7 @@ class GameplayManager
 {
 	private var selectedTerritory : Int = -1;
 	private var taskManager:ARTaskManager;
+	private var hasGameStarted : Bool = false;
 	
 	public function new()
 	{
@@ -127,6 +128,9 @@ class GameplayManager
 	
 	public function startGame() 
 	{
+		//if ( hasGameStarted )
+			//return;
+		
 		var bgm : FlxSound = new FlxSound();
 		bgm.loadEmbedded("BGM", true);
 		bgm.play();
@@ -171,13 +175,15 @@ class GameplayManager
 	
 	public function endGame() 
 	{
+		hasGameStarted = false;
+		
 		taskManager.clear();
 		taskManager.destroy();
 		
 		GameState.gameGUI.hide();
 		FlxG.paused = true;
-		FlxG.switchState(new GameState());
 		
 		GameState.inputManager.disableDragging();
+		FlxG.switchState(new GameState());
 	}
 }

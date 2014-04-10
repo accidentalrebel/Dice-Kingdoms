@@ -114,12 +114,12 @@ class GameState extends FlxState
 	
 	override public function destroy():Void 
 	{
-		super.destroy();
-		
 		GameState.battleManager.reset();
 		GameState.playerManager.reset();
 		GameState.territoryManager.reset();
 		GameState.playArea.reset();
 		GameState.battleLayer.destroy();
+		
+		super.destroy();
 	}
 }

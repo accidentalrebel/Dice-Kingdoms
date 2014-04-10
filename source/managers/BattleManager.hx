@@ -14,6 +14,7 @@ import tools.Tools;
 class BattleManager
 {
 	private var taskManager : ARTaskManager;
+	var attackHasStarted : Bool = false;
 
 	public function new() 
 	{
@@ -23,6 +24,11 @@ class BattleManager
 	//TODO: Check out why sometimes "ZERO" appears as the final result
 	public function startAttack(attackerTerritoryNum:Int, defenderTerritoryNum:Int) : Bool
 	{	
+		if ( attackHasStarted )
+			return false;
+			
+		attackHasStarted = true;
+		
 		function rollAllDice(numOfDice:Int) : Array<Int>
 		{
 			var dieResults : Array<Int> = new Array<Int>();
@@ -61,7 +67,7 @@ class BattleManager
 		
 		//TODO: Consider renaming this function
 		function startBattle()
-		{
+		{			
 			GameState.gameGUI.attackerBattleResult.showLabel();
 			GameState.gameGUI.defenderBattleResult.showLabel();
 			
@@ -94,6 +100,8 @@ class BattleManager
 			
 			GameState.battleLayer.updateTexts(winText + " WINS!");
 			GameState.battleLayer.showBattleResults(attackerRoll, attackerDiceResults, defenderRoll, defenderDiceResults);
+			
+			attackHasStarted = false;
 		}
 		
 		GameState.battleLayer.hideBattleResults();
