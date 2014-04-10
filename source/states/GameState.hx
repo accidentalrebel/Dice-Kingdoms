@@ -67,6 +67,7 @@ class GameState extends FlxState
 		
 		super.create();
 		
+		PreGameManager.updateValues();
 		GameState.instance 				= this;
 		
 		GameState.cameraManager 		= new CameraManager();
