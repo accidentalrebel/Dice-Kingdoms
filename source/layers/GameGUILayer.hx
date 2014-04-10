@@ -62,6 +62,8 @@ class GameGUILayer extends FlxSpriteGroup
 		this.add(attackerBattleResult);
 		defenderBattleResult = new BattleResult(200, 200, BattleResultType.DEFEND);	
 		this.add(defenderBattleResult);
+		
+		this.hide();
 	}
 	
 	public function spawnAddArmyEffect(xPos : Float = 0, yPos : Float = 0, amount : Int = 0 )
@@ -92,6 +94,19 @@ class GameGUILayer extends FlxSpriteGroup
 			showDoneButton();	
 		else
 			hideDoneButton();	
+	}
+	
+	
+	public function hide() 
+	{
+		this.visible = false;
+		this.active = false;
+	}
+	
+	public function show()
+	{
+		this.visible = true;
+		this.active = true;
 	}
 	
 	public function hideDoneButton()
@@ -129,7 +144,7 @@ class GameGUILayer extends FlxSpriteGroup
 		doneButton.y *= zoomValue;
 	}
 	
-	public function hideButtons() 
+	public function hideButtonsOnPause() 
 	{
 		hideDoneButton();
 		
@@ -137,7 +152,7 @@ class GameGUILayer extends FlxSpriteGroup
 		zoomButton.active = false;
 	}
 	
-	public function showButtons()
+	public function showButtonsOnResume()
 	{
 		if ( GameState.playerManager.currentPlayer.isHuman )
 			showDoneButton();

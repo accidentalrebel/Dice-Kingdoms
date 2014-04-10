@@ -129,6 +129,7 @@ class GameplayManager
 	public function startGame() 
 	{
 		FlxG.paused = false;
+		GameState.gameGUI.show();
 		GameState.gameGUI.updateDoneButtonVisibility();	
 		
 		var currentPlayer : Player = GameState.playerManager.currentPlayer;
@@ -141,7 +142,7 @@ class GameplayManager
 		//TODO: Create your own ARTaskManager that follows FlxG.paused
 		FlxG.paused = true;
 		
-		GameState.gameGUI.hideButtons();
+		GameState.gameGUI.hideButtonsOnPause();
 		GameState.pauseMenuLayer.toggleStatus();
 		GameState.cameraManager.zoomOut();	
 	}
@@ -150,7 +151,7 @@ class GameplayManager
 	{
 		FlxG.paused = false;
 		
-		GameState.gameGUI.showButtons();
+		GameState.gameGUI.showButtonsOnResume();
 	}
 	
 	public function resetGame() 
@@ -164,6 +165,7 @@ class GameplayManager
 		if ( taskManager != null )
 			taskManager.clear();		
 		
+		GameState.gameGUI.hide();
 		FlxG.paused = true;
 		FlxG.switchState(new GameState());
 	}
