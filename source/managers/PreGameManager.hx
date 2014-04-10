@@ -18,7 +18,7 @@ class PreGameManager
 	public static function onEnter()
 	{
 		adjustOrderAgainstOpponentCount();
-		updateDependents();
+		updateListenersToOrdePosition();
 	}
 	
 	public static function startGame()
@@ -64,16 +64,7 @@ class PreGameManager
 		capOrderAccordingToOpponentCount();
 		adjustCurrentOrder();
 		
-		updateDependents();
-	}
-	
-	static private function updateDependents() 
-	{
-		GameState.playerManager.moveHumanPlayerAtPosition(currentOrder-1);
-		GameState.playerManager.setCurrentPlayer(1);
-		
-		GameState.pauseMenuLayer.updatePlayerList();
-		GameState.menuLayer.updateOrderPositionButton(currentOrder);
+		updateListenersToOrdePosition();
 	}
 	
 	private static function adjustOrderAgainstOpponentCount()
@@ -81,4 +72,13 @@ class PreGameManager
 		if ( currentOrder > currentOpponentCount + 1 )
 			currentOrder = currentOpponentCount + 1;
 	}
+	
+	static private function updateListenersToOrdePosition() 
+	{
+		GameState.playerManager.moveHumanPlayerAtPosition(currentOrder-1);
+		GameState.playerManager.setCurrentPlayer(1);
+		
+		GameState.pauseMenuLayer.updatePlayerList();
+		GameState.menuLayer.updateOrderPositionButton(currentOrder);
+	}	
 }

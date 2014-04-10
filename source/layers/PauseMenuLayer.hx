@@ -71,13 +71,7 @@ class PauseMenuLayer extends FlxSpriteGroup
 		setupHighlighter();
 		setupPlayerList();
 		setupButtons();
-		
-		this.scrollFactor = new FlxPoint();
-		playerListGroup.scrollFactor = new FlxPoint();
-		
-		this.setAll("cameras", [ GameState.cameraManager.mainCamera], true);
-		playerListGroup.setAll("cameras", [ GameState.cameraManager.mainCamera], true);
-		
+
 		hide();
 	}
 	
@@ -105,6 +99,12 @@ class PauseMenuLayer extends FlxSpriteGroup
 			playerList.push(playerRow);
 			i++;
 		}
+		
+		this.scrollFactor = new FlxPoint();
+		playerListGroup.scrollFactor = new FlxPoint();
+		
+		this.setAll("cameras", [ GameState.cameraManager.mainCamera], true);
+		playerListGroup.setAll("cameras", [ GameState.cameraManager.mainCamera], true);
 	}
 	
 	function hightlightPlayerRow(rowNumber : Int)
