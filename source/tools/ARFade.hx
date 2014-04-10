@@ -20,6 +20,9 @@ class ARFade extends FlxSprite
 	public function new()
 	{
 		super();
+		
+		this.x = -100;
+		this.y = -100;
 	}
 	
 	public function init(SpriteToFade : FlxSprite, FadeTo : Float, FadeDuration : Float) 
