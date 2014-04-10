@@ -17,6 +17,7 @@ class AddArmyEffect extends FlxText
 	
 	public function new()
 	{
+		taskManager = new ARTaskManager();
 		super(0, 0, 40, "+0", 14);
 		this.font = GameState.DEFAULT_FONT;
 		this.alignment = "center";
@@ -34,7 +35,6 @@ class AddArmyEffect extends FlxText
 		if ( taskManager != null )
 			taskManager.clear();
 			
-		taskManager = new ARTaskManager();
 		taskManager.addInstantTask(this, FlxTween.linearMotion, [this, xPos, yPos, xPos, yPos - 20, EFFECT_DURATION, true]);
 		taskManager.addPause(EFFECT_DURATION / 2);
 		taskManager.addInstantTask(this, fadeOut);
@@ -46,5 +46,12 @@ class AddArmyEffect extends FlxText
 	{
 		var fadeScript : ARFade = cast(GameState.gameGUI.recycle(ARFade), ARFade);
 		fadeScript.init(this, 0, EFFECT_DURATION / 2);			
+	}
+	
+	override public function destroy():Void 
+	{
+		super.destroy();
+		
+		taskManager.destroy();
 	}
 }

@@ -35,6 +35,7 @@ class EnemyAI
 	
 	public function new(playerScript : Player) 
 	{
+		taskManager = new ARTaskManager(false);
 		this.playerScript = playerScript;
 		
 		// We roll for the AI type
@@ -49,15 +50,6 @@ class EnemyAI
 	public function disable() 
 	{
 		isEnabled = false;
-	}
-	
-	public function destroy()
-	{	
-		trace("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ ENEMYAI DESTROYED");
-		if ( taskManager != null )
-			this.taskManager.destroy();
-			
-		this.playerScript = null;
 	}
 	
 	public function startPlanning()
@@ -109,7 +101,6 @@ class EnemyAI
 			if ( taskManager != null )
 				taskManager.clear();
 			
-			taskManager = new ARTaskManager(false);
 			var territory : Null<Territory> = getAvailableTerritories();
 			
 			// If no territory is availble, we now end our turn
@@ -183,5 +174,12 @@ class EnemyAI
 		}
 		
 		getNextMove();
+	}
+	
+	public function destroy()
+	{	
+		isEnabled = false;
+		this.taskManager.destroy();
+		this.playerScript = null;
 	}
 }

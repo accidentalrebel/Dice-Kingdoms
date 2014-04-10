@@ -24,6 +24,7 @@ class Die extends FlxSprite
 
 	public function new(tParent : FlxGroup, xPos : Float, yPos : Float) 
 	{
+		taskManager = new ARTaskManager(false);
 		parent = tParent;
 		
 		super(xPos, yPos);
@@ -104,7 +105,6 @@ class Die extends FlxSprite
 		if ( dieFace != null && dieFace.animation != null )
 			dieFace.animation.play("roll", true, FlxRandom.intRanged(0, 5));
 			
-		taskManager = new ARTaskManager(false);
 		taskManager.addPause(tDuration);
 		taskManager.addInstantTask(this, revealRoll);
 	}
@@ -125,8 +125,7 @@ class Die extends FlxSprite
 	{
 		super.destroy();
 		
-		if ( taskManager != null )
-			taskManager.destroy();
+		taskManager.destroy();
 		
 		if ( dieFace != null )
 			dieFace.destroy();

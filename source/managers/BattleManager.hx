@@ -112,7 +112,6 @@ class BattleManager
 	
 	public function reset()
 	{
-		if ( taskManager != null )
-			taskManager.destroy();
+		taskManager.destroy();
 	}
 }

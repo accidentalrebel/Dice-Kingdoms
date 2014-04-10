@@ -21,7 +21,7 @@ class GameplayManager
 	
 	public function new()
 	{
-		
+		taskManager = new ARTaskManager();
 	}
 	
 	public function onClick(xPos:Float, yPos:Float)
@@ -88,7 +88,6 @@ class GameplayManager
 		if ( taskManager != null )
 			taskManager.clear();
 		
-		taskManager = new ARTaskManager(false);
 		taskManager.addPause(0.25);
 		taskManager.addInstantTask(this, GameState.playerManager.currentPlayer.randomlyAssignArmies, [GameState.playerManager.currentPlayer.territories.length], true);
 		taskManager.addPause(AddArmyEffect.EFFECT_DURATION);
@@ -166,8 +165,8 @@ class GameplayManager
 	
 	public function endGame() 
 	{
-		if ( taskManager != null )
-			taskManager.clear();		
+		taskManager.clear();
+		taskManager.destroy();
 		
 		GameState.gameGUI.hide();
 		FlxG.paused = true;
