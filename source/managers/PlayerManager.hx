@@ -88,10 +88,10 @@ class PlayerManager
 	
 	public function nextPlayer() 
 	{
-		currentPlayerIndex += 1;
+		currentPlayerIndex++;
 		
-		if ( currentPlayerIndex > numOfPlayers )
-			currentPlayerIndex = 1;			
+		if ( currentPlayerIndex > numOfPlayers - 1)
+			currentPlayerIndex = 0;			
 		
 		setCurrentPlayer(currentPlayerIndex);
 		
