@@ -21,6 +21,7 @@ class PauseMenuLayer extends FlxSpriteGroup
 	//TODO: Add column labels
 	inline public static var PAUSE_MENU_WIDTH : Float = 400;
 	inline public static var PAUSE_MENU_HEIGHT : Float = 400;
+	inline private static var VERTICAL_SPACING : Float = 20;
 	
 	public var playerListGroup : FlxSpriteGroup;
 	
@@ -36,9 +37,9 @@ class PauseMenuLayer extends FlxSpriteGroup
 		function setupBackground() 
 		{
 			background = new FlxSprite(0, 0);
-			background.makeGraphic(PAUSE_MENU_WIDTH, PAUSE_MENU_HEIGHT, 0xCC000000);
+			background.makeGraphic(Std.int(MainStage.cameraWidth), Std.int(MainStage.cameraHeight), 0xCC000000);
 			
-			playerListGroup.add(background);
+			this.add(background);
 		}
 		
 		function setupHighlighter()
@@ -54,7 +55,7 @@ class PauseMenuLayer extends FlxSpriteGroup
 			var mainMenuButton : CustomButton = new CustomButton(0, 0
 				, GameState.gameplayManager.endGame, null, "MainMenu", 200, 50);
 			mainMenuButton.setPosition(MainStage.cameraWidth / 2 - mainMenuButton.width / 2
-				, MainStage.adjustedHeight - mainMenuButton.height * 2 - 20);
+				, MainStage.adjustedHeight - mainMenuButton.height * 2 - 50);
 			mainMenuButton.pauseProof = true;
 			this.add(mainMenuButton);
 		}
@@ -95,7 +96,7 @@ class PauseMenuLayer extends FlxSpriteGroup
 			else
 				playerType = Std.string(player.ai.aiType);
 			
-			var playerRow : PlayerRow = new PlayerRow(playerListGroup, 40, i * 30 + 30, Std.string(i+1), player.territoryColor, playerType, Std.string(player.territories.length));
+			var playerRow : PlayerRow = new PlayerRow(playerListGroup, 0, i * (30 + VERTICAL_SPACING), Std.string(i+1), player.territoryColor, playerType, Std.string(player.territories.length));
 			playerList.push(playerRow);
 			i++;
 		}

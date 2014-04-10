@@ -56,7 +56,7 @@ class MainMenuLayer extends FlxSpriteGroup
 		
 		var startButton : CustomButton = new CustomButton
 			(Std.int(MainStage.cameraWidth / 2 - BUTTON_WIDTH / 2), Std.int(LOGO_HEIGHT + BUTTON_PADDING + (BUTTON_HEIGHT + BUTTON_PADDING) * 3.5)
-			, PreGameManager.startGame, null, "START GAME", BUTTON_WIDTH, BUTTON_HEIGHT);		
+			, PreGameManager.startGame, null, "START GAME", BUTTON_WIDTH, BUTTON_HEIGHT);	
 		add(startButton);
 		
 		this.setAll("scrollFactor", new FlxPoint(0, 0));

@@ -11,7 +11,7 @@ import states.GameState;
  */
 class PlayerRow
 {
-	public static inline var FONT_SIZE : Int = 18;
+	public static inline var FONT_SIZE : Int = 25;
 	
 	public var positionLabel 		: FlxText;
 	private var nameLabel 			: FlxText;
@@ -33,7 +33,7 @@ class PlayerRow
 		nameLabel.color = playerColor;
 		nameLabel.alignment = "center";
 		
-		aiLabel = new FlxText(xPos + nameLabel.width + positionLabel.width, yPos, 150, playerType, FONT_SIZE);
+		aiLabel = new FlxText(xPos + nameLabel.width + positionLabel.width, yPos, 250, playerType, FONT_SIZE);
 		aiLabel.font = GameState.DEFAULT_FONT;
 		aiLabel.alignment = "center";
 		
