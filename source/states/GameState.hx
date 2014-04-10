@@ -88,13 +88,17 @@ class GameState extends FlxState
 		
 		// We setup the playArea and player manager
 		GameState.playArea 				= new PlayAreaLayer();
+		
 		GameState.playArea.init(GameState.instance);
 		GameState.playArea.setupTerritories();	
-		GameState.playerManager = new PlayerManager(PreGameManager.currentOpponentCount + 1);
+		
+		GameState.playerManager			= new PlayerManager(PreGameManager.currentOpponentCount + 1);
 		GameState.playArea.assignTerritories();
 		GameState.playerManager.initializeArmies();
 		GameState.playArea.setupFinished = true;
+		
 		GameState.pauseMenuLayer 		= new PauseMenuLayer(this);
+		GameState.menuLayer 			= new MainMenuLayer();
 		
 		// We arrange the different layers
 		add(GameState.playArea);
@@ -103,16 +107,14 @@ class GameState extends FlxState
 		add(GameState.battleLayer);
 		add(GameState.pauseMenuLayer);
 		add(GameState.pauseMenuLayer.playerListGroup);
+		add(GameState.menuLayer);
 		
 		// We assign layers to their respective cameras
 		GameState.playArea.setAll("cameras", [ GameState.cameraManager.mainCamera ]);
 		GameState.battleLayer.setAll("cameras", [ GameState.cameraManager.topBarCamera ], true);
 		GameState.pauseMenuLayer.setAll("cameras", [ GameState.cameraManager.mainCamera ]);
+		GameState.menuLayer.setAll("cameras", [ GameState.cameraManager.mainCamera ]);
 		GameState.gameGUI.setAll("cameras", [ GameState.cameraManager.mainCamera ]);
-		
-		menuLayer 		= new MainMenuLayer();
-		
-		this.add(menuLayer);
 	}
 	
 	override public function destroy():Void 

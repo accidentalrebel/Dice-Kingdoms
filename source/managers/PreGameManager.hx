@@ -21,6 +21,11 @@ class PreGameManager
 		GameState.gameplayManager.startGame();
 	}
 	
+	static public function changeMap() 
+	{
+		FlxG.resetState();
+	}
+	
 	public static function adjustNumOfOpponents(numOfOpponentsButton : CustomButton) 
 	{
 		currentOpponentCount -= 1;

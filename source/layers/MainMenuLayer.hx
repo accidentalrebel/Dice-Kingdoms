@@ -28,30 +28,37 @@ class MainMenuLayer extends FlxSpriteGroup
 	{
 		super();
 		
-		var title : FlxText = new FlxText(Std.int(MainStage.cameraWidth / 2 - LOGO_WIDTH / 2), 0
-			, LOGO_WIDTH, "Dice Kingdoms", 32);
+		var title : FlxText = new FlxText(0, 30
+			, Std.int(MainStage.adjustedWidth), "Dice Kingdoms", 64);
 		title.font = GameState.DEFAULT_FONT;
+		title.alignment = "center";
+		title.setBorderStyle(FlxText.BORDER_OUTLINE_FAST, 0, 2, 1);
 		add(title);
 		
-		var numOfOpponentsButton = new CustomButton
+		var changeMapButton = new CustomButton
 			(Std.int(MainStage.cameraWidth / 2 - BUTTON_WIDTH / 2), Std.int(LOGO_HEIGHT + BUTTON_PADDING + (BUTTON_HEIGHT + BUTTON_PADDING) * 0)
+			, null, null, "CHANGE MAP", BUTTON_WIDTH, BUTTON_HEIGHT);		
+		changeMapButton.setOnClickCallback(PreGameManager.changeMap);
+		add(changeMapButton);
+		
+		var numOfOpponentsButton = new CustomButton
+			(Std.int(MainStage.cameraWidth / 2 - BUTTON_WIDTH / 2), Std.int(LOGO_HEIGHT + BUTTON_PADDING + (BUTTON_HEIGHT + BUTTON_PADDING) * 1)
 			, null, null, "NUM OF OPPONENTS: " + PreGameManager.currentOpponentCount, BUTTON_WIDTH, BUTTON_HEIGHT);		
 		numOfOpponentsButton.setOnClickCallback(PreGameManager.adjustNumOfOpponents, [numOfOpponentsButton]);
 		add(numOfOpponentsButton);
 		
 		orderPositionButton = new CustomButton
-			(Std.int(MainStage.cameraWidth / 2 - BUTTON_WIDTH / 2), Std.int(LOGO_HEIGHT + BUTTON_PADDING + (BUTTON_HEIGHT + BUTTON_PADDING) * 1)
+			(Std.int(MainStage.cameraWidth / 2 - BUTTON_WIDTH / 2), Std.int(LOGO_HEIGHT + BUTTON_PADDING + (BUTTON_HEIGHT + BUTTON_PADDING) * 2)
 			, null, null, "TURN POSITION: ", BUTTON_WIDTH, BUTTON_HEIGHT);		
 		orderPositionButton.setOnClickCallback(PreGameManager.adjustOrderPosition, [orderPositionButton]);
 		add(orderPositionButton);
 		updateOrderPositionButton(PreGameManager.currentOrder);
 		
 		var startButton : CustomButton = new CustomButton
-			(Std.int(MainStage.cameraWidth / 2 - BUTTON_WIDTH / 2), Std.int(LOGO_HEIGHT + BUTTON_PADDING + (BUTTON_HEIGHT + BUTTON_PADDING) * 2.5)
+			(Std.int(MainStage.cameraWidth / 2 - BUTTON_WIDTH / 2), Std.int(LOGO_HEIGHT + BUTTON_PADDING + (BUTTON_HEIGHT + BUTTON_PADDING) * 3.5)
 			, PreGameManager.startGame, null, "START GAME", BUTTON_WIDTH, BUTTON_HEIGHT);		
 		add(startButton);
 		
-		this.setPosition(0, MainStage.cameraHeight / 2 - (startButton.y + BUTTON_HEIGHT) / 2);
 		this.setAll("scrollFactor", new FlxPoint(0, 0));
 	}
 	
