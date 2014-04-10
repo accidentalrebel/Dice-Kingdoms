@@ -45,8 +45,15 @@ class PreGameManager
 			currentOrder += 1;
 		
 		GameState.menuLayer.updateOrderPositionButton(currentOrder);
+		
 		GameState.playerManager.clearAllHumans();
-		var playerToSetAsHuman : Player = GameState.playerManager.getPlayer(currentOrder);
+		
+		var playerToSetAsHuman : Player;
+		if ( currentOrder == null )
+			playerToSetAsHuman = GameState.playerManager.getRandomPlayer();
+		else
+			playerToSetAsHuman = GameState.playerManager.getPlayer(currentOrder);
+		
 		playerToSetAsHuman.setAsHuman();
 		
 		GameState.pauseMenuLayer.updatePlayerList();

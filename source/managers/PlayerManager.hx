@@ -51,7 +51,7 @@ class PlayerManager
 			var maxRetries : Int = 0;
 			while ( tNumOfHumans > 0 || maxRetries > 100 )
 			{
-				var randomPlayer : Player = FlxArrayUtil.getRandom(playerList);
+				var randomPlayer : Player = getRandomPlayer();
 				if ( randomPlayer == null )
 					break;
 					
@@ -65,7 +65,6 @@ class PlayerManager
 				maxRetries++;
 			}
 		}
-			
 		
 		setCurrentPlayer(1);
 	}
@@ -73,6 +72,11 @@ class PlayerManager
 	public function getPlayer(playerNum : Int) : Player
 	{
 		return playerList[playerNum-1];
+	}
+	
+	public function getRandomPlayer() : Player
+	{
+		return FlxArrayUtil.getRandom(playerList);
 	}
 	
 	public function initializeArmies() 
