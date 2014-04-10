@@ -92,7 +92,6 @@ class GameGUILayer extends FlxSpriteGroup
 			return;
 		
 		var currentPlayer : Player = playerManager.currentPlayer;
-		
 		playerIndicator.color = currentPlayer.territoryColor;
 		
 		if ( currentPlayer.isHuman )

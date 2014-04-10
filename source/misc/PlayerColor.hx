@@ -19,11 +19,6 @@ class PlayerColor
 	public static var colorList : Array<Int> = [ PlayerColor.RED, PlayerColor.GREEN, PlayerColor.BLUE, PlayerColor.YELLOW
 		, PlayerColor.AQUA, PlayerColor.PINK, PlayerColor.ORANGE, PlayerColor.WHITE ];	
 	
-	static public function shuffle() 
-	{
-		colorList = FlxArrayUtil.shuffle(colorList, colorList.length * 2);
-	}
-	
 	static public function getColorAsString(colorValue : Int) : String
 	{
 		switch ( colorValue )

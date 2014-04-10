@@ -58,19 +58,11 @@ class PreGameManager
 		capOrderAccordingToOpponentCount();
 		adjustCurrentOrder();
 		
-		GameState.playerManager.clearAllHumans();
-		
-		var playerToSetAsHuman : Player;
-		if ( currentOrder == null )
-			playerToSetAsHuman = GameState.playerManager.getRandomPlayer();
-		else
-			playerToSetAsHuman = GameState.playerManager.getPlayer(currentOrder);
-		
-		playerToSetAsHuman.setAsHuman();
+		GameState.playerManager.moveHumanPlayerAtPosition(currentOrder-1);
+		GameState.playerManager.setCurrentPlayer(1);
 		
 		GameState.pauseMenuLayer.updatePlayerList();
 		GameState.menuLayer.updateOrderPositionButton(currentOrder);
-		GameState.gameGUI.updatePlayerIndicator();
 	}
 	
 	public static function adjustOrderAgainstOpponentCount()
