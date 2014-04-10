@@ -34,11 +34,11 @@ class BattleResult extends FlxSpriteGroup
 		
 		battleSprite.loadGraphic(imageToUse, false, false);
 		
-		battleLabel = new FlxText(0, 0, 100, "88", 12);
+		battleLabel = new FlxText(0, 0, 100, "88", 18);
 		battleLabel.font = GameState.DEFAULT_FONT;
 		battleLabel.x = battleSprite.width / 2 - battleLabel.width / 2;
 		battleLabel.y = battleSprite.height / 2 - battleLabel.height / 2;
-		battleLabel.setBorderStyle(FlxText.BORDER_OUTLINE_FAST, 0, 1, 1);
+		battleLabel.setBorderStyle(FlxText.BORDER_OUTLINE_FAST, 0, 2, 1);
 		battleLabel.alignment = "center";
 		
 		this.cameras = [GameState.cameraManager.mainCamera];

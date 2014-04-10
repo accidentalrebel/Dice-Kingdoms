@@ -15,7 +15,7 @@ class HexaTile extends FlxSprite
 	inline public static var TILE_WIDTH 	:Int = 22;
 	inline public static var TILE_HEIGHT 	:Int = 20;
 	inline public static var LABEL_WIDTH 	:Int = 30;
-	inline public static var LABEL_HEIGHT 	:Int = 20;
+	inline public static var LABEL_HEIGHT 	:Int = 24;
 	static public inline var TILE_FACE_WIDTH:Float = (HexaTile.TILE_WIDTH / 1.57);		// Refers to the width of the face side of the hexagon
 	
 	public var col 	:Int = 0;
@@ -93,6 +93,7 @@ class HexaTile extends FlxSprite
 		label.y -= label.size / 2;
 		label.alignment = "center";
 		label.color = 0xFFFFFF;
+		label.setBorderStyle(FlxText.BORDER_OUTLINE_FAST, 0, 2, 1);
 		
 		GameState.gameObjectsLayer.add(label);
 		updateLabel(textToDisplay);

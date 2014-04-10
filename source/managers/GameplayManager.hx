@@ -115,6 +115,7 @@ class GameplayManager
 			var player : Player = tPlayer;
 			if ( player.hasLost )
 			{
+				trace(player.playerNum + " has lost!");
 				lostCount++;
 			}
 		}

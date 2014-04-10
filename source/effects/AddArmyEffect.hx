@@ -11,7 +11,7 @@ import tools.ARFade;
  */
 class AddArmyEffect extends FlxText
 {
-	inline public static var EFFECT_DURATION = 1;
+	inline public static var EFFECT_DURATION = 1.5;
 	
 	var taskManager : ARTaskManager;
 	
@@ -30,6 +30,9 @@ class AddArmyEffect extends FlxText
 		this.alpha = 1;
 		this.x = xPos;
 		this.y = yPos;
+		this.size = 22;
+		this.color = 0xFFFF00;
+		this.setBorderStyle(FlxText.BORDER_OUTLINE_FAST, 0, 1, 1);
 		this.text = "+" + str;
 		
 		if ( taskManager != null )
