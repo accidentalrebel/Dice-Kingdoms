@@ -67,8 +67,6 @@ class GameState extends FlxState
 		
 		super.create();
 		
-		PreGameManager.adjustOrderAgainstOpponentCount();
-		
 		GameState.instance 				= this;
 		
 		GameState.cameraManager 		= new CameraManager();
@@ -99,6 +97,8 @@ class GameState extends FlxState
 		
 		GameState.pauseMenuLayer 		= new PauseMenuLayer(this);
 		GameState.menuLayer 			= new MainMenuLayer();
+		
+		PreGameManager.onEnter();
 		
 		// We arrange the different layers
 		add(GameState.playArea);
