@@ -5,6 +5,7 @@ import flixel.FlxG;
 import flixel.group.FlxSpriteGroup;
 import flixel.text.FlxText;
 import flixel.util.FlxPoint;
+import managers.GameplayManager;
 import managers.PlayerManager;
 import objects.Player;
 import states.GameState;
@@ -49,7 +50,7 @@ class GameGUILayer extends FlxSpriteGroup
 		
 		//TODO: Consider having a MainStage.width height instead of second guessing all the time
 		pauseButton = new CustomButton(Std.int(GameState.cameraManager.mainCamera.width - BUTTON_WIDTH - PADDING)
-			, Std.int(playerIndicator.height + PADDING), GameState.gameplayManager.pauseGame, null
+			, Std.int(playerIndicator.height + PADDING), onPauseClicked, null
 			, "PAUSE", BUTTON_WIDTH, BUTTON_HEIGHT);
 		pauseButton.pauseProof = true;
 		add(pauseButton);
@@ -64,6 +65,15 @@ class GameGUILayer extends FlxSpriteGroup
 		this.add(defenderBattleResult);
 		
 		this.hide();
+	}
+	
+	function onPauseClicked() 
+	{
+		var gameplayManager : GameplayManager = GameState.gameplayManager;
+		if ( FlxG.paused )
+			gameplayManager.resumeGame();
+		else
+			gameplayManager.pauseGame();
 	}
 	
 	public function spawnAddArmyEffect(xPos : Float = 0, yPos : Float = 0, amount : Int = 0 )
@@ -95,7 +105,6 @@ class GameGUILayer extends FlxSpriteGroup
 		else
 			hideDoneButton();	
 	}
-	
 	
 	public function hide() 
 	{

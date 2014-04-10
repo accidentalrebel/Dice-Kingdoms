@@ -15,10 +15,13 @@ class InputManager extends FlxBasic
 	var screenDrag 		: Float	 	= 0.5;
 	var distanceToDrag 	: Float 	= 10;
 	var isDragging		: Bool 		= false;
+	var canDrag			: Bool		= false;
 	
 	public function new() 
 	{
 		super();
+		
+		disableDragging();
 	}
 	
 	override public function update():Void 
@@ -27,6 +30,14 @@ class InputManager extends FlxBasic
 		
 		//TODO: Use FlxG.touches instead of FlxG.mouse
 		//TODO: Add a pinch zoom feature
+		handleDragging();
+	}
+	
+	function handleDragging() 
+	{
+		if ( !canDrag )
+			return;
+		
 		var distanceFromStartTouch : Float = 0;
 		if ( startTouchPos != null )
 			distanceFromStartTouch = FlxMath.getDistance(startTouchPos, new FlxPoint(FlxG.mouse.x, FlxG.mouse.y));
@@ -53,5 +64,15 @@ class InputManager extends FlxBasic
 		
 		if ( FlxG.keys.justPressed.Z )
 			GameState.cameraManager.toggleZoom();
+	}
+	
+	public function enableDragging()
+	{
+		canDrag = true;
+	}
+	
+	public function disableDragging()
+	{
+		canDrag = false;
 	}
 }

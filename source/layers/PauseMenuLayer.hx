@@ -135,15 +135,6 @@ class PauseMenuLayer extends FlxSpriteGroup
 	{	
 		this.visible = false;
 		playerListGroup.visible = false;
-		GameState.gameplayManager.resumeGame();
-	}
-	
-	public function toggleStatus() 
-	{
-		if ( this.visible )
-			hide();
-		else
-			show();
 	}
 	
 	override public function destroy():Void 
