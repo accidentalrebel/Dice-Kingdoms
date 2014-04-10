@@ -14,12 +14,6 @@ class PreGameManager
 	public static var currentOpponentCount : Int = MAX_PLAYER_COUNT - 1;
 	public static var currentOrder : Null<Int> = null;
 	
-	public static function updateValues()
-	{
-		if ( currentOrder > currentOpponentCount + 1 )
-			currentOrder = currentOpponentCount + 1;
-	}
-	
 	public static function startGame()
 	{
 		GameState.menuLayer.hide();
@@ -50,5 +44,11 @@ class PreGameManager
 			currentOrder += 1;
 		
 		GameState.menuLayer.updateOrderPositionButton(currentOrder);
+	}
+	
+	public static function adjustOrderAgainstOpponentCount()
+	{
+		if ( currentOrder > currentOpponentCount + 1 )
+			currentOrder = currentOpponentCount + 1;
 	}
 }
