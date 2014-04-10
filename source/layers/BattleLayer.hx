@@ -3,6 +3,7 @@ import flash.Lib;
 import flixel.FlxG;
 import flixel.FlxSprite;
 import flixel.group.FlxGroup;
+import flixel.group.FlxSpriteGroup;
 import flixel.text.FlxText;
 import flixel.util.FlxPoint;
 import managers.CameraManager;
@@ -174,5 +175,15 @@ class BattleLayer extends FlxGroup
 		
 		rollDiceList(dieResultListLeft, diceForLeft, colorForLeft);
 		rollDiceList(dieResultListRight, diceForRight, colorForRight);
+	}
+	
+	public function hide() 
+	{
+		this.visible = false;
+	}
+	
+	public function show()
+	{
+		this.visible = true;
 	}
 }

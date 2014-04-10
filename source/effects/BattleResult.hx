@@ -41,6 +41,8 @@ class BattleResult extends FlxSpriteGroup
 		battleLabel.setBorderStyle(FlxText.BORDER_OUTLINE_FAST, 0, 1, 1);
 		battleLabel.alignment = "center";
 		
+		this.cameras = [GameState.cameraManager.mainCamera];
+		
 		this.add(battleSprite);
 		this.add(battleLabel);
 		

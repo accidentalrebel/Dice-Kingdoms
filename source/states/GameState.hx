@@ -110,11 +110,12 @@ class GameState extends FlxState
 		add(GameState.menuLayer);
 		
 		// We assign layers to their respective cameras
-		GameState.playArea.setAll("cameras", [ GameState.cameraManager.mainCamera ]);
+		GameState.playArea.setAll("cameras", [ GameState.cameraManager.mainCamera ], true);
 		GameState.battleLayer.setAll("cameras", [ GameState.cameraManager.topBarCamera ], true);
 		GameState.pauseMenuLayer.setAll("cameras", [ GameState.cameraManager.mainCamera ], true);
-		GameState.menuLayer.setAll("cameras", [ GameState.cameraManager.mainCamera ]);
-		GameState.gameGUI.setAll("cameras", [ GameState.cameraManager.mainCamera ]);
+		GameState.menuLayer.setAll("cameras", [ GameState.cameraManager.mainCamera ], true);
+		GameState.gameGUI.setAll("cameras", [ GameState.cameraManager.mainCamera ], true);
+		GameState.gameObjectsLayer.setAll("cameras", [ GameState.cameraManager.mainCamera ], true);
 	}
 	
 	override public function destroy():Void 

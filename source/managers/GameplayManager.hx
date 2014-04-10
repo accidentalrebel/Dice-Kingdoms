@@ -143,6 +143,7 @@ class GameplayManager
 		FlxG.paused = true;
 		
 		GameState.gameGUI.hideButtonsOnPause();
+		GameState.battleLayer.hide();
 		GameState.pauseMenuLayer.show();
 		GameState.cameraManager.zoomOut();	
 		GameState.inputManager.disableDragging();
@@ -152,6 +153,7 @@ class GameplayManager
 	{
 		FlxG.paused = false;
 		
+		GameState.battleLayer.show();
 		GameState.pauseMenuLayer.hide();
 		GameState.inputManager.enableDragging();
 		GameState.gameGUI.showButtonsOnResume();

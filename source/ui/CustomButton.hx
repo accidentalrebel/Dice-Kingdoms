@@ -25,6 +25,10 @@ class CustomButton extends FlxButtonPlus
 		this.textNormal.setBorderStyle(FlxText.BORDER_OUTLINE_FAST, 0, 1, 1);
 		this.textHighlight.setBorderStyle(FlxText.BORDER_OUTLINE_FAST, 0, 1, 1);
 		
+		this.buttonNormal.cameras = this.buttonHighlight.cameras = 
+			this.textNormal.cameras = this.textHighlight.cameras = [GameState.cameraManager.mainCamera];
+		
+		
 		this.pauseProof = true;
 	}	
 }

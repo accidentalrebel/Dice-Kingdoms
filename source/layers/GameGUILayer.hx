@@ -56,7 +56,6 @@ class GameGUILayer extends FlxSpriteGroup
 			, "PAUSE", BUTTON_WIDTH, BUTTON_HEIGHT);
 		pauseButton.buttonNormal.loadGraphic("assets/buttons/small_button.png", false, false, BUTTON_WIDTH, BUTTON_HEIGHT);
 		pauseButton.buttonHighlight.loadGraphic("assets/buttons/small_button.png", false, false, BUTTON_WIDTH, BUTTON_HEIGHT);
-		pauseButton.pauseProof = true;
 		add(pauseButton);
 		
 		// Everything in this group does not move from the camera
