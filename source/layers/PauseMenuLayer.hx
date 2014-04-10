@@ -69,7 +69,7 @@ class PauseMenuLayer extends FlxSpriteGroup
 		
 		setupBackground();
 		setupHighlighter();
-		setupPlayerList();
+		//setupPlayerList();
 		setupButtons();
 
 		hide();
@@ -86,9 +86,9 @@ class PauseMenuLayer extends FlxSpriteGroup
 		playerList = new Array<PlayerRow>();
 		
 		var i : Int = 0;
-		for ( tPlayer in GameState.playerManager.playerList )
-		{
-			var player : Player = tPlayer;
+		for ( playerIndex in GameState.playerManager.playerSequence )
+		{	
+			var player : Player = GameState.playerManager.getPlayer(playerIndex);
 			var playerType : String = "";
 			if ( player.isHuman )
 				playerType = "HUMAN";
@@ -135,7 +135,7 @@ class PauseMenuLayer extends FlxSpriteGroup
 		}
 		
 		// We then highlight the current player
-		hightlightPlayerRow(GameState.playerManager.currentPlayerNumber - 1);
+		hightlightPlayerRow(GameState.playerManager.currentPlayer.playerNum - 1);
 	}
 	
 	public function hide()
@@ -152,6 +152,9 @@ class PauseMenuLayer extends FlxSpriteGroup
 	
 	private function destroyPlayerList()
 	{
+		if ( playerList == null )
+			return;
+			
 		for ( tPlayerRow in playerList )
 		{
 			var playerRow : PlayerRow = tPlayerRow;

@@ -36,7 +36,7 @@ class GameplayManager
 		
 		function selectTerritoryAndHighlightNeighbors(clickedTerritory : Territory) : Int
 		{
-			if (clickedTerritory.ownerNumber != GameState.playerManager.currentPlayerNumber 
+			if (clickedTerritory.ownerNumber != GameState.playerManager.currentPlayer.playerNum 
 				|| clickedTerritory.armyCount <= 1)
 					return -1;
 		

@@ -19,9 +19,11 @@ class PlayerManager
 	
 	public var numOfPlayers:Int = MAX_NUM_OF_PLAYERS;
 	public var numOfHumans:Int = 1;
+	public var playerSequence : Array<Int>;
 	public var playerList:Array<Player>;
-	public var currentPlayerNumber : Int = 1;
 	public var currentPlayer : Player;
+	
+	private var currentPlayerIndex : Int = 0;
 	
 	public function new(tNumOfPlayers : Int = 8, tNumOfHumans : Int = 1) 
 	{
@@ -41,20 +43,28 @@ class PlayerManager
 		humanPlayer = getPlayer(1);
 		humanPlayer.setAsHuman();
 		
+		setupPlayerSequence();
 		moveHumanPlayerAtPosition(null);
 		GameState.playerManager = this;
-		setCurrentPlayer(1);
+		setCurrentPlayer(0);
+	}
+	
+	function setupPlayerSequence() 
+	{
+		playerSequence = new Array<Int>();
+		for ( i in 1...numOfPlayers+1 )
+			playerSequence.push(i);
 	}
 	
 	public function moveHumanPlayerAtPosition(index : Null<Int>)
 	{
-		playerList.remove(humanPlayer);
-		FlxArrayUtil.shuffle(playerList, 2);
-		
-		if ( index == null ) 
-			index = FlxRandom.intRanged(0, playerList.length - 1);
-		
-		playerList.insert(index, humanPlayer);
+		//playerList.remove(humanPlayer);
+		//FlxArrayUtil.shuffle(playerList, 2);
+		//
+		//if ( index == null ) 
+			//index = FlxRandom.intRanged(0, playerList.length - 1);
+		//
+		//playerList.insert(index, humanPlayer);
 	}
 	
 	public function getPlayer(playerNum : Int) : Player
@@ -78,12 +88,12 @@ class PlayerManager
 	
 	public function nextPlayer() 
 	{
-		currentPlayerNumber += 1;
+		currentPlayerIndex += 1;
 		
-		if ( currentPlayerNumber > numOfPlayers )
-			currentPlayerNumber = 1;			
+		if ( currentPlayerIndex > numOfPlayers )
+			currentPlayerIndex = 1;			
 		
-		setCurrentPlayer(currentPlayerNumber);
+		setCurrentPlayer(currentPlayerIndex);
 		
 		if ( currentPlayer.hasLost )
 			nextPlayer();
@@ -92,11 +102,10 @@ class PlayerManager
 			currentPlayer.ai.startPlanning();
 	}
 	
-	public function setCurrentPlayer(playerNumber:Int) 
+	public function setCurrentPlayer(playerIndex:Int) 
 	{
-		currentPlayerNumber = playerNumber;
-		currentPlayer = getPlayer(currentPlayerNumber);
-		
+		currentPlayer = getPlayer(playerSequence[playerIndex]);
+		trace("currentPlayer is " + currentPlayer.playerNum + " " + Std.string(currentPlayer.territoryColor));
 		GameState.gameGUI.updatePlayerIndicator();
 	}
 	
