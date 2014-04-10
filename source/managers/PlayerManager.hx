@@ -14,9 +14,9 @@ import states.GameState;
  */
 class PlayerManager
 {
-	var humanPlayer:Player;
 	public static inline var MAX_NUM_OF_PLAYERS : Int = 7;
 	
+	public var humanPlayer:Player;
 	public var numOfPlayers:Int = MAX_NUM_OF_PLAYERS;
 	public var numOfHumans:Int = 1;
 	public var playerSequence : Array<Int>;
@@ -45,7 +45,6 @@ class PlayerManager
 		
 		setupPlayerSequence();
 		shufflePlayerSequence();
-		moveHumanPlayerAtPosition(null);
 		GameState.playerManager = this;
 		setCurrentPlayer(0);
 	}
@@ -57,19 +56,15 @@ class PlayerManager
 			playerSequence.push(i);
 	}
 	
-	function shufflePlayerSequence() 
+	public function shufflePlayerSequence() 
 	{
 		FlxArrayUtil.shuffle(playerSequence, playerSequence.length * 2);
 	}
 	
-	public function moveHumanPlayerAtPosition(index : Null<Int>)
+	public function changeSequenceOrderPosition(playerNum : Int , index : Int)
 	{
-		playerSequence.remove(humanPlayer.playerNum);
-		
-		if ( index == null ) 
-			index = FlxRandom.intRanged(0, playerSequence.length - 1);
-		
-		playerSequence.insert(index, humanPlayer.playerNum);
+		playerSequence.remove(playerNum);
+		playerSequence.insert(index, playerNum);
 	}
 	
 	public function getPlayer(playerNum : Int) : Player

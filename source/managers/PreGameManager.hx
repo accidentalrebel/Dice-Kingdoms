@@ -75,9 +75,13 @@ class PreGameManager
 	
 	static private function updateListenersToOrderPosition() 
 	{
-		GameState.playerManager.moveHumanPlayerAtPosition(currentOrder-1);
-		GameState.playerManager.setCurrentPlayer(0);
+		var playerManager : PlayerManager = GameState.playerManager;
+		if ( currentOrder == null )
+			playerManager.shufflePlayerSequence();
+		else	
+			playerManager.changeSequenceOrderPosition(playerManager.humanPlayer.playerNum, currentOrder-1);
 		
+		GameState.playerManager.setCurrentPlayer(0);
 		GameState.pauseMenuLayer.updatePlayerList();
 		GameState.menuLayer.updateOrderPositionButton(currentOrder);
 	}	
