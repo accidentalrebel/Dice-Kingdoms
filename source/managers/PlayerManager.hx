@@ -39,9 +39,9 @@ class PlayerManager
 			playerList.push(player);
 		}
 		
-		if ( MainMenuManager.currentOrder != null )
+		if ( PreGameManager.currentOrder != null )
 		{
-			var currentOrder = MainMenuManager.currentOrder;
+			var currentOrder = PreGameManager.currentOrder;
 			var humanPlayer : Player = playerList[currentOrder - 1];
 			humanPlayer.setAsHuman();
 		}

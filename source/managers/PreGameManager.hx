@@ -7,7 +7,7 @@ import ui.CustomButton;
  * ...
  * @author Karlo
  */
-class MainMenuManager
+class PreGameManager
 {
 	inline public static var MAX_PLAYER_COUNT : Int = 7;
 	inline private static var MIN_PLAYER_COUNT : Int = 2;

@@ -13,7 +13,7 @@ import managers.BattleManager;
 import managers.CameraManager;
 import managers.GameplayManager;
 import managers.InputManager;
-import managers.MainMenuManager;
+import managers.PreGameManager;
 import managers.PlayerManager;
 import managers.TerritoryManager;
 import misc.StampsHolder;
@@ -49,7 +49,7 @@ class GameState extends FlxState
 	static public var pauseMenuLayer	:PauseMenuLayer;
 	static public var stampsHolder		:StampsHolder;
 	
-	public static var mainMenuManager	:MainMenuManager;
+	public static var mainMenuManager	:PreGameManager;
 	public static var menuLayer 		:MainMenuLayer;
 	
 	override public function create():Void 
@@ -88,7 +88,7 @@ class GameState extends FlxState
 		GameState.playArea 				= new PlayAreaLayer();
 		GameState.playArea.init(GameState.instance);
 		GameState.playArea.setupTerritories();	
-		GameState.playerManager = new PlayerManager(MainMenuManager.currentOpponentCount + 1);
+		GameState.playerManager = new PlayerManager(PreGameManager.currentOpponentCount + 1);
 		GameState.playArea.assignTerritories();
 		GameState.playerManager.initializeArmies();
 		GameState.playArea.setupFinished = true;

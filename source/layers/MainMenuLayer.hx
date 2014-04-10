@@ -5,7 +5,7 @@ import flixel.group.FlxGroup;
 import flixel.group.FlxSpriteGroup;
 import flixel.text.FlxText;
 import flixel.util.FlxPoint;
-import managers.MainMenuManager;
+import managers.PreGameManager;
 import states.GameState;
 import states.MainMenuState;
 import ui.CustomButton;
@@ -35,20 +35,20 @@ class MainMenuLayer extends FlxSpriteGroup
 		
 		var numOfOpponentsButton = new CustomButton
 			(Std.int(MainStage.cameraWidth / 2 - BUTTON_WIDTH / 2), Std.int(LOGO_HEIGHT + BUTTON_PADDING + (BUTTON_HEIGHT + BUTTON_PADDING) * 0)
-			, null, null, "NUM OF OPPONENTS: " + MainMenuManager.currentOpponentCount, BUTTON_WIDTH, BUTTON_HEIGHT);		
-		numOfOpponentsButton.setOnClickCallback(MainMenuManager.adjustNumOfOpponents, [numOfOpponentsButton]);
+			, null, null, "NUM OF OPPONENTS: " + PreGameManager.currentOpponentCount, BUTTON_WIDTH, BUTTON_HEIGHT);		
+		numOfOpponentsButton.setOnClickCallback(PreGameManager.adjustNumOfOpponents, [numOfOpponentsButton]);
 		add(numOfOpponentsButton);
 		
 		orderPositionButton = new CustomButton
 			(Std.int(MainStage.cameraWidth / 2 - BUTTON_WIDTH / 2), Std.int(LOGO_HEIGHT + BUTTON_PADDING + (BUTTON_HEIGHT + BUTTON_PADDING) * 1)
 			, null, null, "TURN POSITION: ", BUTTON_WIDTH, BUTTON_HEIGHT);		
-		orderPositionButton.setOnClickCallback(MainMenuManager.adjustOrderPosition, [orderPositionButton]);
+		orderPositionButton.setOnClickCallback(PreGameManager.adjustOrderPosition, [orderPositionButton]);
 		add(orderPositionButton);
-		updateOrderPositionButton(MainMenuManager.currentOrder);
+		updateOrderPositionButton(PreGameManager.currentOrder);
 		
 		var startButton : CustomButton = new CustomButton
 			(Std.int(MainStage.cameraWidth / 2 - BUTTON_WIDTH / 2), Std.int(LOGO_HEIGHT + BUTTON_PADDING + (BUTTON_HEIGHT + BUTTON_PADDING) * 2.5)
-			, MainMenuManager.startGame, null, "START GAME", BUTTON_WIDTH, BUTTON_HEIGHT);		
+			, PreGameManager.startGame, null, "START GAME", BUTTON_WIDTH, BUTTON_HEIGHT);		
 		add(startButton);
 		
 		this.setPosition(0, MainStage.cameraHeight / 2 - (startButton.y + BUTTON_HEIGHT) / 2);

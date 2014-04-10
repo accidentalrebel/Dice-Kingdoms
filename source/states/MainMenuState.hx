@@ -1,7 +1,7 @@
 package states;
 
 import layers.MainMenuLayer;
-import managers.MainMenuManager;
+import managers.PreGameManager;
 import openfl.Assets;
 import flash.geom.Rectangle;
 import flash.net.SharedObject;
@@ -14,7 +14,7 @@ import flixel.FlxState;
 
 class MainMenuState extends FlxState
 {	
-	public static var mainMenuManager:MainMenuManager;
+	public static var mainMenuManager:PreGameManager;
 	public static var menuLayer : MainMenuLayer;
 	
 	/**
