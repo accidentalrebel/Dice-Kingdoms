@@ -46,6 +46,9 @@ class BattleResult extends FlxSpriteGroup
 		this.add(battleSprite);
 		this.add(battleLabel);
 		
+		this.x = -100;
+		this.y = -100;
+		
 		this.hide();
 	}
 	
@@ -76,11 +79,6 @@ class BattleResult extends FlxSpriteGroup
 		this.battleLabel.visible = true;
 	}
 	
-	/**
-	 * Attaches this battle result to the specified territory.
-	 * Handles the positioning.
-	 * @param	territoryNumber		The territory number to attach to
-	 */
 	public function attachToTerritory(territoryNumber : Int)
 	{	
 		this.battleSprite.visible = true;

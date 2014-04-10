@@ -142,6 +142,7 @@ class GameplayManager
 		FlxG.paused = true;
 		
 		GameState.gameGUI.hideButtonsOnPause();
+		GameState.battleLayer.hide();
 		GameState.pauseMenuLayer.show();
 		GameState.cameraManager.zoomOut();	
 		GameState.inputManager.disableDragging();

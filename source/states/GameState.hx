@@ -60,7 +60,7 @@ class GameState extends FlxState
 		bgm.play();
 		add(bgm);
 		
-		FlxG.cameras.bgColor = 0xFF091b3a;
+		FlxG.cameras.bgColor = 0xFF111111;
 		#if !FLX_NO_MOUSE
 		FlxG.mouse.show();
 		#end
