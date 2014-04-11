@@ -6,6 +6,7 @@ import flixel.group.FlxSpriteGroup;
 import flixel.text.FlxText;
 import flixel.util.FlxPoint;
 import managers.PreGameManager;
+import objects.LoadingBanner;
 import states.GameState;
 import states.MainMenuState;
 import ui.CustomButton;
@@ -23,6 +24,7 @@ class MainMenuLayer extends FlxSpriteGroup
 	private static inline var LOGO_WIDTH = 300;
 	private static inline var LOGO_HEIGHT = 200;
 	var orderPositionButton:ui.CustomButton;
+	var loadingBanner : LoadingBanner;
 	
 	public function new() 
 	{
@@ -58,6 +60,8 @@ class MainMenuLayer extends FlxSpriteGroup
 			(Std.int(MainStage.cameraWidth / 2 - BUTTON_WIDTH / 2), Std.int(LOGO_HEIGHT + BUTTON_PADDING + (BUTTON_HEIGHT + BUTTON_PADDING) * 3.5)
 			, PreGameManager.startGame, null, "START GAME", BUTTON_WIDTH, BUTTON_HEIGHT);	
 		add(startButton);
+		
+		loadingBanner = new LoadingBanner(0, MainStage.cameraHeight / 2, this);
 		
 		this.setAll("scrollFactor", new FlxPoint(0, 0));
 	}
