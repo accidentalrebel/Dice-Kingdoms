@@ -1,4 +1,5 @@
 package states;
+import flixel.addons.plugin.taskManager.AntTaskManager;
 import flixel.FlxG;
 import flixel.FlxState;
 import flixel.group.FlxGroup;
@@ -17,6 +18,7 @@ import managers.PreGameManager;
 import managers.PlayerManager;
 import managers.TerritoryManager;
 import misc.StampsHolder;
+import tools.ARTaskManager;
 
 /**
  * ...
@@ -110,6 +112,19 @@ class GameState extends FlxState
 		GameState.menuLayer.setAll("cameras", [ GameState.cameraManager.mainCamera ], true);
 		GameState.gameGUI.setAll("cameras", [ GameState.cameraManager.mainCamera ], true);
 		GameState.gameObjectsLayer.setAll("cameras", [ GameState.cameraManager.mainCamera ], true);
+	}
+	
+	static public function reset() : Void
+	{
+		function actualReset()
+		{
+			FlxG.resetState();
+		}
+		
+		GameState.menuLayer.loadingBanner.show();
+		var taskManager : ARTaskManager = new ARTaskManager();
+		taskManager.addPause(0.25);
+		taskManager.addInstantTask(GameState.instance, actualReset);
 	}
 	
 	override public function destroy():Void 

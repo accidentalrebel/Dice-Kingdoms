@@ -29,7 +29,7 @@ class PreGameManager
 	
 	static public function changeMap() 
 	{
-		FlxG.resetState();
+		GameState.reset();
 	}
 	
 	public static function adjustNumOfOpponents(numOfOpponentsButton : CustomButton) 
@@ -40,7 +40,7 @@ class PreGameManager
 		
 		numOfOpponentsButton.text = "NUM OF OPPONENTS: " + currentOpponentCount;
 		
-		FlxG.resetState();
+		GameState.reset();
 	}
 	
 	public static function adjustOrderPosition(turnOrderButton : CustomButton) 

@@ -176,7 +176,7 @@ class GameplayManager
 	public function resetGame() 
 	{
 		FlxG.paused = false;
-		FlxG.resetState();
+		GameState.reset();
 	}
 	
 	public function endGame() 
@@ -192,6 +192,6 @@ class GameplayManager
 		GameState.inputManager.disableDragging();
 		
 		GameState.menuLayer.loadingBanner.destroy();
-		FlxG.resetState();
+		GameState.reset();
 	}
 }
