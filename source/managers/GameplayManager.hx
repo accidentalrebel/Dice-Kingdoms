@@ -181,9 +181,11 @@ class GameplayManager
 		taskManager.destroy();
 		
 		GameState.gameGUI.hide();
-		FlxG.paused = true;
+		FlxG.paused = false;
 		
 		GameState.inputManager.disableDragging();
-		FlxG.switchState(new GameState());
+		
+		GameState.menuLayer.loadingBanner.destroy();
+		FlxG.resetState();
 	}
 }

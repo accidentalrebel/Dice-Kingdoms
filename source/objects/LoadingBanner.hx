@@ -14,9 +14,11 @@ class LoadingBanner extends FlxSprite
 	inline private static var FONT_SIZE : Float = 50;
 	var loadingLabel : FlxText;
 	var taskManager:ARTaskManager;
+	var parentLayer:FlxSpriteGroup;
 	
 	public function new(xPos : Float, yPos : Float, parentLayer : FlxSpriteGroup) 
 	{
+		this.parentLayer = parentLayer;
 		taskManager = new ARTaskManager();
 		
 		super(0, 0);
@@ -54,5 +56,16 @@ class LoadingBanner extends FlxSprite
 		}
 		else
 			actualHide();
+	}
+	
+	override public function destroy():Void 
+	{
+		parentLayer.remove(this);
+		parentLayer.remove(loadingLabel);
+		
+		taskManager.clear();
+		taskManager.destroy();
+
+		super.destroy();
 	}
 }
