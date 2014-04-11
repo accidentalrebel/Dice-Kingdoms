@@ -24,7 +24,7 @@ class MainMenuLayer extends FlxSpriteGroup
 	private static inline var LOGO_WIDTH = 300;
 	private static inline var LOGO_HEIGHT = 200;
 	var orderPositionButton:ui.CustomButton;
-	var loadingBanner : LoadingBanner;
+	public var loadingBanner : LoadingBanner;
 	
 	public function new() 
 	{
@@ -62,6 +62,7 @@ class MainMenuLayer extends FlxSpriteGroup
 		add(startButton);
 		
 		loadingBanner = new LoadingBanner(0, MainStage.cameraHeight / 2, this);
+		loadingBanner.hide(0.5);
 		
 		this.setAll("scrollFactor", new FlxPoint(0, 0));
 	}

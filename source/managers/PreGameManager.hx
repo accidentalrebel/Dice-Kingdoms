@@ -29,6 +29,7 @@ class PreGameManager
 	
 	static public function changeMap() 
 	{
+		GameState.menuLayer.loadingBanner.show();
 		FlxG.resetState();
 	}
 	
