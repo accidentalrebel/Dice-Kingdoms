@@ -130,20 +130,26 @@ class GameplayManager
 	{
 		//if ( hasGameStarted )
 			//return;
+			
+		function actualStart() {
+			var bgm : FlxSound = new FlxSound();
+			bgm.loadEmbedded("BGM", true);
+			bgm.play();
+			GameState.instance.add(bgm);
+			
+			FlxG.paused = false;
+			GameState.gameGUI.show();
+			GameState.gameGUI.updateDoneButtonVisibility();
+			GameState.inputManager.enableDragging();
+			
+			var currentPlayer : Player = GameState.playerManager.currentPlayer;
+			if ( !currentPlayer.isHuman )
+				currentPlayer.ai.startPlanning();
+		}
 		
-		var bgm : FlxSound = new FlxSound();
-		bgm.loadEmbedded("BGM", true);
-		bgm.play();
-		GameState.instance.add(bgm);
-		
-		FlxG.paused = false;
-		GameState.gameGUI.show();
-		GameState.gameGUI.updateDoneButtonVisibility();
-		GameState.inputManager.enableDragging();
-		
-		var currentPlayer : Player = GameState.playerManager.currentPlayer;
-		if ( !currentPlayer.isHuman )
-			currentPlayer.ai.startPlanning();
+		taskManager.clear();
+		taskManager.addPause(0.25);
+		taskManager.addInstantTask(this, actualStart);
 	}
 	
 	public function pauseGame()
